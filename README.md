@@ -41,3 +41,8 @@ número total de clientes e o número de unidades vendidas, filial a filial;
 mais gastou dinheiro durante o ano;
 - [ ] 12. Determinar o número de clientes registados que não realizaram compras bem
 como o número de produtos que ninguém comprou.
+
+Grupo:
+ * Gil Gonçalves, `a67738`
+ * Humberto Vaz, `a73236`
+ * Ricardo Lopes, `a72062`
