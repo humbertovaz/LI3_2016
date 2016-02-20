@@ -21,7 +21,7 @@ decidir se pretende o resultado global ou os valores totais filial a filial.
 - [ ] 4. Determinar a lista ordenada dos códigos dos produtos (e o seu número total),
 que ninguém comprou, podendo o utilizador decidir igualmente se pretende
 valores totais ou divididos pelas filiais.
-- [ ]5. Dado um código de cliente, criar uma tabela com o número total de produtos
+- [ ] 5. Dado um código de cliente, criar uma tabela com o número total de produtos
 comprados (ou seja a soma das quantidades de todas as vendas do produto),
 mês a mês (para meses em que não comprou a entrada deverá ficar a 0). A
 tabela deverá ser apresentada em ecrã organizada por filial.
