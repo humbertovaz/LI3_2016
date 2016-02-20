@@ -4,7 +4,7 @@ Trabalho de Laboratórios de Informática 3
 
 
 Tarefas a Fazer: 
-[] 0. Fazer estruturas para Produtos, Clientes, Vendas e Filiais 
+[ ] 0. Fazer estruturas para Produtos, Clientes, Vendas e Filiais 
 [] 1. Ler os 3 ficheiros (Produtos, Clientes e Vendas), cujos nomes poderão ser
 introduzidos pelo utilizador ou, opcionalmente, assumidos por omissão (sendo
 neste caso os ficheiros anteriormente referidos). O resultado desta leitura
