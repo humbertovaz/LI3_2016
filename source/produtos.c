@@ -1,106 +1,149 @@
-#include <stdlib.h>
-#include <string.h>
+
 #include "produtos.h"
 
-void deleteP(AVL a){
-	if (a!=NULL){
-		deleteTree(a->l);
-		deleteTree(a->r);
-		free(a);
-	}
+int maxP(int x,int y){
+return x>y?x:y;
+}
+
+/* Função para calcular a altura da arvore */
+int alturaP(NodoP N)
+{
+    if (N == NULL)
+        return 0;
+    return N->altura;
+}
+ 
+/* Função que aloca um novo NodoP com o valor recebido e inicializa a esq e dir a NULL. */
+NodoP novoNodoP(char * valor)
+{
+    struct prod* nodo = (NodoP)malloc(sizeof(struct prod));
+    strcpy(nodo->code, valor);
+    nodo->esq   = NULL;
+    nodo->dir   = NULL;
+    nodo->altura = 1;  /* novo NodoP adicionado como folha */
+    return(nodo);
+}
+ 
+/* Função que faz a rotação à direita */
+NodoP dirRotateP(NodoP y)
+{
+    NodoP x = y->esq;
+    NodoP T2 = x->dir;
+ 
+    /* Rotação */
+    x->dir = y;
+    y->esq = T2;
+ 
+    /* Update altura */
+    y->altura = maxP(alturaP(y->esq), alturaP(y->dir))+1;
+    x->altura = maxP(alturaP(x->esq), alturaP(x->dir))+1;
+ 
+    /* Return novo root */
+    return x;
+}
+ 
+/* Função que faz a rotação à esquerda */
+NodoP esqRotateP(NodoP x)
+{
+    NodoP y = x->dir;
+    NodoP T2 = y->esq;
+ 
+    /* Rotação */
+    y->esq = x;
+    x->dir = T2;
+ 
+    /*  Update altura */
+    x->altura = maxP(alturaP(x->esq), alturaP(x->dir))+1;
+    y->altura = maxP(alturaP(y->esq), alturaP(y->dir))+1;
+ 
+    /* Return novo root */
+    return y;
+}
+ 
+/* Retorna o balanceamento do nodo */
+int getBalanceP(NodoP N)
+{
+    if (N == NULL)
+        return 0;
+    return alturaP(N->esq) - alturaP(N->dir);
+}
+ 
+NodoP insertP(NodoP nodo, char * valor)
+{
+    int balance;
+    /* 1.  Rotação normal de uma arvore */
+    if (nodo == NULL){
+     
+
+    return(novoNodoP(valor));
+ }
+    if (strcmp(valor, nodo->code) < 0)
+        nodo->esq  = insertP(nodo->esq, valor);
+    else if (strcmp(valor, nodo->code) > 0)
+        nodo->dir = insertP(nodo->dir, valor);
+ 
+    /* 2. Update altura do nodo anterior ao nodo */
+    nodo->altura = maxP(alturaP(nodo->esq), alturaP(nodo->dir)) + 1;
+ 
+    /* 3. Calculo do balaceamento do nodo para verificar se fico desbalanceado */
+    balance = getBalanceP(nodo);
+ 
+    /* Se ficou desbalanceado, temos 4 casos */
+ 
+    /* esq esq Case */
+    if (balance > 1 && (strcmp(valor, nodo->esq->code) < 0))
+        return dirRotateP(nodo);
+ 
+    /* dir dir Case */
+    if (balance < -1 && (strcmp(valor, nodo->dir->code) > 0))
+        return esqRotateP(nodo);
+ 
+    /* esq dir Case */
+    if (balance > 1 && (strcmp(valor, nodo->esq->code) > 0))
+    {
+        nodo->esq =  esqRotateP(nodo->esq);
+        return dirRotateP(nodo);
+    }
+ 
+    /* dir esq Case */
+    if (balance < -1 && (strcmp(valor, nodo->dir->code) < 0))
+    {
+        nodo->dir = dirRotateP(nodo->dir);
+        return esqRotateP(nodo);
+    }
+ 
+    /* retorna o apontador de novo */
+    return nodo;
 }
 
 
-int existeP(Produtos a, char s[]){
-	if (a==NULL) return 0;
-	if (strcmp(a->code,s)==0) return 1;
-	if (strcmp(a->code,s)==-1) return existe(a->l,s);
-	return existe(a->r,s);
+int contaNodosP(NodoP avl)
+{
+	if(avl == NULL) return 0;
+	return 1 + contaNodosP(avl->esq) + contaNodosP(avl->dir);
 }
 
 
-int alturaP (Produtos a){
-	if (a==NULL) return -1;
-	return a->altura;
+int validaProdutos (char *produtos,NodoP produto) {
+   
+
+  if(produto) {
+   
+     int rest= strcmp(produto->code,produtos);
+    
+     if(rest==0) {return 1;}
+     else {
+                   
+            if (rest>0) {
+                       return validaProdutos(produtos,produto->esq);
+                        
+            } 
+         else {  return validaProdutos(produtos,produto->dir);
+              } 
+        
+          }
 }
 
+ else return 0;
 
-int maxP( int l, int r){
-    return l > r ? l: r;
 }
-
-
-Produtos rotateLeftP(Produtos a){
-	AVL aux = a->l;
-	a->l=aux->r;
-	aux->r=a;
-	a->altura=max(altura(a->l),altura(a->r))+1;
-	aux->altura=max(altura(aux->l),altura(aux->r))+1;
-	return aux;
-}
-
-
-Produtos rotateRightP(Produtos a){
-	AVL aux = a->r;
-	a->r=aux->l;
-	aux->l=a;
-	a->altura=max(altura(a->l),altura(a->r))+1;
-	aux->altura=max(altura(aux->l),altura(aux->r))+1;
-	return aux;
-}
-
-Produtos doubleRotateLeftP(Produtos a){
-	a->l=rotateRight(a->l);
-	return rotateLeft(a);
-}
-
-Produtos doubleRotateRightP(Produtos a){
-	a->r=rotateLeft(a->r);
-	return rotateRight(a);
-}
-
-Produtos inserirP(char s[], Produtos a){
-	if (a==NULL){
-		a= (AVL) malloc(sizeof(nodo));
-		if (a==NULL) exit(1);
-		strcpy(a->code,s);
-		a->altura=0;
-		a->l=NULL;
-		a->r=NULL;
-	}
-	else if(strcmp(a->code,s)>0){
-		a->l=inserir(s,a->l);
-		if(altura(a->l)-altura(a->r)==2){
-			if (strcmp(s,a->l->code)<0) a=rotateLeft(a);
-			else a=doubleRotateLeft(a);
-		}
-	}
-	else if(strcmp(a->code,s)<0){
-		a->r=inserir(s,a->r);
-		if (altura(a->r)-altura(a->l)==2){
-			if (strcmp(s,a->r->code)>0) a=rotateRight(a);
-			else a= doubleRotateRight(a);
-		}
-	}
-	a->altura=max(altura(a->l),altura(a->r))+1;
-	return a;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
