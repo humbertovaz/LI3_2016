@@ -1,15 +1,30 @@
-typedef struct produtos{
-	char code[8];
-	int altura;
-	struct Nodo *l,*r;
-} *Produtos,produto;
+#ifndef PRODUTOS_H
+#define PRODUTOS_H
+#include <stdlib.h>
+#include <string.h>
+#include<stdio.h>
 
-void deleteP(AVL a);
-int existeP(Produtos a, char s[]);
-int alturaP (Produtos a);
-int maxP( int l, int r);
-Produtos rotateLeftP(Produtos a);
-Produtos rotateRightP(Produtos a);
-Produtos doubleRotateLeftP(Produtos a);
-Produtos doubleRotateRightP(Produtos a);
-Produtos inserirP(char s[], Produtos a);
+#define CD 8
+
+typedef struct prod{
+	char code[CD];
+	int altura;
+	struct prod *esq,*dir;
+} *NodoP;
+
+NodoP insertP(NodoP nodo, char * valor);
+int maxP(int x,int y);
+int alturaP(NodoP N);
+NodoP novoNodoP(char * valor);
+NodoP dirRotateP(NodoP y);
+NodoP esqRotateP(NodoP x);
+int getBalanceP(NodoP N);
+NodoP insertP(NodoP nodo, char * valor);
+int contaNodosP(NodoP avl);
+int validaProdutos (char *produtos,NodoP produto);
+
+
+
+
+
+#endif
