@@ -27,7 +27,7 @@ int main () {
 				token = strtok(NULL, " ");
 				compra[i] = token;
 			} 
-			preco = atoi(compra[1]);
+			preco = atof(compra[1]);
 			quantidade= atoi(compra[2]);
 			if(strcmp(cliente,compra[4])==0) {
 				compras++;
