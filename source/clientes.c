@@ -1,5 +1,5 @@
-#include"clientes.h"
-#include<math.h>
+#include "clientes.h"
+#include <math.h>
 
 int alturaC(NodoC N)
 {
@@ -85,7 +85,7 @@ NodoC insertC(NodoC nodo, char * valor)
     /* 1.  Rotação normal de uma arvore */
     if (nodo == NULL) {
      return (novoNodoC(valor)); 
-  }
+  	}
     if (strcmp(valor, nodo->codigo) < 0)
         nodo->esq  = insertC(nodo->esq, valor);
     else if (strcmp(valor, nodo->codigo) > 0)
