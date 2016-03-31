@@ -13,15 +13,12 @@ int main () {
 	char *token = NULL;
 	char limit[2] = " ";
 	char *compra[7];
-	double totalfaturado=0;
+	char cliente[8]="Z5000";
+	int quantidadetotal=0;
 	int quantidade;
-	int gratis=0;
-	int vendidos=0;
-<<<<<<< HEAD
-	double preco;
-=======
+	int compras=0;
+	float gastou=0;
 	float preco;
->>>>>>> origin/master
 	ficheiro = fopen("VendasValidas.txt", "r");
 	while ((string = fgets (str, 100, ficheiro)) != NULL) {
 			token = strtok(string, limit);
@@ -30,21 +27,16 @@ int main () {
 				token = strtok(NULL, " ");
 				compra[i] = token;
 			} 
-<<<<<<< HEAD
-			preco = atoi(compra[1]);
-			quantidade= atoi(compra[2]);
-			if(preco==0) gratis+=quantidade;
-=======
 			preco = atof(compra[1]);
 			quantidade= atoi(compra[2]);
-			if(preco==0) {
-				gratis++;
-			}
->>>>>>> origin/master
-			vendidos+=quantidade;
-			totalfaturado+=preco*quantidade;
+			if(strcmp(cliente,compra[4])==0) {
+				compras++;
+				quantidadetotal+=quantidade;
+				gastou+=preco*quantidade;
+				}
+
 	}
-	printf("gratis: %d unidades\ntotal faturado: %f\ntotal vendido:%d unidades\n",gratis,totalfaturado,vendidos);
+	printf("gastou: %f euros\ncomprou: %d produtos\nfez %d compras\n",gastou,quantidadetotal,compras);
 	free(string);
 	free(str);
 	return 0;

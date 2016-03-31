@@ -145,5 +145,129 @@ int validaProdutos (char *produtos,NodoP produto) {
 }
 
  else return 0;
+<<<<<<< HEAD
 
 }
+=======
+}
+
+NodoP minValueNode(NodoP node)
+{
+    NodoP current = node;
+ 
+    /* loop down to find the leftmost leaf */
+    while (current->esq != NULL)
+        current = current->esq;
+ 
+    return current;
+}
+
+NodoP deleteNodoP(NodoP root, char code[]){
+    // STEP 1: PERFORM STANDARD BST DELETE
+ 
+    if (root == NULL)
+        return root;
+ 
+    // If the key to be deleted is smaller than the root's key,
+    // then it lies in left subtree
+    if ( strcmp(code,root->code)<0 )
+        root->esq = deleteNodoP(root->esq, code);
+ 
+    // If the key to be deleted is greater than the root's key,
+    // then it lies in right subtree
+    else if( strcmp(code,root->code)>0 )
+        root->dir = deleteNodoP(root->dir, code);
+ 
+    // if key is same as root's key, then This is the node
+    // to be deleted
+    else
+    {
+        // node with only one child or no child
+        if( (root->esq == NULL) || (root->dir == NULL) )
+        {
+            NodoP temp = root->esq ? root->esq : root->dir;
+ 
+            // No child case
+            if(temp == NULL)
+            {
+                temp = root;
+                root = NULL;
+            }
+            else // One child case
+             *root = *temp; // Copy the contents of the non-empty child
+ 
+            free(temp);
+        }
+        else
+        {
+            // node with two children: Get the inorder successor (smallest
+            // in the right subtree)
+            NodoP temp = minValueNode(root->dir);
+ 
+            // Copy the inorder successor's data to this node
+            strcpy(root->code,temp->code);
+ 
+            // Delete the inorder successor
+            root->dir = deleteNodoP(root->dir, temp->code);
+        }
+    }
+ 
+    // If the tree had only one node then return
+    if (root == NULL)
+      return root;
+ 
+    // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE
+    root->altura = maxP(alturaP(root->esq), alturaP(root->dir)) + 1;
+ 
+    // STEP 3: GET THE BALANCE FACTOR OF THIS NODE (to check whether
+    //  this node became unbalanced)
+    int balance = getBalanceP(root);
+ 
+    // If this node becomes unbalanced, then there are 4 cases
+ 
+    // Left Left Case
+    if (balance > 1 && getBalanceP(root->esq) >= 0)
+        return dirRotateP(root);
+ 
+    // Left Right Case
+    if (balance > 1 && getBalanceP(root->esq) < 0)
+    {
+        root->esq =  esqRotateP(root->esq);
+        return dirRotateP(root);
+    }
+ 
+    // Right Right Case
+    if (balance < -1 && getBalanceP(root->dir) <= 0)
+        return esqRotateP(root);
+ 
+    // Right Left Case
+    if (balance < -1 && getBalanceP(root->dir) > 0)
+    {
+        root->dir = dirRotateP(root->dir);
+        return esqRotateP(root);
+    }
+ 
+    return root;
+}
+
+NodoP removeP(NodoP p1, NodoP p2){
+    if(p1!=NULL){
+        if (p2!=NULL){
+            p1=removeP(p1,p2->esq);
+            p1=removeP(p1,p2->dir);
+            p1=deleteNodoP(p1,p2->code);
+        }
+    }
+    return p1;
+}
+
+
+
+
+
+
+
+
+
+
+>>>>>>> origin/master

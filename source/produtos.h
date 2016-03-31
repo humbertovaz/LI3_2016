@@ -2,7 +2,11 @@
 #define PRODUTOS_H
 #include <stdlib.h>
 #include <string.h>
+<<<<<<< HEAD
 #include<stdio.h>
+=======
+#include <stdio.h>
+>>>>>>> origin/master
 
 #define CD 8
 
@@ -22,6 +26,12 @@ int getBalanceP(NodoP N);
 NodoP insertP(NodoP nodo, char * valor);
 int contaNodosP(NodoP avl);
 int validaProdutos (char *produtos,NodoP produto);
+<<<<<<< HEAD
+=======
+NodoP removeP(NodoP p1, NodoP p2);
+NodoP deleteNodoP(NodoP root, char code[]);
+NodoP minValueNode(NodoP node);
+>>>>>>> origin/master
 
 
 
