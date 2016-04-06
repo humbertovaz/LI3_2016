@@ -11,7 +11,7 @@ typedef struct iterador_cat_clientes *IT_CAT_CLIENTES;
 typedef struct cat_lista_clientes *CAT_LISTA_CLIENTES;
 typedef struct cat_paginador_lista_clientes *CAT_PAG_LISTA_CLIENTES;
 
-CatClientes inicializa_catalogo_Clientes();
+CatClientes inicializa_catalogo_clientes();
 void insertC(CatClientes c, char * valor);
 void cat_remove_cliente(CatClientes cat, char *str);
 void free_catalogo_Clientes(CatClientes cat);

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "headers/clientes.h"
 #include "headers/produtos.h"
+#include "headers/faturacao.h"
 
 
 
@@ -11,6 +12,7 @@
 
 static CatClientes clientes;
 static CatProdutos produtos;
+static Faturacao faturacao;
   
 
 
@@ -56,6 +58,7 @@ int leitura (char * nome_fich) {
 			token = strtok(string, limit);
 			token[6] = '\0';
 			insertP(produtos, token);
+			cont_regista_produto(faturacao, token);
 		        
 		}
 		printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\n", nome_fich, linhas);	
@@ -100,6 +103,7 @@ int leitura (char * nome_fich) {
 			if ((preco>=0.0 && preco <= 999.99) && (filial>=1 && filial <=3) && (modo=='P' || modo=='N') && mes >=1 && mes<=12 && nr>0 &&
                            existeCliente(cliente,clientes) && existeProduto(produto,produtos)) {
 //                              vendas=insertCatP(vendas,produto,cliente,nr,preco,mes,filial,modo);
+							  cont_insere_venda(faturacao,produto,nr,preco,modo,mes,filial);
                               linhas_val ++;
                            
                              }
@@ -124,8 +128,9 @@ return 1;
 
 
 int main () {
-clientes=NULL;
-produtos=NULL;
+clientes=inicializa_catalogo_clientes();
+produtos=inicializa_catalogo_produtos();
+faturacao=inicializa_faturacao();
 leitura("Clientes.txt");
 leitura("Produtos.txt");
 leitura("Vendas_1M.txt");

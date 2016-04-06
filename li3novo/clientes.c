@@ -10,7 +10,7 @@ static int cat_compara_Clientes_avl(const void *avl_a, const void *avl_b, void *
 static void cat_free_cliente_avl(void *item, void *param);
 static void cat_free_cliente_ad(void *item);
 
-CatClientes inicializa_catalogo_Clientes(){
+CatClientes inicializa_catalogo_clientes(){
     int i = 0;
     CatClientes res = (CatClientes) malloc(sizeof (struct catalogo_clientes));
 
