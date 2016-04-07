@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  7 APR 2016 18:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  7 APR 2016 21:51
 entering extended mode
 **li3c.tex
 (li3c.tex
@@ -1259,13 +1259,13 @@ or  <return>  to continue without it.
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 29.
-<ricardo.jpg, id=6, 855.195pt x 1140.26pt>
-File: ricardo.jpg Graphic file (type jpg)
- <use ricardo.jpg>
-Package pdftex.def Info: ricardo.jpg used on input line 36.
-(pdftex.def)             Requested size: 85.5245pt x 114.03267pt.
+<celia.jpg, id=6, 542.025pt x 963.6pt>
+File: celia.jpg Graphic file (type jpg)
+ <use celia.jpg>
+Package pdftex.def Info: celia.jpg used on input line 36.
+(pdftex.def)             Requested size: 54.20567pt x 96.36565pt.
 
-Overfull \hbox (39.99733pt too wide) in paragraph at lines 36--38
+Overfull \hbox (8.6785pt too wide) in paragraph at lines 36--38
 [][]
  []
 
@@ -1289,13 +1289,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--43
 \T1/ptm/m/n/6 Gil Gon-�al-ves
  []
 
-<humberto.jpg, id=8, 855.195pt x 1140.26pt>
+<humberto.jpg, id=8, 722.7pt x 963.6pt>
 File: humberto.jpg Graphic file (type jpg)
  <use humberto.jpg>
 Package pdftex.def Info: humberto.jpg used on input line 46.
-(pdftex.def)             Requested size: 85.5245pt x 114.03267pt.
+(pdftex.def)             Requested size: 72.27423pt x 96.36565pt.
 
-Overfull \hbox (39.99733pt too wide) in paragraph at lines 46--48
+Overfull \hbox (26.74706pt too wide) in paragraph at lines 46--48
 [][]
  []
 
@@ -1304,12 +1304,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 46--48
 \T1/ptm/m/n/6 Hum-berto Vaz
  []
 
+<ricardo.jpg, id=9, 722.7pt x 963.6pt>
 File: ricardo.jpg Graphic file (type jpg)
-<use ricardo.jpg>
+ <use ricardo.jpg>
 Package pdftex.def Info: ricardo.jpg used on input line 50.
-(pdftex.def)             Requested size: 85.5245pt x 114.03267pt.
+(pdftex.def)             Requested size: 72.27423pt x 96.36565pt.
 
-Overfull \hbox (39.99733pt too wide) in paragraph at lines 50--52
+Overfull \hbox (26.74706pt too wide) in paragraph at lines 50--52
 [][]
  []
 
@@ -1320,27 +1321,116 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--52
 
 [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./logo.png> <./ricardo.jp
-g> <./gil.jpg> <./humberto.jpg>]) (li3c.toc)
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./logo.png> <./celia.jpg>
+ <./gil.jpg> <./humberto.jpg> <./ricardo.jpg>]) (li3c.toc)
 \tf@toc=\write6
- [1
+ (intro.tex
+[1
+
+]
+Cap\'{\i }tulo 1.
+
+! Package inputenc Error: Unicode char \u8:̀ not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 ...lvimento deste programa será realizado à
+                                                   luz dos princípios da m...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:́ not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 ...ograma será realizado à luz dos princí
+                                                  pios da modularidade (divi...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:̃ not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 ... dos princípios da modularidade (divisã
+                                                  o do código fonte em uni...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:́ not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 ...cípios da modularidade (divisão do có
+                                                  digo fonte em unidades sep...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:̧ not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 ...) e do encapsulamento (garantia de proteç
+                                                  ão e acessos controlados...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:̃ not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 ... do encapsulamento (garantia de proteçã
+                                                  o e acessos controlados ao...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+) [2
 
 ] (li3c.aux) ) 
 Here is how much of TeX's memory you used:
- 31302 strings out of 493698
- 735457 string characters out of 3144375
+ 31317 strings out of 493698
+ 735601 string characters out of 3144375
  860223 words of memory out of 3000000
- 34133 multiletter control sequences out of 15000+200000
- 36658 words of font info for 46 fonts, out of 3000000 for 9000
+ 34143 multiletter control sequences out of 15000+200000
+ 39380 words of font info for 48 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  62i,7n,83p,10410b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/
 Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiK
 TeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/urw/times/utmr8a.pfb>
-Output written on li3c.pdf (2 pages, 291175 bytes).
+Output written on li3c.pdf (3 pages, 301821 bytes).
 PDF statistics:
- 31 PDF objects out of 1000 (max. 8388607)
+ 35 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 33 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 38 words of extra memory for PDF output out of 10000 (max. 10000000)
 
