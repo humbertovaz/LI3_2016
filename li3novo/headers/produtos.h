@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "array.h"
 #include "avl.h"
 
 
@@ -16,6 +17,7 @@ void free_catalogo_produtos(CatProdutos cat);
 int existeProduto (char *produto,CatProdutos cat);
 int numeroProdutos(CatProdutos cat);
 int numeroProdutosLetra(CatProdutos cat, char letra);
+ARRAY listaProdutosLetra(CatProdutos cat, char l);
 
 
 

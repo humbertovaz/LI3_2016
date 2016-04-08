@@ -1,6 +1,6 @@
 #include "headers/avl.h"
 #include "headers/produtos.h"
-
+#include "headers/array.h"
 
 struct catalogo_produtos{
     ARVORE indices[27];
@@ -44,6 +44,32 @@ void free_catalogo_produtos(CatProdutos cat) {
 }
     free(cat);
 }
+
+
+char *cat_produto_proximo(TRAVERSER t) {
+    int tamanho;
+    char *ret = NULL;
+    char *res = avl_t_next(t);
+    if (res != NULL) {
+        tamanho = strlen(res) + 1;
+        ret = (char *) malloc(sizeof (char)*tamanho);
+        strncpy(ret, res, tamanho);
+    }
+    return ret;
+}
+
+ARRAY listaProdutosLetra(CatProdutos cat, char l){
+    char *produto;
+    ARRAY a= inicializa_array();
+    TRAVERSER t = avl_t_alloc();
+    avl_t_init(t,cat->indices[l-'A']);
+    while((produto=cat_produto_proximo(t))!=NULL){
+        insere_elemento(a,produto);
+    }
+    avl_t_free(t);
+    return a;
+}
+
 
 
 

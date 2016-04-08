@@ -5,6 +5,7 @@
 #include "headers/produtos.h"
 #include "headers/faturacao.h"
 #include "headers/filial.h"
+#include "headers/array.h"
 
 
 
@@ -15,6 +16,7 @@ static CatClientes clientes;
 static CatProdutos produtos;
 static Faturacao faturacao;
 static Filial fil;
+ARRAY a;
   
 
 
@@ -23,7 +25,6 @@ static Filial fil;
 
 int leitura (char * nome_fich) {
 	FILE * ficheiro;
-	
 	char *string = (char *) malloc(100);
 	char *str = (char *) malloc(100);
 	char *token = NULL;
@@ -32,6 +33,14 @@ int leitura (char * nome_fich) {
 	int linhas = 0;
 	int linhas_val = 0;
 	int filial;
+	int i = 0;
+	int nr;
+	int mes;
+	double preco;
+	char  *compra[7];
+    char *cliente;
+    char *produto;
+    char * tmpString= (char *) malloc(100);
 	ficheiro = fopen(nome_fich, "r");
 	if (strcmp(nome_fich, "Clientes.txt") == 0){
 		while ((string = fgets (str, 100, ficheiro)) != NULL) {
@@ -39,8 +48,7 @@ int leitura (char * nome_fich) {
 			token = strtok(string, limit);
 			token[5] = '\0';
 			insertC(clientes, token);
-			fil_regista_cliente(fil,token);
-                        
+			fil_regista_cliente(fil,token);             
 		}
 		printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\n", nome_fich, linhas);
         fclose(ficheiro);
@@ -64,14 +72,6 @@ int leitura (char * nome_fich) {
 	}
    
   	else if (strcmp(nome_fich,"Vendas_1M.txt") == 0){
-		int i = 0;
-		int nr;
-		int mes;
-		double preco;
-		char  *compra[7];
-        char *cliente;
-        char *produto;
-        char * tmpString= (char *) malloc(100);
 		while ((string = fgets (str, 100, ficheiro)) != NULL) {
 			linhas++;
 			strcpy(tmpString,string);
@@ -81,16 +81,11 @@ int leitura (char * nome_fich) {
 				token = strtok(NULL, " ");
 				compra[i] = token;                
 			}
-			
-			/* compra[4] -> cliente
-			 * compra[0] -> produto
-			 */
 			preco = strtod(compra[1], &compra[1]);
             nr = atoi(compra[2]);
 			mes = atoi(compra[5]);
 			modo = compra[3][0];  //por causa do /0;
 			filial=atoi(compra[6]);
-<<<<<<< Updated upstream
             cliente=compra[4]; 
             produto=compra[0];
 			if ((preco>=0.0 && preco <= 999.99) && (filial>=1 && filial <=3) && (modo=='P' || modo=='N') && mes >=1 && mes<=12 && nr>0 && existeCliente(cliente,clientes) && existeProduto(produto,produtos)) {
@@ -108,31 +103,8 @@ int leitura (char * nome_fich) {
 	else return 0;  
 	return 1;
 }
-=======
-                         cliente=compra[4]; 
-                         produto=compra[0];
 
-			if ((preco>=0.0 && preco <= 999.99) && (filial>=1 && filial <=3) && (modo=='P' || modo=='N') && mes >=1 && mes<=12 && nr>0 &&
-                           existeCliente(cliente,clientes) && existeProduto(produto,produtos)) {
-//                              vendas=insertCatP(vendas,produto,cliente,nr,preco,mes,filial,modo);
-							  cont_insere_venda(faturacao,produto,nr,preco,modo,mes,filial);
-                              linhas_val ++;
-                           
-                             }
-			}
-       
- printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\nNúmero de linhas válidas: %d\n", nome_fich, linhas, linhas_val);	
- fclose(ficheiro);
- free(string);
- free(str);
- free(tmpString);
-
-} 
-else return 1;
-  
-return 0;
-	}
->>>>>>> Stashed changes
+      
 
 
 
@@ -141,6 +113,7 @@ return 0;
 
 
 int main () {
+int i;
 clientes=inicializa_catalogo_clientes();
 produtos=inicializa_catalogo_produtos();
 faturacao=inicializa_faturacao();
@@ -148,12 +121,10 @@ fil=inicializa_filial();
 leitura("Clientes.txt");
 leitura("Produtos.txt");
 leitura("Vendas_1M.txt");
-int x=0;
-
-x=getQuantidadePTodasFiliailX("KR1583",2,faturacao,1);
-
-printf("x=%d\n",x);
-
+a=listaProdutosLetra(produtos,'B');
+for(i=0;i<get_tamanho(a);i++){
+	printf("%s\n", get_elemento(a,i));
+}
 return 0;
 }
 

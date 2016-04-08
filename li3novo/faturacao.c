@@ -107,6 +107,7 @@ int getQuantidadeVendidaNFilialX (char* prod,int mes,Faturacao fat, int filial){
     if (nodo==NULL) return -1; // se o produto nao existe
     total=nodo->quantidadeN[mes-1][filial-1];
     return total;
+}
 
 static Info inicializa_info(char* prod) {
     int i, j;
