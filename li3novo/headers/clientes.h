@@ -7,9 +7,7 @@
 
 
 typedef struct catalogo_clientes *CatClientes;
-typedef struct iterador_cat_clientes *IT_CAT_CLIENTES;
-typedef struct cat_lista_clientes *CAT_LISTA_CLIENTES;
-typedef struct cat_paginador_lista_clientes *CAT_PAG_LISTA_CLIENTES;
+
 
 CatClientes inicializa_catalogo_clientes();
 void insertC(CatClientes c, char * valor);

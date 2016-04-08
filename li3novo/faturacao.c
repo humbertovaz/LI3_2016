@@ -11,12 +11,12 @@ struct faturacao{
 
 struct info{
 	char *code;
-	int vendasP[3][12];
-	int vendasN[3][12];
-	float faturadoN[3][12];
-	float faturadoP[3][12];
-	int quantidadeP[3][12];
-	int quantidadeN[3][12];
+	int vendasP[12][3];
+	int vendasN[12][3];
+	float faturadoN[12][3];
+	float faturadoP[12][3];
+	int quantidadeP[12][3];
+	int quantidadeN[12][3];
 };
 static Info fat_procura_info(Faturacao fat, char *prod);
 static int fat_compara_info(const void *avl_a, const void *avl_b, void *avl_param);
@@ -49,14 +49,14 @@ void cont_insere_venda(Faturacao fat, char *produto, int q, float preco, char M,
     Info prod;
     prod=fat_procura_info(fat, produto);    
     if(M == 'N'){
-    	prod->vendasN[filial-1][mes-1]++;
-    	prod->quantidadeN[filial-1][mes-1]+=q;
-    	prod->faturadoN[filial-1][mes-1]+=q*preco;
+    	prod->vendasN[mes-1][filial-1]++;
+    	prod->quantidadeN[mes-1][filial-1]+=q;
+    	prod->faturadoN[mes-1][filial-1]+=q*preco;
     }
     else {
-    	prod->vendasP[filial-1][mes-1]++;
-    	prod->quantidadeP[filial-1][mes-1]+=q;
-    	prod->faturadoP[filial-1][mes-1]+=q*preco;
+    	prod->vendasP[mes-1][filial-1]++;
+    	prod->quantidadeP[mes-1][filial-1]+=q;
+    	prod->faturadoP[mes-1][filial-1]+=q*preco;
     }
 }
 
@@ -70,6 +70,50 @@ void free_faturacao(Faturacao fat) {
         avl_destroy(fat->produtos, freeinfo_avl);
     free(fat);
 }
+
+
+int getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial){
+    int total=0;
+    Info nodo=NULL;
+    Info nodo_aux=codigo_to_info(prod);
+    nodo=(Info)avl_find(fat->produtos,nodo_aux);
+    if (nodo==NULL) return -1; // se o produto nao existe
+    total+=nodo->faturadoN[mes-1][filial-1];
+    return total;
+}
+
+int getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial){
+    int total=0;
+    Info nodo=NULL;
+    Info nodo_aux=codigo_to_info(prod);
+    nodo=(Info)avl_find(fat->produtos,nodo_aux);
+    if (nodo==NULL) return -1; // se o produto nao existe
+    total+=nodo->faturadoP[mes-1][filial-1];
+    return total;
+}
+
+int getQuantidadeVendidaNFilialX (char* prod,int mes,Faturacao fat, int filial){
+    int total=0;
+    Info nodo=NULL;
+    Info nodo_aux=codigo_to_info(prod);
+    nodo=(Info)avl_find(fat->produtos,nodo_aux);
+    if (nodo==NULL) return -1; // se o produto nao existe
+    total=nodo->quantidadeN[mes-1][filial-1];
+    return total;
+}
+
+
+int getQuantidadeVendidaPFilialX (char* prod,int mes,Faturacao fat, int filial){
+    int total=0;
+    Info nodo=NULL;
+    Info nodo_aux=codigo_to_info(prod);
+    nodo=(Info)avl_find(fat->produtos,nodo_aux);
+    if (nodo==NULL) return -1; // se o produto nao existe
+    total=nodo->quantidadeP[mes-1][filial-1];
+    return total;
+}
+
+
 static Info inicializa_info(char* prod) {
     int i, j;
     Info info = (Info) malloc(sizeof (struct info));
@@ -77,8 +121,8 @@ static Info inicializa_info(char* prod) {
     strcpy(copia, prod);
     info->code = copia;
     
-    for (i = 0; i < 3; i++)
-        for (j = 0; j < 12; j++) {
+    for (i = 0; i < 12; i++)
+        for (j = 0; j < 3; j++) {
             info->vendasN[i][j] = 0;
             info->vendasP[i][j] = 0;
             info->quantidadeN[i][j]=0;

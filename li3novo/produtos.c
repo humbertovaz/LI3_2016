@@ -6,16 +6,15 @@ struct catalogo_produtos{
     ARVORE indices[27];
 };
 
-static int cat_compara_produtos_avl(const void *avl_a, const void *avl_b, void *avl_param);
-static void cat_free_produto_avl(void *item, void *param);
-static void cat_free_produto_ad(void *item);
+static int cat_compara_produtos(const void *avl_a, const void *avl_b, void *avl_param);
+static void cat_free_produto(void *item, void *param);
 
 CatProdutos inicializa_catalogo_produtos(){
     int i = 0;
     CatProdutos res = (CatProdutos) malloc(sizeof (struct catalogo_produtos));
 
     for (i = 0; i <= 26; i++) {
-        res->indices[i] = avl_create(cat_compara_produtos_avl, NULL, NULL);
+        res->indices[i] = avl_create(cat_compara_produtos, NULL, NULL);
     }
 
     return res;
@@ -40,7 +39,7 @@ void free_catalogo_produtos(CatProdutos cat) {
     
     if(cat != NULL){
     for (i = 0; i <= 26; i++) {
-        avl_destroy(cat->indices[i], cat_free_produto_avl);
+        avl_destroy(cat->indices[i], cat_free_produto);
     }
 }
     free(cat);
@@ -66,15 +65,11 @@ int numeroProdutosLetra(CatProdutos cat, char letra) {
 }
 
 
-static int cat_compara_produtos_avl(const void *avl_a, const void *avl_b, void *avl_param) {
+static int cat_compara_produtos(const void *avl_a, const void *avl_b, void *avl_param) {
     return strcmp((char *) avl_a, (char *) avl_b);
 }
 
-static void cat_free_produto_avl(void *item, void *param) {
-    free(item);
-}
-
-static void cat_free_produto_ad(void *item) {
+static void cat_free_produto(void *item, void *param) {
     free(item);
 }
 

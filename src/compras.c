@@ -12,21 +12,19 @@
 
 struct modulo_compras{
 	ARVORE avl_clientes;
-        ARVORE avl_produtos_nclientes;
+    ARVORE avl_produtos_nclientes;
 };
 
 struct compras_ficha_cliente{
 	char *cod_cliente;
 	ARVORE avl_produtos;
-        int total_prods_comprados;
+    int total_prods_comprados;
 	int num_prods_comprados[12];
 };
 
 struct compras_ficha_produto{
 	char *cod_produto;
-	/* Numero de compras para cada mes,
-         * distinguindo entre normal e promocao.*/
-        int total_unidades_compradas;
+    int total_unidades_compradas;
 	int num_unidades_compradas[12][2];
 };
 

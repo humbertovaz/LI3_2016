@@ -5,12 +5,9 @@
 #include <stdio.h>
 #include "avl.h"
 
-#define CD 8
 
 typedef struct catalogo_produtos *CatProdutos;
-typedef struct iterador_cat_produtos *IT_CAT_PRODUTOS;
-typedef struct cat_lista_produtos *CAT_LISTA_PRODUTOS;
-typedef struct cat_paginador_lista_produtos *CAT_PAG_LISTA_PRODUTOS;
+
 
 CatProdutos inicializa_catalogo_produtos();
 void insertP(CatProdutos c, char * valor);

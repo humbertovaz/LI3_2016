@@ -6,16 +6,15 @@ struct catalogo_clientes{
     ARVORE indices[27];
 };
 
-static int cat_compara_Clientes_avl(const void *avl_a, const void *avl_b, void *avl_param);
-static void cat_free_cliente_avl(void *item, void *param);
-static void cat_free_cliente_ad(void *item);
+static int cat_compara_Clientes(const void *avl_a, const void *avl_b, void *avl_param);
+static void cat_free_cliente(void *item, void *param);
 
 CatClientes inicializa_catalogo_clientes(){
     int i = 0;
     CatClientes res = (CatClientes) malloc(sizeof (struct catalogo_clientes));
 
     for (i = 0; i <= 26; i++) {
-        res->indices[i] = avl_create(cat_compara_Clientes_avl, NULL, NULL);
+        res->indices[i] = avl_create(cat_compara_Clientes, NULL, NULL);
     }
 
     return res;
@@ -40,7 +39,7 @@ void free_catalogo_Clientes(CatClientes cat) {
     
     if(cat != NULL){
     for (i = 0; i <= 26; i++) {
-        avl_destroy(cat->indices[i], cat_free_cliente_avl);
+        avl_destroy(cat->indices[i], cat_free_cliente);
     }
 }
     free(cat);
@@ -66,15 +65,11 @@ int numeroClientesLetra(CatClientes cat, char letra) {
 }
 
 
-static int cat_compara_Clientes_avl(const void *avl_a, const void *avl_b, void *avl_param) {
+static int cat_compara_Clientes(const void *avl_a, const void *avl_b, void *avl_param) {
     return strcmp((char *) avl_a, (char *) avl_b);
 }
 
-static void cat_free_cliente_avl(void *item, void *param) {
-    free(item);
-}
-
-static void cat_free_cliente_ad(void *item) {
+static void cat_free_cliente(void *item, void *param) {
     free(item);
 }
 

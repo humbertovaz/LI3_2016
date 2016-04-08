@@ -27,16 +27,10 @@ int leitura (char * nome_fich) {
 	char *token = NULL;
 	char limit[2] = " ";
 	char modo;
-
 	int linhas = 0;
 	int linhas_val = 0;
-	
-        int filial;
-
+	int filial;
 	ficheiro = fopen(nome_fich, "r");
-	
-
-	
 	if (strcmp(nome_fich, "Clientes.txt") == 0){
 		while ((string = fgets (str, 100, ficheiro)) != NULL) {
 			linhas++;	
@@ -46,13 +40,12 @@ int leitura (char * nome_fich) {
                         
 		}
 		printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\n", nome_fich, linhas);
-         fclose(ficheiro);
-         free(string);
-         free(str);
+        fclose(ficheiro);
+        free(string);
+        free(str);
+	}
 
-}
-
-          else if (strcmp(nome_fich, "Produtos.txt") == 0){
+    else if (strcmp(nome_fich, "Produtos.txt") == 0){
 		while ((string = fgets (str, 100, ficheiro)) != NULL) {
 			linhas++;
 			token = strtok(string, limit);
@@ -62,14 +55,12 @@ int leitura (char * nome_fich) {
 		        
 		}
 		printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\n", nome_fich, linhas);	
- fclose(ficheiro);
- free(string);
- free(str);
-
-
-}
+ 		fclose(ficheiro);
+ 		free(string);
+ 		free(str);
+	}
    
-  else if (strcmp(nome_fich,"Vendas_1M.txt") == 0){
+  	else if (strcmp(nome_fich,"Vendas_1M.txt") == 0){
 		int i = 0;
 		int nr;
 		int mes;
@@ -85,41 +76,33 @@ int leitura (char * nome_fich) {
 			compra[0] = token;
 			for(i=1; token != NULL && i < 7; i++) {
 				token = strtok(NULL, " ");
-				compra[i] = token;
-                              
+				compra[i] = token;                
 			}
 			
 			/* compra[4] -> cliente
 			 * compra[0] -> produto
 			 */
 			preco = strtod(compra[1], &compra[1]);
-                        nr = atoi(compra[2]);
+            nr = atoi(compra[2]);
 			mes = atoi(compra[5]);
 			modo = compra[3][0];  //por causa do /0;
 			filial=atoi(compra[6]);
-                         cliente=compra[4]; 
-                         produto=compra[0];
-
-			if ((preco>=0.0 && preco <= 999.99) && (filial>=1 && filial <=3) && (modo=='P' || modo=='N') && mes >=1 && mes<=12 && nr>0 &&
-                           existeCliente(cliente,clientes) && existeProduto(produto,produtos)) {
-//                              vendas=insertCatP(vendas,produto,cliente,nr,preco,mes,filial,modo);
-							  cont_insere_venda(faturacao,produto,nr,preco,modo,mes,filial);
-                              linhas_val ++;
-                           
-                             }
-			}
-       
- printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\nNúmero de linhas válidas: %d\n", nome_fich, linhas, linhas_val);	
- fclose(ficheiro);
- free(string);
- free(str);
- free(tmpString);
-
-} 
-else return 0;
-  
-return 1;
-	}
+            cliente=compra[4]; 
+            produto=compra[0];
+			if ((preco>=0.0 && preco <= 999.99) && (filial>=1 && filial <=3) && (modo=='P' || modo=='N') && mes >=1 && mes<=12 && nr>0 && existeCliente(cliente,clientes) && existeProduto(produto,produtos)) {
+				cont_insere_venda(faturacao,produto,nr,preco,modo,mes,filial);
+                linhas_val ++;        
+            }
+		} 
+ 		printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\nNúmero de linhas válidas: %d\n", nome_fich, linhas, linhas_val);	
+ 		fclose(ficheiro);
+ 		free(string);
+ 		free(str);
+ 		free(tmpString);
+	} 
+	else return 0;  
+	return 1;
+}
 
 
 
