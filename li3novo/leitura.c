@@ -4,6 +4,7 @@
 #include "headers/clientes.h"
 #include "headers/produtos.h"
 #include "headers/faturacao.h"
+#include "headers/filial.h"
 
 
 
@@ -13,6 +14,7 @@
 static CatClientes clientes;
 static CatProdutos produtos;
 static Faturacao faturacao;
+static Filial fil;
   
 
 
@@ -37,6 +39,7 @@ int leitura (char * nome_fich) {
 			token = strtok(string, limit);
 			token[5] = '\0';
 			insertC(clientes, token);
+			fil_regista_cliente(fil,token);
                         
 		}
 		printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\n", nome_fich, linhas);
@@ -52,7 +55,7 @@ int leitura (char * nome_fich) {
 			token[6] = '\0';
 			insertP(produtos, token);
 			cont_regista_produto(faturacao, token);
-		        
+
 		}
 		printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\n", nome_fich, linhas);	
  		fclose(ficheiro);
@@ -91,6 +94,7 @@ int leitura (char * nome_fich) {
             produto=compra[0];
 			if ((preco>=0.0 && preco <= 999.99) && (filial>=1 && filial <=3) && (modo=='P' || modo=='N') && mes >=1 && mes<=12 && nr>0 && existeCliente(cliente,clientes) && existeProduto(produto,produtos)) {
 				cont_insere_venda(faturacao,produto,nr,preco,modo,mes,filial);
+				fil_insere_prod(fil,cliente,produto,nr,filial,mes,preco);
                 linhas_val ++;        
             }
 		} 
@@ -114,6 +118,7 @@ int main () {
 clientes=inicializa_catalogo_clientes();
 produtos=inicializa_catalogo_produtos();
 faturacao=inicializa_faturacao();
+fil=inicializa_filial();
 leitura("Clientes.txt");
 leitura("Produtos.txt");
 leitura("Vendas_1M.txt");

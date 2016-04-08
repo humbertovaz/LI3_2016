@@ -23,6 +23,7 @@ static int fat_compara_info(const void *avl_a, const void *avl_b, void *avl_para
 static void free_info(Info prod);
 static Info inicializa_info(char* prod);
 static void freeinfo_avl(void *item, void *avl_param);
+static Info codigo_to_info(char* prod);
 
 Faturacao inicializa_faturacao() {
     int i, j;
