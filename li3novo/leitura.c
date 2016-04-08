@@ -87,6 +87,7 @@ int leitura (char * nome_fich) {
 			mes = atoi(compra[5]);
 			modo = compra[3][0];  //por causa do /0;
 			filial=atoi(compra[6]);
+<<<<<<< Updated upstream
             cliente=compra[4]; 
             produto=compra[0];
 			if ((preco>=0.0 && preco <= 999.99) && (filial>=1 && filial <=3) && (modo=='P' || modo=='N') && mes >=1 && mes<=12 && nr>0 && existeCliente(cliente,clientes) && existeProduto(produto,produtos)) {
@@ -103,6 +104,31 @@ int leitura (char * nome_fich) {
 	else return 0;  
 	return 1;
 }
+=======
+                         cliente=compra[4]; 
+                         produto=compra[0];
+
+			if ((preco>=0.0 && preco <= 999.99) && (filial>=1 && filial <=3) && (modo=='P' || modo=='N') && mes >=1 && mes<=12 && nr>0 &&
+                           existeCliente(cliente,clientes) && existeProduto(produto,produtos)) {
+//                              vendas=insertCatP(vendas,produto,cliente,nr,preco,mes,filial,modo);
+							  cont_insere_venda(faturacao,produto,nr,preco,modo,mes,filial);
+                              linhas_val ++;
+                           
+                             }
+			}
+       
+ printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\nNúmero de linhas válidas: %d\n", nome_fich, linhas, linhas_val);	
+ fclose(ficheiro);
+ free(string);
+ free(str);
+ free(tmpString);
+
+} 
+else return 1;
+  
+return 0;
+	}
+>>>>>>> Stashed changes
 
 
 
@@ -117,6 +143,12 @@ faturacao=inicializa_faturacao();
 leitura("Clientes.txt");
 leitura("Produtos.txt");
 leitura("Vendas_1M.txt");
+int x=0;
+
+x=getQuantidadePTodasFiliailX("KR1583",2,faturacao,1);
+
+printf("x=%d\n",x);
+
 return 0;
 }
 

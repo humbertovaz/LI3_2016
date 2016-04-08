@@ -18,11 +18,18 @@ struct info{
 	int quantidadeP[12][3];
 	int quantidadeN[12][3];
 };
+
+struct lista{
+    char* produto;
+    struct lista *prox;
+}
+
 static Info fat_procura_info(Faturacao fat, char *prod);
 static int fat_compara_info(const void *avl_a, const void *avl_b, void *avl_param);
 static void free_info(Info prod);
 static Info inicializa_info(char* prod);
 static void freeinfo_avl(void *item, void *avl_param);
+static Info codigo_to_info(char* prod);
 
 Faturacao inicializa_faturacao() {
     int i, j;
@@ -100,19 +107,6 @@ int getQuantidadeVendidaNFilialX (char* prod,int mes,Faturacao fat, int filial){
     if (nodo==NULL) return -1; // se o produto nao existe
     total=nodo->quantidadeN[mes-1][filial-1];
     return total;
-}
-
-
-int getQuantidadeVendidaPFilialX (char* prod,int mes,Faturacao fat, int filial){
-    int total=0;
-    Info nodo=NULL;
-    Info nodo_aux=codigo_to_info(prod);
-    nodo=(Info)avl_find(fat->produtos,nodo_aux);
-    if (nodo==NULL) return -1; // se o produto nao existe
-    total=nodo->quantidadeP[mes-1][filial-1];
-    return total;
-}
-
 
 static Info inicializa_info(char* prod) {
     int i, j;
@@ -168,4 +162,6 @@ static void freeinfo_avl(void *item, void *avl_param) {
     free(prod->code);
     free(prod);
 }
+
+
 

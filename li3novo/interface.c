@@ -2,196 +2,95 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#include "headers/interface.h"
-#include "headers/queries.h"
+#include "interface.h"
+#include "queries.h"
 
-static int face_catalogos();
-static int face_contabilidade();
-static int face_compras();
 
 void interface() {
     char r[50];
-    int estado=MENU_PRINCIPAL;
+    int estado=-1;
     int leitura=0;
     
     printf("Pressione qualquer tecla para continuar (q para sair): ");
     leitura = scanf("%s", r);
     
-    if(tolower(r[0])=='q') 
-        estado = SAIR_PROGRAMA;
     
-    while (estado == MENU_PRINCIPAL) {
-        printf("\033[2J\033[1;1H"
-                " ========================================== \n"
-                "| GESTHIPER >> MENU PRINCIPAL              |\n"
-                "|                                          |\n"
-                "|   1 - Catalogos                          |\n"
-                "|   2 - Contabilidade                      |\n"
-                "|   3 - Compras                            |\n"
-                "| ---------------------------------------- |\n"
-                "| BEM-VINDO                   Q - Sair     |\n"
-                " ==========================================\n");
-
-
-        printf("Escolha uma opcao > ");
-        leitura = scanf("%s", r);
-        if(leitura>0){
-        switch (toupper(r[0])) {
-            case '1': estado = face_catalogos();
-                break;
-            case '2': estado = face_contabilidade();
-                break;
-            case '3': estado = face_compras();
-                break;
-            case 'Q': estado = SAIR_PROGRAMA;
-                break;
-            default:
-                estado = MENU_PRINCIPAL;
-                break;
-        }
-    }else{
-            printf("Opção inválida.\n");
-    }
-    }
-
-}
-
-static int face_catalogos() {
-    char r[50];
-    int estado=FACE_CATALOGOS;
-    int leitura=0;
-
-
-    while (estado == FACE_CATALOGOS) {
-        printf("\033[2J\033[1;1H"
-                " =================================================== \n"
-                "| GESTHIPER >> CATALOGOS                            |\n"
-                "|                                                   |\n"
-                "|   1 - Listar produtos começados por letra ... [2] |\n");
-        printf( "|   2 - Listar clientes comecados por letra ... [6] |\n"
-                "| ------------------------------------------------- |\n"
-                "|  0 - Voltar | Q - Sair                            |\n"
-                " =================================================== \n");
-
-
-        printf("Escolha uma opcao > ");
-        leitura = scanf("%s", r);
-        if(leitura>0){
-        switch (toupper(r[0])) {
-            case '\\':
-            case '0': 
-                estado = MENU_PRINCIPAL;
-                break;
-            case '1': 
-                estado = _02_codigo_produtos_letra();
-                break;
-            case '2': 
-                estado = _06_codigos_clientes_letra();
-                break;
-            case 'Q': 
-                estado = SAIR_PROGRAMA;
-                break;
-            default:
-                estado = FACE_CATALOGOS;
-                break;
-        }
-    }else{
-            printf("Opção inválida.\n");
-    }
-    }
-    return estado;
-}
-
-static int face_contabilidade() {
-    char r[50];
-    int estado=FACE_CONTABILIDADE;
-    int leitura=0;
-    
-        while (estado ==FACE_CONTABILIDADE) {
-        printf("\033[2J\033[1;1H"
-                " ================================================================ \n"
-                "| GESTHIPER >> CONTABILIDADE                                     |\n"
-                "|                                                                |\n"
-                "|   1 - Nº vendas e facturação mensal produto .............. [3] |\n"
-                "|   2 - Nº vendas e facturação produto todos os meses .. [extra] |\n"
-                "|   3 - Produtos nao comprados ............................. [4] |\n"
-                "|   4 - Nº compras e total facturado intervalo meses ....... [7] |\n");
-        printf( "| -------------------------------------------------------------- |\n"
-                "|  0 - Voltar | Q - Sair                                         |\n"
-                " ================================================================ \n");
+    while (estado == -1) {
         
+                puts("========================================================================================================================");
+                puts("\t\tGere Vendas >> MENU PRINCIPAL");
+                puts("1  - Carregar dados para memória");
+                puts("2  - Determinar a lista e o total de produtos cujo código se inicia por uma dada leitura"); 
+                puts("3  - Numero total de vendas e o total facturado com esse produto num mês"); 
+                puts("4  - Lista ordenada dos códigos dos produtos  que ninguém comprou");
+                puts("5  - Tabela com o numero total de produtos comprados");
+                puts("6  - Determinar o total de vendas registadas num intervalo de meses e o total facturado");
+                puts("7  - lista ordenada de códigos de clientes que realizaram compras em todas as filiais");
+                puts("8  - códigos (e número total) dos clientes que o compraram, distinguindo entre compra N e compra P;");
+                puts("9  - lista de códigos de produtos que mais um dado cliente num determinado mês");
+                puts("10 - Produtos mais vendidos em todo o ano, indicando o numero total de clientes e o numero de unidades vendidas");
+                puts("11 - Códigos dos 3 produtos em que mais gastou dinheiro durante o ano dado um código de cliente");
+                puts("12 - Determinar o numero de clientes registados que nao realizaram compras e produtos não comprados");
+                puts("-----------------------------------------------------------------------------------------------------------------------");
+                puts("BEM-VINDO                   0 - Sair");
+                puts("=======================================================================================================================");                                           
+                
+
         printf("Escolha uma opcao > ");
-        leitura = scanf("%s", r);
-        
-        if(leitura>0){
-        switch (toupper(r[0])) {
-        	case '\\':
-            case '0': estado = MENU_PRINCIPAL;
-                      break;
-            case '1': estado = _03_compras_e_fact_mensal_prod(); break;
-            case '2': estado = _03_compras_e_fact_mensal_prod_old(); break;
-            case '3': estado = _04_prods_nao_comprados(); break;
-            case '4': estado = _07_compras_intervalo_meses(); break;
-            case 'Q': estado = SAIR_PROGRAMA;
-                      break;
+
+      
+        scanf("%d",&estado);
+        switch (estado) {
+            case 0:
+                system("clear");
+                printf("Saiu do programa! Obrigado pela visita\n");
+                estado=0;
+                break;
+            case 2: 
+                printf("Não Concluido\n"); //estado = query2();
+                break;
+            case 3: 
+                printf("Não Concluido\n"); //estado = query3();
+                break;
+            case 4: 
+                printf("Não Concluido\n"); //estado = query4();
+                break;   
+            case 5: 
+                printf("Não Concluido\n"); //estado = query5();
+                break;
+            case 6: 
+                printf("Não Concluido\n"); //estado = query6();
+                break;
+            case 7: 
+                printf("Não Concluido\n"); //estado = query7();
+                break;
+            case 8: 
+                printf("Não Concluido\n"); //estado = query8();
+                break;
+            case 9: 
+                printf("Não Concluido\n"); //estado = query9();
+                break;      
+            case 10: 
+                printf("Não Concluido\n"); //estado = query10();
+                break;
+            case 11: 
+                printf("Não Concluido\n"); //estado = query11();
+                break;
+            case 12: 
+                printf("Não Concluido\n"); //estado = query12();
+                break;                        
             default: 
-                estado = FACE_CONTABILIDADE;
+                system("clear");
+                printf("Tecla inválida\n");
+                
                 break;
         }
-        }else{
-            printf("Opção invalida.\n");
-        }
     }
-    return estado;
 }
 
-static int face_compras() {
-    char r[50];
-    int estado=FACE_COMPRAS;
-    int leitura=0;
 
-    
-    while (estado ==FACE_COMPRAS) {
-        printf("\033[2J\033[1;1H"
-                " ====================================================================== \n"
-                "| GESTHIPER >> COMPRAS                                                 |\n"
-                "|                                                                      |\n"
-                "|   1 - Nº produtos comprados por cliente ........................ [5] |\n");
-        printf( "|   2 - Lista de clientes que compraram produto .................. [8] |\n"
-                "|   3 - Produtos mais comprados por cliente ...................... [9] |\n"
-                "|   4 - Clientes que compraram todos os meses ................... [10] |\n");
-        printf( "|   5 - Nº compras e clientes por mes (CSV) ..................... [11] |\n"
-                "|   6 - N produtos mais vendidos ................................ [12] |\n"
-                "|   7 - Top 3 produtos mais comprados por cliente ............... [13] |\n");
-        printf( "|   8 - Nº de produtos nao vendidos e de clientes sem compras ... [14] |\n"
-                "| -------------------------------------------------------------------- |\n"
-                "|  0 - Voltar | Q - Sair                                               |\n"
-                " ====================================================================== \n");
-        printf("Escolha uma opcao > ");
-        leitura = scanf("%s", r);
-        
-        if(leitura>0){
-        switch (toupper(r[0])) {
-        	case '\\':
-            case '0': estado = MENU_PRINCIPAL;
-                      break;
-            case '1': estado = _05_tabela_cliente();break;
-            case '2': estado = _08_clientes_compraram_prod();break;
-            case '3': estado = _09_produtos_mais_comprados_cliente_mes();break;
-            case '4': estado = _10_clientes_regulares();break;
-            case '5': estado = _11_compras_CSV();break;
-            case '6': estado = _12_prods_mais_vendidos();break;
-            case '7': estado = _13_tres_prods_mais_comprados();break;
-            case '8': estado = _14_clientes_prods_fantasma();break;
-            case 'Q': estado = SAIR_PROGRAMA;
-                      break;
-            default:
-                estado=FACE_COMPRAS;
-                break;
-        }
-        }else{
-            printf("Opção invalida.\n");
-        }
-    }
-    return estado;
+
+int main (){
+interface();
+return 0;
 }
