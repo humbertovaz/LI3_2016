@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "avl.h"
-
+#include "array.h"
 
 typedef struct faturacao *Faturacao;
 typedef struct info *Info;
@@ -24,5 +24,7 @@ int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial);
 int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial);
 int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial);
 int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial);
+ARRAY naoCompradosFilial(Faturacao fat, int filial);
+ARRAY naoComprados(Faturacao fat);
 
 #endif

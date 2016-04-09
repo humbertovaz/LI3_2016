@@ -2,6 +2,7 @@
 #include "headers/filial.h"
 #include <stdlib.h>
 #include <string.h>
+#include "headers/array.h"
 
 
 struct filial{
@@ -11,7 +12,7 @@ struct filial{
 
 struct icliente{
 	char *cliente;
-	int quantidadeT;
+	int quantidadeT[12][3];
 	int filial[3];
 	ARVORE infoprodutos;
 };
@@ -32,6 +33,7 @@ static int fil_compara_prod(const void* avl_a, const void* avl_b, void* avl_para
 static int fil_compara_cliente(const void* avl_a, const void* avl_b, void* avl_param);
 static Icliente fil_procura_cliente(Filial fil, char *cliente);
 static Iprodutos fil_procura_prod(Icliente cliente, char* prod);
+static Icliente cat_infocliente_proximo(TRAVERSER t);
 
 
 Filial inicializa_filial() {
@@ -48,6 +50,8 @@ void fil_regista_cliente(Filial fil, char *cliente){
 
 void fil_insere_prod(Filial fil, char *cliente, char *produto,int q, int filial, int mes, float preco){
 	Icliente icliente=fil_procura_cliente(fil, cliente);
+	icliente->quantidadeT[mes-1][filial-1]+=q;
+	icliente->filial[filial-1]=1;
 	Iprodutos prod = fil_procura_prod(icliente,produto);
 	if (prod){
 		prod->quantidadeT+=q;
@@ -65,7 +69,10 @@ void fil_insere_prod(Filial fil, char *cliente, char *produto,int q, int filial,
 	}
 }
 
-
+int getQuantidadeMesCliente(Filial fil, char *cliente, int filial, int mes){
+	Icliente icliente=fil_procura_cliente(fil,cliente);
+	return icliente->quantidadeT[mes-1][filial-1];
+}
 
 static int fil_compara_cliente(const void* avl_a, const void* avl_b, void* avl_param){
 	Icliente a = (Icliente) avl_a;
@@ -81,14 +88,18 @@ static int fil_compara_prod(const void* avl_a, const void* avl_b, void* avl_para
 
 
 static Icliente inicializa_icliente(char *cliente){
-	int i;
+	int i,j;
 	Icliente icliente = (Icliente) malloc(sizeof(struct icliente));
 	char *copia = (char*) malloc(sizeof (char)*(strlen(cliente) + 1));
     strcpy(copia, cliente);
     icliente->cliente = copia;
     for(i=0;i<3;i++) icliente->filial[i]=0;
     icliente->infoprodutos=avl_create(fil_compara_prod,NULL,NULL);
-	icliente->quantidadeT=0;
+	for(i=0;i<12;i++){
+		for(j=0;j<3;j++){
+			icliente->quantidadeT[i][j]=0;
+		}
+	}
 	return icliente;
 }
 
@@ -135,6 +146,38 @@ static Icliente fil_procura_cliente(Filial fil, char *cliente){
 	free(aux);
 	return nodo;
 }
+
+
+static Icliente cat_infocliente_proximo(TRAVERSER t) {
+    int i;
+    Icliente cliente = NULL;
+    Icliente res = avl_t_next(t);
+    if (res != NULL) {
+        cliente=inicializa_icliente(res->cliente);
+        for(i=0;i<3;i++){
+        	cliente->filial[i]=res->filial[i];
+        }
+    }
+    return cliente;
+}
+
+ARRAY comprouTodasFiliais(Filial fil){
+    char *cliente;
+    Icliente aux;
+    ARRAY a= inicializa_array();
+    TRAVERSER t = avl_t_alloc();
+    avl_t_init(t,fil->infoCliente);
+    while((aux=cat_infocliente_proximo(t))!=NULL){
+        if(aux->filial[0]+aux->filial[1]+aux->filial[2]==3){
+            cliente=(char*)malloc(sizeof(char)*strlen(aux->cliente));
+            strcpy(cliente,aux->cliente);
+            insere_elemento(a,cliente);
+        }
+    }
+    avl_t_free(t);
+    return a;
+}
+
 
 static Iprodutos fil_procura_prod(Icliente cliente, char* prod){
 	Iprodutos aux = prodToIprodutos(prod);

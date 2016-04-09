@@ -1,5 +1,6 @@
 #include "headers/avl.h"
 #include "headers/faturacao.h"
+#include "headers/array.h"
 
 
 struct faturacao{
@@ -19,17 +20,14 @@ struct info{
 	int quantidadeN[12][3];
 };
 
-struct lista{
-    char* produto;
-    struct lista *prox;
-};
+
 
 static Info fat_procura_info(Faturacao fat, char *prod);
 static int fat_compara_info(const void *avl_a, const void *avl_b, void *avl_param);
 static void free_info(Info prod);
 static Info inicializa_info(char* prod);
 static void freeinfo_avl(void *item, void *avl_param);
-static Info codigo_to_info(char* prod);
+static Info codigo_to_info(char* prod);static Info *cat_produto_proximo(TRAVERSER t);
 
 Faturacao inicializa_faturacao() {
     int i, j;
@@ -158,6 +156,68 @@ static Info inicializa_info(char* prod) {
             info->faturadoP[i][j]=0;
         }
     return info;
+}
+
+
+static Info cat_info_proximo(TRAVERSER t) {
+    int i,j;
+    Info info = NULL;
+    Info res = avl_t_next(t);
+    if (res != NULL) {
+        info=inicializa_info(res->code);
+        for(i=0;i<12;i++){
+            for(j=0;j<3;j++){
+                info->vendasN[i][j] = res->vendasN[i][j];
+                info->vendasP[i][j] = res->vendasP[i][j];
+                info->quantidadeN[i][j]=res->quantidadeN[i][j];
+                info->quantidadeP[i][j]=res->quantidadeP[i][j];
+                info->faturadoN[i][j]=res->faturadoN[i][j];
+                info->faturadoP[i][j]=res->faturadoP[i][j]; 
+            }
+        }
+    }
+    return info;
+}
+
+ARRAY naoCompradosFilial(Faturacao fat, int filial){
+    char *produto;
+    int i,q=0;
+    Info aux;
+    ARRAY a= inicializa_array();
+    TRAVERSER t = avl_t_alloc();
+    avl_t_init(t,fat->produtos);
+    while((aux=cat_info_proximo(t))!=NULL){
+        for(i=0;i<12;i++) q+=aux->quantidadeP[i][filial-1]+aux->quantidadeN[i][filial-1];
+        if(q==0){
+            produto=(char*)malloc(sizeof(char)*strlen(aux->code));
+            strcpy(produto,aux->code);
+            insere_elemento(a,produto);
+        }
+    }
+    avl_t_free(t);
+    return a;
+}
+
+ARRAY naoComprados(Faturacao fat){
+    char *produto;
+    int i,j,q=0;
+    Info aux;
+    ARRAY a= inicializa_array();
+    TRAVERSER t = avl_t_alloc();
+    avl_t_init(t,fat->produtos);
+    while((aux=cat_info_proximo(t))!=NULL){
+        for(i=0;i<12;i++) 
+            for(j=0;j<3;j++){
+                q+=aux->quantidadeP[i][j]+aux->quantidadeN[i][j];
+            }
+        if(q==0){
+            produto=(char*)malloc(sizeof(char)*strlen(aux->code));
+            strcpy(produto,aux->code);
+            insere_elemento(a,produto);
+        }
+    }
+    avl_t_free(t);
+    return a;
 }
 
 
