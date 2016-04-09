@@ -6,6 +6,7 @@
 #include "headers/faturacao.h"
 #include "headers/filial.h"
 #include "headers/array.h"
+#include "headers/queries.h"
 
 
 
@@ -121,10 +122,8 @@ fil=inicializa_filial();
 leitura("Clientes.txt");
 leitura("Produtos.txt");
 leitura("Vendas_1M.txt");
-a=listaProdutosLetra(produtos,'B');
-for(i=0;i<get_tamanho(a);i++){
-	printf("%s\n", get_elemento(a,i));
-}
+//querie2(produtos,'A');
+querie3(faturacao,"AF1184",5);
 return 0;
 }
 

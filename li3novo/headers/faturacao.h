@@ -18,9 +18,11 @@ int getNumeroTotalVendasNTodasFiliais (char* prod,int mes,Faturacao fat);
 int getNumeroTotalVendasNFilialX (char* prod,int mes,Faturacao fat, int filial);
 int getNumeroTotalVendasPTodasFiliais (char* prod,int mes,Faturacao fat);
 int getNumeroTotalVendasPFilialX (char* prod,int mes,Faturacao fat, int filial);
-int getTotalFatVendasNTodasFiliais (char* prod,int mes,Faturacao fat);
-int getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial);
-int getNumeroTotalFatPTodasFiliais (char* prod,int mes,Faturacao fat);
-int getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial);
+float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial);
+float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial);
+int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial);
+int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial);
+int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial);
+int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial);
 
 #endif

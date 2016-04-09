@@ -79,8 +79,8 @@ void free_faturacao(Faturacao fat) {
 }
 
 
-int getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial){
-    int total=0;
+float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial){
+    float total=0;
     Info nodo=NULL;
     Info nodo_aux=codigo_to_info(prod);
     nodo=(Info)avl_find(fat->produtos,nodo_aux);
@@ -89,8 +89,8 @@ int getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial){
     return total;
 }
 
-int getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial){
-    int total=0;
+float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial){
+    float total=0;
     Info nodo=NULL;
     Info nodo_aux=codigo_to_info(prod);
     nodo=(Info)avl_find(fat->produtos,nodo_aux);
@@ -99,7 +99,7 @@ int getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial){
     return total;
 }
 
-int getQuantidadeVendidaNFilialX (char* prod,int mes,Faturacao fat, int filial){
+int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial){
     int total=0;
     Info nodo=NULL;
     Info nodo_aux=codigo_to_info(prod);
@@ -108,6 +108,38 @@ int getQuantidadeVendidaNFilialX (char* prod,int mes,Faturacao fat, int filial){
     total=nodo->quantidadeN[mes-1][filial-1];
     return total;
 }
+int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial){
+    int total=0;
+    Info nodo=NULL;
+    Info nodo_aux=codigo_to_info(prod);
+    nodo=(Info)avl_find(fat->produtos,nodo_aux);
+    if (nodo==NULL) return -1; // se o produto nao existe
+    total=nodo->quantidadeP[mes-1][filial-1];
+    return total;
+}
+
+int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial){
+    int total=0;
+    Info nodo=NULL;
+    Info nodo_aux=codigo_to_info(prod);
+    nodo=(Info)avl_find(fat->produtos,nodo_aux);
+    if (nodo==NULL) return -1; // se o produto nao existe
+    total=nodo->vendasP[mes-1][filial-1];
+    return total;
+}
+int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial){
+    int total=0;
+    Info nodo=NULL;
+    Info nodo_aux=codigo_to_info(prod);
+    nodo=(Info)avl_find(fat->produtos,nodo_aux);
+    if (nodo==NULL) return -1; // se o produto nao existe
+    total=nodo->vendasN[mes-1][filial-1];
+    return total;
+}
+
+
+
+
 
 static Info inicializa_info(char* prod) {
     int i, j;

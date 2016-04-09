@@ -126,7 +126,16 @@ void ordena(ARRAY a, compara_elems *f_comparacao, void *param) {
     quicksort(a->elementos, f_comparacao, a->posicao, param);
 }
 
+int get_num_paginas(ARRAY a){
+    int pags = get_tamanho(a)/10;
+    if (get_tamanho(a)%10==0) return pags;
+    else return (pags+1);
+}
 
+int get_num_elems_pag(ARRAY a, int pag){
+    if (pag==(get_tamanho(a)+1)) return get_tamanho(a)%10;
+    else return 10;
+}
 
 static void array_realloc(ARRAY a){
     int nova_cap;

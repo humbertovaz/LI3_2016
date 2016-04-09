@@ -20,6 +20,10 @@ void *get_elemento(ARRAY a, int pos);
 int get_posicao(ARRAY a, void *elemento,compara_elems *f_compara, void *param);
 int existe_elemento(ARRAY a, void *elemento, compara_elems *f_compara, void *param);
 void ordena(ARRAY a,compara_elems *f_compara, void *param);
+int get_num_paginas(ARRAY a);
+int get_num_elems_pag(ARRAY a,int pag);
+
+
 
 
 #endif
