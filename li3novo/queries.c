@@ -17,7 +17,7 @@ void querie2(CatProdutos cat, char letra){
 		elems=(i-1)*10+get_num_elems_pag(a,i);
 		system("clear");
 		for(j=elems-10;j<elems;j++){
-			printf("%s\n", get_elemento(a,j));
+			if (get_elemento(a,j)!=NULL)printf("%s\n", get_elemento(a,j));
 		}
 		printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
 		c=getchar();
@@ -86,24 +86,25 @@ void querie4(Faturacao fat){
 		}
 	}
 	else{
-		for(i=0;i<3;){
-			a=naoCompradosFilial(fat,i+1);
+		for(i=1;i<=3;i++){
+			a=naoCompradosFilial(fat,i);
 			pags=get_num_paginas(a);
+			exitf=0;
 			for(j=1;j<=pags && !exitf;){
-				elems=(i-1)*10+get_num_elems_pag(a,j);
+				elems=(j-1)*10+get_num_elems_pag(a,j);
 				system("clear");
 				printf("%d resultados\n",get_tamanho(a) );
-				printf("Filial %d\n",i+1 );
+				printf("Filial %d\n",i );
 				for(k=elems-10;k<elems;k++){
-					printf("%s\n", get_elemento(a,k));
+					if (get_elemento(a,k)!=NULL)printf("%s\n", get_elemento(a,k));
 				}
-				if(j<=2) printf("Proxima pagina: 1 Pagina anterior:2 Proxima Filial: Q\n");
+				if(i<=2) printf("Proxima pagina: 1 Pagina anterior:2 Proxima Filial: Q\n");
 				else printf("Proxima pagina: 1 Pagina anterior:2 Sair: Q\n");
 				c=getchar();
 				getchar();
 				switch(c){
-					case '1': if (i<pags) i++; break;
-					case '2': if(i>1) i--; break;
+					case '1': if (j<pags) j++; break;
+					case '2': if(j>1) j--; break;
 					case 'Q': exitf=1; break; 
 				}
 			}
@@ -136,7 +137,7 @@ void querie7(Filial fil){
 		system("clear");
 		printf("%d resultados\n",get_tamanho(a) );
 		for(j=elems-10;j<elems;j++){
-			printf("%s\n", get_elemento(a,j));
+			if(get_elemento(a,j)!=NULL)printf("%s\n", get_elemento(a,j));
 		}
 		printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
 		c=getchar();
