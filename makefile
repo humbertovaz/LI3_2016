@@ -1,7 +1,7 @@
 ### Makefile ###
 
 objects = array.o avl.o clientes.o faturacao.o filial.o \
-	   		produtos.o 
+	   		produtos.o queries.o 
 
 
 CFLAGS=-Wall -ansi -pedantic -O2
@@ -14,11 +14,15 @@ all:
 	make clientes
 	make faturacao
 	make filial
+	make queries
 	make leitura
 
-leitura: src/leitura.c array.o avl.o clientes.o faturacao.o filial.o produtos.o 
-	gcc src/leitura.c array.o avl.o clientes.o faturacao.o filial.o produtos.o $(CFLAGS) -o gereVendas -lm
+leitura: src/leitura.c array.o avl.o clientes.o faturacao.o filial.o produtos.o queries.o 
+	gcc src/leitura.c array.o avl.o clientes.o faturacao.o filial.o produtos.o queries.o $(CFLAGS) -o gereVendas -lm
 
+queries: src/queries.c src/headers/queries.h
+	gcc src/queries.c -c $(CFLAGS)
+       
 clientes: src/clientes.c src/headers/clientes.h
 	gcc src/clientes.c -c $(CFLAGS)
 
