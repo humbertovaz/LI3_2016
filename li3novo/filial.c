@@ -34,6 +34,9 @@ static int fil_compara_cliente(const void* avl_a, const void* avl_b, void* avl_p
 static Icliente fil_procura_cliente(Filial fil, char *cliente);
 static Iprodutos fil_procura_prod(Icliente cliente, char* prod);
 static Icliente cat_infocliente_proximo(TRAVERSER t);
+static void free_InfoCliente(void *item, void *param);
+static void free_infoProd(void *item, void *param);
+static Iprodutos fil_procura_prod(Icliente cliente, char* prod);
 
 
 Filial inicializa_filial() {
@@ -176,6 +179,26 @@ ARRAY comprouTodasFiliais(Filial fil){
     }
     avl_t_free(t);
     return a;
+}
+
+
+void free_filial(Filial fil){
+	avl_destroy(fil->infoCliente,free_InfoCliente);
+	free(fil);
+}
+
+static void free_InfoCliente(void *item, void *param){
+	Icliente aux=(Icliente)item;
+	free(aux->cliente);
+	avl_destroy(aux->infoprodutos,free_infoProd);
+	free(aux);
+}
+
+
+static void free_infoProd(void *item, void *param){
+	Iprodutos aux=(Iprodutos)item;
+	free(aux->prod);
+	free(aux);
 }
 
 

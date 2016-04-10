@@ -28,6 +28,7 @@ void querie2(CatProdutos cat, char letra){
 			case 'Q': exitf=1; break; 
 		}
 	}
+	deep_free(a,free);
 }
 
 void querie3(Faturacao fat, char *produto, int mes){
@@ -70,8 +71,9 @@ void querie4(Faturacao fat){
 		for(i=1;i<=pags && !exitf;){
 			elems=(i-1)*10+get_num_elems_pag(a,i);
 			system("clear");
+			printf("%d resultados\n",get_tamanho(a));
 			for(j=elems-10;j<elems;j++){
-				printf("%s\n", get_elemento(a,j));
+				if(get_elemento(a,j)!=NULL) printf("%s\n", get_elemento(a,j));
 			}
 			printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
 			c=getchar();
@@ -84,8 +86,8 @@ void querie4(Faturacao fat){
 		}
 	}
 	else{
-		for(i=0;i<3;i++){
-			a=naoCompradosFilial(fat,i);
+		for(i=0;i<3;){
+			a=naoCompradosFilial(fat,i+1);
 			pags=get_num_paginas(a);
 			for(j=1;j<=pags && !exitf;){
 				elems=(i-1)*10+get_num_elems_pag(a,j);
@@ -145,6 +147,7 @@ void querie7(Filial fil){
 			case 'Q': exitf=1; break; 
 		}
 	}
+	deep_free(a,free);
 }
 
 

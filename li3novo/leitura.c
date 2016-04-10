@@ -123,10 +123,14 @@ leitura("Clientes.txt");
 leitura("Produtos.txt");
 leitura("Vendas_1M.txt");
 //querie2(produtos,'A');
-//querie3(faturacao,"AF1184",5);
+//querie3(faturacao,"AF1184",8);
 querie4(faturacao);
 //querie5(fil,"Z5000");
 //querie7(fil);
+free_faturacao(faturacao);
+free_catalogo_produtos(produtos);
+free_catalogo_Clientes(clientes);
+free_filial(fil);
 return 0;
 }
 

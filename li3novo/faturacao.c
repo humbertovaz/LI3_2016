@@ -1,6 +1,7 @@
 #include "headers/avl.h"
 #include "headers/faturacao.h"
 #include "headers/array.h"
+#include <stdio.h>
 
 
 struct faturacao{
@@ -187,12 +188,13 @@ ARRAY naoCompradosFilial(Faturacao fat, int filial){
     TRAVERSER t = avl_t_alloc();
     avl_t_init(t,fat->produtos);
     while((aux=cat_info_proximo(t))!=NULL){
-        for(i=0;i<12;i++) q+=aux->quantidadeP[i][filial-1]+aux->quantidadeN[i][filial-1];
+        for(i=0;i<12;i++) q+=aux->vendasP[i][filial-1]+aux->vendasN[i][filial-1];
         if(q==0){
             produto=(char*)malloc(sizeof(char)*strlen(aux->code));
             strcpy(produto,aux->code);
             insere_elemento(a,produto);
         }
+        q=0;
     }
     avl_t_free(t);
     return a;
@@ -208,13 +210,14 @@ ARRAY naoComprados(Faturacao fat){
     while((aux=cat_info_proximo(t))!=NULL){
         for(i=0;i<12;i++) 
             for(j=0;j<3;j++){
-                q+=aux->quantidadeP[i][j]+aux->quantidadeN[i][j];
+                q+=(aux->vendasP[i][j])+(aux->vendasN[i][j]);
             }
         if(q==0){
             produto=(char*)malloc(sizeof(char)*strlen(aux->code));
             strcpy(produto,aux->code);
             insere_elemento(a,produto);
         }
+        q=0;
     }
     avl_t_free(t);
     return a;
