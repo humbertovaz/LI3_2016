@@ -85,7 +85,7 @@ int leitura (char * nome_fich) {
 			preco = strtod(compra[1], &compra[1]);
             nr = atoi(compra[2]);
 			mes = atoi(compra[5]);
-			modo = compra[3][0];  //por causa do /0;
+			modo = compra[3][0];
 			filial=atoi(compra[6]);
             cliente=compra[4]; 
             produto=compra[0];
@@ -122,11 +122,15 @@ fil=inicializa_filial();
 leitura("Clientes.txt");
 leitura("Produtos.txt");
 leitura("Vendas_1M.txt");
+/*
 //querie2(produtos,'A');
-//querie3(faturacao,"AF1184",8);
-querie4(faturacao);
-//querie5(fil,"Z5000");
-//querie7(fil);
+//querie3(faturacao,"AF1184",8);*/
+//querie4(faturacao);
+/*querie5(fil,"Z5000");
+//querie7(fil);*/
+//querie6(faturacao,1,7);
+querie9(fil,"Z5000",7);
+//querie12(fil,faturacao);
 free_faturacao(faturacao);
 free_catalogo_produtos(produtos);
 free_catalogo_Clientes(clientes);

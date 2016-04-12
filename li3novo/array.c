@@ -126,6 +126,10 @@ void ordena(ARRAY a, compara_elems *f_comparacao, void *param) {
     quicksort(a->elementos, f_comparacao, a->posicao, param);
 }
 
+
+
+
+
 int get_num_paginas(ARRAY a){
     int pags = get_tamanho(a)/10;
     if (get_tamanho(a)%10==0) return pags;
@@ -173,6 +177,10 @@ static void quicksort(void **elems, compara_elems *f_comparacao, int n, void *pa
     quicksort(elems,f_comparacao, i, param);
     quicksort(elems+i,f_comparacao, n - i, param);
 }
+
+
+
+
 
 
 

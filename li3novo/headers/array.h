@@ -22,8 +22,9 @@ int existe_elemento(ARRAY a, void *elemento, compara_elems *f_compara, void *par
 void ordena(ARRAY a,compara_elems *f_compara, void *param);
 int get_num_paginas(ARRAY a);
 int get_num_elems_pag(ARRAY a,int pag);
-
+void quicksort2(void **elems,void **elems2,compara_elems *f_comparacao, int n);
 
 
 
 #endif
+

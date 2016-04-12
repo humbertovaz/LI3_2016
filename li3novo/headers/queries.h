@@ -14,7 +14,10 @@ void querie2(CatProdutos cat, char letra);
 void querie3(Faturacao fat, char *produto, int mes);
 void querie4(Faturacao fat);
 void querie5(Filial fil, char *cliente);
+void querie6(Faturacao fat, int a, int b);
 void querie7(Filial fil);
+void querie9(Filial fil, char* cliente, int mes);
+void querie12(Filial fil, Faturacao fat);
 
 #endif	
 

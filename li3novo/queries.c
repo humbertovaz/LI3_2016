@@ -61,8 +61,8 @@ void querie3(Faturacao fat, char *produto, int mes){
 void querie4(Faturacao fat){
 	int i,j,k,pags,elems,exitf=0;
 	char c;
-	printf("Valores totais?(y/n)\n");
 	ARRAY a;
+	printf("Valores totais?(y/n)\n");
 	c=getchar();
 	getchar();
 	if(c=='y'){
@@ -127,6 +127,13 @@ void querie5(Filial fil, char *cliente){
 	}
 }
 
+
+void querie6(Faturacao fat, int a, int b){
+	printf("Total de vendas: %d\nTotal faturado: %f\n", totalVendasMeses(fat,a,b), totalFatMeses(fat,a,b));
+}
+
+
+
 void querie7(Filial fil){
 	int i,j,pags,elems,exitf=0;
 	char c;
@@ -151,10 +158,38 @@ void querie7(Filial fil){
 	deep_free(a,free);
 }
 
+void querie9(Filial fil, char* cliente, int mes){
+	int i,j,pags,elems,exitf=0;
+	char c;
+	ARRAY a = maisCompradosCliente(fil,cliente,mes);
+	pags=get_num_paginas(a);
+	for(i=1;i<=pags && !exitf;){
+		elems=(i-1)*10+get_num_elems_pag(a,i);
+		system("clear");
+		printf("%d resultados\n",get_tamanho(a) );
+		for(j=elems-10;j<elems;j++){
+			if(get_elemento(a,j)!=NULL)printf("%s\n", get_elemento(a,j));
+		}
+		printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
+		c=getchar();
+		getchar(); //buffer para ler o \n do enter
+		switch(c){
+			case '1': if (i<pags) i++; break;
+			case '2': if(i>1) i--; break;
+			case 'Q': exitf=1; break; 
+		}
+	}
+	deep_free(a,free);	
+}
 
 
-
-
+void querie12(Filial fil, Faturacao fat){
+	int p,c;
+	c=naoComprou(fil);
+	ARRAY a = naoComprados(fat);
+	printf("Clientes que nunca compraram:%d\nProdutos nunca comprados:%d\n",c,get_tamanho(a));
+	deep_free(a,free);
+}
 
 
 

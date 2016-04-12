@@ -64,6 +64,8 @@ void cont_insere_venda(Faturacao fat, char *produto, int q, float preco, char M,
     	prod->quantidadeP[mes-1][filial-1]+=q;
     	prod->faturadoP[mes-1][filial-1]+=q*preco;
     }
+    fat->totalvendas[mes-1]++;
+    fat->totalfaturado[mes-1]+=q*preco;
 }
 
 void cont_remove_produto(Faturacao fat, char *produto){
@@ -83,7 +85,7 @@ float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial){
     Info nodo=NULL;
     Info nodo_aux=codigo_to_info(prod);
     nodo=(Info)avl_find(fat->produtos,nodo_aux);
-    if (nodo==NULL) return -1; // se o produto nao existe
+    if (nodo==NULL) return -1; 
     total+=nodo->faturadoN[mes-1][filial-1];
     return total;
 }
@@ -93,17 +95,40 @@ float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial){
     Info nodo=NULL;
     Info nodo_aux=codigo_to_info(prod);
     nodo=(Info)avl_find(fat->produtos,nodo_aux);
-    if (nodo==NULL) return -1; // se o produto nao existe
+    if (nodo==NULL) return -1; 
     total+=nodo->faturadoP[mes-1][filial-1];
     return total;
 }
+
+float totalFatMeses(Faturacao fat, int a, int b){
+    int i;
+    float f=0;
+    if(fat!=NULL){
+        for(i=a-1;i<b;i++){
+            f+=fat->totalfaturado[i];
+        }
+    }
+    return f;
+}
+
+
+int totalVendasMeses(Faturacao fat, int a, int b){
+    int i,v=0;
+    if(fat!=NULL){
+        for(i=a-1;i<b;i++){
+            v+=fat->totalvendas[i];
+        }
+    }
+    return v;
+}
+
 
 int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial){
     int total=0;
     Info nodo=NULL;
     Info nodo_aux=codigo_to_info(prod);
     nodo=(Info)avl_find(fat->produtos,nodo_aux);
-    if (nodo==NULL) return -1; // se o produto nao existe
+    if (nodo==NULL) return -1; 
     total=nodo->quantidadeN[mes-1][filial-1];
     return total;
 }
@@ -112,7 +137,7 @@ int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial){
     Info nodo=NULL;
     Info nodo_aux=codigo_to_info(prod);
     nodo=(Info)avl_find(fat->produtos,nodo_aux);
-    if (nodo==NULL) return -1; // se o produto nao existe
+    if (nodo==NULL) return -1; 
     total=nodo->quantidadeP[mes-1][filial-1];
     return total;
 }
@@ -122,7 +147,7 @@ int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial){
     Info nodo=NULL;
     Info nodo_aux=codigo_to_info(prod);
     nodo=(Info)avl_find(fat->produtos,nodo_aux);
-    if (nodo==NULL) return -1; // se o produto nao existe
+    if (nodo==NULL) return -1; 
     total=nodo->vendasP[mes-1][filial-1];
     return total;
 }
@@ -131,7 +156,7 @@ int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial){
     Info nodo=NULL;
     Info nodo_aux=codigo_to_info(prod);
     nodo=(Info)avl_find(fat->produtos,nodo_aux);
-    if (nodo==NULL) return -1; // se o produto nao existe
+    if (nodo==NULL) return -1; 
     total=nodo->vendasN[mes-1][filial-1];
     return total;
 }
@@ -165,7 +190,7 @@ static Info cat_info_proximo(TRAVERSER t) {
     Info info = NULL;
     Info res = avl_t_next(t);
     if (res != NULL) {
-        info=inicializa_info(res->code);
+        info=inicializa_info(res->code); /* copia o nodo da arvore*/
         for(i=0;i<12;i++){
             for(j=0;j<3;j++){
                 info->vendasN[i][j] = res->vendasN[i][j];

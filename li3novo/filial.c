@@ -37,6 +37,10 @@ static Icliente cat_infocliente_proximo(TRAVERSER t);
 static void free_InfoCliente(void *item, void *param);
 static void free_infoProd(void *item, void *param);
 static Iprodutos fil_procura_prod(Icliente cliente, char* prod);
+static Iprodutos cat_infoproduto_proximo(TRAVERSER t);
+static Iprodutos copiaIProdutos(Iprodutos iproduto);
+static int comparaIprodutoQuantidade(void* a, void* b, void* param);
+static void free_infoprod(void *item);
 
 
 Filial inicializa_filial() {
@@ -164,6 +168,23 @@ static Icliente cat_infocliente_proximo(TRAVERSER t) {
     return cliente;
 }
 
+static Iprodutos cat_infoproduto_proximo(TRAVERSER t){
+	int i,j;
+	Iprodutos produto=NULL;
+	Iprodutos res=avl_t_next(t);
+	if (res!=NULL){
+		produto=inicializa_iprodutos(res->prod);
+		for(i=0;i<12;i++){
+			for(j=0;j<3;j++){
+				produto->quantidade[i][j]=res->quantidade[i][j];
+				produto->gastou[i][j]=res->gastou[i][j];
+			}
+		}
+	}
+	return produto;
+}
+
+
 ARRAY comprouTodasFiliais(Filial fil){
     char *cliente;
     Icliente aux;
@@ -182,6 +203,75 @@ ARRAY comprouTodasFiliais(Filial fil){
 }
 
 
+ARRAY maisCompradosCliente(Filial fil, char* cliente, int mes){
+	ARRAY a,b;
+	int i;
+	char *prod;
+	a=inicializa_array();
+	b=inicializa_array();
+	Icliente aux=inicializa_icliente(cliente);
+	Icliente nodo=avl_find(fil->infoCliente, aux);
+	Iprodutos aux1,copia;
+	TRAVERSER t= avl_t_alloc();
+	avl_t_init(t,nodo->infoprodutos);
+	while((aux1=cat_infoproduto_proximo(t))!=NULL){
+		if(aux1->quantidade[mes-1][0]>0 || aux1->quantidade[mes-1][1]>0 ||aux1->quantidade[mes-1][2]>0){
+			copia=copiaIProdutos(aux1);
+			insere_elemento(a,copia);
+		}
+	}
+	ordena(a,comparaIprodutoQuantidade,&mes);
+	for(i=0;i<(get_tamanho(a));i++){
+		aux1=get_elemento(a,i);
+		prod=strdup(aux1->prod);
+		insere_elemento(b,prod);
+	}
+	deep_free(a,free_infoprod);
+	return b;
+}
+
+
+static int comparaIprodutoQuantidade(void* a, void* b, void* param){
+	Iprodutos a1= (Iprodutos) a;
+	Iprodutos b1= (Iprodutos) b;
+	int i,ta=0,tb=0,*m;
+	m=(int*) (param);
+	for(i=0;i<3;i++){
+		ta+=a1->quantidade[(*m)-1][i];
+		tb+=b1->quantidade[(*m)-1][i];
+	}
+	return ta>tb?-1:1;
+}
+
+static Iprodutos copiaIProdutos(Iprodutos iproduto){
+	int i,j;
+	Iprodutos novo = inicializa_iprodutos(iproduto->prod);
+	for(i=0;i<12;i++){
+		for(j=0;j<3;j++){
+			novo->quantidade[i][j]=iproduto->quantidade[i][j];
+			novo->gastou[i][j]=iproduto->gastou[i][j];
+		}
+		novo->quantidadeT=iproduto->quantidadeT;
+		novo->gastouT=iproduto->gastouT;
+	}
+	return novo;
+}
+
+int naoComprou(Filial fil){
+	int res=0,i;
+	TRAVERSER t = avl_t_alloc();
+    avl_t_init(t,fil->infoCliente);
+    Icliente cliente;
+    while ((cliente=cat_infocliente_proximo(t))!=NULL){
+    	if (cliente->filial[0]==0 && cliente->filial[1]==0 && cliente->filial[2]==0)
+    		res++;
+    }
+	return res;
+}
+
+
+
+
 void free_filial(Filial fil){
 	avl_destroy(fil->infoCliente,free_InfoCliente);
 	free(fil);
@@ -194,6 +284,12 @@ static void free_InfoCliente(void *item, void *param){
 	free(aux);
 }
 
+
+static void free_infoprod(void *item){
+	Iprodutos aux=(Iprodutos)item;
+	free(aux->prod);
+	free(aux);	
+}
 
 static void free_infoProd(void *item, void *param){
 	Iprodutos aux=(Iprodutos)item;

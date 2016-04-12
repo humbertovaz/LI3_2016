@@ -26,5 +26,7 @@ int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial);
 int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial);
 ARRAY naoCompradosFilial(Faturacao fat, int filial);
 ARRAY naoComprados(Faturacao fat);
+int totalVendasMeses(Faturacao fat, int a, int b);
+float totalFatMeses(Faturacao fat, int a, int b);
 
 #endif
