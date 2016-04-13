@@ -28,5 +28,7 @@ ARRAY naoCompradosFilial(Faturacao fat, int filial);
 ARRAY naoComprados(Faturacao fat);
 int totalVendasMeses(Faturacao fat, int a, int b);
 float totalFatMeses(Faturacao fat, int a, int b);
+ARRAY nMaisVendidos(Faturacao fat, int n);
+int getQuantidadeFilial(Faturacao fat, char*prod, int filial);
 
 #endif

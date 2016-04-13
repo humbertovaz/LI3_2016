@@ -2,23 +2,44 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#include "interface.h"
-#include "queries.h"
+#include "headers/interface.h"
+#include "headers/queries.h"
+#include "headers/clientes.h"
+#include "headers/produtos.h"
+#include "headers/faturacao.h"
+#include "headers/filial.h"
+
+extern CatClientes clientes;
+extern CatProdutos produtos;
+extern Faturacao faturacao;
+extern Filial fil;
+
+void carregarFicheiros(){
+    if(clientes && produtos && faturacao && fil){
+        free_catalogo_Clientes(clientes);
+        free_catalogo_produtos(produtos);
+        free_faturacao(faturacao);
+        free_filial(fil);
+    }
+    clientes=inicializa_catalogo_clientes();
+    produtos=inicializa_catalogo_produtos();
+    faturacao=inicializa_faturacao();
+    fil=inicializa_filial();
+    querie1("Clientes.txt",clientes,produtos,faturacao,fil);
+    querie1("Produtos.txt",clientes,produtos,faturacao,fil);
+    querie1("Vendas_1M.txt",clientes,produtos,faturacao,fil);
+}
 
 
 void interface() {
     char r[50];
-    int estado=-1;
-    int leitura=0;
-    
-    printf("Pressione qualquer tecla para continuar (q para sair): ");
-    leitura = scanf("%s", r);
-    
-    
-    while (estado == -1) {
+    int exitf=0;
+    int estado=0;
+    system("clear");
+    while (!exitf) {
         
                 puts("========================================================================================================================");
-                puts("\t\tGere Vendas >> MENU PRINCIPAL");
+                puts("\t\tGereVendas >> MENU PRINCIPAL");
                 puts("1  - Carregar dados para memória");
                 puts("2  - Determinar a lista e o total de produtos cujo código se inicia por uma dada leitura"); 
                 puts("3  - Numero total de vendas e o total facturado com esse produto num mês"); 
@@ -44,7 +65,10 @@ void interface() {
             case 0:
                 system("clear");
                 printf("Saiu do programa! Obrigado pela visita\n");
-                estado=0;
+                exitf=1;
+                break;
+            case 1:
+                carregarFicheiros();
                 break;
             case 2: 
                 printf("Não Concluido\n"); //estado = query2();

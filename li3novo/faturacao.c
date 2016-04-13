@@ -25,10 +25,12 @@ struct info{
 
 static Info fat_procura_info(Faturacao fat, char *prod);
 static int fat_compara_info(const void *avl_a, const void *avl_b, void *avl_param);
-static void free_info(Info prod);
+static void free_info(void* a);
 static Info inicializa_info(char* prod);
 static void freeinfo_avl(void *item, void *avl_param);
 static Info codigo_to_info(char* prod);static Info *cat_produto_proximo(TRAVERSER t);
+static Info infoCopia(Info info);
+static int comparaVendas(void *a, void *b, void *param);
 
 Faturacao inicializa_faturacao() {
     int i, j;
@@ -121,7 +123,15 @@ int totalVendasMeses(Faturacao fat, int a, int b){
     }
     return v;
 }
-
+int getQuantidadeFilial(Faturacao fat, char*prod, int filial){
+    int total=0,i;
+    Info nodo=NULL;
+    Info nodo_aux=codigo_to_info(prod);
+    nodo=(Info)avl_find(fat->produtos,nodo_aux);
+    if (nodo==NULL) return -1; 
+    for(i=0;i<12;i++) total+=nodo->quantidadeN[i][filial-1]+nodo->quantidadeP[i][filial-1];
+    return total;
+}
 
 int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial){
     int total=0;
@@ -249,12 +259,68 @@ ARRAY naoComprados(Faturacao fat){
 }
 
 
+
+ARRAY nMaisVendidos(Faturacao fat, int n){
+    Info aux,copia;
+    char *produto;
+    ARRAY a,b;
+    int i;
+    a=inicializa_array();
+    b=inicializa_array();
+    TRAVERSER t=avl_t_alloc();
+    avl_t_init(t,fat->produtos);
+    while((aux=cat_info_proximo(t))!=NULL){
+        copia= infoCopia(aux);
+        insere_elemento(a,copia);
+    }
+    ordena(a,comparaVendas,NULL);
+    for(i=0;i<n && i<get_tamanho(a);i++){
+        aux=get_elemento(a,i);
+        produto=strdup(aux->code);
+        insere_elemento(b,produto);
+    }
+    deep_free(a,free_info);
+    return b;
+}
+
+
+static int comparaVendas(void *a, void *b, void *param){
+    Info a1=(Info)a;
+    Info b1=(Info)b;
+    int i,j,va=0,vb=0;
+    for(i=0;i<12;i++){
+        for(j=0;j<3;j++){
+            va+=a1->quantidadeP[i][j]+a1->quantidadeN[i][j];
+            vb+=b1->quantidadeP[i][j]+b1->quantidadeN[i][j];
+        }
+    }
+    return va>vb?-1:1;
+}
+
 static Info codigo_to_info(char* prod) {
     Info info = (Info) malloc(sizeof (struct info));
     char *copia = (char*) malloc(sizeof (char)*(strlen(prod) + 1));
     strcpy(copia, prod);
     info->code = copia;
     return info;
+}
+
+
+
+static Info infoCopia(Info info){
+    int i,j;
+    Info novo=inicializa_info(info->code);
+    for(i=0;i<12;i++){
+        for(j=0;j<3;j++){
+            novo->vendasP[i][j]=info->vendasP[i][j];
+            novo->faturadoP[i][j]=info->faturadoP[i][j];
+            novo->quantidadeP[i][j]=info->quantidadeP[i][j];
+            novo->vendasN[i][j]=info->vendasN[i][j];
+            novo->faturadoN[i][j]=info->faturadoN[i][j];
+            novo->quantidadeN[i][j]=info->quantidadeN[i][j];
+        }
+    }
+    return novo;
 }
 
 static Info fat_procura_info(Faturacao fat, char *prod){
@@ -271,7 +337,8 @@ static int fat_compara_info(const void *avl_a, const void *avl_b, void *avl_para
     return strcmp(a->code, b->code);
 }
 
-static void free_info(Info prod) {
+static void free_info(void* a) {
+    Info prod=(Info)a;
     if(prod != NULL)
         free(prod->code);
     
