@@ -1,2 +1,8 @@
 \select@language {portuges}
-\contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{2}
+\contentsline {chapter}{\numberline {1}Descri\IeC {\c c}\IeC {\~a}o dos M\IeC {\'o}dulos}{2}
+\contentsline {chapter}{\numberline {2}Cat\IeC {\'a}logo de Clientes}{4}
+\contentsline {section}{\numberline {2.1}Clientes.h}{4}
+\contentsline {subsection}{\numberline {2.1.1}Tipos Opacos}{4}
+\contentsline {chapter}{\numberline {3}Cat\IeC {\'a}logo de Produtos}{5}
+\contentsline {section}{\numberline {3.1}Produtos.h}{5}
+\contentsline {subsection}{\numberline {3.1.1}Tipos Opacos}{5}

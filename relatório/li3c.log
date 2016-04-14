@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  7 APR 2016 21:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  14 APR 2016 15:37
 entering extended mode
 **li3c.tex
 (li3c.tex
@@ -1017,13 +1017,6 @@ File: babel.def 2014/09/25 3.9l Babel common definitions
 )
 Package babel Info: Making " an active character on input line 145.
 ))
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
-Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
-File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
-))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\times.sty"
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
 )
@@ -1177,10 +1170,10 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 32.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 32.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd"
-File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1234,89 +1227,76 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(capa.tex <./logo.png, id=4, 422.57875pt x 328.22626pt>
-File: ./logo.png Graphic file (type png)
- <use ./logo.png>
-Package pdftex.def Info: ./logo.png used on input line 6.
+(capa.tex <logo.png, id=4, 422.57875pt x 328.22626pt>
+File: logo.png Graphic file (type png)
+ <use logo.png>
+Package pdftex.def Info: logo.png used on input line 6.
 (pdftex.def)             Requested size: 136.57462pt x 106.08128pt.
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 13.
-LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 14.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 13.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 14.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.28 \\
-       [1.5cm]
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 29.
 <celia.jpg, id=6, 542.025pt x 963.6pt>
 File: celia.jpg Graphic file (type jpg)
  <use celia.jpg>
-Package pdftex.def Info: celia.jpg used on input line 36.
+Package pdftex.def Info: celia.jpg used on input line 35.
 (pdftex.def)             Requested size: 54.20567pt x 96.36565pt.
 
-Overfull \hbox (8.6785pt too wide) in paragraph at lines 36--38
+Overfull \hbox (8.6785pt too wide) in paragraph at lines 35--37
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--38
-\T1/ptm/m/n/6 C�-lia Fi-guei-redo
+Underfull \hbox (badness 10000) in paragraph at lines 35--37
+\OT1/ptm/m/n/6 C[]elia Fi-guei-redo
  []
 
 <gil.jpg, id=7, 722.7pt x 963.6pt>
 File: gil.jpg Graphic file (type jpg)
  <use gil.jpg>
-Package pdftex.def Info: gil.jpg used on input line 41.
+Package pdftex.def Info: gil.jpg used on input line 40.
 (pdftex.def)             Requested size: 72.27423pt x 96.36565pt.
 
-Overfull \hbox (26.74706pt too wide) in paragraph at lines 41--43
+Overfull \hbox (26.74706pt too wide) in paragraph at lines 40--42
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 41--43
-\T1/ptm/m/n/6 Gil Gon-�al-ves
+Underfull \hbox (badness 10000) in paragraph at lines 40--42
+\OT1/ptm/m/n/6 Gil Gon[]alves
  []
 
 <humberto.jpg, id=8, 722.7pt x 963.6pt>
 File: humberto.jpg Graphic file (type jpg)
  <use humberto.jpg>
-Package pdftex.def Info: humberto.jpg used on input line 46.
+Package pdftex.def Info: humberto.jpg used on input line 45.
 (pdftex.def)             Requested size: 72.27423pt x 96.36565pt.
 
-Overfull \hbox (26.74706pt too wide) in paragraph at lines 46--48
+Overfull \hbox (26.74706pt too wide) in paragraph at lines 45--47
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--48
-\T1/ptm/m/n/6 Hum-berto Vaz
+Underfull \hbox (badness 10000) in paragraph at lines 45--47
+\OT1/ptm/m/n/6 Hum-berto Vaz
  []
 
 <ricardo.jpg, id=9, 722.7pt x 963.6pt>
 File: ricardo.jpg Graphic file (type jpg)
  <use ricardo.jpg>
-Package pdftex.def Info: ricardo.jpg used on input line 50.
+Package pdftex.def Info: ricardo.jpg used on input line 49.
 (pdftex.def)             Requested size: 72.27423pt x 96.36565pt.
 
-Overfull \hbox (26.74706pt too wide) in paragraph at lines 50--52
+Overfull \hbox (26.74706pt too wide) in paragraph at lines 49--51
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 50--52
-\T1/ptm/m/n/6 Ri-cardo Lo-pes
+Underfull \hbox (badness 10000) in paragraph at lines 49--51
+\OT1/ptm/m/n/6 Ri-cardo Lo-pes
  []
 
 [1
@@ -1324,113 +1304,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--52
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./logo.png> <./celia.jpg>
  <./gil.jpg> <./humberto.jpg> <./ricardo.jpg>]) (li3c.toc)
 \tf@toc=\write6
- (intro.tex
-[1
+
+(desenvolvimento.tex [1
 
 ]
 Cap\'{\i }tulo 1.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 7.
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+<arquiteturaproj.png, id=21, 520.94624pt x 378.66469pt>
+File: arquiteturaproj.png Graphic file (type png)
 
-! Package inputenc Error: Unicode char \u8:̀ not set up for use with LaTeX.
+<use arquiteturaproj.png>
+Package pdftex.def Info: arquiteturaproj.png used on input line 49.
+(pdftex.def)             Requested size: 416.75757pt x 302.93216pt.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 50.
+ [2
 
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6 ...lvimento deste programa será realizado à
-                                                   luz dos princípios da m...
+] [3 <./arquiteturaproj.png>]
+Cap\'{\i }tulo 2.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 82.
+[4
 
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:́ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6 ...ograma será realizado à luz dos princí
-                                                  pios da modularidade (divi...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:̃ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6 ... dos princípios da modularidade (divisã
-                                                  o do código fonte em uni...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:́ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6 ...cípios da modularidade (divisão do có
-                                                  digo fonte em unidades sep...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:̧ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6 ...) e do encapsulamento (garantia de proteç
-                                                  ão e acessos controlados...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Unicode char \u8:̃ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6 ... do encapsulamento (garantia de proteçã
-                                                  o e acessos controlados ao...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-) [2
+]
+Cap\'{\i }tulo 3.
+) [5
 
 ] (li3c.aux) ) 
 Here is how much of TeX's memory you used:
- 31317 strings out of 493698
- 735601 string characters out of 3144375
- 860223 words of memory out of 3000000
- 34143 multiletter control sequences out of 15000+200000
- 39380 words of font info for 48 fonts, out of 3000000 for 9000
+ 31376 strings out of 493698
+ 736376 string characters out of 3144375
+ 865122 words of memory out of 3000000
+ 34200 multiletter control sequences out of 15000+200000
+ 27439 words of font info for 53 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 62i,7n,83p,10410b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,8n,83p,10410b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/
-Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/urw/times/utmr8a.pfb>
-Output written on li3c.pdf (3 pages, 301821 bytes).
+Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/u
+tmr8a.pfb>
+Output written on li3c.pdf (6 pages, 456530 bytes).
 PDF statistics:
- 35 PDF objects out of 1000 (max. 8388607)
+ 49 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 38 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 43 words of extra memory for PDF output out of 10000 (max. 10000000)
 
