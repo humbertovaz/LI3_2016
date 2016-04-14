@@ -290,7 +290,6 @@ int comprouProdutoN(Filial fil, char* cliente, char* produto, int filial){
 }
 
 int getNumClientesFilial(Filial fil, char* produto, int filial){
-	char *cliente;
 	int i,q,n=0;
 	Iprodutos aux= inicializa_iprodutos(produto);
 	Iprodutos nodop;
@@ -454,7 +453,7 @@ static Iprodutos copiaIProdutos(Iprodutos iproduto){
 }
 
 int naoComprou(Filial fil){
-	int res=0,i;
+	int res=0;
 	TRAVERSER t = avl_t_alloc();
     avl_t_init(t,fil->infoCliente);
     Icliente cliente;
@@ -469,8 +468,10 @@ int naoComprou(Filial fil){
 
 
 void free_filial(Filial fil){
-	avl_destroy(fil->infoCliente,free_InfoCliente);
-	free(fil);
+	if(fil){
+		avl_destroy(fil->infoCliente,free_InfoCliente);
+		free(fil);
+	}
 }
 
 

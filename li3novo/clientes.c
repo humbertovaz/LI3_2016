@@ -38,11 +38,11 @@ void free_catalogo_Clientes(CatClientes cat) {
     int i = 0;
     
     if(cat != NULL){
-    for (i = 0; i <= 26; i++) {
-        avl_destroy(cat->indices[i], cat_free_cliente);
+        for (i = 0; i <= 26; i++) {
+            avl_destroy(cat->indices[i], cat_free_cliente);
+        }
+        free(cat);
     }
-}
-    free(cat);
 }
 
 

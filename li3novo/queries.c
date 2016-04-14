@@ -14,6 +14,7 @@
 
 void querie1(char *nome_fich, CatClientes clientes, CatProdutos produtos, Faturacao faturacao, Filial fil){
 	FILE * ficheiro;
+	clock_t inicio,fim;
 	char *string = (char *) malloc(100);
 	char *str = (char *) malloc(100);
 	char *token = NULL;
@@ -31,6 +32,7 @@ void querie1(char *nome_fich, CatClientes clientes, CatProdutos produtos, Fatura
     char *produto;
     char * tmpString= (char *) malloc(100);
 	ficheiro = fopen(nome_fich, "r");
+	inicio=clock();
 	if (strcmp(nome_fich, "Clientes.txt") == 0){
 		while ((string = fgets (str, 100, ficheiro)) != NULL) {
 			linhas++;	
@@ -89,6 +91,8 @@ void querie1(char *nome_fich, CatClientes clientes, CatProdutos produtos, Fatura
  		free(str);
  		free(tmpString);
 	}
+	fim=clock();
+	printf("Ficheiro lido em %f\n",(double)(fim-inicio)/CLOCKS_PER_SEC );
 }
 
 void querie2(CatProdutos cat, char letra){
@@ -108,7 +112,7 @@ void querie2(CatProdutos cat, char letra){
 		printf("Resultados produzidos em %f\n",(double)(fim-inicio)/CLOCKS_PER_SEC);
 		printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
 		c=getchar();
-		getchar(); //buffer para ler o \n do enter
+		getchar(); 
 		switch(c){
 			case '1': if (i<pags) i++; break;
 			case '2': if(i>1) i--; break;
@@ -125,7 +129,7 @@ void querie3(Faturacao fat, char *produto, int mes){
 	clock_t inicio, fim;
 	printf("Valores totais? (y/n)\n");
 	c=getchar();
-	getchar();//buffer \n
+	getchar();
 	if(c=='y'){
 		inicio=clock();
 		for(i=0;i<3;i++){
@@ -177,7 +181,7 @@ void querie4(Faturacao fat){
 			printf("Resultados produzidos em %f\n",((double)fim-(double)inicio) /CLOCKS_PER_SEC);
 			printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
 			c=getchar();
-			getchar(); //buffer para ler o \n do enter
+			getchar(); 
 			switch(c){
 				case '1': if (i<pags) i++; break;
 				case '2': if(i>1) i--; break;
@@ -260,7 +264,7 @@ void querie7(Filial fil){
 		printf("Resultados produzidos em %f\n", ((double)fim-(double)inicio) /CLOCKS_PER_SEC);
 		printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
 		c=getchar();
-		getchar(); //buffer para ler o \n do enter
+		getchar(); 
 		switch(c){
 			case '1': if (i<pags) i++; break;
 			case '2': if(i>1) i--; break;
@@ -296,7 +300,7 @@ void querie8(Filial fil, char* produto, int filial){
 		printf("Resultados produzidos em %.3f\n",((double)fim-(double)inicio) /CLOCKS_PER_SEC);
 		printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
 		c=getchar();
-		getchar(); //buffer para ler o \n do enter
+		getchar(); 
 		switch(c){
 			case '1': if (i<pags) i++; break;
 			case '2': if(i>1) i--; break;
@@ -324,7 +328,7 @@ void querie9(Filial fil, char* cliente, int mes){
 		printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
 		printf("Resultados gerados em %f\n",((double)fim-(double)inicio) /CLOCKS_PER_SEC );
 		c=getchar();
-		getchar(); //buffer para ler o \n do enter
+		getchar(); 
 		switch(c){
 			case '1': if (i<pags) i++; break;
 			case '2': if(i>1) i--; break;
@@ -357,9 +361,10 @@ void querie10(Faturacao fat,Filial fil, int n){
 			}
 		}
 		printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
-		printf("Resultados produzidos em %f\n", (((double)fim1-(double)inicio1) /CLOCKS_PER_SEC)+(((double)fim2-(double)inicio2) /CLOCKS_PER_SEC) );
+		if (i==1)printf("Resultados produzidos em %f\n", (((double)fim1-(double)inicio1) /CLOCKS_PER_SEC)+(((double)fim2-(double)inicio2) /CLOCKS_PER_SEC) );
+		else printf("Resultados produzidos em %f \n",((double)fim2-(double)inicio2) /CLOCKS_PER_SEC );
 		c=getchar();
-		getchar(); //buffer para ler o \n do enter
+		getchar();
 		switch(c){
 			case '1': if (i<pags) i++; break;
 			case '2': if(i>1) i--; break;
@@ -380,14 +385,14 @@ void querie11(Filial fil, char* cliente){
 	}
 	printf("Resultados produzidos em %f\n",((double)fim-(double)inicio)/CLOCKS_PER_SEC );
 	printf("Prima qualquer tecla para sair\n");
-	getchar(); //buffer para ler o \n do enter
+	getchar(); 
 	deep_free(a,free);
 }
 
 
 
 void querie12(Filial fil, Faturacao fat){
-	int p,c;
+	int c;
 	clock_t inicio, fim;
 	inicio=clock();
 	c=naoComprou(fil);

@@ -107,7 +107,6 @@ int leitura (char * nome_fich) {
 
 
 void interface() {
-    char r[50];
     int exitf=0;
     int estado=0;
     int mes,mes2;
@@ -341,27 +340,6 @@ void interface() {
 
 int main () {
 interface();
-/*
-CatClientes clientes=inicializa_catalogo_clientes();
-CatProdutos produtos=inicializa_catalogo_produtos();
-Faturacao faturacao=inicializa_faturacao();
-Filial fil=inicializa_filial();*/
-/*
-leitura("Clientes.txt");
-leitura("Produtos.txt");
-leitura("Vendas_1M.txt");
-*/
-//querie2(produtos,'A');
-//querie3(faturacao,"AF1184",6);
-//querie4(faturacao);
-//querie5(fil,"Z5000");
-//querie6(faturacao,1,12);
-//querie7(fil);
-//querie8(fil,"AF1184",2);
-//querie9(fil,"Z5000",4);
-//querie10(faturacao,fil,5);
-//querie11(fil,"Z5000");
-//querie12(fil,faturacao);
 free_faturacao(faturacao);
 free_catalogo_produtos(produtos);
 free_catalogo_Clientes(clientes);

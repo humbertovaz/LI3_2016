@@ -28,12 +28,12 @@ static int fat_compara_info(const void *avl_a, const void *avl_b, void *avl_para
 static void free_info(void* a);
 static Info inicializa_info(char* prod);
 static void freeinfo_avl(void *item, void *avl_param);
-static Info codigo_to_info(char* prod);static Info *cat_produto_proximo(TRAVERSER t);
+static Info codigo_to_info(char* prod);
 static Info infoCopia(Info info);
 static int comparaVendas(void *a, void *b, void *param);
 
 Faturacao inicializa_faturacao() {
-    int i, j;
+    int i;
     Faturacao res = (Faturacao) malloc(sizeof (struct faturacao));
     
     res->produtos = avl_create(fat_compara_info, NULL, NULL);
@@ -76,9 +76,10 @@ void cont_remove_produto(Faturacao fat, char *produto){
 }
 
 void free_faturacao(Faturacao fat) {
-    if(fat != NULL)
+    if(fat != NULL){
         avl_destroy(fat->produtos, freeinfo_avl);
-    free(fat);
+        free(fat);
+    }
 }
 
 

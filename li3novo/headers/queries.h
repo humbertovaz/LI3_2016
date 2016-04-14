@@ -10,6 +10,7 @@
 #include "filial.h"
 #include "array.h"
 
+void querie1(char *nome_fich, CatClientes clientes, CatProdutos produtos, Faturacao faturacao, Filial fil);
 void querie2(CatProdutos cat, char letra);
 void querie3(Faturacao fat, char *produto, int mes);
 void querie4(Faturacao fat);
