@@ -406,6 +406,10 @@ void querie11(Filial *fil, char* cliente){
 	}
 	a = topMaisGastou(a);
 	fim=clock();
+	printf("%c[2J",27);
+	printf("%d resultados\n",get_tamanho(a));
+	printf("========================================\n");
+
 	for(i=0;i<3;i++){
 		if(get_elemento(a,i)!=NULL)printf("%s\n", (char*) get_elemento(a,i));
 	}
