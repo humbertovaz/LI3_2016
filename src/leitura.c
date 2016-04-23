@@ -38,7 +38,7 @@ void interface() {
                 puts("5  - Total de produtos comprados de um dado cliente.");
                 puts("6  - Número de vendas e o total faturado de um dado intervalo de meses.");
                 puts("7  - Clientes que compraram em todas as filiais.");
-                puts("8  - Clientes que compraram um determinado produto.");
+                puts("8  - Clientes que compraram um determinado produto numa determinada filial.");
                 puts("9  - Produtos comprados por um cliente num mês (ordenados por quantidade).");
                 puts("10 - N produtos mais vendidos.");
                 puts("11 - Os 3 produtos que um cliente mais dinheiro gastou.");
