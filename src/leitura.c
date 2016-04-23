@@ -29,23 +29,23 @@ void interface() {
    printf("%c[2J",27);
     while (!exitf) {
         
-                puts("========================================================================================================================");
+                puts("================================================================================");
                 puts("\t\tGereVendas >> MENU PRINCIPAL");
-                puts("1  - Carregar ficheiros");
+                puts("1  - Carregar ficheiros.");
                 puts("2  - Produtos que iniciam por uma dada letra."); 
                 puts("3  - Número total facturado de um dado produto num respectivo mês."); 
                 puts("4  - Lista dos produtos  que ninguém comprou.");
                 puts("5  - Total de produtos comprados de um dado cliente.");
-                puts("6  - Número de vendas e o total faturado de um dado intervalo de meses");
-                puts("7  - Clientes que compraram em todas as filiais;");
-                puts("8  - Clientes que compraram um determinado produto;");
-                puts("9  - Quantidade de produtos mais comprada por um cliente num determinado mês");
-                puts("10 - N produtos mais vendidos");
-                puts("11 - Os 3 produtos que um cliente mais dinheiro gastou");
-                puts("12 - Número de clientes que não realizaram compras e produtos que ninguém comprou");
-                puts("-----------------------------------------------------------------------------------------------------------------------");
+                puts("6  - Número de vendas e o total faturado de um dado intervalo de meses.");
+                puts("7  - Clientes que compraram em todas as filiais.");
+                puts("8  - Clientes que compraram um determinado produto.");
+                puts("9  - Produtos comprados por um cliente num mês (ordenados por quantidade).");
+                puts("10 - N produtos mais vendidos.");
+                puts("11 - Os 3 produtos que um cliente mais dinheiro gastou.");
+                puts("12 - Numero de clientes que nunca compraram e produtos nunca comprados.");
+                puts("--------------------------------------------------------------------------------");
                 puts("BEM-VINDO                   0 - Sair");
-                puts("=======================================================================================================================");                                           
+                puts("================================================================================");                                           
                 
 
         printf("Escolha uma opcao > ");
@@ -56,10 +56,20 @@ void interface() {
         switch (estado) {
             case 0:
                 printf("%c[2J",27);
-                printf("Saiu do programa! Obrigado pela visita\n");
+                printf("Saiu do programa!\n");
                 exitf=1;
                 break;
             case 1:
+                printf("================================================================================\n");                                           
+                printf("Ficheiros disponiveis:\n");
+                printf("1 - Ficheiro de Vendas 1 milhao\n");
+                printf("2 - Ficheiro de Vendas 3 milhoes\n");
+                printf("3 - Ficheiro de Vendas 5 milhos\n");
+                printf("================================================================================\n"); 
+                printf("Escolha ficheiro\n");                                          
+                scanf("%d",&mes);
+                getchar();
+                printf("%c[2J",27);
 			    if(clientes && produtos && faturacao && fil[0] && fil[1] && fil[2]){
                 
         			free_catalogo_Clientes(clientes);
@@ -77,7 +87,10 @@ void interface() {
                 fil[2]=inicializa_filial();
     			querie1("Clientes.txt",clientes,produtos,faturacao,fil);
     			querie1("Produtos.txt",clientes,produtos,faturacao,fil);
-    			querie1("Vendas_1M.txt",clientes,produtos,faturacao,fil);
+                if(mes==1) querie1("Vendas_1M.txt",clientes,produtos,faturacao,fil);
+                if(mes==2) querie1("Vendas_3M.txt",clientes,produtos,faturacao,fil);
+                if(mes==3) querie1("Vendas_5M.txt",clientes,produtos,faturacao,fil);
+                else if(mes>3) printf("Ficheiro invalido\n");
     			printf("Prima enter para continuar.\n");
     			getchar();
     			printf("%c[2J",27);

@@ -146,15 +146,15 @@ void ordena(ARRAY a, compara_elems *f_comparacao, void *param) {
 }
 
 
-int get_num_paginas_metade(ARRAY a){
-    int pags = get_tamanho(a)/5;
-    if (get_tamanho(a)%5==0) return pags;
+int get_num_paginas_numero(ARRAY a,int x){
+    int pags = get_tamanho(a)/x;
+    if (get_tamanho(a)%x==0) return pags;
     else return (pags+1);
 }
 
-int get_num_elems_pag_metade(ARRAY a, int pag){
-    if (pag==(get_tamanho(a)+1)) return get_tamanho(a)%5;
-    else return 5;
+int get_num_elems_pag_numero(ARRAY a, int pag, int x){
+    if (pag==(get_tamanho(a)+1)) return get_tamanho(a)%x;
+    else return 3;
 }
 
 

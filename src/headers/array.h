@@ -26,8 +26,8 @@ void quicksort2(void **elems,void **elems2,compara_elems *f_comparacao, int n);
 void remove_elemento(ARRAY a, void *elemento, compara_elems *f_compara, void *param);
 int binarysearch(ARRAY a, void *elemento, compara_elems *f_compara,void *param);
 void remove_posicao(ARRAY a, int pos);
-int get_num_elems_pag_metade(ARRAY a, int pag);
-int get_num_paginas_metade(ARRAY a);
+int get_num_elems_pag_numero(ARRAY a, int pag, int x);
+int get_num_paginas_numero(ARRAY a, int x);
 
 
 

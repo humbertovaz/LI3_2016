@@ -33,6 +33,7 @@ void querie1(char *nome_fich, CatClientes clientes, CatProdutos produtos, Fatura
 			insertC(clientes, token);
 			for(i=0;i<3;i++)fil_regista_cliente(fil[i],token);             
 		}
+        printf("================================================================================\n");                                           
 		printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\n", nome_fich, linhas);
         fclose(ficheiro);
         free(string);
@@ -48,13 +49,14 @@ void querie1(char *nome_fich, CatClientes clientes, CatProdutos produtos, Fatura
 			cont_regista_produto(faturacao, token);
 
 		}
+        printf("================================================================================\n");                                           
 		printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\n", nome_fich, linhas);	
  		fclose(ficheiro);
  		free(string);
  		free(str);
 	}
    
-  	else if (strcmp(nome_fich,"Vendas_1M.txt") == 0){
+  	else if ((strcmp(nome_fich,"Vendas_1M.txt") == 0) || (strcmp(nome_fich,"Vendas_3M.txt") == 0) || (strcmp(nome_fich,"Vendas_5M.txt") == 0)){
 		while ((string = fgets (str, 100, ficheiro)) != NULL) {
 			linhas++;
 			strcpy(tmpString,string);
@@ -77,6 +79,7 @@ void querie1(char *nome_fich, CatClientes clientes, CatProdutos produtos, Fatura
                 linhas_val ++;        
             }
 		} 
+        printf("================================================================================\n");                                           
  		printf("Ficheiro lido: %s\nNúmero de linhas lidas: %d\nNúmero de linhas válidas: %d\n", nome_fich, linhas, linhas_val);	
  		fclose(ficheiro);
  		free(string);
@@ -85,6 +88,8 @@ void querie1(char *nome_fich, CatClientes clientes, CatProdutos produtos, Fatura
 	}
 	fim=clock();
 	printf("Ficheiro foi lido em %f\n",(double)(fim-inicio)/CLOCKS_PER_SEC );
+	printf("================================================================================\n");                                           
+
 }
 
 void querie2(CatProdutos cat, char letra){
@@ -98,15 +103,16 @@ void querie2(CatProdutos cat, char letra){
 	pags=get_num_paginas(a);
 	for(i=1;i<=pags && !exitf;){
 		elems=(i-1)*10+get_num_elems_pag(a,i);
-		
 		printf("%c[2J",27);
-                printf("A letra do produto foi : %c\n",letra);
-                         printf("=======================================\n");
-
+        printf("=======================================\n");
+        printf("Pagina %d de %d\n",i,pags);
+        printf("=======================================\n");
+        printf("A letra do produto foi : %c\n",letra);
+        printf("=======================================\n");
 		for(j=elems-10;j<elems;j++){
 			if (get_elemento(a,j)!=NULL)printf("Produto \t %s \n", (char *)get_elemento(a,j));
 		}
-                printf("=======================================\n");
+        printf("=======================================\n");
 		printf("\n");
 		printf("Resultados produzidos em %f\n",(double)(fim-inicio)/CLOCKS_PER_SEC);
 		printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
@@ -128,31 +134,29 @@ void querie3(Faturacao fat, char *produto, int mes){
 	clock_t inicio, fim;
 	printf("Como deseja observar os valores?\n");
 	printf("y -Total das filiais\n");
-    printf("n -Total de cada filial\n ");
-        
+    printf("n -Total de cada filial\n ");      
 	c=getchar();
 	getchar();
-        printf("%c[2J",27);
+    printf("%c[2J",27);
 	if(c=='y'){
-                   printf("O produto introduzido foi : %s \t e o mes introduzido foi %d\n",produto, mes);
-                 printf("=======================================\n");
-		 
+        printf("================================================================================\n");
+        printf("Produto: %s \t Mes: %d\n",produto, mes);
+        printf("================================================================================\n");
 		inicio=clock();
 		for(i=1;i<=3;i++){
 			vendasN+=getQuantidadeNFilialX(produto,mes,fat,i);
 			vendasP+=getQuantidadePFilialX(produto,mes,fat,i);
 			faturacaoP+=getTotalFatPFilialX(produto,mes,fat,i);
 			faturacaoN+=getTotalFatNFilialX(produto,mes,fat,i);
-
 		}
 		fim=clock();
 		printf("Vendas:\n\t Normal: %d Promocao: %d\nFaturado:\n\t Normal:%f Promocao:%f\n",vendasN,vendasP,faturacaoN,faturacaoP );
-                printf("=======================================\n");
+        printf("================================================================================\n");
 		printf("Resultados produzidos em %f\n",((double)fim-(double)inicio) /CLOCKS_PER_SEC );
 	}
-	else{  
-                printf("O produto introduzido foi : %s \t e o mes introduzido foi %d\n",produto, mes);
-                printf("=================================================================================\n");
+	else if(c=='n'){  
+        printf("Produto: %s \t mes: %d\n",produto, mes);
+        printf("================================================================================\n");
 		inicio=clock();
 		for(i=1;i<=3;i++){
 			vendasN=getQuantidadeNFilialX(produto,mes,fat,i);
@@ -160,26 +164,23 @@ void querie3(Faturacao fat, char *produto, int mes){
 			faturacaoP=getTotalFatPFilialX(produto,mes,fat,i);
 			faturacaoN=getTotalFatNFilialX(produto,mes,fat,i);
 			printf("filial %d:\n\tvendas:\n\t\tNormal: %d Promocao: %d\n\tFaturado:\n\t\tNormal: %f Promocao: %f\n",i,vendasN,vendasP,faturacaoN,faturacaoP );
-			 printf("=================================================================================\n");
+			printf("================================================================================\n");
 		}
 		fim=clock();
-		
 		printf("Resultados produzidos em %f\n",((double)fim-(double)inicio) /CLOCKS_PER_SEC );
-
 	}
+	else printf("Tecla invalida\n");
 }
 
 void querie4(Faturacao fat){
-	int i,j,k,pags,elems,exitf=0;
-       
-        char c;
+	int i,j,k,pags,elems,exitf=0;   
+    char c;
 	clock_t  inicio,fim;
 	ARRAY a;
 	printf("Valores totais->y\n");
-	printf("Valores por filiar->n\n");
+	printf("Valores por filial->n\n");
 	c=getchar();
-	getchar();
-       
+	getchar(); 
 	if(c=='y'){
 		inicio=clock();
 		a=naoComprados(fat);
@@ -188,13 +189,13 @@ void querie4(Faturacao fat){
 		for(i=1;i<=pags && !exitf;){
 			elems=(i-1)*10+get_num_elems_pag(a,i);
 			printf("%c[2J",27);
-			printf("========================================\n");
-			printf("\t %d resultados obtidos\n",get_tamanho(a));
-			printf("========================================\n");
+			printf("============================================================\n");
+			printf("\t %d resultados obtidos\t Pagina %d de %d\n",get_tamanho(a),i,pags);
+			printf("============================================================\n");
 			for(j=elems-10;j<elems;j++){
 				if(get_elemento(a,j)!=NULL) printf("Produto \t %s \n", (char *)get_elemento(a,j));
 			}
-			printf("========================================\n");
+			printf("============================================================\n");
 			printf("Resultados produzidos em %f\n",((double)fim-(double)inicio) /CLOCKS_PER_SEC);
 			printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
 			c=getchar();
@@ -206,7 +207,7 @@ void querie4(Faturacao fat){
 			}
 		}
 	}
-	else{
+	else if(c=='n'){
 		for(i=1;i<=3;i++){
 			a=naoCompradosFilial(fat,i);
 			pags=get_num_paginas(a);
@@ -214,15 +215,15 @@ void querie4(Faturacao fat){
 			for(j=1;j<=pags && !exitf;){
 				elems=(j-1)*10+get_num_elems_pag(a,j);
 				printf("%c[2J",27);
-				printf("========================================\n");
-				printf("\t %d resultados obtidos\n",get_tamanho(a) );
-				printf("========================================\n");
+				printf("=========================================================\n");
+				printf("\t %d resultados obtidos\t Pagina %d de %d\n",get_tamanho(a),i,pags );
+				printf("=========================================================\n");
 				printf("Filial %d\n",i );
 				printf("\n");
 				for(k=elems-10;k<elems;k++){
 					if (get_elemento(a,k)!=NULL)printf("Produto \t %s \n",(char *) get_elemento(a,k));
 				}
-				 printf("========================================\n");
+				printf("=========================================================\n");
 				if(i<=2) printf("Proxima pagina: 1 Pagina anterior:2 Proxima Filial: Q\n");
 				else printf("Proxima pagina: 1 Pagina anterior:2 Sair: Q\n");
 				c=getchar();
@@ -236,6 +237,7 @@ void querie4(Faturacao fat){
 			deep_free(a,free);
 		}
 	}
+	else printf("Tecla invalida\n");
 }
 
 void querie5(Filial *fil, char *cliente){
@@ -291,7 +293,7 @@ void querie7(Filial *fil){
 		elems=(i-1)*10+get_num_elems_pag(a,i);
 		printf("%c[2J",27);
 		printf("=======================================================\n");
-		printf("\t %d resultados\n",get_tamanho(a) );
+		printf("\t %d resultados\tPagina %d de %d\n",get_tamanho(a),i,pags );
 		printf("=======================================================\n");
 		for(j=elems-10;j<elems;j++){
 			if(get_elemento(a,j)!=NULL)printf("Cliente\t %s\n", (char *)get_elemento(a,j));
@@ -324,18 +326,18 @@ void querie8(Filial fil, char* produto){
 	for(i=1;i<=pags && !exitf;){
 		elems=(i-1)*10+get_num_elems_pag(a,i);
 		printf("%c[2J",27);
-		printf("======================================================\n");
-		printf("%d resultados\n",get_tamanho(a) );
+		printf("=============================================================\n");
+		printf("%d resultados\tPagina %d de %d\n",get_tamanho(a),i,pags );
 		printf("=============================================================\n");
 		printf("Cliente\t |  Normal\t | Promocao\n");
 		printf("=============================================================\n");
 		for(j=elems-10;j<elems;j++){
 			if(get_elemento(a,j)!=NULL){
 				printf("%s\t", (char *)get_elemento(a,j));
-				if(comprouProdutoN(fil,get_elemento(a,j),produto)) printf("\t    SIM\t");
-				else printf("    NAO\t");
-				if(comprouProdutoP(fil,get_elemento(a,j),produto)) printf("\t    SIM\n");
-				else printf("    NAO\n");
+				if(comprouProdutoN(fil,get_elemento(a,j),produto)) printf("\tSIM\t");
+				else printf("\tNAO\t");
+				if(comprouProdutoP(fil,get_elemento(a,j),produto)) printf("\tSIM\n");
+				else printf("\tNAO\n");
 			}
 		}
 		printf("=============================================================\n");
@@ -371,16 +373,16 @@ void querie9(Filial *fil, char* cliente, int mes){
 	for(i=1;i<=pags && !exitf;){
 		elems=(i-1)*10+get_num_elems_pag(a,i);
 		printf("%c[2J",27);
-		printf("========================================\n");
-		printf("\t %d resultados obtidos\n",get_tamanho(a) );
-		printf("========================================\n");
+		printf("===============================================\n");
+		printf("\t %d resultados obtidos\t Pagina %d de %d\n",get_tamanho(a),i,pags );
+		printf("===============================================\n");
 		for(j=elems-10;j<elems;j++){
 			if(get_elemento(a,j)!=NULL)printf("Produto \t %s\n",(char*) get_elemento(a,j));
 		}
 
-		printf("========================================\n");
+		printf("===============================================\n");
 		printf("Resultados gerados em %f\n",((double)fim-(double)inicio) /CLOCKS_PER_SEC );
-		printf("========================================\n");
+		printf("===============================================\n");
 		printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
 		c=getchar();
 		getchar(); 
@@ -401,18 +403,18 @@ void querie10(Faturacao fat,Filial *fil, int n){
 	inicio1=clock();
 	a = nMaisVendidos(fat,n);
 	fim1=clock();
-	pags=get_num_paginas_metade(a);
+	pags=get_num_paginas_numero(a,3);
        inicio2=clock();
 	for(i=1;i<=pags && !exitf;){
-		elems=(i-1)*5+get_num_elems_pag_metade(a,i);
+		elems=(i-1)*3+get_num_elems_pag_numero(a,i,3);
 		printf("%c[2J",27);
 		printf("===============================================================================\n");
-		printf("\t %d resultados\n",get_tamanho(a) );
-		for(j=elems-5;j<elems;j++){
+		printf("\t %d resultados\tPagina %d de %d\n",get_tamanho(a),i,pags );
+		for(j=elems-3;j<elems;j++){
 			if(get_elemento(a,j)!=NULL){
 				printf("===============================================================================\n");
 				printf("\t Produto \t %s:\n",(char *) get_elemento(a,j));
-				 printf("===============================================================================\n");
+				printf("===============================================================================\n");
 				for(k=1;k<=3;k++){
 					printf("Filial %d: numero de clientes: %d quantidade vendida: %d\n",k,getNumClientesFilial(fil[k-1],get_elemento(a,j)),getQuantidadeFilial(fat,get_elemento(a,j),k));
 				}
@@ -423,7 +425,6 @@ void querie10(Faturacao fat,Filial *fil, int n){
         printf("===============================================================================\n");
         if (i==1)printf("Resultados produzidos em %f\n", (((double)fim1-(double)inicio1) /CLOCKS_PER_SEC)+(((double)fim2-(double)inicio2) /CLOCKS_PER_SEC) );
 		else printf("Resultados produzidos em %f \n",((double)fim2-(double)inicio2) /CLOCKS_PER_SEC );
-		printf("===============================================================================\n");
 		printf("Proxima pagina: 1\tPagina anterior: 2\tSair: Q\n");
 		
 		c=getchar();
