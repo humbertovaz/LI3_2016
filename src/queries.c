@@ -327,6 +327,8 @@ void querie8(Filial fil, char* produto){
 		elems=(i-1)*10+get_num_elems_pag(a,i);
 		printf("%c[2J",27);
 		printf("=============================================================\n");
+		printf("\t Produto escolhido foi %s\n", produto);
+		printf("=============================================================\n");
 		printf("%d resultados\tPagina %d de %d\n",get_tamanho(a),i,pags );
 		printf("=============================================================\n");
 		printf("Cliente\t |  Normal\t | Promocao\n");
