@@ -457,7 +457,7 @@ void querie11(Filial *fil, char* cliente){
 	printf("=============================================\n");
 
 	for(i=0;i<3;i++){
-		if(get_elemento(a,i)!=NULL)printf("Protudo \t %s\n", (char*) get_elemento(a,i));
+		if(get_elemento(a,i)!=NULL)printf("Produto \t %s\n", (char*) get_elemento(a,i));
 	}
 	printf("=============================================\n");
 	printf("Resultados produzidos em %f\n",((double)fim-(double)inicio)/CLOCKS_PER_SEC );
