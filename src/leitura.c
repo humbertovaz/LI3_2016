@@ -67,7 +67,7 @@ void interface() {
                 printf("3 - Ficheiro de Vendas 5 milhos\n");
                 printf("================================================================================\n"); 
                 printf("Escolha ficheiro\n");                                          
-                scanf("%d",&mes);
+                resultadoQ=scanf("%d",&mes);
                 getchar();
                 printf("%c[2J",27);
 			    if(clientes && produtos && faturacao && fil[0] && fil[1] && fil[2]){
