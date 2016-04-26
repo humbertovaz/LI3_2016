@@ -55,24 +55,30 @@ A aplicação possuiu uma arquitectura tal como apresentado na figura seguinte, 
 É o módulo de dados onde são guardados os códigos de todos os clientes do ficheiro \textbf{Clientes.txt}, organizados por índice alfabético; 
 
 \subsection{Clientes.h}
+
+Módulo de dados onde são guardados os códigos de todos os clientes do ficheiro \textbf{Clientes.txt}. O array de árvores (struct avl\_table **array\_arv) é um array de 26 posições cujos índices se encontram organizados alfabeticamente. Cada índice contém um apontador para uma árvore correspondente à letra respetiva desse índice.
+
 \subsubsection{Tipos Opacos}
 
 \begin{Verbatim}
 typedef struct catalogo_clientes *CatClientes;
 \end{Verbatim}
 
-\subsubsection{  /*API*/}
+\subsubsection{/*API*/}
+
+\begin{itemize}
+
+\item CatClientes inicializa\_catalogo\_clientes() - Função que cria uma estrutura de clientes vazia;
+
+\item void insertC(CatClientes c, char * valor);
+\item void cat\_remove\_cliente(CatClientes cat, char *str);
+\item void free\_catalogo\_Clientes(CatClientes cat);
+\item int existeCliente (char *cliente,CatClientes cat);
+\item int numeroClientes(CatClientes cat);
+\item int numeroClientesLetra(CatClientes cat, char letra);
 
 
-\begin{Verbatim}
-CatClientes inicializa_catalogo_clientes();
-void insertC(CatClientes c, char * valor);
-void cat_remove_cliente(CatClientes cat, char *str);
-void free_catalogo_Clientes(CatClientes cat);
-int existeCliente (char *cliente,CatClientes cat);
-int numeroClientes(CatClientes cat);
-int numeroClientesLetra(CatClientes cat, char letra);
-\end{Verbatim}
+\end{itemize}
 
 \section{Catálogo de Produtos}
 
@@ -87,17 +93,20 @@ int numeroClientesLetra(CatClientes cat, char letra);
 typedef struct catalogo_produtos *CatProdutos;
 \end{verbatim}
 
+\subsubsection{/*API*/}
 
-\begin{Verbatim}
-CatProdutos inicializa_catalogo_produtos();
-void insertP(CatProdutos c, char * valor);
-void cat_remove_produto(CatProdutos cat, char *str);
-void free_catalogo_produtos(CatProdutos cat);
-int existeProduto (char *produto,CatProdutos cat);
-int numeroProdutos(CatProdutos cat);
-int numeroProdutosLetra(CatProdutos cat, char letra);
-ARRAY listaProdutosLetra(CatProdutos cat, char l);
-\end{Verbatim}
+
+\begin{itemize}
+	
+\item CatProdutos inicializa\_catalogo\_produtos();
+\item void insertP(CatProdutos c, char * valor);
+\item void cat\_remove\_produto(CatProdutos cat, char *str);
+\item void free\_catalogo\_produtos(CatProdutos cat);
+\item int existeProduto (char *produto,CatProdutos cat);
+\item int numeroProdutos(CatProdutos cat);
+\item int numeroProdutosLetra(CatProdutos cat, char letra);
+\item ARRAY listaProdutosLetra(CatProdutos cat, char l);
+\end{itemize}
 
 
 \section{Faturação Global}
@@ -105,13 +114,42 @@ ARRAY listaProdutosLetra(CatProdutos cat, char l);
 Módulo de dados que contém as estruturas de dados responsáveis pela resposta eficiente a questões quantitativas que relacionam os produtos às suas vendas mensais, em modo Normal (N) ou em Promoção (P), para cada um dos casos guardando o número de vendas e o valor total de faturação de cada um destes tipos. Este módulo deve referenciar todos os produtos, mesmo os que nunca foram vendidos.
 Este módulo não contém qualquer referência a clientes, mas deve ser capaz de distinguir os valores obtidos em cada filial; 
 
-\subsection{Produtos.h}
+\subsection{faturacao.h}
 
 \subsubsection{Tipos Opacos}
 \begin{Verbatim}
 typedef struct faturacao *Faturacao;
 typedef struct info *Info;
 \end{Verbatim}
+
+\subsubsection{/*API*/}
+
+\begin{itemize}
+
+\item	Faturacao inicializa\_faturacao();
+\item	void cont\_regista\_produto(Faturacao fat, char *prod);
+\item	void cont\_insere\_venda(Faturacao fat, char *produto, int q, float preco, char M,int mes, int filial);
+\item	void cont\_remove\_produto(Faturacao fat, char *produto);
+\item	void free\_faturacao(Faturacao fat);
+\item	int getNumeroTotalVendasNTodasFiliais (char* prod,int mes,Faturacao fat);
+\item	int getNumeroTotalVendasNFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	int getNumeroTotalVendasPTodasFiliais (char* prod,int mes,Faturacao fat);
+\item	int getNumeroTotalVendasPFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	ARRAY naoCompradosFilial(Faturacao fat, int filial);
+\item	ARRAY naoComprados(Faturacao fat);
+\item	int totalVendasMeses(Faturacao fat, int a, int b);
+\item	float totalFatMeses(Faturacao fat, int a, int b);
+\item	ARRAY nMaisVendidos(Faturacao fat, int n);
+\item	int getQuantidadeFilial(Faturacao fat, char*prod, int filial);
+	
+\end{itemize}
+
 
 \section{Gestão da Filial}
 
@@ -127,11 +165,110 @@ typedef struct icliente *Icliente;
 typedef struct iprodutos *Iprodutos;
 \end{Verbatim}
 
+\subsubsection{}
+
+\begin{itemize}
+\item	Filial inicializa\_filial();
+\item	void fil\_regista\_cliente(Filial fil, char *cliente);
+\item	void fil\_insere\_prod(Filial fil, char *cliente, char *produto,int q, int mes, float preco, char p);
+\item	int getQuantidadeMesCliente(Filial fil, char *cliente, int mes);
+\item	ARRAY naoCompraram(Filial fil);
+\item	ARRAY compraram(Filial fil);
+\item	void clientesCompraram(Filial fil,ARRAY a);
+\item	void free\_filial(Filial fil);
+\item	ARRAY topMaisGastou(ARRAY a);
+\item	ARRAY clientesCompraramProduto(Filial fil, char* produto);
+\item	int comprouProdutoN(Filial fil, char* cliente, char* produto);
+\item	int comprouProdutoP(Filial fil, char* cliente, char* produto);
+\item	int getNumClientesFilial(Filial fil, char* produto);
+\item	void getIProdMes(Filial fil, char* cliente, int mes, ARRAY a);
+\item	ARRAY extraiPorQuantidade(ARRAY a,int mes);
+\item	void removeNaoCompraram(Filial fil, ARRAY a);
+\item	void removeCompraram(Filial fil, ARRAY a);
+\end{itemize}
+
 
 \chapter{Main.c}
+O ficheiro é carregado e de seguida aparece um menu com 12 opções, referentes às 12 queries do projeto, sendo que decidimos usar o [0] para sair do GESTHIPER e o [1] para voltar a ver o menu inicial. O objetivo é que o utilizador prima a tecla correspondente à opção do menu pretendida.
+
+
 
 \chapter{Interface do utilizador}
+Quando o utilizador executa o programa é-lhe pedido que escolha qual o documento de texto que pretende analisar, como podemos observar na figura seguinte: 
+
+\begin{figure}[h!]
+	\includegraphics[scale=0.8]{arquiteturaproj.png}  
+	\caption{Arquitetura da aplicação}  
+\end{figure}
+
+
 
 \chapter{Resultados e comentários sobre os testes de performance}
+Depois de desenvolver e codificar todo o projeto foi-nos proposto realizar alguns testes de performance que consistem em comparar os tempos de execução das queries 8, 9, 10, 11 e 12 usando os ficheiros Vendas\_1M.txt ( 1000 000 vendas), Vendas\_3M.txt (3 milhões de vendas) e Vendas\_5M.txt (5 milhões de vendas).
+Uma vez que a quantidade de vendas vai aumentando de ficheiro para ficheiro é aceitável que os tempos de execução para os carregar aumente.
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.8]{grafcarregamento.png}  
+	\caption{Gráfico do tempo de execução do carregamento dos 3 ficheiros de vendas}  
+\end{figure}
+
+Comparando os valores de execução das queries pretendidas, como podemos observar nos respetivos gráficos apresentados,
+
+
+
 
 \chapter{Makefile e Grafo de dependências}
+A makefile permite correr todo o software escrevendo apenas \textit{“make”} no terminal. Posto isto, apresenta-se a makefile utilizada cujas flags utilizadas como opção de compilação são –Wall –Wextra –ansi – pedantic –O2.
+Possui ainda a opção “make clean” que elimina todos os “.o” que foram criados quando se compilou o software.
+
+\begin{verbatim}
+objects = array.o avl.o clientes.o faturacao.o filial.o \
+produtos.o queries.o 
+
+CFLAGS=-Wall -ansi -pedantic -O2
+
+all:
+make clean
+make produtos
+make array
+make avl
+make clientes
+make faturacao
+make filial
+make queries
+make leitura
+
+leitura: src/leitura.c array.o avl.o clientes.o faturacao.o filial.o
+ produtos.o queries.o 
+gcc src/leitura.c array.o avl.o clientes.o faturacao.o filial.o
+ produtos.o queries.o $(CFLAGS) -o gereVendas -lm
+
+queries: src/queries.c src/headers/queries.h
+gcc src/queries.c -c $(CFLAGS)
+
+clientes: src/clientes.c src/headers/clientes.h
+gcc src/clientes.c -c $(CFLAGS)
+
+produtos: src/produtos.c src/headers/produtos.h
+gcc src/produtos.c -c $(CFLAGS)
+
+array: src/array.c src/headers/array.h
+gcc src/array.c -c $(CFLAGS)
+
+faturacao: src/faturacao.c src/headers/faturacao.h
+gcc src/faturacao.c -c $(CFLAGS)
+
+filial: src/filial.c src/headers/filial.h
+gcc src/filial.c -c $(CFLAGS)
+
+avl: src/avl.c src/headers/avl.h
+gcc src/avl.c -c $(CFLAGS)
+
+.PHONY : clean
+clean :
+rm -f gereVendas
+rm -f $(objects)
+rm -f gesval
+\end{verbatim}
