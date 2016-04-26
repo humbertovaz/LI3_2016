@@ -36,7 +36,7 @@ IZ1636 923.72 193 P T2220 4 2
  \end{Verbatim}
  
  
-O ficheiro de vendas inicial, \textbf{Vendas\_1M.txt} , conterá 1.000.000 (1 milhão) de registos de vendas realizadas nas 3 filiais da cadeia de distribuição. 
+O ficheiro de vendas inicial, \textbf{Vendas\_1M.txt} , conterá 1.000.000 (1 milhão) de registos de vendas realizadas nas 3 filiais da cadeia de distribuição. Existirão também os ficheiros  \textbf{Vendas\_3M.txt} e  \textbf{Vendas\_5M.txt} utilizados para as questões de performance da aplicação. 
 
 \newpage 
 \paragraph{}
@@ -56,7 +56,7 @@ A aplicação possuiu uma arquitectura tal como apresentado na figura seguinte, 
 
 \subsection{Clientes.h}
 
-Módulo de dados onde são guardados os códigos de todos os clientes do ficheiro \textbf{Clientes.txt}. O array de árvores (struct avl\_table **array\_arv) é um array de 26 posições cujos índices se encontram organizados alfabeticamente. Cada índice contém um apontador para uma árvore correspondente à letra respetiva desse índice.
+Módulo de dados onde são guardados os códigos de todos os clientes do ficheiro \textbf{Clientes.txt}. O array de árvores este que é um array de 26 posições cujos índices se encontram organizados alfabeticamente. Cada índice contém um apontador para uma árvore correspondente à letra respetiva desse índice.
 
 \subsubsection{Tipos Opacos}
 
@@ -111,8 +111,7 @@ typedef struct catalogo_produtos *CatProdutos;
 
 \section{Faturação Global}
 
-Módulo de dados que contém as estruturas de dados responsáveis pela resposta eficiente a questões quantitativas que relacionam os produtos às suas vendas mensais, em modo Normal (N) ou em Promoção (P), para cada um dos casos guardando o número de vendas e o valor total de faturação de cada um destes tipos. Este módulo deve referenciar todos os produtos, mesmo os que nunca foram vendidos.
-Este módulo não contém qualquer referência a clientes, mas deve ser capaz de distinguir os valores obtidos em cada filial; 
+Módulo de dados que contém as estruturas de dados responsáveis pela resposta eficiente a questões quantitativas que relacionam os produtos às suas vendas mensais, em modo Normal (N) ou em Promoção (P), para cada um dos casos guardando o número de vendas e o valor total de faturação de cada um destes tipos. Este módulo refecencia todos os produtos, mesmo os que nunca foram vendidos, não contém qualquer referência a clientes, mas é capaz de distinguir os valores obtidos em cada filial; 
 
 \subsection{faturacao.h}
 
@@ -154,7 +153,9 @@ typedef struct info *Info;
 \section{Gestão da Filial}
 
 
-Módulo de dados que, a partir dos ficheiros lidos, contém as estruturas de dados adequadas à representação dos relacionamentos, fundamentais para a aplicação, entre produtos e clientes, ou seja, para cada produto, saber quais os clientes que o compraram, quantas unidades cada um comprou, em que mês e em que filial. Para a estruturação optimizada dos dados deste módulo de dados será crucial analisar as queries que a aplicação deverá implementar, tendo sempre em atenção que pretendemos ter o histórico de vendas organizado por filiais para uma melhor análise, não esquecendo que existem 3 filiais nesta cadeia. 
+Módulo de dados que, a partir dos ficheiros lidos, contém as estruturas de dados adequadas à representação dos relacionamentos, fundamentais para a aplicação, entre produtos e clientes, ou seja, para cada produto, saber quais os clientes que o compraram, quantas unidades cada um comprou, em que mês e em que filial.
+
+ Para a estruturação optimizada dos dados deste módulo de dados tivemos em atenção que pretendemos ter o histórico de vendas organizado por filiais para uma melhor análise, nunca esquecendo que existem 3 filiais nesta cadeia. 
 
 \subsection{Filial.h}
 
@@ -197,8 +198,8 @@ O ficheiro é carregado e de seguida aparece um menu com 12 opções, referentes
 Quando o utilizador executa o programa é-lhe pedido que escolha qual o documento de texto que pretende analisar, como podemos observar na figura seguinte: 
 
 \begin{figure}[h!]
-	\includegraphics[scale=0.8]{arquiteturaproj.png}  
-	\caption{Arquitetura da aplicação}  
+	\includegraphics[scale=0.8]{.png}  
+	\caption{Escolha do ficheiro de vendas a analisar}  
 \end{figure}
 
 
