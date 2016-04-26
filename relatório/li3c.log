@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  26 APR 2016 23:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  26 APR 2016 23:28
 entering extended mode
 **li3c.tex
 (li3c.tex
@@ -1368,24 +1368,35 @@ Package pdftex.def Info: grafcarregamento.png used on input line 283.
 
  <./grafcarregamento.png>]
 Cap\'{\i }tulo 6.
+<grafodependencias.png, id=62, 1145.27875pt x 541.02126pt>
+File: grafodependencias.png Graphic file (type png)
 
-Overfull \hbox (34.35568pt too wide) in paragraph at lines 344--344
+<use grafodependencias.png>
+Package pdftex.def Info: grafodependencias.png used on input line 298.
+(pdftex.def)             Requested size: 458.10338pt x 216.40466pt.
+
+Overfull \hbox (2.85927pt too wide) in paragraph at lines 298--299
+ [][] 
+ []
+
+
+Overfull \hbox (34.35568pt too wide) in paragraph at lines 350--350
 []\OT1/pcr/m/n/12 leitura: src/leitura.c array.o avl.o clientes.o faturacao.o f
 ilial.o[] 
  []
 
 [13
 
-]) (conclusao.tex [14]
+ <./grafodependencias.png>]) (conclusao.tex [14]
 Cap\'{\i }tulo 7.
 ) [15
 
 ] (li3c.aux) ) 
 Here is how much of TeX's memory you used:
- 31435 strings out of 493698
- 737272 string characters out of 3144375
+ 31440 strings out of 493698
+ 737396 string characters out of 3144375
  865194 words of memory out of 3000000
- 34244 multiletter control sequences out of 15000+200000
+ 34248 multiletter control sequences out of 15000+200000
  30708 words of font info for 57 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  62i,8n,83p,10410b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1395,9 +1406,9 @@ Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 /times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on li3c.pdf (16 pages, 596662 bytes).
+Output written on li3c.pdf (16 pages, 653890 bytes).
 PDF statistics:
- 93 PDF objects out of 1000 (max. 8388607)
+ 94 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 58 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 63 words of extra memory for PDF output out of 10000 (max. 10000000)
 

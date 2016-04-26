@@ -293,6 +293,12 @@ Comparando os valores de execução das queries pretendidas, como podemos observ
 A makefile permite correr todo o software escrevendo apenas \textit{“make”} no terminal. Posto isto, apresenta-se a makefile utilizada cujas flags utilizadas como opção de compilação são –Wall –Wextra –ansi – pedantic –O2.
 Possui ainda a opção “make clean” que elimina todos os “.o” que foram criados quando se compilou o software.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.4]{grafodependencias.png}  
+	\caption{Grafo de depêndencias}  
+\end{figure}
+
 \begin{verbatim}
 objects = array.o avl.o clientes.o faturacao.o filial.o \
 produtos.o queries.o 
