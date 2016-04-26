@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  26 APR 2016 18:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  26 APR 2016 23:11
 entering extended mode
 **li3c.tex
 (li3c.tex
@@ -1328,67 +1328,64 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 71.
+ [4 <./arquiteturaproj.png>]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 80.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 71.
- [4 <./arquiteturaproj.png>] [5] [6] [7]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 80.
+ [5] [6] [7] [8]
+[9]
 Cap\'{\i }tulo 3.
-[8
+[10
 
 ]
 Cap\'{\i }tulo 4.
+<1querie.png, id=52, 653.44125pt x 148.555pt>
+File: 1querie.png Graphic file (type png)
+ <use 1querie.png>
+Package pdftex.def Info: 1querie.png used on input line 262.
+(pdftex.def)             Requested size: 261.37187pt x 59.42093pt.
 
-LaTeX Warning: File `.png' not found on input line 201.
+<menu.png, id=53, 661.47125pt x 440.64626pt>
+File: menu.png Graphic file (type png)
+ <use menu.png>
+Package pdftex.def Info: menu.png used on input line 270.
+(pdftex.def)             Requested size: 396.8858pt x 264.38979pt.
+ [11
 
-
-! Package pdftex.def Error: File `.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.201 	\includegraphics[scale=0.8]{.png}
-                                        
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[9
-
-]
+ <./1querie.png> <./menu.png>]
 Cap\'{\i }tulo 5.
-<grafcarregamento.png, id=49, 331.99031pt x 233.37187pt>
+<grafcarregamento.png, id=57, 331.99031pt x 233.37187pt>
 File: grafcarregamento.png Graphic file (type png)
 
 <use grafcarregamento.png>
-Package pdftex.def Info: grafcarregamento.png used on input line 214.
+Package pdftex.def Info: grafcarregamento.png used on input line 283.
 (pdftex.def)             Requested size: 265.59259pt x 186.69774pt.
- [10
+ [12
 
  <./grafcarregamento.png>]
 Cap\'{\i }tulo 6.
 
-Overfull \hbox (34.35568pt too wide) in paragraph at lines 275--275
+Overfull \hbox (34.35568pt too wide) in paragraph at lines 344--344
 []\OT1/pcr/m/n/12 leitura: src/leitura.c array.o avl.o clientes.o faturacao.o f
 ilial.o[] 
  []
 
-[11
+[13
 
-]) (conclusao.tex [12]
+]) (conclusao.tex [14]
 Cap\'{\i }tulo 7.
-) [13
+) [15
 
 ] (li3c.aux) ) 
 Here is how much of TeX's memory you used:
  31435 strings out of 493698
- 737185 string characters out of 3144375
- 864194 words of memory out of 3000000
- 34236 multiletter control sequences out of 15000+200000
+ 737272 string characters out of 3144375
+ 865194 words of memory out of 3000000
+ 34244 multiletter control sequences out of 15000+200000
  30708 words of font info for 57 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  62i,8n,83p,10410b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1398,9 +1395,9 @@ Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 /times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on li3c.pdf (14 pages, 529581 bytes).
+Output written on li3c.pdf (16 pages, 596662 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
+ 93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 48 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 58 words of extra memory for PDF output out of 10000 (max. 10000000)
 

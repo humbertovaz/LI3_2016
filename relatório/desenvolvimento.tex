@@ -64,18 +64,31 @@ Módulo de dados onde são guardados os códigos de todos os clientes do ficheir
 typedef struct catalogo_clientes *CatClientes;
 \end{Verbatim}
 
+\textbf{clientes.c}
+\begin{verbatim}
+struct catalogo_clientes{
+ARVORE indices[27];
+};
+\end{verbatim}
+
+O typedef no ficheiro Clientes.h é a única informação que o utilizador têm relativamente à implementação de dados, não tendo acesso ao ficheiro .c dos clientes, não conseguindo conhecer a verdadeira implementação da estrutura avl.Deste modo garantimos o encapsulamento de dados e a única forma de o utilizador interagir com o catálogo de clientes será através da API; 
+
 \subsubsection{/*API*/}
 
 \begin{itemize}
 
 \item CatClientes inicializa\_catalogo\_clientes() - Função que cria uma estrutura de clientes vazia;
 
-\item void insertC(CatClientes c, char * valor);
-\item void cat\_remove\_cliente(CatClientes cat, char *str);
-\item void free\_catalogo\_Clientes(CatClientes cat);
-\item int existeCliente (char *cliente,CatClientes cat);
-\item int numeroClientes(CatClientes cat);
-\item int numeroClientesLetra(CatClientes cat, char letra);
+\item void insertC(CatClientes c, char * valor) - insere um dado cliente na estrutura CatClientes, de maneira ordenada alfabeticamente; 
+
+\item void cat\_remove\_cliente(CatClientes cat, char *str) - remove um cliente da estrutura CatCliente 
+
+\item void free\_catalogo\_Clientes(CatClientes cat) - função que liberta todo o espaço ocupado pela estrutura CatClientes
+
+\item int existeCliente (char *cliente,CatClientes cat) - função que verifica se um cliente existe
+\item int numeroClientes(CatClientes cat) - função que conta todos os nodos
+
+\item int numeroClientesLetra(CatClientes cat, char letra) - função que conta os nodos por que começam por determinada letra
 
 
 \end{itemize}
@@ -93,8 +106,15 @@ typedef struct catalogo_clientes *CatClientes;
 typedef struct catalogo_produtos *CatProdutos;
 \end{verbatim}
 
-\subsubsection{/*API*/}
+\textbf{produtos.c}
 
+\begin{verbatim}
+struct catalogo_produtos{
+ARVORE indices[27];
+};
+\end{verbatim}
+
+\subsubsection{/*API*/}
 
 \begin{itemize}
 	
@@ -120,6 +140,25 @@ Módulo de dados que contém as estruturas de dados responsáveis pela resposta 
 typedef struct faturacao *Faturacao;
 typedef struct info *Info;
 \end{Verbatim}
+
+\textbf{faturacao.c}
+\begin{verbatim}
+struct faturacao{
+int totalvendas[12];
+float totalfaturado[12];
+ARVORE produtos;
+};
+
+struct info{
+char *code;
+int vendasP[12][3];
+int vendasN[12][3];
+float faturadoN[12][3];
+float faturadoP[12][3];
+int quantidadeP[12][3];
+int quantidadeN[12][3];
+};
+\end{verbatim}
 
 \subsubsection{/*API*/}
 
@@ -166,6 +205,27 @@ typedef struct icliente *Icliente;
 typedef struct iprodutos *Iprodutos;
 \end{Verbatim}
 
+\textbf{Filial.c}
+\begin{verbatim}
+struct filial{
+ARVORE infoCliente;
+};
+
+struct icliente{
+char *cliente;
+int quantidade[12];
+ARVORE infoprodutos[2];
+};
+
+struct iprodutos{
+char *prod;
+int quantidadeT;
+float gastouT;
+int quantidade[12];
+float gastou[12];
+};
+\end{verbatim}
+
 \subsubsection{}
 
 \begin{itemize}
@@ -190,7 +250,7 @@ typedef struct iprodutos *Iprodutos;
 
 
 \chapter{Main.c}
-O ficheiro é carregado e de seguida aparece um menu com 12 opções, referentes às 12 queries do projeto, sendo que decidimos usar o [0] para sair do GESTHIPER e o [1] para voltar a ver o menu inicial. O objetivo é que o utilizador prima a tecla correspondente à opção do menu pretendida.
+
 
 
 
@@ -198,8 +258,17 @@ O ficheiro é carregado e de seguida aparece um menu com 12 opções, referentes
 Quando o utilizador executa o programa é-lhe pedido que escolha qual o documento de texto que pretende analisar, como podemos observar na figura seguinte: 
 
 \begin{figure}[h!]
-	\includegraphics[scale=0.8]{.png}  
+	\centering
+	\includegraphics[scale=0.4]{1querie.png}  
 	\caption{Escolha do ficheiro de vendas a analisar}  
+\end{figure}
+
+O ficheiro é carregado e de seguida aparece um menu com 12 opções, referentes às 12 queries do projeto, sendo que decidimos usar o [0] para sair do GereVendas. O objetivo é que o utilizador prima a tecla correspondente à opção do menu pretendida.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.6]{menu.png}  
+	\caption{Menu principal da aplicação}  
 \end{figure}
 
 
