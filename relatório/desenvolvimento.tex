@@ -37,11 +37,14 @@ IZ1636 923.72 193 P T2220 4 2
  
  
 O ficheiro de vendas inicial, \textbf{Vendas\_1M.txt} , conterá 1.000.000 (1 milhão) de registos de vendas realizadas nas 3 filiais da cadeia de distribuição. 
- 
+
+\newpage 
 \paragraph{}
 A aplicação possuiu uma arquitectura tal como apresentado na figura seguinte, em que se identificam as fontes de dados, a sua leitura e os módulos de dados a construir: 
 
-\begin{figure}  
+
+
+\begin{figure}[h!]
 	\includegraphics[scale=0.8]{arquiteturaproj.png}  
 	\caption{Arquitetura da aplicação}  
 \end{figure}
@@ -57,6 +60,8 @@ A aplicação possuiu uma arquitectura tal como apresentado na figura seguinte, 
 \begin{Verbatim}
 typedef struct catalogo_clientes *CatClientes;
 \end{Verbatim}
+
+\subsubsection{  /*API*/}
 
 
 \begin{Verbatim}
