@@ -46,18 +46,21 @@ char *my_strdup (const char *s) {
     return d;                            
 }
 
-
+/* Inicializa a estura da filial */
 Filial inicializa_filial() {
     Filial res = (Filial) malloc(sizeof (struct filial)); 
     res->infoCliente = avl_create(fil_compara_cliente, NULL, NULL);
     return res;
 }
 
-
+/* Inser um cliente na filial   */ 
 void fil_regista_cliente(Filial fil, char *cliente){
 	Icliente icliente = inicializa_icliente(cliente);
 	avl_insert(fil->infoCliente, icliente);
 }
+/* Inser um produto comprado por um dado cliente num dado mês, se o produto já tiver sido inserido a quantidade =quantidadeAntiga+
+quantidadeComprada, aumenta também o dinheiro gasto nesse produto. Senão tiver sido inserido a quantidade=quantidadeComprada e o 
+preco=precoComprado*/
 
 void fil_insere_prod(Filial fil, char *cliente, char *produto,int q, int mes, float preco, char p){
 	Iprodutos prod;
@@ -80,7 +83,7 @@ void fil_insere_prod(Filial fil, char *cliente, char *produto,int q, int mes, fl
 		else avl_insert(icliente->infoprodutos[0],prod);
 	}
 }
-
+/*Retorna a quantidade dos produtos comprados por um dado cliente, num dado mês   */
 int getQuantidadeMesCliente(Filial fil, char *cliente, int mes){
 	Icliente icliente=fil_procura_cliente(fil,cliente);
 	return icliente->quantidade[mes-1];
@@ -157,7 +160,7 @@ static Icliente fil_procura_cliente(Filial fil, char *cliente){
 
 
 
-
+/*Remove do array todos os clientes que não compraram em todas as filiais */
 
 void clientesCompraram(Filial fil,ARRAY a){
     int i,q,pos;
@@ -176,7 +179,7 @@ void clientesCompraram(Filial fil,ARRAY a){
 }
 
 
-
+/*Vai retornar os 3 produtos que um cliente mais gastou */
 ARRAY topMaisGastou(ARRAY a){
 	int i;
 	ARRAY b;
@@ -192,7 +195,7 @@ ARRAY topMaisGastou(ARRAY a){
 	deep_free(a,free_infoprod);
 	return b;
 }
-
+/* diz se um dado cliente comprou um dado produto em promoção  */
 int comprouProdutoP(Filial fil, char* cliente, char* produto){
 	int i,q=0;
     Icliente aux;
@@ -211,7 +214,7 @@ int comprouProdutoP(Filial fil, char* cliente, char* produto){
 	return 0;
 }
 
-
+/* diz se um dado cliente comprou um dado produto em normal  */
 int comprouProdutoN(Filial fil, char* cliente, char* produto){
 	int i,q=0;
 	Icliente aux;
@@ -230,7 +233,7 @@ int comprouProdutoN(Filial fil, char* cliente, char* produto){
 	return 0;
 	
 }
-
+/* diz quantos clientes compraram um determinado produto*/
 int getNumClientesFilial(Filial fil, char* produto){
 	int i,q,n=0;
     Iprodutos aux;
@@ -263,7 +266,7 @@ int getNumClientesFilial(Filial fil, char* produto){
 	return n;	
 }
 
-
+/*Retorna a lista de clientes que compraram um determinado produto   */ 
 ARRAY clientesCompraramProduto(Filial fil, char* produto){
 	char *cliente;
 	int i,q;
@@ -302,7 +305,7 @@ ARRAY clientesCompraramProduto(Filial fil, char* produto){
 	ordena(a,comparaString,NULL);
 	return a;
 }
-
+/*Devolve uma lista de produtos mais comprados, por quantidade, de um dado mês */
 ARRAY extraiPorQuantidade(ARRAY a, int mes){
 	ARRAY b;
 	int i;
@@ -318,7 +321,7 @@ ARRAY extraiPorQuantidade(ARRAY a, int mes){
 	deep_free(a,free_infoprod);
 	return b;
 }
-
+/* Para um dado cliente e para um mês, inser a informacao, dos produtos que o cliente comprou nesse mês numa dada filial*/
 void getIProdMes(Filial fil, char* cliente, int mes, ARRAY a){
 	Icliente nodo,aux;
 	TRAVERSER t;
