@@ -164,27 +164,37 @@ int quantidadeN[12][3];
 
 \begin{itemize}
 
-\item	Faturacao inicializa\_faturacao();
-\item	void cont\_regista\_produto(Faturacao fat, char *prod);
-\item	void cont\_insere\_venda(Faturacao fat, char *produto, int q, float preco, char M,int mes, int filial);
-\item	void cont\_remove\_produto(Faturacao fat, char *produto);
-\item	void free\_faturacao(Faturacao fat);
-\item	int getNumeroTotalVendasNTodasFiliais (char* prod,int mes,Faturacao fat);
-\item	int getNumeroTotalVendasNFilialX (char* prod,int mes,Faturacao fat, int filial);
-\item	int getNumeroTotalVendasPTodasFiliais (char* prod,int mes,Faturacao fat);
-\item	int getNumeroTotalVendasPFilialX (char* prod,int mes,Faturacao fat, int filial);
-\item	float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial);
-\item	float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial);
-\item	int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial);
-\item	int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial);
-\item	int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial);
-\item	int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial);
-\item	ARRAY naoCompradosFilial(Faturacao fat, int filial);
-\item	ARRAY naoComprados(Faturacao fat);
-\item	int totalVendasMeses(Faturacao fat, int a, int b);
-\item	float totalFatMeses(Faturacao fat, int a, int b);
-\item	ARRAY nMaisVendidos(Faturacao fat, int n);
-\item	int getQuantidadeFilial(Faturacao fat, char*prod, int filial);
+\item	Faturacao inicializa\_faturacao() - A funcão inicializa\_faturacao aloca uma estrutura Faturacao e cria uma avl para os produtos, bem como inicializa os 12 nodos totalvendas e totalfaurado a zero; 
+
+\item	void cont\_regista\_produto(Faturacao fat, char *prod) - A funcão cont\_regista\_produto, dada a estrutura faturacão e um id de produto, insere-o através da funcão avl\_insert; 
+
+\item	void cont\_insere\_venda(Faturacao fat, char *produto, int q, float preco, char M,int mes, int filial) - A funcão cont\_insere\_venda, dada a estrutura faturacão, atualiza as vendas, quantidades e faturado conforme o produto em questão ser Promocão (P) ou Normal (N); 
+
+\item	void cont\_remove\_produto(Faturacao fat, char *produto) - A funcão cont\_remove\_produto remove um produto da Faturacao passados ambos por parametro. Inicialmente calcula o id do produto através da funcão fat\_procura\_info para depois eliminar o produto em questão através da funcão avl\_delete e logo a seguir faz free ao nodo eliminado através da funcão free\_info;
+
+\item	void free\_faturacao(Faturacao fat) - A funcão free\_faturacao elimina todos os nodos da faturacao através da funcão avl\_destroy e faz free à estrutura faturacao passada por parâmetro;
+
+\item	float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial) - A funcão getTotalFatPFilialX vai calcular o total faturado no modo Promocão (P) de um dado produto, num determinado mês e em determinada filial; 
+
+\item	float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial) - A funcão getTotalFatNFilialX vai calcular o total faturado no modo Normal (N) de um dado produto, num determinado mes e em determinada filial;
+
+\item	int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial) - A funcão getVendasNFilialX calcula o nr de vendas em modo Normal (N) de um produto num determinado mês e filial. Inicialmente vai buscar o produto através do seu id, se o encontrar devolve o nr de vendas nas condicões anteriores; 
+
+\item	int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial) - A funcão getVendasPFilialX calcula o nr de vendas em modo Promocao (P) de um produto num determinado mês e filial. Inicialmente vai buscar o produto através do seu id, se o encontrar devolve o nr de vendas nas condicões anteriores; 
+
+\item	int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial) - A funcão getQuantidadeNFilialX calcula a quantidade vendida em modo Normal (N) de um determinado produto num dado mês e filial;
+
+\item	int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial) - A funcão getQuantidadePFilialX calcula a quantidade vendida em modo Promocão (P) de um determinado produto num dado mês e filial. Inicialmente vai buscar o nodo do produto através do id do produto e retorna finalmente a quantidade vendida; 
+
+\item	ARRAY naoCompradosFilial(Faturacao fat, int filial) - A funcão naoCompradosFilial percorre a estrutura da faturacao numa dada filial em todos os meses através do Traverser t, e verificia se este foi ou não comprado,se foi nada faz, se não insere-o num array a. No final faz free ao Traversser t e retorna o novo array; 
+\item	ARRAY naoComprados(Faturacao fat) - A funcão naoComprados percorre  a estrutura da faturacao em todas as filiais e em todos os meses através do Traverser t, e verificia se este foi ou não comprado,se foi nada faz, se não insere-o num array a. No final faz free ao Traversser t e retorna o novo array; 
+\item	int totalVendasMeses(Faturacao fat, int a, int b) - A funcão totalVendasMeses calcula o total de vendas num determinado intervalo de meses;
+
+\item	float totalFatMeses(Faturacao fat, int a, int b) - A funcão totalFatMeses calcula o total faturado num dado intervalo de meses; 
+
+\item	ARRAY nMaisVendidos(Faturacao fat, int n) - A funcão nMaisVendidos calcula os n produtos mais vendidos de todas as filiais através de um traversser t. Inicialza dois arrays a e b através da funcão inicializa\_array . Copia os elementos do tipo Info para o array a, ordena-o através da funcão ordena e depois devolve o array b com os elementos ids dos produtos do array já ordenados; 
+
+\item	int getQuantidadeFilial(Faturacao fat, char*prod, int filial) - A funcão getQuantidadeFilial calcula a quantidade vendida de um determinado produto através do seu id de produto numa determinada filial em todos os meses. 
 	
 \end{itemize}
 
@@ -229,21 +239,31 @@ float gastou[12];
 \subsubsection{}
 
 \begin{itemize}
-\item	Filial inicializa\_filial();
-\item	void fil\_regista\_cliente(Filial fil, char *cliente);
-\item	void fil\_insere\_prod(Filial fil, char *cliente, char *produto,int q, int mes, float preco, char p);
-\item	int getQuantidadeMesCliente(Filial fil, char *cliente, int mes);
+\item	Filial inicializa\_filial() - Inicializa a estrutura da filial; 
+
+\item	void fil\_regista\_cliente(Filial fil, char *cliente) - Insere um cliente na filial; 
+
+\item	void fil\_insere\_prod(Filial fil, char *cliente, char *produto,int q, int mes, float preco, char p) - InserE um produto comprado por um dado cliente num dado mês, se o produto já tiver sido inserido a quantidade=quantidadeAntiga+
+quantidadeComprada, aumenta também o dinheiro gasto nesse produto. Senão tiver sido inserido a quantidade=quantidadeComprada e o 
+preco=precoComprado;
+ 
+\item	int getQuantidadeMesCliente(Filial fil, char *cliente, int mes) - Retorna a quantidade dos produtos comprados por um dado cliente, num dado mês; 
+
 \item	ARRAY naoCompraram(Filial fil);
 \item	ARRAY compraram(Filial fil);
-\item	void clientesCompraram(Filial fil,ARRAY a);
+\item	void clientesCompraram(Filial fil,ARRAY a) - Remove do array todos os clientes que não compraram em todas as filiais; 
 \item	void free\_filial(Filial fil);
-\item	ARRAY topMaisGastou(ARRAY a);
-\item	ARRAY clientesCompraramProduto(Filial fil, char* produto);
-\item	int comprouProdutoN(Filial fil, char* cliente, char* produto);
-\item	int comprouProdutoP(Filial fil, char* cliente, char* produto);
-\item	int getNumClientesFilial(Filial fil, char* produto);
-\item	void getIProdMes(Filial fil, char* cliente, int mes, ARRAY a);
-\item	ARRAY extraiPorQuantidade(ARRAY a,int mes);
+\item	ARRAY topMaisGastou(ARRAY a) - Vai retornar os 3 produtos que um cliente mais gastou; 
+\item	ARRAY clientesCompraramProduto(Filial fil, char* produto) - Retorna a lista de clientes que compraram um determinado produto; 
+
+\item	int comprouProdutoN(Filial fil, char* cliente, char* produto) - função  diz se um dado cliente comprou um dado produto em normal;
+
+\item	int comprouProdutoP(Filial fil, char* cliente, char* produto) - função que diz se um dado cliente comprou um dado produto em promoção; 
+
+\item	int getNumClientesFilial(Filial fil, char* produto) - diz quantos clientes compraram um determinado produto; 
+
+\item	void getIProdMes(Filial fil, char* cliente, int mes, ARRAY a) - Para um dado cliente e para um mês, inser a informacao, dos produtos que o cliente comprou nesse mês numa dada filial; 
+\item	ARRAY extraiPorQuantidade(ARRAY a,int mes) - Devolve uma lista de produtos mais comprados, por quantidade, de um dado mês; 
 \item	void removeNaoCompraram(Filial fil, ARRAY a);
 \item	void removeCompraram(Filial fil, ARRAY a);
 \end{itemize}

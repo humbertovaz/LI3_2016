@@ -170,7 +170,7 @@ int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial){
     total=nodo->vendasP[mes-1][filial-1];
     return total;
 }
-/*A funcão getVendasPFilialX calcula o nr de vendas em modo Normal (N) de um produto num determinado mês e filial. Inicialmente vai buscar o produto através do seu id, se o encontrar devolve o nr de vendas nas condicões anteriores */
+/*A funcão getVendasNFilialX calcula o nr de vendas em modo Normal (N) de um produto num determinado mês e filial. Inicialmente vai buscar o produto através do seu id, se o encontrar devolve o nr de vendas nas condicões anteriores */
 int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial){
     int total=0;
     Info nodo=NULL;
@@ -245,7 +245,6 @@ ARRAY naoCompradosFilial(Faturacao fat, int filial){
     return a;
 }
 /*A funcão naoComprados percorre  percorre a estrutura da faturacao em todas as filiais e em todos os meses atraves do Traverser t, e verificia se este foi ou não comprado,se foi nada faz, se não insere-o num array a. No final faz free ao Traversser t e retorna o novo array*/
-ARRAY naoCompradosFilial(Faturacao fat, int filial){
 ARRAY naoComprados(Faturacao fat){
     char *produto;
     int i,j,q=0;

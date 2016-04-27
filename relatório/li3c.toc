@@ -17,10 +17,10 @@
 \contentsline {subsection}{\numberline {2.3.1}faturacao.h}{6}
 \contentsline {subsubsection}{Tipos Opacos}{6}
 \contentsline {subsubsection}{/*API*/}{6}
-\contentsline {section}{\numberline {2.4}Gest\IeC {\~a}o da Filial}{7}
+\contentsline {section}{\numberline {2.4}Gest\IeC {\~a}o da Filial}{8}
 \contentsline {subsection}{\numberline {2.4.1}Filial.h}{8}
 \contentsline {subsubsection}{Tipos Opacos}{8}
-\contentsline {subsubsection}{}{8}
+\contentsline {subsubsection}{}{9}
 \contentsline {chapter}{\numberline {3}Main.c}{10}
 \contentsline {chapter}{\numberline {4}Interface do utilizador}{11}
 \contentsline {chapter}{\numberline {5}Resultados e coment\IeC {\'a}rios sobre os testes de performance}{12}
