@@ -74,7 +74,11 @@ ARVORE indices[27];
 };
 \end{verbatim}
 
-Para guardar os clientes lidos a partir do ficheiro resolvemos usar  AVLs, pois  executa as operações de inserção, busca e remoção em tempo O(log n), sendo rápida  para aplicações que fazem uma quantidade excessiva de procuras, porém esta estrutura é um pouco mais lenta para inserção e remoção. Isso deve-se ao facto de as árvores AVL serem rigidamente balanceadas.
+Utilizamos um array de árvores para guardar os clientes, pois seria mais fácil a procura pelos mesmos. Cada indice do array corresponde a uma letra do alfabético, e quando procurarmos um determinado cliente já sabemos o indice onde ele se encontra, o que irá torna a procura muito mais rápida. 
+
+\paragraph{}
+
+Usar  AVLs  executa as operações de inserção, busca e remoção em tempo O(log n), sendo rápida  para aplicações que fazem uma quantidade excessiva de procuras, porém esta estrutura é um pouco mais lenta para inserção e remoção. Isso deve-se ao facto de as árvores AVL serem rigidamente balanceadas.
 
 
 \subsubsection{/*API*/}
@@ -119,20 +123,28 @@ ARVORE indices[27];
 };
 \end{verbatim}
 
- Para guardar os produtos lidos a partir do ficheiro utilizámos uma avl,
+Utilizamos um array de árvores para os produtos, pois seria mais fácil a procura pelos mesmos. Cada indice do array corresponde a uma letra do alfabético, e quando procurarmos um determinado produto já sabemos o indice onde ele se encontra, o que irá torna a procura muito mais rápida. 
 
 \subsubsection{/*API*/}
 
 \begin{itemize}
 	
-\item CatProdutos inicializa\_catalogo\_produtos() - 
-\item void insertP(CatProdutos c, char * valor);
-\item void cat\_remove\_produto(CatProdutos cat, char *str);
-\item void free\_catalogo\_produtos(CatProdutos cat);
-\item int existeProduto (char *produto,CatProdutos cat);
-\item int numeroProdutos(CatProdutos cat);
-\item int numeroProdutosLetra(CatProdutos cat, char letra);
-\item ARRAY listaProdutosLetra(CatProdutos cat, char l);
+\item \textbf{CatProdutos inicializa\_catalogo\_produtos()} - A funcão inicializa\_catalogo\_produtos aloca memória para o respetivo catalogo de todos os produtos e cria 27 AVLs para cada letra dos produtos através da funcão avl\_create; 
+
+\item \textbf{void insertP(CatProdutos c, char * valor)} - A funcão insertP insere na estrutura catalogo de produtos o id do novo produto; 
+
+\item \textbf{void cat\_remove\_produto(CatProdutos cat, char *str)} - A funcão cat\_remove\_produto elimina e faz free ao nodo do produto em questão (utilizando a funcao avl\_delete) e de seguida faz o respetivo free; 
+
+\item \textbf{void free\_catalogo\_produtos(CatProdutos cat)} - A funcão free\_catalogo\_produtos destrói os dados do catalogo de produtos (cat) um a um (fazendo libavl\_free) e no final liberta  a memória do catálogo; 
+
+\item \textbf{int existeProduto (char *produto,CatProdutos cat)}  -A funcão existeProduto verifica se existe um produto (através do seu id) num catálogo (ambos passados por parâmetro) se  existe devolve 1 se não 0; 
+
+\item \textbf{int numeroProdutos(CatProdutos cat)} - A funcão numeroProdutos faz a soma de todos os nodos de cada avl, uma a uma. Ou seja através de um ciclo for e da funcão avl\_count iremos obter a soma total de produtos das 27 avl's; 
+
+\item \textbf{int numeroProdutosLetra(CatProdutos cat, char letra)} - A funcão numeroProdutosLetra com o auxilio da funcão avl\_count, dado um catalogo e letra ambos passados por parâmetro, calcula o nr de nodos da avl associada a essa letra; 
+
+\item \textbf{ARRAY listaProdutosLetra(CatProdutos cat, char l)}- A funcão listaProdutosLetra, dado uma letra e um catalogo em parâmetro, através de um traverser 
+associada à estrutura avl dessa letra, vai inserindo num array a, todos os ids de produtos começados por essa letra. Fazendo o respetivo free do traverser; 
 \end{itemize}
 
 
@@ -155,7 +167,11 @@ int totalvendas[12];
 float totalfaturado[12];
 ARVORE produtos;
 };
+\end{verbatim}
 
+A estrutura facturação irá conter o total de vendas realizado nas 3 filiais, assim como o dinheiro facturado nas 3 filiais; irá também conter a informação sobre os produtos que foram vendidos; 
+
+\begin{verbatim}
 struct info{
 char *code;
 int vendasP[12][3];
@@ -167,46 +183,45 @@ int quantidadeN[12][3];
 };
 \end{verbatim}
 
-Para guardar a informação relativa à faturação utilizámos um array de 12 AVLs, pois esta estrutura permite ordenar estruturas complexas de acordo com um método de comparação, separando pelos 12 meses. Como existe ordem alfabética, a AVL permite fazer procura rápida, preservando assim memória. 
-
-\paragraph{}
-AVL com informação do número de vendas e o seu valor distinguido por normal ou promoção, ordenada pelo código de produto
+A estrutura info irá conter a informação  do produtos comprados, utilizamos uma matriz 12 por 3 pois a procura é feita maioritariamente em meses, logo irá ser mais rápido a procurar. A estrutura terá informação do número de vendas e o seu valor distinguido por normal ou promoção, ordenada pelo código de produto
 
 \subsubsection{/*API*/}
 
 \begin{itemize}
 
-\item	Faturacao inicializa\_faturacao() - A funcão inicializa\_faturacao aloca uma estrutura Faturacao e cria uma avl para os produtos, bem como inicializa os 12 nodos totalvendas e totalfaurado a zero; 
+\item	\textbf{Faturacao inicializa\_faturacao()} - A funcão inicializa\_faturacao aloca uma estrutura Faturacao e cria uma avl para os produtos, bem como inicializa os 12 nodos totalvendas e totalfaurado a zero; 
 
-\item	void cont\_regista\_produto(Faturacao fat, char *prod) - A funcão cont\_regista\_produto, dada a estrutura faturacão e um id de produto, insere-o através da funcão avl\_insert; 
+\item	\textbf{void cont\_regista\_produto(Faturacao fat, char *prod)} - A funcão cont\_regista\_produto, dada a estrutura faturacão e um id de produto, insere-o através da funcão avl\_insert; 
 
-\item	void cont\_insere\_venda(Faturacao fat, char *produto, int q, float preco, char M,int mes, int filial) - A funcão cont\_insere\_venda, dada a estrutura faturacão, atualiza as vendas, quantidades e faturado conforme o produto em questão ser Promocão (P) ou Normal (N); 
+\item	\textbf{void cont\_insere\_venda(Faturacao fat, char *produto, int q, float preco, char M,int mes, int filial)} - A funcão cont\_insere\_venda, dada a estrutura faturacão, atualiza as vendas, quantidades e faturado conforme o produto em questão ser Promocão (P) ou Normal (N); 
 
-\item	void cont\_remove\_produto(Faturacao fat, char *produto) - A funcão cont\_remove\_produto remove um produto da Faturacao passados ambos por parametro. Inicialmente calcula o id do produto através da funcão fat\_procura\_info para depois eliminar o produto em questão através da funcão avl\_delete e logo a seguir faz free ao nodo eliminado através da funcão free\_info;
+\item	\textbf{void cont\_remove\_produto(Faturacao fat, char *produto)} - A funcão cont\_remove\_produto remove um produto da Faturacao passados ambos por parametro. Inicialmente calcula o id do produto através da funcão fat\_procura\_info para depois eliminar o produto em questão através da funcão avl\_delete e logo a seguir faz free ao nodo eliminado através da funcão free\_info;
 
-\item	void free\_faturacao(Faturacao fat) - A funcão free\_faturacao elimina todos os nodos da faturacao através da funcão avl\_destroy e faz free à estrutura faturacao passada por parâmetro;
+\item	\textbf{void free\_faturacao(Faturacao fat)}- A funcão free\_faturacao elimina todos os nodos da faturacao através da funcão avl\_destroy e faz free à estrutura faturacao passada por parâmetro;
 
-\item	float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial) - A funcão getTotalFatPFilialX vai calcular o total faturado no modo Promocão (P) de um dado produto, num determinado mês e em determinada filial; 
+\item	\textbf{float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial)} - A funcão getTotalFatPFilialX vai calcular o total faturado no modo Promocão (P) de um dado produto, num determinado mês e em determinada filial; 
 
-\item	float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial) - A funcão getTotalFatNFilialX vai calcular o total faturado no modo Normal (N) de um dado produto, num determinado mes e em determinada filial;
+\item	\textbf{float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial)} - A funcão getTotalFatNFilialX vai calcular o total faturado no modo Normal (N) de um dado produto, num determinado mes e em determinada filial;
 
-\item	int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial) - A funcão getVendasNFilialX calcula o nr de vendas em modo Normal (N) de um produto num determinado mês e filial. Inicialmente vai buscar o produto através do seu id, se o encontrar devolve o nr de vendas nas condicões anteriores; 
+\item	\textbf{int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial)} - A funcão getVendasNFilialX calcula o nr de vendas em modo Normal (N) de um produto num determinado mês e filial. Inicialmente vai buscar o produto através do seu id, se o encontrar devolve o nr de vendas nas condicões anteriores; 
 
-\item	int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial) - A funcão getVendasPFilialX calcula o nr de vendas em modo Promocao (P) de um produto num determinado mês e filial. Inicialmente vai buscar o produto através do seu id, se o encontrar devolve o nr de vendas nas condicões anteriores; 
+\item	\textbf{int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial)} - A funcão getVendasPFilialX calcula o nr de vendas em modo Promocao (P) de um produto num determinado mês e filial. Inicialmente vai buscar o produto através do seu id, se o encontrar devolve o nr de vendas nas condicões anteriores; 
 
-\item	int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial) - A funcão getQuantidadeNFilialX calcula a quantidade vendida em modo Normal (N) de um determinado produto num dado mês e filial;
+\item	\textbf{int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial)} - A funcão getQuantidadeNFilialX calcula a quantidade vendida em modo Normal (N) de um determinado produto num dado mês e filial;
 
-\item	int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial) - A funcão getQuantidadePFilialX calcula a quantidade vendida em modo Promocão (P) de um determinado produto num dado mês e filial. Inicialmente vai buscar o nodo do produto através do id do produto e retorna finalmente a quantidade vendida; 
+\item	\textbf{int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial)} - A funcão getQuantidadePFilialX calcula a quantidade vendida em modo Promocão (P) de um determinado produto num dado mês e filial. Inicialmente vai buscar o nodo do produto através do id do produto e retorna finalmente a quantidade vendida; 
 
-\item	ARRAY naoCompradosFilial(Faturacao fat, int filial) - A funcão naoCompradosFilial percorre a estrutura da faturacao numa dada filial em todos os meses através do Traverser t, e verificia se este foi ou não comprado,se foi nada faz, se não insere-o num array a. No final faz free ao Traversser t e retorna o novo array; 
-\item	ARRAY naoComprados(Faturacao fat) - A funcão naoComprados percorre  a estrutura da faturacao em todas as filiais e em todos os meses através do Traverser t, e verificia se este foi ou não comprado,se foi nada faz, se não insere-o num array a. No final faz free ao Traversser t e retorna o novo array; 
-\item	int totalVendasMeses(Faturacao fat, int a, int b) - A funcão totalVendasMeses calcula o total de vendas num determinado intervalo de meses;
+\item	\textbf{ARRAY naoCompradosFilial(Faturacao fat, int filial)} - A funcão naoCompradosFilial percorre a estrutura da faturacao numa dada filial em todos os meses através do Traverser t, e verificia se este foi ou não comprado,se foi nada faz, se não insere-o num array a. No final faz free ao Traversser t e retorna o novo array; 
 
-\item	float totalFatMeses(Faturacao fat, int a, int b) - A funcão totalFatMeses calcula o total faturado num dado intervalo de meses; 
+\item	\textbf{ARRAY naoComprados(Faturacao fat)} - A funcão naoComprados percorre  a estrutura da faturacao em todas as filiais e em todos os meses através do Traverser t, e verificia se este foi ou não comprado,se foi nada faz, se não insere-o num array a. No final faz free ao Traversser t e retorna o novo array; 
 
-\item	ARRAY nMaisVendidos(Faturacao fat, int n) - A funcão nMaisVendidos calcula os n produtos mais vendidos de todas as filiais através de um traversser t. Inicialza dois arrays a e b através da funcão inicializa\_array . Copia os elementos do tipo Info para o array a, ordena-o através da funcão ordena e depois devolve o array b com os elementos ids dos produtos do array já ordenados; 
+\item	\textbf{int totalVendasMeses(Faturacao fat, int a, int b)} - A funcão totalVendasMeses calcula o total de vendas num determinado intervalo de meses;
 
-\item	int getQuantidadeFilial(Faturacao fat, char*prod, int filial) - A funcão getQuantidadeFilial calcula a quantidade vendida de um determinado produto através do seu id de produto numa determinada filial em todos os meses. 
+\item	\textbf{float totalFatMeses(Faturacao fat, int a, int b)} - A funcão totalFatMeses calcula o total faturado num dado intervalo de meses; 
+
+\item	\textbf{ARRAY nMaisVendidos(Faturacao fat, int n)} - A funcão nMaisVendidos calcula os n produtos mais vendidos de todas as filiais através de um traversser t. Inicialza dois arrays a e b através da funcão inicializa\_array . Copia os elementos do tipo Info para o array a, ordena-o através da funcão ordena e depois devolve o array b com os elementos ids dos produtos do array já ordenados; 
+
+\item	\textbf{int getQuantidadeFilial(Faturacao fat, char*prod, int filial)} - A funcão getQuantidadeFilial calcula a quantidade vendida de um determinado produto através do seu id de produto numa determinada filial em todos os meses. 
 	
 \end{itemize}
 
@@ -231,13 +246,21 @@ typedef struct iprodutos *Iprodutos;
 struct filial{
 ARVORE infoCliente;
 };
+\end{verbatim}
 
+A estrutura filial tem a informação de todos os clientes que compraram numa dada filial; 
+
+\begin{verbatim}
 struct icliente{
 char *cliente;
 int quantidade[12];
 ARVORE infoprodutos[2];
 };
+\end{verbatim}
 
+A estrutura icliente irá ter o codigo do cliente válido, a quantidade dos produtos que comprou em cada mês e a informação dos produtos que comprou, ou de forma normal, ou de forma promocional; 
+
+\begin{verbatim}
 struct iprodutos{
 char *prod;
 int quantidadeT;
@@ -247,17 +270,15 @@ float gastou[12];
 };
 \end{verbatim}
 
-Estrutura de cliente que contém .... 
-
-Estrutura de produtos que contém ...........
+A estrutura iprodutos terá um código de produtos, a quantidade total comprada, o total de dinheiro gasto, e irá ter também a quantidade desse produto comprado em vários meses, assim como o dinheiro que gastou por mês nesse produto; 
 
 
 \subsubsection{/*API*/}
 
 \begin{itemize}
-\item	Filial inicializa\_filial() - Inicializa a estrutura da filial; 
+\item	\textbf{Filial inicializa\_filial()} - Inicializa a estrutura da filial; 
 
-\item	void fil\_regista\_cliente(Filial fil, char *cliente) - Insere um cliente na filial; 
+\item	\textbf{void fil\_regista\_cliente(Filial fil, char *cliente)} - Insere um cliente na filial; 
 
 \item 	\textbf{void fil\_insere\_prod(Filial fil, char *cliente, char *produto,int q, int mes, float preco, char p)} - A funcão fil\_insere\_prod insere  um produto comprado por um dado cliente num dado mês, se o produto já tiver sido inserido a quantidade =quantidadeAntiga+quantidadeComprada, aumenta também o dinheiro gasto nesse produto. Senão tiver sido inserido a quantidade=quantidadeComprada e o 
 preco=precoComprado; 
@@ -276,19 +297,24 @@ depois utiliza o avl\_t\_next para percorrer p traverser e sempre que encontra u
 
 
 \item	\textbf{void clientesCompraram(Filial fil,ARRAY a)} - A funcão clientesCompraram remove do array todos os clientes que não compraram nenhum produto numa filial passada por parâmetro. Para isso cria um Traversser t percorredo a estrutura dos clientes, somando a quantidade comprada em cada mês, se esta for zero então remove o cliente do array através da funcão remove\_posicão; 
+
 \item	\textbf{void free\_filial(Filial fil)} - A função free\_filial elimina todos os nodos da filial através da funcão avl\_destroy e faz  free à estrutura filial passada por parâmetro; 
+
 \item	\textbf{ARRAY topMaisGastou(ARRAY a)} - A funcão topMaisGastou irá calcular os 3 produtos que um cliente mais gastou retornando-os num array. Para isso recebe um array de Produtos comprados por um dado cliente, ordena esse array a (passado por parâmetro) e insere as chaves num array b, retornando-o; 
-\item	ARRAY clientesCompraramProduto(Filial fil, char* produto) - Retorna a lista de clientes que compraram um determinado produto; 
+
+\item	\textbf{ARRAY clientesCompraramProduto(Filial fil, char* produto)}- A função clientesCompraramProduto utiliza inicializa\_iprodutos,inicializa\_array e avl\_t\_alloc, para alucar espaço a um produto, array e a um traverser, depois com o avl\_t\_init pasa a informacao dos clientes de uma filial para o traverser e depois percorrer o traverser, quando encontra uma cliente que tenha comprado um produto inser o cliente no array dinamico. No fim retorna uma lista de clientes que compraram um produto numa dada filial;
 
 \item	\textbf{int comprouProdutoN(Filial fil, char* cliente, char* produto)} - A função comprouProdutoN recebe com argumentos uma filial, cliente e um produto,ambos válidos,inicializa\_icliente, inicializa\_iprodutos para inicializar um cliente e um produtos, depois utiliza o avl\_find para encontrar o cliente e o produto dentro dos produtos que o cliente comprou, se o cliente não tiver comprado esse produto em normal retorna zero, se o tiver comprado retorna 1; 
 
 \item	\textbf{int comprouProdutoP(Filial fil, char* cliente, char* produto)} - A função comprouProdutoP recebe com argumentos uma filial, cliente e um produto,ambos válidos,inicializa\_icliente, inicializa\_iprodutos para inicializar um cliente e um produtos, depois utiliza o avl\_find para encontrar o cliente  e o produto dentro dos produtos que o cliente comprou, se o cliente não tiver comprado esse produto em promoção retorna zero, se o tiver comprado em promoção retorna 1;
 
-\item	int getNumClientesFilial(Filial fil, char* produto) - diz quantos clientes compraram um determinado produto; 
+\item	\textbf{int getNumClientesFilial(Filial fil, char* produto)} - A função getNumClientesFilial utiliza inicializa\_iprodutos,vl\_t\_alloc para alucar memorica a um produto e ao TRAVERSER, depois utiliza o avl\_t\_init para inserir a informação dos clientes no TRAVERSER, depois a medida que percorre o traverser verifica se o cliente comprou o produto em normal , ou em promoção, se ele comprou incrementa a variavel n. 
+No fim retorna essa variável; 
 
-\item	void getIProdMes(Filial fil, char* cliente, int mes, ARRAY a) - Para um dado cliente e para um mês, inser a informacao, dos produtos que o cliente comprou nesse mês numa dada filial; 
-\item	ARRAY extraiPorQuantidade(ARRAY a,int mes) - Devolve uma lista de produtos mais comprados, por quantidade, de um dado mês; 
+\item	\textbf{void getIProdMes(Filial fil, char* cliente, int mes, ARRAY a)} - A função getIProdMes utiliza as funções inicializa\_icliente,avl\_t\_alloc para alocar memoria para um dado cliente e para o traverser, depois procura esse cliente na filial e quando o encontra retorna-o, depois a função avl\_t\_init inicializa o traversar com os produtos comprados em modo normal, depois percorre o traverser quando encontra um produto faz uma copia da informação desse produto e vai buscar a possição onde ele se encontra, se ele ainda não tiver sido inserido, inser o produto, senão actualiza a quantidade do produto para esse mes. Depois irá fazer o mesmo para os produtos comprados em  promoção; 
 
+\item	\textbf{ARRAY extraiPorQuantidade(ARRAY a,int mes)}- A função extraiPorQuantidade utilizada o inicializa\_array para incializar o array b, depois utiliza a funcao ordena
+para ordenar os produtos por quantidade de um dado mes, depois cria uma copia do codigo do produto e insere ordenado no array b e retorna esse mesmo array; 
 
 \item	\textbf{void removeNaoCompraram(Filial fil, ARRAY a)} - A função removeNaoCompraram recebe como parametro um array dinâmico e uma filial, com informação lá dentro, depois com a função get\_tamanho vai buscar o tamanho de um array, depois com o inicializa\_icliente inicializa um cliente que irá ser retirado do array,de seguida com a função avl\_find encontra esse cliente na filial e retorna a informação desse cliente. Por fim percorre soma a quantidade comprada dos meses todos, se essa quantidade for igual a zero remove do array dinâmico; 
 

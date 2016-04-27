@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  27 APR 2016 19:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  27 APR 2016 23:46
 entering extended mode
 **li3c.tex
 (li3c.tex
@@ -1329,133 +1329,145 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 53.
  [4 <./arquiteturaproj.png>]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 83.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 87.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 83.
- [5] [6]
-Overfull \hbox (0.86234pt too wide) in paragraph at lines 173--174
-[] [][] \OT1/ptm/m/n/12 AVL com informa[][]ao do n[]umero de ven-das e o seu va
--lor dis-tin-guido por nor-mal ou promo[][]ao,
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 87.
+ [5]
+Overfull \hbox (9.92978pt too wide) in paragraph at lines 132--133
+[]\OT1/ptm/b/n/12 CatProdutos ini-ci-a-liza[]catalogo[]produtos() \OT1/ptm/m/n/
+12 - A func[]ao ini-ci-a-liza[]catalogo[]produtos aloca
  []
 
 
-Overfull \hbox (6.40256pt too wide) in paragraph at lines 187--188
-\OT1/ptm/m/n/12 tu-ra-cao atrav[]es da func[]ao avl[]destroy e faz free []a es-
-tru-tura fa-tu-ra-cao pas-sada por par[]ametro; 
+Overfull \hbox (5.1787pt too wide) in paragraph at lines 138--139
+[]\OT1/ptm/b/n/12 void free[]catalogo[]produtos(CatProdutos cat) \OT1/ptm/m/n/1
+2 - A func[]ao free[]catalogo[]produtos destr[]oi
  []
 
-[7] [8]
-Overfull \hbox (49.61453pt too wide) in paragraph at lines 262--264
+[6] [7]
+Overfull \hbox (19.05162pt too wide) in paragraph at lines 198--199
+[]\OT1/ptm/b/n/12 void cont[]remove[]produto(Faturacao fat, char *pro-duto) \OT
+1/ptm/m/n/12 - A func[]ao cont[]remove[]produto
+ []
+
+[8] [9]
+Overfull \hbox (49.61453pt too wide) in paragraph at lines 283--285
 \OT1/ptm/m/n/12 dado m[]es, se o pro-duto j[]a ti-ver sido in-se-rido a quan-ti
 -dade =quan-ti-da-de-An-tiga+quantidadeComprada,
  []
 
 
-Overfull \hbox (10.2305pt too wide) in paragraph at lines 265--266
+Overfull \hbox (10.2305pt too wide) in paragraph at lines 286--287
 \OT1/ptm/m/n/12 dado m[]es. Para tal, pro-cura um cli-ente numa dada fi-lial at
 rav[]es da func[]ao fil[]procura[]cliente,
  []
 
-[9]
-Overfull \hbox (29.11691pt too wide) in paragraph at lines 283--284
+[10]
+Overfull \hbox (29.11691pt too wide) in paragraph at lines 307--308
 \OT1/ptm/m/n/12 du-toN re-cebe com ar-gu-men-tos uma fi-lial, cli-ente e um pro
 -duto,ambos v[]alidos,inicializa[]icliente,
  []
 
 
-Overfull \hbox (27.12488pt too wide) in paragraph at lines 285--286
+Overfull \hbox (27.12488pt too wide) in paragraph at lines 309--310
 \OT1/ptm/m/n/12 du-toP re-cebe com ar-gu-men-tos uma fi-lial, cli-ente e um pro
 -duto,ambos v[]alidos,inicializa[]icliente,
  []
 
-[10] [11]
+
+Overfull \hbox (0.24753pt too wide) in paragraph at lines 314--315
+\OT1/ptm/m/n/12 mal, de-pois per-corre o tra-ver-ser quando en-con-tra um pro-d
+uto faz uma co-pia da informa[][]ao
+ []
+
+[11] [12]
 Cap\'{\i }tulo 3.
-[12
+[13
 
 ]
 Cap\'{\i }tulo 4.
-<1querie.png, id=59, 653.44125pt x 148.555pt>
+<1querie.png, id=62, 653.44125pt x 148.555pt>
 File: 1querie.png Graphic file (type png)
  <use 1querie.png>
-Package pdftex.def Info: 1querie.png used on input line 315.
+Package pdftex.def Info: 1querie.png used on input line 341.
 (pdftex.def)             Requested size: 261.37187pt x 59.42093pt.
 
-<menu.png, id=60, 661.47125pt x 440.64626pt>
+<menu.png, id=63, 661.47125pt x 440.64626pt>
 File: menu.png Graphic file (type png)
  <use menu.png>
-Package pdftex.def Info: menu.png used on input line 323.
+Package pdftex.def Info: menu.png used on input line 349.
 (pdftex.def)             Requested size: 396.8858pt x 264.38979pt.
- [13
+ [14
 
  <./1querie.png> <./menu.png>]
 Cap\'{\i }tulo 5.
-<grafcarregamento.png, id=64, 387.69844pt x 234.8775pt>
+<grafcarregamento.png, id=67, 387.69844pt x 234.8775pt>
 File: grafcarregamento.png Graphic file (type png)
 
 <use grafcarregamento.png>
-Package pdftex.def Info: grafcarregamento.png used on input line 335.
+Package pdftex.def Info: grafcarregamento.png used on input line 361.
 (pdftex.def)             Requested size: 310.15916pt x 187.90225pt.
- <grafq8.png, id=65, 338.01282pt x 224.33812pt>
+ <grafq8.png, id=68, 338.01282pt x 224.33812pt>
 File: grafq8.png Graphic file (type png)
 
 <use grafq8.png>
-Package pdftex.def Info: grafq8.png used on input line 347.
+Package pdftex.def Info: grafq8.png used on input line 373.
 (pdftex.def)             Requested size: 204.85846pt x 135.96631pt.
- <grafq9.png, id=66, 352.31625pt x 210.03468pt>
+ <grafq9.png, id=69, 352.31625pt x 210.03468pt>
 File: grafq9.png Graphic file (type png)
 
 <use grafq9.png>
-Package pdftex.def Info: grafq9.png used on input line 354.
+Package pdftex.def Info: grafq9.png used on input line 380.
 (pdftex.def)             Requested size: 204.85846pt x 122.12785pt.
- [14
+ [15
 
  <./grafcarregamento.png>]
-<grafq10.png, id=70, 356.83313pt x 207.77625pt>
+<grafq10.png, id=73, 356.83313pt x 207.77625pt>
 File: grafq10.png Graphic file (type png)
  <use grafq10.png>
-Package pdftex.def Info: grafq10.png used on input line 361.
+Package pdftex.def Info: grafq10.png used on input line 387.
 (pdftex.def)             Requested size: 204.85846pt x 119.28334pt.
 
-<grafq11.png, id=71, 359.09157pt x 212.29312pt>
+<grafq11.png, id=74, 359.09157pt x 212.29312pt>
 File: grafq11.png Graphic file (type png)
  <use grafq11.png>
-Package pdftex.def Info: grafq11.png used on input line 368.
+Package pdftex.def Info: grafq11.png used on input line 394.
 (pdftex.def)             Requested size: 204.85846pt x 121.11523pt.
 
-<grafq12.png, id=72, 380.17032pt x 221.32687pt>
+<grafq12.png, id=75, 380.17032pt x 221.32687pt>
 File: grafq12.png Graphic file (type png)
  <use grafq12.png>
-Package pdftex.def Info: grafq12.png used on input line 376.
+Package pdftex.def Info: grafq12.png used on input line 402.
 (pdftex.def)             Requested size: 266.1174pt x 154.92773pt.
- [15 <./grafq8.png> <./grafq9.png> <./grafq10.png> <./grafq11.png> <./grafq12.p
+ [16 <./grafq8.png> <./grafq9.png> <./grafq10.png> <./grafq11.png> <./grafq12.p
 ng>]
 Cap\'{\i }tulo 6.
-<grafodependencias.png, id=76, 1145.27875pt x 541.02126pt>
+<grafodependencias.png, id=79, 1145.27875pt x 541.02126pt>
 File: grafodependencias.png Graphic file (type png)
 
 <use grafodependencias.png>
-Package pdftex.def Info: grafodependencias.png used on input line 390.
+Package pdftex.def Info: grafodependencias.png used on input line 416.
 (pdftex.def)             Requested size: 458.10338pt x 216.40466pt.
 
-Overfull \hbox (2.85927pt too wide) in paragraph at lines 390--391
+Overfull \hbox (2.85927pt too wide) in paragraph at lines 416--417
  [][] 
  []
 
 
-Overfull \hbox (34.35568pt too wide) in paragraph at lines 442--442
+Overfull \hbox (34.35568pt too wide) in paragraph at lines 468--468
 []\OT1/pcr/m/n/12 leitura: src/leitura.c array.o avl.o clientes.o faturacao.o f
 ilial.o[] 
  []
 
-[16
+[17
 
- <./grafodependencias.png>]) (conclusao.tex [17]
+ <./grafodependencias.png>]) (conclusao.tex [18]
 Cap\'{\i }tulo 7.
-) [18
+) [19
 
 ] (li3c.aux) ) 
 Here is how much of TeX's memory you used:
@@ -1472,9 +1484,9 @@ Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 /times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on li3c.pdf (19 pages, 698151 bytes).
+Output written on li3c.pdf (20 pages, 703488 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
+ 112 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  88 words of extra memory for PDF output out of 10000 (max. 10000000)
 
