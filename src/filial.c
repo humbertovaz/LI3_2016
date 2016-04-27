@@ -195,7 +195,7 @@ ARRAY topMaisGastou(ARRAY a){
 	deep_free(a,free_infoprod);
 	return b;
 }
-/* A função comprouProdutosP recebe com argumentos uma filial, cliente e um produto,ambos válidos,inicializa_icliente
+/* A função comprouProdutoP recebe com argumentos uma filial, cliente e um produto,ambos válidos,inicializa_icliente
 ,inicializa_iprodutos para inicializar um cliente e um produtos, depois utiliza o avl_find para encontrar o cliente 
 e o produto dentro dos produtos que o cliente comprou, se o cliente não tiver comprado esse produto em promoção retorna zero,
 se o tiver comprado em promoção retorna 1*/
@@ -217,7 +217,7 @@ int comprouProdutoP(Filial fil, char* cliente, char* produto){
 	return 0;
 }
 
-/* A função comprouProdutosP recebe com argumentos uma filial, cliente e um produto,ambos válidos,inicializa_icliente
+/* A função comprouProdutoN recebe com argumentos uma filial, cliente e um produto,ambos válidos,inicializa_icliente
 ,inicializa_iprodutos para inicializar um cliente e um produtos, depois utiliza o avl_find para encontrar o cliente 
 e o produto dentro dos produtos que o cliente comprou, se o cliente não tiver comprado esse produto em normal retorna zero,
 se o tiver comprado retorna 1*/
@@ -327,7 +327,8 @@ ARRAY extraiPorQuantidade(ARRAY a, int mes){
 	deep_free(a,free_infoprod);
 	return b;
 }
-/* A função getIProdMes para um dado cliente e para um mês, insere a informacao dos produtos que o cliente comprou nesse mês numa dada filial*/
+/* A função getIProdMes para um dado cliente e para um mês, insere a informacao dos produtos que o cliente
+ comprou nesse mês numa dada filial*/
 void getIProdMes(Filial fil, char* cliente, int mes, ARRAY a){
 	Icliente nodo,aux;
 	TRAVERSER t;
@@ -416,7 +417,7 @@ static Iprodutos copiaIProdutos(Iprodutos iproduto){
 }
 
 
-/* A função removeCompraram, dado um array a com informacão dos clientes, recorre a funcao inicializa_icliente 
+/* A função removeCompraram, dado um array a com informacão dos clientes, recorre à funcao inicializa_icliente 
 para inicializar o cliente da posição i, depois usa o avlfind 
 para procurar esse cliente que foi inicializado e depois compara se ele comprou em normal ou em promocao, 
 se ele tiver comprado remove do array*/
@@ -435,12 +436,12 @@ void removeCompraram(Filial fil, ARRAY a){
 }
 
 
-/* A função naoCompraram  utilizaca as funções inicializa_array e o avl_t_alloc, para alocar espaço ao array e para o 
-traverser,que é uma estrutura que contem um apontar para o inicio, contem também um apontador para a arvore onde nos 
-encontramos e uma stack com os restantes elementos,depois usamos a funcao avl_t_init, para inicializar o traverser
-com tuda a informacao dos clientes que estão na estrutura Filial, depois com a ajuda do função avl_t_next percorremos
-o traverser e a medida que encontramos um cliente vemos se ele comprou ou não, se ele não tiver comprado nada,
-inserimos esse cliente num array dinamico, no fim returnamos esse mesmo array*/
+/* A função naoCompraram  utiliza as funções inicializa_array e o avl_t_alloc, para alocar espaço ao array e para o 
+traverser,que é uma estrutura que contém um apontar para o inicio, contem também um apontador para a árvore onde nos 
+encontramos e uma stack com os restantes elementos,depois usamos a função avl_t_init, para inicializar o traverser
+com toda a informacao dos clientes que estão na estrutura Filial, depois com a ajuda do função avl_t_next percorremos
+o traverser e à medida que encontramos um cliente vemos se ele comprou ou não, se ele não tiver comprado nada,
+inserimos esse cliente num array dinâmico, no fim returnamos esse mesmo array*/
 ARRAY naoCompraram(Filial fil){
 	char *str;
 	ARRAY a;
@@ -459,10 +460,10 @@ ARRAY naoCompraram(Filial fil){
 }
 
 
-/* A função compraram utilizada avl_t_alloc para alocar um traverser e inicializa_array para inicializar um array dinamico 
+/* A função compraram utiliza avl_t_alloc para alocar um traverser e inicializa_array para inicializar um array dinâmico 
 depois utiliza o avl_t_next para percorrer p traverser e sempre que encontra um cliente soma as quantidades de todos os 
 meses e depois compara se a quantidade que ele comprou é maior que zero, se for ele inser no array dinamico
-no final retorna o array dinamico*/
+no final retorna o array dinâmico*/
 
 ARRAY compraram(Filial fil){
 	int i,q;
@@ -487,11 +488,11 @@ ARRAY compraram(Filial fil){
 }
 
 
-/* A função removeNaoCompraram receve como parametro um array dinamico e uma filial, com informação lá dentro,
+/* A função removeNaoCompraram recebe como parametro um array dinâmico e uma filial, com informação lá dentro,
 depois com a função get_tamanho vai buscar o tamanho de um array, depois com o inicializa_icliente inicializa um 
-cliente que irá ser retirado do array,depois com a função avl_find encontra esse cliente na filial e retorna a informação
-desse cliente. Depois percorre soma a quantidade comprada dos meses todos, se essa quantidade for igual a zero
-remove do array dinamico*/
+cliente que irá ser retirado do array,de seguida com a função avl_find encontra esse cliente na filial e retorna a informação
+desse cliente. Por fim percorre soma a quantidade comprada dos meses todos, se essa quantidade for igual a zero
+remove do array dinâmico*/
 
 void removeNaoCompraram(Filial fil, ARRAY a){
 	int i,j,q,tamanho;

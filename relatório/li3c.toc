@@ -24,8 +24,10 @@
 \contentsline {subsection}{\numberline {2.4.1}Filial.h}{9}
 \contentsline {subsubsection}{Tipos Opacos}{9}
 \contentsline {subsubsection}{/*API*/}{9}
-\contentsline {chapter}{\numberline {3}Main}{11}
-\contentsline {chapter}{\numberline {4}Interface do utilizador}{12}
-\contentsline {chapter}{\numberline {5}Resultados e coment\IeC {\'a}rios sobre os testes de performance}{13}
-\contentsline {chapter}{\numberline {6}Makefile e Grafo de depend\IeC {\^e}ncias}{15}
-\contentsline {chapter}{\numberline {7}Conclus\IeC {\~a}o}{17}
+\contentsline {chapter}{\numberline {3}Main}{12}
+\contentsline {chapter}{\numberline {4}Interface do utilizador}{13}
+\contentsline {chapter}{\numberline {5}Resultados e coment\IeC {\'a}rios sobre os testes de performance}{14}
+\contentsline {paragraph}{}{14}
+\contentsline {paragraph}{}{14}
+\contentsline {chapter}{\numberline {6}Makefile e Grafo de depend\IeC {\^e}ncias}{16}
+\contentsline {chapter}{\numberline {7}Conclus\IeC {\~a}o}{18}

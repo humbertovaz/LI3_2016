@@ -80,19 +80,19 @@ Para guardar os clientes lidos a partir do ficheiro resolvemos usar  AVLs, pois 
 \subsubsection{/*API*/}
 \begin{itemize}
 
-\item CatClientes inicializa\_catalogo\_clientes() - Função que cria uma estrutura de clientes vazia;
+\item \textbf{CatClientes inicializa\_catalogo\_clientes()} - A funcao inicializa\_catalogo\_clientes inicializa o modulo (array de 27 posicoes de avls), pondo estes 27 indices a null*; 
 
-\item void insertC(CatClientes c, char * valor) - insere um dado cliente na estrutura CatClientes, de maneira ordenada alfabeticamente; 
+\item \textbf{void insertC(CatClientes c, char * valor)}- A funcao insertC insere um cliente na sua avl respectiva, isto é, a posicao do array a que corresponde a letra inicial; 
 
-\item void cat\_remove\_cliente(CatClientes cat, char *str) - remove um cliente da estrutura CatCliente 
+\item \textbf{void cat\_remove\_cliente(CatClientes cat, char *str)} - A funcao cat\_remove\_cliente remove da respectiva avl o codigo de cliente passado por argumento, fazendo free ao nodo onde este situava; 
 
-\item void free\_catalogo\_Clientes(CatClientes cat) - função que liberta todo o espaço ocupado pela estrutura CatClientes
+\item \textbf{void free\_catalogo\_Clientes(CatClientes cat)} - A funcao free\_catalo\_Cliente apaga as 27 avls, fazendo o respectivo free; 
 
-\item int existeCliente (char *cliente,CatClientes cat) - função que verifica se um cliente existe
-\item int numeroClientes(CatClientes cat) - função que conta todos os nodos
+\item \textbf{int existeCliente (char *cliente,CatClientes cat)} - A funcao existeCliente verifica se um codigo existe na respectiva avl;
 
-\item int numeroClientesLetra(CatClientes cat, char letra) - função que conta os nodos por que começam por determinada letra
+\item \textbf{int numeroClientes(CatClientes cat)} - a funcao numeroClientes conta quantos clientes existem nas avls, usando para isto a funcao generica do modulo avl, avl\_count;
 
+\item \textbf{int numeroClientesLetra(CatClientes cat, char letra)} - a funcao numeroClientesLetra conta quantos clientes existem comecados por uma determinada letra, para isto só são contados os nodos da avl a que corresponde a posição dessa letra. 
 
 \end{itemize}
 
@@ -264,23 +264,37 @@ preco=precoComprado;
  
 \item	\textbf{int getQuantidadeMesCliente(Filial fil, char *cliente, int mes)} - A funcão getQuantidadeMesCliente retorna a quantidade dos produtos comprados por um dado cliente, num dado mês. Para tal, procura um cliente numa dada filial através da funcão fil\_procura\_cliente, retornando a quantidade comprada  desse mês; 
 
-\item	ARRAY naoCompraram(Filial fil);
-\item	ARRAY compraram(Filial fil);
+\item	\textbf{ARRAY naoCompraram(Filial fil)} - A função naoCompraram  utiliza as funções inicializa\_array e o avl\_t\_alloc, para alocar espaço ao array e para o 
+traverser,que é uma estrutura que contém um apontar para o inicio, contem também um apontador para a árvore onde nos 
+encontramos e uma stack com os restantes elementos,depois usamos a função avl\_t\_init, para inicializar o traverser
+com toda a informacao dos clientes que estão na estrutura Filial, depois com a ajuda do função avl\_t\_next percorremos
+o traverser e à medida que encontramos um cliente vemos se ele comprou ou não, se ele não tiver comprado nada,
+inserimos esse cliente num array dinâmico, no fim returnámos esse mesmo array; 
+
+\item	\textbf{ARRAY compraram(Filial fil)} - A função compraram utiliza avl\_t\_alloc para alocar um traverser e inicializa\_array para inicializar um array dinâmico 
+depois utiliza o avl\_t\_next para percorrer p traverser e sempre que encontra um cliente soma as quantidades de todos os meses e depois compara se a quantidade que ele comprou é maior que zero, se for ele inser no array dinamico no final retorna o array dinâmico
+
+
 \item	\textbf{void clientesCompraram(Filial fil,ARRAY a)} - A funcão clientesCompraram remove do array todos os clientes que não compraram nenhum produto numa filial passada por parâmetro. Para isso cria um Traversser t percorredo a estrutura dos clientes, somando a quantidade comprada em cada mês, se esta for zero então remove o cliente do array através da funcão remove\_posicão; 
 \item	\textbf{void free\_filial(Filial fil)} - A função free\_filial elimina todos os nodos da filial através da funcão avl\_destroy e faz  free à estrutura filial passada por parâmetro; 
 \item	\textbf{ARRAY topMaisGastou(ARRAY a)} - A funcão topMaisGastou irá calcular os 3 produtos que um cliente mais gastou retornando-os num array. Para isso recebe um array de Produtos comprados por um dado cliente, ordena esse array a (passado por parâmetro) e insere as chaves num array b, retornando-o; 
 \item	ARRAY clientesCompraramProduto(Filial fil, char* produto) - Retorna a lista de clientes que compraram um determinado produto; 
 
-\item	int comprouProdutoN(Filial fil, char* cliente, char* produto) - A funcão comprouProdutoN verifica se um dado cliente comprou um dado produto em regime normal; 
+\item	\textbf{int comprouProdutoN(Filial fil, char* cliente, char* produto)} - A função comprouProdutoN recebe com argumentos uma filial, cliente e um produto,ambos válidos,inicializa\_icliente, inicializa\_iprodutos para inicializar um cliente e um produtos, depois utiliza o avl\_find para encontrar o cliente e o produto dentro dos produtos que o cliente comprou, se o cliente não tiver comprado esse produto em normal retorna zero, se o tiver comprado retorna 1; 
 
-\item	int comprouProdutoP(Filial fil, char* cliente, char* produto) - função que diz se um dado cliente comprou um dado produto em promoção; 
+\item	\textbf{int comprouProdutoP(Filial fil, char* cliente, char* produto)} - A função comprouProdutoP recebe com argumentos uma filial, cliente e um produto,ambos válidos,inicializa\_icliente, inicializa\_iprodutos para inicializar um cliente e um produtos, depois utiliza o avl\_find para encontrar o cliente  e o produto dentro dos produtos que o cliente comprou, se o cliente não tiver comprado esse produto em promoção retorna zero, se o tiver comprado em promoção retorna 1;
 
 \item	int getNumClientesFilial(Filial fil, char* produto) - diz quantos clientes compraram um determinado produto; 
 
 \item	void getIProdMes(Filial fil, char* cliente, int mes, ARRAY a) - Para um dado cliente e para um mês, inser a informacao, dos produtos que o cliente comprou nesse mês numa dada filial; 
 \item	ARRAY extraiPorQuantidade(ARRAY a,int mes) - Devolve uma lista de produtos mais comprados, por quantidade, de um dado mês; 
-\item	void removeNaoCompraram(Filial fil, ARRAY a);
-\item	void removeCompraram(Filial fil, ARRAY a);
+
+
+\item	\textbf{void removeNaoCompraram(Filial fil, ARRAY a)} - A função removeNaoCompraram recebe como parametro um array dinâmico e uma filial, com informação lá dentro, depois com a função get\_tamanho vai buscar o tamanho de um array, depois com o inicializa\_icliente inicializa um cliente que irá ser retirado do array,de seguida com a função avl\_find encontra esse cliente na filial e retorna a informação desse cliente. Por fim percorre soma a quantidade comprada dos meses todos, se essa quantidade for igual a zero remove do array dinâmico; 
+
+\item	\textbf{void removeCompraram(Filial fil, ARRAY a)}- A função removeCompraram, dado um array a com informacão dos clientes, recorre à funcao inicializa\_icliente 
+para inicializar o cliente da posição i, depois usa o avlfind 
+para procurar esse cliente que foi inicializado e depois compara se ele comprou em normal ou em promocao, se ele tiver comprado remove do array. 
 \end{itemize}
 
 
@@ -313,7 +327,7 @@ O ficheiro é carregado e de seguida aparece um menu com 12 opções, referentes
 
 \chapter{Resultados e comentários sobre os testes de performance}
 Depois de desenvolver e codificar todo o projeto foi-nos proposto realizar alguns testes de performance que consistem em comparar os tempos de execução das queries 8, 9, 10, 11 e 12 usando os ficheiros Vendas\_1M.txt ( 1000 000 vendas), Vendas\_3M.txt (3 milhões de vendas) e Vendas\_5M.txt (5 milhões de vendas).
-Uma vez que a quantidade de vendas vai aumentando de ficheiro para ficheiro é aceitável que os tempos de execução para os carregar aumente.
+Uma vez que a quantidade de vendas vai aumentando de ficheiro para ficheiro é aceitável que os tempos de carregamento para os módulos aumente.
 
 
 \begin{figure}[h!]
@@ -322,7 +336,11 @@ Uma vez que a quantidade de vendas vai aumentando de ficheiro para ficheiro é a
 	\caption{Gráfico do tempo de carregamento dos ficheiros de clientes, produtos e os 3 ficheiros de vendas}  
 \end{figure}
 
-Comparando os valores de execução das queries pretendidas, como podemos observar nos respetivos gráficos apresentados,
+Verificou-se que os tempos de carregamento dos ficheiros Clientes.txt e Produtos.txt para os diferentes módulos mantiveram-se quase constantes. 
+
+\paragraph{}
+\paragraph{}
+Comparando os valores de execução das queries pretendidas, como podemos observar nos respetivos gráficos apresentados abaixo, verificamos que os tempos dos carregamentos dos módulos aumentam conforme o tamanho do ficheiro de vendas, este que era um resultado esperado. 
 
   	\begin{minipage}{0.45\linewidth}
   		\begin{figure}[H]
