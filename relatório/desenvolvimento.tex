@@ -54,10 +54,7 @@ A aplicação possuiu uma arquitectura tal como apresentado na figura seguinte, 
 
 Módulo de dados onde são guardados os códigos de todos os clientes do ficheiro \textbf{Clientes.txt}. O array de árvores este que é um array de 26 posições cujos índices se encontram organizados alfabeticamente. Cada índice contém um apontador para uma árvore correspondente à letra respetiva desse índice.
 
-Utilizamos uma estrutura 
-
 \subsubsection{Tipos Opacos}
-
 
 \begin{Verbatim}
 typedef struct catalogo_clientes *CatClientes;
@@ -183,7 +180,7 @@ int quantidadeN[12][3];
 };
 \end{verbatim}
 
-A estrutura info irá conter a informação  do produtos comprados, utilizamos uma matriz 12 por 3 pois a procura é feita maioritariamente em meses, logo irá ser mais rápido a procurar. A estrutura terá informação do número de vendas e o seu valor distinguido por normal ou promoção, ordenada pelo código de produto
+A estrutura info irá conter a informação  do produtos comprados, utilizamos uma matriz 12 por 3 pois a procura é feita maioritariamente em meses, logo irá ser mais rápido a procurar. A estrutura terá informação do número de vendas e o seu valor distinguido por normal ou promoção. 
 
 \subsubsection{/*API*/}
 
@@ -228,9 +225,9 @@ A estrutura info irá conter a informação  do produtos comprados, utilizamos u
 
 \section{Gestão da Filial}
 
-Módulo de dados que, a partir dos ficheiros lidos, contém as estruturas de dados adequadas à representação dos relacionamentos, fundamentais para a aplicação, entre produtos e clientes, ou seja, para cada produto, saber quais os clientes que o compraram, quantas unidades cada um comprou, em que mês e em que filial.
+Módulo de dados que, a partir dos ficheiros lidos, contém as estruturas de dados adequadas à representação dos relacionamentos, fundamentais para a aplicação, entre produtos e clientes, ou seja, para cada produto, saber quais os clientes que o compraram, quantas unidades cada um comprou, o mês e a filial.
 
- Para a estruturação optimizada dos dados deste módulo de dados tivemos em atenção que pretendemos ter o histórico de vendas organizado por filiais para uma melhor análise, nunca esquecendo que existem 3 filiais nesta cadeia. 
+ Para a estruturação optimizada dos dados deste módulo de dados tivemos em atenção que pretendemos ter o histórico de vendas organizado por filial para uma melhor análise, nunca esquecendo que existem 3 filiais nesta cadeia. 
 
 \subsection{Filial.h}
 
