@@ -29,6 +29,7 @@ static Info codigo_to_info(char* prod);
 static Info infoCopia(Info info);
 static int comparaVendas(void *a, void *b, void *param);
 
+/*A funcão my_strdup aloca uma string nova d com o comprimento + 1 da string passada por parametro s e copia-a para a string d*/
 char *my_strdup (const char *s) {
     char *d = (char *)malloc (sizeof (char) *(strlen (s) + 1));   
     if (d == NULL) return NULL;          
@@ -74,12 +75,12 @@ void cont_insere_venda(Faturacao fat, char *produto, int q, float preco, char M,
     fat->totalvendas[mes-1]++;
     fat->totalfaturado[mes-1]+=q*preco;
 }
-/*A funcão cont_remove_produto*/
+/*A funcão cont_remove_produto remove um produto da Faturacao passados ambos por parametro. Inicialmente calcula o id do produto através da funcão fat_procura_info para depois eliminar o produto em questão através da funcão avl_delete e logo a seguir faz free ao nodo eliminado através da funcão free_info*/
 void cont_remove_produto(Faturacao fat, char *produto){
     Info info = fat_procura_info(fat, produto);
-    free_info((Info)avl_delete(fat->produtos, info));
+    free_info((Info)avl_delete(fat->produtos, info)); //?
 }
-/*A funcão free_faturacao*/
+/*A funcão free_faturacao elimina todos os nodos da faturacao através da funcão avl_destroy e faz free à estrutura faturacao passada por parâmetro*/
 void free_faturacao(Faturacao fat) {
     if(fat != NULL){
         avl_destroy(fat->produtos, freeinfo_avl);
@@ -87,7 +88,7 @@ void free_faturacao(Faturacao fat) {
     }
 }
 
-/*A funcão getTotalFatNFilialX*/
+/*A funcão getTotalFatNFilialX vai calcular o total faturado no modo Normal (N) de um dado produto, num determinado mes e em determinada filial */
 float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial){
     float total=0;
     Info nodo=NULL;
@@ -97,7 +98,7 @@ float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial){
     total+=nodo->faturadoN[mes-1][filial-1];
     return total;
 }
-/*A funcão getTotalFatPFilialX*/
+/*A funcão getTotalFatPFilialX vai calcular o total faturado no modo Promocão (P) de um dado produto, num determinado mes e em determinada filial */
 float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial){
     float total=0;
     Info nodo=NULL;
@@ -107,7 +108,7 @@ float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial){
     total+=nodo->faturadoP[mes-1][filial-1];
     return total;
 }
-/*A funcão totalFatMeses*/
+/*A funcão totalFatMeses calcula o total faturado num dado intervalo de meses*/
 float totalFatMeses(Faturacao fat, int a, int b){
     int i;
     float f=0;
@@ -119,7 +120,7 @@ float totalFatMeses(Faturacao fat, int a, int b){
     return f;
 }
 
-/*A funcão totalVendasMeses*/
+/*A funcão totalVendasMeses calcula o total de vendas num determinado intervalo de meses*/
 int totalVendasMeses(Faturacao fat, int a, int b){
     int i,v=0;
     if(fat!=NULL){
@@ -129,7 +130,7 @@ int totalVendasMeses(Faturacao fat, int a, int b){
     }
     return v;
 }
-/*A funcão getQuantidadeFilial*/
+/*A funcão getQuantidadeFilial calcula a quantidade vendida de um determinado produto através do seu id de produto numa determinada filial em todos os meses */
 int getQuantidadeFilial(Faturacao fat, char*prod, int filial){
     int total=0,i;
     Info nodo=NULL;
@@ -139,7 +140,7 @@ int getQuantidadeFilial(Faturacao fat, char*prod, int filial){
     for(i=0;i<12;i++) total+=nodo->quantidadeN[i][filial-1]+nodo->quantidadeP[i][filial-1];
     return total;
 }
-/*A funcão getQuantidadeNFilialX*/
+/*A funcão getQuantidadeNFilialX calcula a quantidade vendida em modo Normal (N) de um determinado produto num dado mês e filial*/
 int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial){
     int total=0;
     Info nodo=NULL;
@@ -149,7 +150,7 @@ int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial){
     total=nodo->quantidadeN[mes-1][filial-1];
     return total;
 }
-/*A funcão getQuantidadePFilialX*/
+/*A funcão getQuantidadePFilialX calcula a quantidade vendida em modo Promocão (P) de um determinado produto num dado mês e filial. Inicialmente vai buscar o nodo do produto atraves do id do produto e retorna finalmente a quantidade vendida*/
 int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial){
     int total=0;
     Info nodo=NULL;
@@ -159,7 +160,7 @@ int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial){
     total=nodo->quantidadeP[mes-1][filial-1];
     return total;
 }
-/*A funcão getVendasPFilialX*/
+/*A funcão getVendasPFilialX calcula o nr de vendas em modo Promocao (P) de um produto num determinado mês e filial. Inicialmente vai buscar o produto através do seu id, se o encontrar devolve o nr de vendas nas condicões anteriores */
 int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial){
     int total=0;
     Info nodo=NULL;
@@ -169,7 +170,7 @@ int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial){
     total=nodo->vendasP[mes-1][filial-1];
     return total;
 }
-/*A funcão getVendasNFilialX*/
+/*A funcão getVendasPFilialX calcula o nr de vendas em modo Normal (N) de um produto num determinado mês e filial. Inicialmente vai buscar o produto através do seu id, se o encontrar devolve o nr de vendas nas condicões anteriores */
 int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial){
     int total=0;
     Info nodo=NULL;
@@ -223,7 +224,7 @@ static Info cat_info_proximo(TRAVERSER t) {
     }
     return info;
 }
-/*A funcão naoCompradosFilial*/
+/*A funcão naoCompradosFilial percorre a estrutura da faturacao numa dada filial em todos os meses atraves do Traverser t, e verificia se este foi ou não comprado,se foi nada faz, se não insere-o num array a. No final faz free ao Traversser t e retorna o novo array*/
 ARRAY naoCompradosFilial(Faturacao fat, int filial){
     char *produto;
     int i,q=0;
@@ -243,7 +244,8 @@ ARRAY naoCompradosFilial(Faturacao fat, int filial){
     avl_t_free(t);
     return a;
 }
-/*A funcão naoComprados*/
+/*A funcão naoComprados percorre  percorre a estrutura da faturacao em todas as filiais e em todos os meses atraves do Traverser t, e verificia se este foi ou não comprado,se foi nada faz, se não insere-o num array a. No final faz free ao Traversser t e retorna o novo array*/
+ARRAY naoCompradosFilial(Faturacao fat, int filial){
 ARRAY naoComprados(Faturacao fat){
     char *produto;
     int i,j,q=0;
@@ -268,7 +270,7 @@ ARRAY naoComprados(Faturacao fat){
 }
 
 
-/*A funcão nMaisVendidos*/
+/*A funcão nMaisVendidos calcula os n produtos mais vendidos de todas as filiais através de um traversser t. Inicialza dois arrays a e b através da funcão inicializa_array . Copia os elementos do tipo Info para o array a, ordena-o através da funcão ordena e depois devolve o array b com os elementos ids dos produtos do array já ordenados */
 ARRAY nMaisVendidos(Faturacao fat, int n){
     Info aux,copia;
     TRAVERSER t;
