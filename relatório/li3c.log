@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  27 APR 2016 23:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  27 APR 2016 23:54
 entering extended mode
 **li3c.tex
 (li3c.tex
@@ -1250,8 +1250,13 @@ Overfull \hbox (32.35147pt too wide) in paragraph at lines 35--37
  []
 
 
+Underfull \hbox (badness 7397) in paragraph at lines 35--37
+\OT1/ptm/m/n/10.95 C[]elia Fi-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 35--37
-\OT1/ptm/m/n/6 C[]elia Fi-guei-redo
+\OT1/ptm/m/n/10.95 guei-redo
  []
 
 <gil.jpg, id=7, 722.7pt x 963.6pt>
@@ -1266,7 +1271,12 @@ Overfull \hbox (26.74706pt too wide) in paragraph at lines 40--42
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 40--42
-\OT1/ptm/m/n/6 Gil Gon[]alves
+\OT1/ptm/m/n/10.95 Gil
+ []
+
+
+Overfull \hbox (0.52809pt too wide) in paragraph at lines 40--42
+\OT1/ptm/m/n/10.95 Gon[]alves
  []
 
 <humberto.jpg, id=8, 722.7pt x 963.6pt>
@@ -1281,7 +1291,12 @@ Overfull \hbox (26.74706pt too wide) in paragraph at lines 45--47
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 45--47
-\OT1/ptm/m/n/6 Hum-berto Vaz
+\OT1/ptm/m/n/10.95 Hum-berto
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--47
+\OT1/ptm/m/n/10.95 Vaz
  []
 
 <ricardo.jpg, id=9, 722.7pt x 963.6pt>
@@ -1296,7 +1311,12 @@ Overfull \hbox (26.74706pt too wide) in paragraph at lines 49--51
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 49--51
-\OT1/ptm/m/n/6 Ri-cardo Lo-pes
+\OT1/ptm/m/n/10.95 Ri-cardo
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--51
+\OT1/ptm/m/n/10.95 Lo-pes
  []
 
 [1
@@ -1471,11 +1491,11 @@ Cap\'{\i }tulo 7.
 
 ] (li3c.aux) ) 
 Here is how much of TeX's memory you used:
- 31466 strings out of 493698
- 737766 string characters out of 3144375
+ 31464 strings out of 493698
+ 737747 string characters out of 3144375
  867194 words of memory out of 3000000
- 34269 multiletter control sequences out of 15000+200000
- 30708 words of font info for 57 fonts, out of 3000000 for 9000
+ 34268 multiletter control sequences out of 15000+200000
+ 29123 words of font info for 55 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  62i,10n,83p,10410b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/
@@ -1484,7 +1504,7 @@ Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 /times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on li3c.pdf (20 pages, 703488 bytes).
+Output written on li3c.pdf (20 pages, 703487 bytes).
 PDF statistics:
  112 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
