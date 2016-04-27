@@ -53,7 +53,7 @@ Filial inicializa_filial() {
     return res;
 }
 
-/* Inser um cliente na filial   */ 
+/* Insere um cliente na filial   */ 
 void fil_regista_cliente(Filial fil, char *cliente){
 	Icliente icliente = inicializa_icliente(cliente);
 	avl_insert(fil->infoCliente, icliente);
@@ -233,7 +233,7 @@ int comprouProdutoN(Filial fil, char* cliente, char* produto){
 	return 0;
 	
 }
-/* diz quantos clientes compraram um determinado produto*/
+/* A função getNumClientesFilial verifica quantos clientes compraram um determinado produto*/
 int getNumClientesFilial(Filial fil, char* produto){
 	int i,q,n=0;
     Iprodutos aux;
@@ -266,7 +266,7 @@ int getNumClientesFilial(Filial fil, char* produto){
 	return n;	
 }
 
-/*Retorna a lista de clientes que compraram um determinado produto   */ 
+/* A função clientesCompraramProduto retorna a lista de clientes que compraram um determinado produto   */ 
 ARRAY clientesCompraramProduto(Filial fil, char* produto){
 	char *cliente;
 	int i,q;
@@ -305,7 +305,7 @@ ARRAY clientesCompraramProduto(Filial fil, char* produto){
 	ordena(a,comparaString,NULL);
 	return a;
 }
-/*Devolve uma lista de produtos mais comprados, por quantidade, de um dado mês */
+/*A função extraiPorQuantidade devolve uma lista de produtos mais comprados, por quantidade, de um dado mês */
 ARRAY extraiPorQuantidade(ARRAY a, int mes){
 	ARRAY b;
 	int i;
@@ -321,7 +321,7 @@ ARRAY extraiPorQuantidade(ARRAY a, int mes){
 	deep_free(a,free_infoprod);
 	return b;
 }
-/* Para um dado cliente e para um mês, inser a informacao, dos produtos que o cliente comprou nesse mês numa dada filial*/
+/* A função getIProdMes para um dado cliente e para um mês, insere a informacao dos produtos que o cliente comprou nesse mês numa dada filial*/
 void getIProdMes(Filial fil, char* cliente, int mes, ARRAY a){
 	Icliente nodo,aux;
 	TRAVERSER t;
@@ -410,6 +410,7 @@ static Iprodutos copiaIProdutos(Iprodutos iproduto){
 }
 
 
+/* A função removeCompraram */
 void removeCompraram(Filial fil, ARRAY a){
 	int i,tamanho;
 	Icliente cliente, nodo;
@@ -425,6 +426,7 @@ void removeCompraram(Filial fil, ARRAY a){
 }
 
 
+/* A função naoCompraram */
 ARRAY naoCompraram(Filial fil){
 	char *str;
 	ARRAY a;
@@ -441,6 +443,9 @@ ARRAY naoCompraram(Filial fil){
     }
 	return a;
 }
+
+
+/* A função compraram */
 
 ARRAY compraram(Filial fil){
 	int i,q;
@@ -464,6 +469,8 @@ ARRAY compraram(Filial fil){
 	return a;
 }
 
+
+/* A função removeNaoCompraram */
 void removeNaoCompraram(Filial fil, ARRAY a){
 	int i,j,q,tamanho;
 	Icliente cliente,nodo;
@@ -483,15 +490,13 @@ void removeNaoCompraram(Filial fil, ARRAY a){
 }
 
 
+/* A função free_filial */
 void free_filial(Filial fil){
 	if(fil){
 		avl_destroy(fil->infoCliente,free_InfoCliente);
 		free(fil);
 	}
 }
-
-
-
 
 
 

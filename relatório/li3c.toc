@@ -18,11 +18,12 @@
 \contentsline {section}{\numberline {2.3}Fatura\IeC {\c c}\IeC {\~a}o Global}{6}
 \contentsline {subsection}{\numberline {2.3.1}faturacao.h}{6}
 \contentsline {subsubsection}{Tipos Opacos}{6}
+\contentsline {paragraph}{}{7}
 \contentsline {subsubsection}{/*API*/}{7}
 \contentsline {section}{\numberline {2.4}Gest\IeC {\~a}o da Filial}{8}
-\contentsline {subsection}{\numberline {2.4.1}Filial.h}{8}
-\contentsline {subsubsection}{Tipos Opacos}{8}
-\contentsline {subsubsection}{}{9}
+\contentsline {subsection}{\numberline {2.4.1}Filial.h}{9}
+\contentsline {subsubsection}{Tipos Opacos}{9}
+\contentsline {subsubsection}{/*API*/}{9}
 \contentsline {chapter}{\numberline {3}Main.c}{11}
 \contentsline {chapter}{\numberline {4}Interface do utilizador}{12}
 \contentsline {chapter}{\numberline {5}Resultados e coment\IeC {\'a}rios sobre os testes de performance}{13}

@@ -123,7 +123,7 @@ ARVORE indices[27];
 
 \begin{itemize}
 	
-\item CatProdutos inicializa\_catalogo\_produtos();
+\item CatProdutos inicializa\_catalogo\_produtos() - 
 \item void insertP(CatProdutos c, char * valor);
 \item void cat\_remove\_produto(CatProdutos cat, char *str);
 \item void free\_catalogo\_produtos(CatProdutos cat);
@@ -167,6 +167,9 @@ int quantidadeN[12][3];
 
 Para guardar a informação relativa à faturação utilizámos um array de 12 AVLs, pois esta estrutura permite ordenar estruturas complexas de acordo com um método de comparação, separando pelos 12 meses. Como existe ordem alfabética, a AVL permite fazer procura rápida, preservando assim memória. 
 
+\paragraph{}
+AVL com informação do número de vendas e o seu valor distinguido por normal ou promoção, ordenada pelo código de produto
+
 \subsubsection{/*API*/}
 
 \begin{itemize}
@@ -208,7 +211,6 @@ Para guardar a informação relativa à faturação utilizámos um array de 12 A
 
 \section{Gestão da Filial}
 
-
 Módulo de dados que, a partir dos ficheiros lidos, contém as estruturas de dados adequadas à representação dos relacionamentos, fundamentais para a aplicação, entre produtos e clientes, ou seja, para cada produto, saber quais os clientes que o compraram, quantas unidades cada um comprou, em que mês e em que filial.
 
  Para a estruturação optimizada dos dados deste módulo de dados tivemos em atenção que pretendemos ter o histórico de vendas organizado por filiais para uma melhor análise, nunca esquecendo que existem 3 filiais nesta cadeia. 
@@ -243,24 +245,26 @@ float gastou[12];
 };
 \end{verbatim}
 
-\subsubsection{}
+
+
+
+\subsubsection{/*API*/}
 
 \begin{itemize}
 \item	Filial inicializa\_filial() - Inicializa a estrutura da filial; 
 
 \item	void fil\_regista\_cliente(Filial fil, char *cliente) - Insere um cliente na filial; 
 
-\item	void fil\_insere\_prod(Filial fil, char *cliente, char *produto,int q, int mes, float preco, char p) - InserE um produto comprado por um dado cliente num dado mês, se o produto já tiver sido inserido a quantidade=quantidadeAntiga+
-quantidadeComprada, aumenta também o dinheiro gasto nesse produto. Senão tiver sido inserido a quantidade=quantidadeComprada e o 
-preco=precoComprado;
+\item 	\textbf{void fil\_insere\_prod(Filial fil, char *cliente, char *produto,int q, int mes, float preco, char p)} - A funcão fil\_insere\_prod insere  um produto comprado por um dado cliente num dado mês, se o produto já tiver sido inserido a quantidade =quantidadeAntiga+quantidadeComprada, aumenta também o dinheiro gasto nesse produto. Senão tiver sido inserido a quantidade=quantidadeComprada e o 
+preco=precoComprado; 
  
-\item	int getQuantidadeMesCliente(Filial fil, char *cliente, int mes) - Retorna a quantidade dos produtos comprados por um dado cliente, num dado mês; 
+\item	\textbf{int getQuantidadeMesCliente(Filial fil, char *cliente, int mes)} - A funcão getQuantidadeMesCliente retorna a quantidade dos produtos comprados por um dado cliente, num dado mês. Para tal, procura um cliente numa dada filial através da funcão fil\_procura\_cliente, retornando a quantidade comprada  desse mês; 
 
 \item	ARRAY naoCompraram(Filial fil);
 \item	ARRAY compraram(Filial fil);
-\item	void clientesCompraram(Filial fil,ARRAY a) - Remove do array todos os clientes que não compraram em todas as filiais; 
+\item	\textbf{void clientesCompraram(Filial fil,ARRAY a)} - A funcão clientesCompraram remove do array todos os clientes que não compraram nenhum produto numa filial passada por parâmetro. Para isso cria um Traversser t percorredo a estrutura dos clientes, somando a quantidade comprada em cada mês, se esta for zero então remove o cliente do array através da funcão remove\_posicão; 
 \item	void free\_filial(Filial fil);
-\item	ARRAY topMaisGastou(ARRAY a) - Vai retornar os 3 produtos que um cliente mais gastou; 
+\item	\textbf{ARRAY topMaisGastou(ARRAY a)} - A funcão topMaisGastou irá calcular os 3 produtos que um cliente mais gastou retornando-os num array. Para isso recebe um array de Produtos comprados por um dado cliente, ordena esse array a (passado por parâmetro) e insere as chaves num array b, retornando-o; 
 \item	ARRAY clientesCompraramProduto(Filial fil, char* produto) - Retorna a lista de clientes que compraram um determinado produto; 
 
 \item	int comprouProdutoN(Filial fil, char* cliente, char* produto) - função  diz se um dado cliente comprou um dado produto em normal;

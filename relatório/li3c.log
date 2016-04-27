@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  27 APR 2016 16:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  27 APR 2016 16:57
 entering extended mode
 **li3c.tex
 (li3c.tex
@@ -1337,15 +1337,27 @@ File: omsptm.fd
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 81.
  [5] [6]
-Overfull \hbox (6.40256pt too wide) in paragraph at lines 182--183
+Overfull \hbox (0.86234pt too wide) in paragraph at lines 171--172
+[] [][] \OT1/ptm/m/n/12 AVL com informa[][]ao do n[]umero de ven-das e o seu va
+-lor dis-tin-guido por nor-mal ou promo[][]ao,
+ []
+
+
+Overfull \hbox (6.40256pt too wide) in paragraph at lines 185--186
 \OT1/ptm/m/n/12 tu-ra-cao atrav[]es da func[]ao avl[]destroy e faz free []a es-
 tru-tura fa-tu-ra-cao pas-sada por par[]ametro; 
  []
 
 [7] [8]
-Overfull \hbox (4.35088pt too wide) in paragraph at lines 253--256
-\OT1/ptm/m/n/12 di-nheiro gasto nesse pro-duto. Sen[]ao ti-ver sido in-se-rido 
-a quan-ti-dade=quantidadeComprada
+Overfull \hbox (49.61453pt too wide) in paragraph at lines 258--260
+\OT1/ptm/m/n/12 dado m[]es, se o pro-duto j[]a ti-ver sido in-se-rido a quan-ti
+-dade =quan-ti-da-de-An-tiga+quantidadeComprada,
+ []
+
+
+Overfull \hbox (10.2305pt too wide) in paragraph at lines 261--262
+\OT1/ptm/m/n/12 dado m[]es. Para tal, pro-cura um cli-ente numa dada fi-lial at
+rav[]es da func[]ao fil[]procura[]cliente,
  []
 
 [9] [10]
@@ -1357,13 +1369,13 @@ Cap\'{\i }tulo 4.
 <1querie.png, id=55, 653.44125pt x 148.555pt>
 File: 1querie.png Graphic file (type png)
  <use 1querie.png>
-Package pdftex.def Info: 1querie.png used on input line 289.
+Package pdftex.def Info: 1querie.png used on input line 293.
 (pdftex.def)             Requested size: 261.37187pt x 59.42093pt.
 
 <menu.png, id=56, 661.47125pt x 440.64626pt>
 File: menu.png Graphic file (type png)
  <use menu.png>
-Package pdftex.def Info: menu.png used on input line 297.
+Package pdftex.def Info: menu.png used on input line 301.
 (pdftex.def)             Requested size: 396.8858pt x 264.38979pt.
  [12
 
@@ -1373,7 +1385,7 @@ Cap\'{\i }tulo 5.
 File: grafcarregamento.png Graphic file (type png)
 
 <use grafcarregamento.png>
-Package pdftex.def Info: grafcarregamento.png used on input line 310.
+Package pdftex.def Info: grafcarregamento.png used on input line 314.
 (pdftex.def)             Requested size: 265.59259pt x 186.69774pt.
  [13
 
@@ -1383,15 +1395,15 @@ Cap\'{\i }tulo 6.
 File: grafodependencias.png Graphic file (type png)
 
 <use grafodependencias.png>
-Package pdftex.def Info: grafodependencias.png used on input line 325.
+Package pdftex.def Info: grafodependencias.png used on input line 329.
 (pdftex.def)             Requested size: 458.10338pt x 216.40466pt.
 
-Overfull \hbox (2.85927pt too wide) in paragraph at lines 325--326
+Overfull \hbox (2.85927pt too wide) in paragraph at lines 329--330
  [][] 
  []
 
 
-Overfull \hbox (34.35568pt too wide) in paragraph at lines 377--377
+Overfull \hbox (34.35568pt too wide) in paragraph at lines 381--381
 []\OT1/pcr/m/n/12 leitura: src/leitura.c array.o avl.o clientes.o faturacao.o f
 ilial.o[] 
  []
@@ -1417,7 +1429,7 @@ Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 /times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on li3c.pdf (17 pages, 661416 bytes).
+Output written on li3c.pdf (17 pages, 663742 bytes).
 PDF statistics:
  97 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
