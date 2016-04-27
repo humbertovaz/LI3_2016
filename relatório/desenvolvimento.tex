@@ -54,6 +54,8 @@ A aplicação possuiu uma arquitectura tal como apresentado na figura seguinte, 
 
 Módulo de dados onde são guardados os códigos de todos os clientes do ficheiro \textbf{Clientes.txt}. O array de árvores este que é um array de 26 posições cujos índices se encontram organizados alfabeticamente. Cada índice contém um apontador para uma árvore correspondente à letra respetiva desse índice.
 
+Utilizamos uma estrutura 
+
 \subsubsection{Tipos Opacos}
 
 
@@ -245,7 +247,9 @@ float gastou[12];
 };
 \end{verbatim}
 
+Estrutura de cliente que contém .... 
 
+Estrutura de produtos que contém ...........
 
 
 \subsubsection{/*API*/}
@@ -263,11 +267,11 @@ preco=precoComprado;
 \item	ARRAY naoCompraram(Filial fil);
 \item	ARRAY compraram(Filial fil);
 \item	\textbf{void clientesCompraram(Filial fil,ARRAY a)} - A funcão clientesCompraram remove do array todos os clientes que não compraram nenhum produto numa filial passada por parâmetro. Para isso cria um Traversser t percorredo a estrutura dos clientes, somando a quantidade comprada em cada mês, se esta for zero então remove o cliente do array através da funcão remove\_posicão; 
-\item	void free\_filial(Filial fil);
+\item	\textbf{void free\_filial(Filial fil)} - A função free\_filial elimina todos os nodos da filial através da funcão avl\_destroy e faz  free à estrutura filial passada por parâmetro; 
 \item	\textbf{ARRAY topMaisGastou(ARRAY a)} - A funcão topMaisGastou irá calcular os 3 produtos que um cliente mais gastou retornando-os num array. Para isso recebe um array de Produtos comprados por um dado cliente, ordena esse array a (passado por parâmetro) e insere as chaves num array b, retornando-o; 
 \item	ARRAY clientesCompraramProduto(Filial fil, char* produto) - Retorna a lista de clientes que compraram um determinado produto; 
 
-\item	int comprouProdutoN(Filial fil, char* cliente, char* produto) - função  diz se um dado cliente comprou um dado produto em normal;
+\item	int comprouProdutoN(Filial fil, char* cliente, char* produto) - A funcão comprouProdutoN verifica se um dado cliente comprou um dado produto em regime normal; 
 
 \item	int comprouProdutoP(Filial fil, char* cliente, char* produto) - função que diz se um dado cliente comprou um dado produto em promoção; 
 
@@ -280,9 +284,13 @@ preco=precoComprado;
 \end{itemize}
 
 
-\chapter{Main.c}
+\chapter{Main}
+
+O programa é controlado pelo ficheiro leitura.c. Este que invoca as funções que estão inseridas no ficheiro querie.c este que carrega os ficheros de produtos, clientes e vendas em variáveis do tipo FILE,  também é responsável pela interação com o utilizador.
 
 
+ 
+Depois, são usadas funções derivadas dos vários módulos para carregar os ficheiros em memória nas devidas estruturas. Após a colocação em memória, é chamada a função auxiliar querie, que servirá para selecionar a querie que o utilizador pretende executar. Escolhida a querie, com o auxílio de um switch, temos acesso a funções que invocam a função que faz exatamente o que a querie pede e mostra ao utilizador os resultados pretendidos.
 
 
 \chapter{Interface do utilizador}
@@ -303,7 +311,6 @@ O ficheiro é carregado e de seguida aparece um menu com 12 opções, referentes
 \end{figure}
 
 
-
 \chapter{Resultados e comentários sobre os testes de performance}
 Depois de desenvolver e codificar todo o projeto foi-nos proposto realizar alguns testes de performance que consistem em comparar os tempos de execução das queries 8, 9, 10, 11 e 12 usando os ficheiros Vendas\_1M.txt ( 1000 000 vendas), Vendas\_3M.txt (3 milhões de vendas) e Vendas\_5M.txt (5 milhões de vendas).
 Uma vez que a quantidade de vendas vai aumentando de ficheiro para ficheiro é aceitável que os tempos de execução para os carregar aumente.
@@ -312,10 +319,46 @@ Uma vez que a quantidade de vendas vai aumentando de ficheiro para ficheiro é a
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.8]{grafcarregamento.png}  
-	\caption{Gráfico do tempo de execução do carregamento dos 3 ficheiros de vendas}  
+	\caption{Gráfico do tempo de carregamento dos ficheiros de clientes, produtos e os 3 ficheiros de vendas}  
 \end{figure}
 
 Comparando os valores de execução das queries pretendidas, como podemos observar nos respetivos gráficos apresentados,
+
+  	\begin{minipage}{0.45\linewidth}
+  		\begin{figure}[H]
+  			\includegraphics[width=\linewidth]{grafq8}
+  			\caption{Tempos de execução da querie 8 para a filial 1 e o produto GI1298}
+  		\end{figure}
+  	\end{minipage}
+  	\hspace{0.05\linewidth}
+  	\begin{minipage}{0.45\linewidth}
+  		\begin{figure}[H]
+  			\includegraphics[width=\linewidth]{grafq9}
+  			\caption{Tempos de execução da querie 9 para o cliente Z5000 para o mês 1}
+  		\end{figure}
+  	\end{minipage}
+  	
+  	\begin{minipage}{0.45\linewidth}
+  		\begin{figure}[H]
+  			\includegraphics[width=\linewidth]{grafq10}
+  			\caption{Tempos de execução da querie 10, para os 10 produtos mais vendidos}
+  		\end{figure}
+  	\end{minipage}
+  	\hspace{0.05\linewidth}
+  	\begin{minipage}{0.45\linewidth}
+  		\begin{figure}[H]
+  			\includegraphics[width=\linewidth]{grafq11}
+  			\caption{Tempos de execução da querie 11 para o cliente Z5000}
+  		\end{figure}
+  	\end{minipage}
+  	
+  	
+  	\begin{figure}[h!]
+  		\centering
+  		\includegraphics[scale=0.7]{grafq12}  
+  		\caption{Gráfico do tempo de carregamento da querie 12 - nr de clientes que nunca compraram e produtos nunca comprados}  
+  	\end{figure}
+
 
 
 

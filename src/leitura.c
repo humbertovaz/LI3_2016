@@ -10,9 +10,6 @@
 
 
 
-
-
-
 static CatClientes clientes;
 static CatProdutos produtos;
 static Faturacao faturacao;
@@ -64,7 +61,7 @@ void interface() {
                 printf("Ficheiros disponiveis:\n");
                 printf("1 - Ficheiro de Vendas 1 milhao\n");
                 printf("2 - Ficheiro de Vendas 3 milhoes\n");
-                printf("3 - Ficheiro de Vendas 5 milhos\n");
+                printf("3 - Ficheiro de Vendas 5 milhoes\n");
                 printf("================================================================================\n"); 
                 printf("Escolha ficheiro\n");                                          
                 resultadoQ=scanf("%d",&mes);
