@@ -36,7 +36,7 @@ char *my_strdup (const char *s) {
     return d;                            
 }
 
-
+/*A funcão inicializa_faturacao aloca uma estrutura Faturacao e cria uma avl para os produtos, bem como inicializa os 12 nodos totalvendas e totalfaurado a zero*/
 Faturacao inicializa_faturacao() {
     int i;
     Faturacao res = (Faturacao) malloc(sizeof (struct faturacao));
@@ -52,12 +52,12 @@ Faturacao inicializa_faturacao() {
 }
 
 
-
+/*A funcão cont_regista_produto , dada a estrutura faturacão e um id de produto, insere-o através da funcão avl_insert*/
 void cont_regista_produto(Faturacao fat, char *prod){
     Info nodo = inicializa_info(prod);
     avl_insert(fat->produtos, nodo);
 }
-
+/*A funcão cont_insere_venda, dada a estrutura faturacão, atualiza as vendas, quantidades e faturado conforme o produto em questão ser Promocão (P) ou Normal (N) */
 void cont_insere_venda(Faturacao fat, char *produto, int q, float preco, char M,int mes, int filial) {
     Info prod;
     prod=fat_procura_info(fat, produto);    
@@ -74,12 +74,12 @@ void cont_insere_venda(Faturacao fat, char *produto, int q, float preco, char M,
     fat->totalvendas[mes-1]++;
     fat->totalfaturado[mes-1]+=q*preco;
 }
-
+/*A funcão cont_remove_produto*/
 void cont_remove_produto(Faturacao fat, char *produto){
     Info info = fat_procura_info(fat, produto);
     free_info((Info)avl_delete(fat->produtos, info));
 }
-
+/*A funcão free_faturacao*/
 void free_faturacao(Faturacao fat) {
     if(fat != NULL){
         avl_destroy(fat->produtos, freeinfo_avl);
@@ -87,7 +87,7 @@ void free_faturacao(Faturacao fat) {
     }
 }
 
-
+/*A funcão getTotalFatNFilialX*/
 float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial){
     float total=0;
     Info nodo=NULL;
@@ -97,7 +97,7 @@ float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial){
     total+=nodo->faturadoN[mes-1][filial-1];
     return total;
 }
-
+/*A funcão getTotalFatPFilialX*/
 float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial){
     float total=0;
     Info nodo=NULL;
@@ -107,7 +107,7 @@ float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial){
     total+=nodo->faturadoP[mes-1][filial-1];
     return total;
 }
-
+/*A funcão totalFatMeses*/
 float totalFatMeses(Faturacao fat, int a, int b){
     int i;
     float f=0;
@@ -119,7 +119,7 @@ float totalFatMeses(Faturacao fat, int a, int b){
     return f;
 }
 
-
+/*A funcão totalVendasMeses*/
 int totalVendasMeses(Faturacao fat, int a, int b){
     int i,v=0;
     if(fat!=NULL){
@@ -129,6 +129,7 @@ int totalVendasMeses(Faturacao fat, int a, int b){
     }
     return v;
 }
+/*A funcão getQuantidadeFilial*/
 int getQuantidadeFilial(Faturacao fat, char*prod, int filial){
     int total=0,i;
     Info nodo=NULL;
@@ -138,7 +139,7 @@ int getQuantidadeFilial(Faturacao fat, char*prod, int filial){
     for(i=0;i<12;i++) total+=nodo->quantidadeN[i][filial-1]+nodo->quantidadeP[i][filial-1];
     return total;
 }
-
+/*A funcão getQuantidadeNFilialX*/
 int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial){
     int total=0;
     Info nodo=NULL;
@@ -148,6 +149,7 @@ int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial){
     total=nodo->quantidadeN[mes-1][filial-1];
     return total;
 }
+/*A funcão getQuantidadePFilialX*/
 int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial){
     int total=0;
     Info nodo=NULL;
@@ -157,7 +159,7 @@ int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial){
     total=nodo->quantidadeP[mes-1][filial-1];
     return total;
 }
-
+/*A funcão getVendasPFilialX*/
 int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial){
     int total=0;
     Info nodo=NULL;
@@ -167,6 +169,7 @@ int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial){
     total=nodo->vendasP[mes-1][filial-1];
     return total;
 }
+/*A funcão getVendasNFilialX*/
 int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial){
     int total=0;
     Info nodo=NULL;
@@ -220,7 +223,7 @@ static Info cat_info_proximo(TRAVERSER t) {
     }
     return info;
 }
-
+/*A funcão naoCompradosFilial*/
 ARRAY naoCompradosFilial(Faturacao fat, int filial){
     char *produto;
     int i,q=0;
@@ -240,7 +243,7 @@ ARRAY naoCompradosFilial(Faturacao fat, int filial){
     avl_t_free(t);
     return a;
 }
-
+/*A funcão naoComprados*/
 ARRAY naoComprados(Faturacao fat){
     char *produto;
     int i,j,q=0;
@@ -265,7 +268,7 @@ ARRAY naoComprados(Faturacao fat){
 }
 
 
-
+/*A funcão nMaisVendidos*/
 ARRAY nMaisVendidos(Faturacao fat, int n){
     Info aux,copia;
     TRAVERSER t;
