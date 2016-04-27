@@ -239,7 +239,10 @@ int comprouProdutoN(Filial fil, char* cliente, char* produto){
 	return 0;
 	
 }
-/* A função getNumClientesFilial verifica quantos clientes compraram um determinado produto*/
+/* A função getNumClientesFilial utiliza inicializa_iprodutos,vl_t_alloc para alucar memorica a um produto e ao 
+TRAVERSER, depois utiliza o avl_t_init para inserir a informação dos clientes no TRAVERSER, depois a medida que percorre o
+traverser verifica se o cliente comprou o produto em normal , ou em promoção, se ele comprou incrementa a variavel n. 
+No fim retorna essa variavel*/
 int getNumClientesFilial(Filial fil, char* produto){
 	int i,q,n=0;
     Iprodutos aux;
@@ -272,7 +275,10 @@ int getNumClientesFilial(Filial fil, char* produto){
 	return n;	
 }
 
-/* A função clientesCompraramProduto retorna a lista de clientes que compraram um determinado produto   */ 
+/* A função clientesCompraramProduto utiliza inicializa_iprodutos,inicializa_array e avl_t_alloc, para alucar espaço
+a um produto, array e a um traverser, depois com o avl_t_init pasa a informacao dos clientes de uma filial para o traverser
+e depois percorrer o traverser, quando encontra uma cliente que tenha comprado um produto inser o cliente no array dinamico.
+No fim retorna uma lista de clientes que compraram um produto numa dada filial*/ 
 ARRAY clientesCompraramProduto(Filial fil, char* produto){
 	char *cliente;
 	int i,q;
@@ -311,7 +317,9 @@ ARRAY clientesCompraramProduto(Filial fil, char* produto){
 	ordena(a,comparaString,NULL);
 	return a;
 }
-/*A função extraiPorQuantidade devolve uma lista de produtos mais comprados, por quantidade, de um dado mês */
+/*A função extraiPorQuantidade utilizada o inicializa_array para incializar o array b, depois utiliza a funcao ordena
+para ordenar os produtos por quantidade de um dado mes, depois cria uma copia do codigo do produto e inser 
+ordenado no array b e retorna esse mesmo array*/
 ARRAY extraiPorQuantidade(ARRAY a, int mes){
 	ARRAY b;
 	int i;
@@ -327,8 +335,12 @@ ARRAY extraiPorQuantidade(ARRAY a, int mes){
 	deep_free(a,free_infoprod);
 	return b;
 }
-/* A função getIProdMes para um dado cliente e para um mês, insere a informacao dos produtos que o cliente
- comprou nesse mês numa dada filial*/
+/* A função getIProdMes utiliza as funções inicializa_icliente,avl_t_alloc para alocar memoria para um dado cliente e para o
+traverser, depois procura esse cliente na filial e quando o encontra retorna-o, depois a função avl_t_init inicializa o 
+traversar com os produtos comprados em modo normal, depois percorre o traverser quando encontra um produto faz uma copia
+da informação desse produto e vai buscar a possição onde ele se encontra, se ele ainda não tiver sido inserido, inser o
+produto, senão actualiza a quantidade do produto para esse mes. Depois irá fazer o mesmo para os produtos comprados em 
+promoção.*/
 void getIProdMes(Filial fil, char* cliente, int mes, ARRAY a){
 	Icliente nodo,aux;
 	TRAVERSER t;
