@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  27 APR 2016 13:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  27 APR 2016 16:13
 entering extended mode
 **li3c.tex
 (li3c.tex
@@ -1322,91 +1322,91 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 File: arquiteturaproj.png Graphic file (type png)
 
 <use arquiteturaproj.png>
-Package pdftex.def Info: arquiteturaproj.png used on input line 48.
+Package pdftex.def Info: arquiteturaproj.png used on input line 45.
 (pdftex.def)             Requested size: 416.75757pt x 302.93216pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 53.
  [4 <./arquiteturaproj.png>]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 80.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 81.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 80.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 81.
  [5] [6]
-Overfull \hbox (6.40256pt too wide) in paragraph at lines 175--176
+Overfull \hbox (6.40256pt too wide) in paragraph at lines 182--183
 \OT1/ptm/m/n/12 tu-ra-cao atrav[]es da func[]ao avl[]destroy e faz free []a es-
 tru-tura fa-tu-ra-cao pas-sada por par[]ametro; 
  []
 
 [7] [8]
-Overfull \hbox (4.35088pt too wide) in paragraph at lines 246--249
+Overfull \hbox (4.35088pt too wide) in paragraph at lines 253--256
 \OT1/ptm/m/n/12 di-nheiro gasto nesse pro-duto. Sen[]ao ti-ver sido in-se-rido 
 a quan-ti-dade=quantidadeComprada
  []
 
-[9]
+[9] [10]
 Cap\'{\i }tulo 3.
-[10
+[11
 
 ]
 Cap\'{\i }tulo 4.
-<1querie.png, id=52, 653.44125pt x 148.555pt>
+<1querie.png, id=55, 653.44125pt x 148.555pt>
 File: 1querie.png Graphic file (type png)
  <use 1querie.png>
-Package pdftex.def Info: 1querie.png used on input line 282.
+Package pdftex.def Info: 1querie.png used on input line 289.
 (pdftex.def)             Requested size: 261.37187pt x 59.42093pt.
 
-<menu.png, id=53, 661.47125pt x 440.64626pt>
+<menu.png, id=56, 661.47125pt x 440.64626pt>
 File: menu.png Graphic file (type png)
  <use menu.png>
-Package pdftex.def Info: menu.png used on input line 290.
+Package pdftex.def Info: menu.png used on input line 297.
 (pdftex.def)             Requested size: 396.8858pt x 264.38979pt.
- [11
+ [12
 
  <./1querie.png> <./menu.png>]
 Cap\'{\i }tulo 5.
-<grafcarregamento.png, id=57, 331.99031pt x 233.37187pt>
+<grafcarregamento.png, id=61, 331.99031pt x 233.37187pt>
 File: grafcarregamento.png Graphic file (type png)
 
 <use grafcarregamento.png>
-Package pdftex.def Info: grafcarregamento.png used on input line 303.
+Package pdftex.def Info: grafcarregamento.png used on input line 310.
 (pdftex.def)             Requested size: 265.59259pt x 186.69774pt.
- [12
+ [13
 
  <./grafcarregamento.png>]
 Cap\'{\i }tulo 6.
-<grafodependencias.png, id=62, 1145.27875pt x 541.02126pt>
+<grafodependencias.png, id=65, 1145.27875pt x 541.02126pt>
 File: grafodependencias.png Graphic file (type png)
 
 <use grafodependencias.png>
-Package pdftex.def Info: grafodependencias.png used on input line 318.
+Package pdftex.def Info: grafodependencias.png used on input line 325.
 (pdftex.def)             Requested size: 458.10338pt x 216.40466pt.
 
-Overfull \hbox (2.85927pt too wide) in paragraph at lines 318--319
+Overfull \hbox (2.85927pt too wide) in paragraph at lines 325--326
  [][] 
  []
 
 
-Overfull \hbox (34.35568pt too wide) in paragraph at lines 370--370
+Overfull \hbox (34.35568pt too wide) in paragraph at lines 377--377
 []\OT1/pcr/m/n/12 leitura: src/leitura.c array.o avl.o clientes.o faturacao.o f
 ilial.o[] 
  []
 
-[13
+[14
 
- <./grafodependencias.png>]) (conclusao.tex [14]
+ <./grafodependencias.png>]) (conclusao.tex [15]
 Cap\'{\i }tulo 7.
-) [15
+) [16
 
 ] (li3c.aux) ) 
 Here is how much of TeX's memory you used:
  31440 strings out of 493698
  737396 string characters out of 3144375
- 866194 words of memory out of 3000000
+ 865194 words of memory out of 3000000
  34248 multiletter control sequences out of 15000+200000
  30708 words of font info for 57 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
@@ -1417,9 +1417,9 @@ Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 /times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on li3c.pdf (16 pages, 658490 bytes).
+Output written on li3c.pdf (17 pages, 661416 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
+ 97 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  63 words of extra memory for PDF output out of 10000 (max. 10000000)
 

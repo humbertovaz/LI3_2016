@@ -25,7 +25,7 @@ F2915
 O ficheiro de clientes contém cerca de 20.000 códigos de cliente. 
 
 \paragraph{}
-O ficheiro \textbf{Vendas\_1M.txt}, no qual cada linha representa o registo de uma venda efectuada numa qualquer das 3 filiais da Cadeia de Distribuição. Cada linha (a que chamaremos compra ou venda, o que apenas depende do ponto de vista) será formada por um código de produto, um preço unitário decimal (entre 0.0 e 999.99), o número inteiro de unidades compradas (entre 1 e 200), a letra \textbf{N} ou \textbf{P} conforme tenha sido uma compra \textbf{Normal} ou uma compra em \textbf{Promoção}, o código do cliente, o mês da compra (1 .. 12) e a filial (de 1 a 3) onde a venda foi realizada, como se pode verificar nos exemplos seguintes:
+O ficheiro \textbf{Vendas\_1M.txt}, no qual cada linha representa o registo de uma venda efectuada numa qualquer das 3 filiais da Cadeia de Distribuição. Cada linha (a que chamaremos compra ou venda, o que apenas depende do ponto de vista) será formada por um código de produto, um preço unitário decimal (entre 0.0 e 999.99), o número inteiro de unidades compradas (entre 1 e 200), a letra \textbf{N} ou \textbf{P} conforme tenha sido uma compra \textbf{Normal} ou uma compra em \textbf{Promoção}, o código do cliente, o mês da compra (1 ... 12) e a filial (de 1 a 3) onde a venda foi realizada, como se pode verificar nos exemplos seguintes:
  
  \begin{Verbatim}
 KR1583 77.72 128 P L4891 2 1
@@ -35,20 +35,16 @@ JP1982 343.2 168 N T1805 10 2
 IZ1636 923.72 193 P T2220 4 2 
  \end{Verbatim}
  
- 
 O ficheiro de vendas inicial, \textbf{Vendas\_1M.txt} , conterá 1.000.000 (1 milhão) de registos de vendas realizadas nas 3 filiais da cadeia de distribuição. Existirão também os ficheiros  \textbf{Vendas\_3M.txt} e  \textbf{Vendas\_5M.txt} utilizados para as questões de performance da aplicação. 
 
 \newpage 
 \paragraph{}
 A aplicação possuiu uma arquitectura tal como apresentado na figura seguinte, em que se identificam as fontes de dados, a sua leitura e os módulos de dados a construir: 
 
-
-
 \begin{figure}[h!]
 	\includegraphics[scale=0.8]{arquiteturaproj.png}  
 	\caption{Arquitetura da aplicação}  
 \end{figure}
-
 
 
 \section{Catálogo de Clientes}
@@ -60,10 +56,15 @@ Módulo de dados onde são guardados os códigos de todos os clientes do ficheir
 
 \subsubsection{Tipos Opacos}
 
+
 \begin{Verbatim}
 typedef struct catalogo_clientes *CatClientes;
 \end{Verbatim}
 
+O typedef no ficheiro Clientes.h é a única informação que o utilizador têm relativamente à implementação de dados, não tendo acesso ao ficheiro .c dos clientes, não conseguindo conhecer a verdadeira implementação da estrutura AVL. Deste modo garantimos o encapsulamento de dados e a única forma de o utilizador interagir com o catálogo de clientes será através da API; 
+
+
+\paragraph{}
 \textbf{clientes.c}
 \begin{verbatim}
 struct catalogo_clientes{
@@ -71,10 +72,10 @@ ARVORE indices[27];
 };
 \end{verbatim}
 
-O typedef no ficheiro Clientes.h é a única informação que o utilizador têm relativamente à implementação de dados, não tendo acesso ao ficheiro .c dos clientes, não conseguindo conhecer a verdadeira implementação da estrutura avl.Deste modo garantimos o encapsulamento de dados e a única forma de o utilizador interagir com o catálogo de clientes será através da API; 
+Para guardar os clientes lidos a partir do ficheiro resolvemos usar  AVLs, pois  executa as operações de inserção, busca e remoção em tempo O(log n), sendo rápida  para aplicações que fazem uma quantidade excessiva de procuras, porém esta estrutura é um pouco mais lenta para inserção e remoção. Isso deve-se ao facto de as árvores AVL serem rigidamente balanceadas.
+
 
 \subsubsection{/*API*/}
-
 \begin{itemize}
 
 \item CatClientes inicializa\_catalogo\_clientes() - Função que cria uma estrutura de clientes vazia;
@@ -95,8 +96,7 @@ O typedef no ficheiro Clientes.h é a única informação que o utilizador têm 
 
 \section{Catálogo de Produtos}
 
- Módulo de dados onde são guardados os códigos de todos os produtos do ficheiro \textbf{Produtos.txt}, organizados por índice alfabético, o que irá permitir, de forma eficaz, saber quais são os produtos cujos códigos começam por uma dada letra do alfabeto, quantos são
-
+ Módulo de dados onde são guardados os códigos de todos os produtos do ficheiro \textbf{Produtos.txt}, organizados por índice alfabético, o que irá permitir, de forma eficaz, saber quais são os produtos cujos códigos começam por uma dada letra do alfabeto e saber quantos produtos são contabilizados. 
 
 
 \subsection{Produtos.h}
@@ -106,6 +106,9 @@ O typedef no ficheiro Clientes.h é a única informação que o utilizador têm 
 typedef struct catalogo_produtos *CatProdutos;
 \end{verbatim}
 
+Este typedef é a única informação que o utilizador tem relativamente à implementação de dados, não tendo acesso ao ficheiro .c dos produtos não consegue conhecer a verdadeira implementação da estrutura AVL. Assim, garantimos o encapsulamento de dados e a única forma de o utilizador interagir com o catálogo de produtos será através da API. 
+
+\paragraph{}
 \textbf{produtos.c}
 
 \begin{verbatim}
@@ -113,6 +116,8 @@ struct catalogo_produtos{
 ARVORE indices[27];
 };
 \end{verbatim}
+
+ Para guardar os produtos lidos a partir do ficheiro utilizámos uma avl,
 
 \subsubsection{/*API*/}
 
@@ -131,7 +136,7 @@ ARVORE indices[27];
 
 \section{Faturação Global}
 
-Módulo de dados que contém as estruturas de dados responsáveis pela resposta eficiente a questões quantitativas que relacionam os produtos às suas vendas mensais, em modo Normal (N) ou em Promoção (P), para cada um dos casos guardando o número de vendas e o valor total de faturação de cada um destes tipos. Este módulo refecencia todos os produtos, mesmo os que nunca foram vendidos, não contém qualquer referência a clientes, mas é capaz de distinguir os valores obtidos em cada filial; 
+Módulo de dados que contém as estruturas de dados responsáveis pela resposta a questões quantitativas que relacionam os produtos às suas vendas mensais, em modo Normal (N) ou em Promoção (P), para cada um dos casos guardando o número de vendas e o valor total de faturação de cada um destes tipos. Este módulo refecencia todos os produtos, mesmo os que nunca foram vendidos, não contém qualquer referência a clientes, mas é capaz de distinguir os valores obtidos em cada filial. 
 
 \subsection{faturacao.h}
 
@@ -159,6 +164,8 @@ int quantidadeP[12][3];
 int quantidadeN[12][3];
 };
 \end{verbatim}
+
+Para guardar a informação relativa à faturação utilizámos um array de 12 AVLs, pois esta estrutura permite ordenar estruturas complexas de acordo com um método de comparação, separando pelos 12 meses. Como existe ordem alfabética, a AVL permite fazer procura rápida, preservando assim memória. 
 
 \subsubsection{/*API*/}
 
