@@ -323,14 +323,26 @@ para procurar esse cliente que foi inicializado e depois compara se ele comprou 
 
 \chapter{Main}
 
-O programa é controlado pelo ficheiro leitura.c. Este que invoca as funções que estão inseridas no ficheiro querie.c este que carrega os ficheros de produtos, clientes e vendas em variáveis do tipo FILE,  também é responsável pela interação com o utilizador.
+O programa é controlado pelo ficheiro leitura.c. Este que invoca as funções que estão inseridas no ficheiro querie.c este que carrega os ficheros de produtos, clientes e vendas, também é responsável pela interação com o utilizador.
 
+\begin{itemize}
+	
+\item Menu -  Uma função que imprime o menu ao utilizador, recebendo a opção.
+	
+\item Funções de validação -  As funções \emph{existeCliente} e \emph{existeProduto} que validam  linha de vendas (querie 1).
+	
+\item Carregar Vendas - Lê um ficheiro de vendas e carrega o módulo de vendas e faturação.
+	
+\item Queries - Uma função para cada query
+	
+\item Main - Carrega cada um dos módulos com um nome default de ficheiro. Após a colocação em memória, é chamada a função auxiliar querie, que servirá para selecionar a querie que o utilizador pretende executar. Escolhida a querie, com o auxílio de um switch temos acesso a funções que invocam a/as função/ões que faz exatamente o que a querie pede e mostra ao utilizador os resultados pretendidos, bem como para a alteração de ficheiros.
+	
+\end{itemize}
 
- 
-Depois, são usadas funções derivadas dos vários módulos para carregar os ficheiros em memória nas devidas estruturas. Após a colocação em memória, é chamada a função auxiliar querie, que servirá para selecionar a querie que o utilizador pretende executar. Escolhida a querie, com o auxílio de um switch, temos acesso a funções que invocam a função que faz exatamente o que a querie pede e mostra ao utilizador os resultados pretendidos.
-
+  
 
 \chapter{Interface do utilizador}
+
 Quando o utilizador executa o programa é-lhe pedido que escolha qual o documento de texto que pretende analisar, como podemos observar na figura seguinte: 
 
 \begin{figure}[h!]
@@ -339,7 +351,7 @@ Quando o utilizador executa o programa é-lhe pedido que escolha qual o document
 	\caption{Escolha do ficheiro de vendas a analisar}  
 \end{figure}
 
-O ficheiro é carregado e de seguida aparece um menu com 12 opções, referentes às 12 queries do projeto, sendo que decidimos usar o [0] para sair do GereVendas. O objetivo é que o utilizador prima a tecla correspondente à opção do menu pretendida.
+O ficheiro é carregado e de seguida aparece um menu com 12 opções, referentes às 12 queries do projeto, sendo que decidimos usar o [0] para sair do GereVendas. O objetivo é que o utilizador prima a tecla correspondente à opção do menu pretendida. E de seguida preencha os campos pedidos pela aplicação relativos à querie escolhida. 
 
 \begin{figure}[h!]
 	\centering
