@@ -1,0 +1,33 @@
+\select@language {portuges}
+\contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{1}
+\contentsline {chapter}{\numberline {2}Descri\IeC {\c c}\IeC {\~a}o dos M\IeC {\'o}dulos}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{4}
+\contentsline {section}{\numberline {2.1}Cat\IeC {\'a}logo de Clientes}{4}
+\contentsline {subsection}{\numberline {2.1.1}Clientes.h}{4}
+\contentsline {subsubsection}{Tipos Opacos}{4}
+\contentsline {paragraph}{}{5}
+\contentsline {paragraph}{}{5}
+\contentsline {subsubsection}{/*API*/}{5}
+\contentsline {section}{\numberline {2.2}Cat\IeC {\'a}logo de Produtos}{5}
+\contentsline {subsection}{\numberline {2.2.1}Produtos.h}{6}
+\contentsline {subsubsection}{Tipos Opacos}{6}
+\contentsline {paragraph}{}{6}
+\contentsline {subsubsection}{/*API*/}{6}
+\contentsline {section}{\numberline {2.3}Fatura\IeC {\c c}\IeC {\~a}o Global}{7}
+\contentsline {subsection}{\numberline {2.3.1}faturacao.h}{7}
+\contentsline {subsubsection}{Tipos Opacos}{7}
+\contentsline {subsubsection}{/*API*/}{8}
+\contentsline {section}{\numberline {2.4}Gest\IeC {\~a}o da Filial}{9}
+\contentsline {subsection}{\numberline {2.4.1}Filial.h}{9}
+\contentsline {subsubsection}{Tipos Opacos}{9}
+\contentsline {subsubsection}{/*API*/}{10}
+\contentsline {chapter}{\numberline {3}Main}{13}
+\contentsline {chapter}{\numberline {4}Interface do utilizador}{14}
+\contentsline {chapter}{\numberline {5}Resultados e coment\IeC {\'a}rios sobre os testes de performance}{15}
+\contentsline {paragraph}{}{15}
+\contentsline {paragraph}{}{15}
+\contentsline {chapter}{\numberline {6}Makefile e Grafo de depend\IeC {\^e}ncias}{17}
+\contentsline {chapter}{\numberline {7}Conclus\IeC {\~a}o}{19}
