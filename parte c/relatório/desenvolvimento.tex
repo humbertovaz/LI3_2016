@@ -87,7 +87,7 @@ Usar  AVLs  executa as operações de inserção, busca e remoção em tempo O(l
 
 \item \textbf{void cat\_remove\_cliente(CatClientes cat, char *str)} - A funcao cat\_remove\_cliente remove da respectiva avl o codigo de cliente passado por argumento, fazendo free ao nodo onde este situava; 
 
-\item \textbf{void free\_catalogo\_Clientes(CatClientes cat)} - A funcao free\_catalo\_Cliente apaga as 27 avls, fazendo o respectivo free; 
+\item \textbf{void free\_catalogo\_Clientes(CatClientes cat)} - A funcao free\_catalogo\_Cliente apaga as 27 avls, fazendo o respectivo free; 
 
 \item \textbf{int existeCliente (char *cliente,CatClientes cat)} - A funcao existeCliente verifica se um codigo existe na respectiva avl;
 
@@ -166,7 +166,7 @@ ARVORE produtos;
 };
 \end{verbatim}
 
-A estrutura facturação irá conter o total de vendas realizado nas 3 filiais, assim como o dinheiro facturado nas 3 filiais; irá também conter a informação sobre os produtos que foram vendidos; 
+A estrutura facturação irá conter o total de vendas realizado numa filial, assim como o dinheiro facturado nessa filial; irá também conter a informação sobre os produtos que foram vendidos; 
 
 \begin{verbatim}
 struct info{
