@@ -70,7 +70,7 @@ public class Filial {
     public double getGastouMes(Cliente c, int mes)
     {
         if (this.informacaoClientes.containsKey(c)){
-            InfoCliente aux=this.informacaoClientes.get(c).clone();
+            InfoCliente aux=this.informacaoClientes.get(c);
             return aux.getGastouMes(mes);
             
         }
@@ -93,7 +93,7 @@ public class Filial {
     
     public Set<Cliente> compraramMes(int mes){
         Set<Cliente> res = new HashSet<>();
-        this.informacaoClientes.entrySet().stream().filter(e -> e.getValue().comprouMes(mes-1)).map(e -> res.add(e.getKey().clone()));
+        this.informacaoClientes.entrySet().stream().filter(e -> e.getValue().comprouMes(mes)).map(e -> res.add(e.getKey().clone()));
         return res;
     }
     

@@ -10,16 +10,16 @@ import java.util.Set;
  */
 public class CatalogoClientes {
     
-  private Set<Cliente> catalogoClientes;
+  private Set<String> catalogoClientes;
 
     public CatalogoClientes() {
         this.catalogoClientes = new HashSet<>();
     }
 
-    public CatalogoClientes(HashSet<Cliente> catalogoClientes) {
+    public CatalogoClientes(HashSet<String> catalogoClientes) {
         this.catalogoClientes = new HashSet<>();
         
-        for (Cliente c: catalogoClientes)
+        for (String c: catalogoClientes)
             this.catalogoClientes.add(c);
     }
 
@@ -27,20 +27,20 @@ public class CatalogoClientes {
         this.catalogoClientes = c.getCatalogoClientes();
     }
 
-    private Set<Cliente> getCatalogoClientes() {
-        Set<Cliente> res = new HashSet<>();
+    private Set<String> getCatalogoClientes() {
+        Set<String> res = new HashSet<>();
         
         if (this.catalogoClientes != null)
-            for (Cliente c: catalogoClientes) 
+            for (String c: catalogoClientes) 
                 res.add(c);
         
         return res;
     }
 
-    private void setCatalogoClientes(Set<Cliente> catalogoClientes) {
-        Set<Cliente> tmp = new HashSet<>();
+    private void setCatalogoClientes(Set<String> catalogoClientes) {
+        Set<String> tmp = new HashSet<>();
         
-        for (Cliente c: catalogoClientes){
+        for (String c: catalogoClientes){
             tmp.add(c);
         }
         
@@ -67,7 +67,7 @@ public class CatalogoClientes {
         
         sb.append("Catálogo: ").append("\n");
         
-        for(Cliente c :this.catalogoClientes) {
+        for(String c :this.catalogoClientes) {
         
             
             sb.append(c).append("\n");
@@ -85,7 +85,7 @@ public class CatalogoClientes {
      * Insere um cliente no Catálogo de Clientes.
      * @param cliente
      */
-    public void insere(Cliente cliente) {
+    public void insere(String cliente) {
         this.catalogoClientes.add(cliente);
     }
     
@@ -94,7 +94,7 @@ public class CatalogoClientes {
      * @param cliente
      * @return true se o cliente existir, false caso contrário
      */
-    public boolean existe(Cliente cliente) {
+    public boolean existe(String cliente) {
         return this.catalogoClientes.contains(cliente);
     }
     

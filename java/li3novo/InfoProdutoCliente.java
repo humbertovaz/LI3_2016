@@ -24,6 +24,9 @@ public class InfoProdutoCliente {
     public InfoProdutoCliente(){
         this.quantidadeTotal=0;
         this.totalFaturado=0;
+         this.quantidade=new int[12];
+        this.faturado=new double[12];
+        this.compras=new int[12];
         for(int i=0;i<12;i++){
                 faturado[i]=0;
                 quantidade[i]=0;
@@ -33,6 +36,9 @@ public class InfoProdutoCliente {
     public InfoProdutoCliente(int[] quantidade, double[] faturado, double totalFaturado,int quantidadeTotal, int []compras) {
         this.quantidadeTotal = quantidadeTotal;
         this.totalFaturado = totalFaturado;
+         this.quantidade=new int[12];
+        this.faturado=new double[12];
+        this.compras=new int[12];
         for(int i=0;i<12;i++){
                 this.quantidade[i]=quantidade[i];
                 this.faturado[i]=faturado[i];
@@ -112,7 +118,7 @@ public class InfoProdutoCliente {
 
     
     public boolean compradoMes(int mes){
-        return quantidade[mes-1]>0;
+        return quantidade[mes]>0;
     }
     
     public InfoProdutoCliente clone(){

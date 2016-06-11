@@ -106,11 +106,11 @@ public class Hipermercado implements Serializable {
         int vendas=0;
         int diferentes=0;
         TriComprasNProdGastou[] res= new TriComprasNProdGastou[12];
-
+        for(int k=0;k<12;k++) {res[k] =new TriComprasNProdGastou();}
         for(int i=0;i<12;i++){
             for(int j=0;j<3;j++){
-                gastou+=this.filiais[i].getGastouMes(c,i+1);
-                vendas+=this.filiais[i].getVendasClienteMes(c,i+1);
+                gastou+=this.filiais[j].getGastouMes(c,i);
+                vendas+=this.filiais[j].getVendasClienteMes(c,i);
             }
             Set<Produto> set=this.filiais[0].getProdutosCompradosMes(c,i);
             for(int j=1;j<2;j++){
@@ -134,12 +134,13 @@ public class Hipermercado implements Serializable {
         int diferentes=0;
         double totalFaturado=0;
         TriComprasNProdGastou[] res = new TriComprasNProdGastou[12];
+        for(int k =0;k<12;k++) {res[k]=new TriComprasNProdGastou (); }
         for(int i=0;i<12;i++){
-            compras=this.faturacao.getVendasMesProd(p,i+1);
-            totalFaturado=this.faturacao.getFaturacaoMesProd(p,i+1);
-            Set<Cliente> set = this.filiais[0].getClientesCompraramProdutoMes(p,i+1);
-            for(int j=1;j<3;j++){
-                Set<Cliente> aux=this.filiais[i].getClientesCompraramProdutoMes(p,i+1);
+            compras=this.faturacao.getVendasMesProd(p,i);
+            totalFaturado=this.faturacao.getFaturacaoMesProd(p,i);
+            Set<Cliente> set = this.filiais[0].getClientesCompraramProdutoMes(p,i);
+            for(int j=0;j<3;j++){
+                Set<Cliente> aux=this.filiais[j].getClientesCompraramProdutoMes(p,i);
                 aux.stream().map(e->set.add(e.clone()));
                 aux.clear();
             }
@@ -299,7 +300,7 @@ public class Hipermercado implements Serializable {
     
     
     
-    public void inserCatalogoClientes(Cliente c) {
+    public void inserCatalogoClientes(String c) {
         this.clientes.insere(c);
     
     }
@@ -310,14 +311,15 @@ public class Hipermercado implements Serializable {
     
     }
     
-    public void inserVendas (int filial, Cliente c , Produto p, int quantidade,double faturado,int mes,char modo) {
+    public void inserVendas (int filial, String codCliente , Produto p, int quantidade,double faturado,int mes,char modo) {
         
         
         if((mes>=1 && mes<=12) && (filial >=1 && filial <=3 )&& (this.produtos.existe(p)) 
-                && this.clientes.existe(c) && (modo=='N' || modo =='P') && (faturado>=0.0 && faturado<=999.99)
+                && this.clientes.existe(codCliente) && (modo=='N' || modo =='P') && (faturado>=0.0 && faturado<=999.99)
                 && quantidade >0) {
-            this.filiais[filial].inserFilial(c.clone(), p.clone(), quantidade, faturado, mes-1, modo);
-            this.faturacao.inser(mes-1, filial, faturado, quantidade, p);
+            Cliente c = new Cliente(codCliente);
+            this.filiais[filial-1].inserFilial(c.clone(), p.clone(), quantidade, faturado, mes-1, modo);
+            this.faturacao.inser(mes-1, filial-1, faturado, quantidade, p);
             if(faturado==0.0) {
                 this.comprasnulas++;
             }
@@ -326,10 +328,7 @@ public class Hipermercado implements Serializable {
         else {this.vendaserradas++;}
     }
     
-    
-    public boolean existeCliente(String s){
-        return this.clientes.existe(new Cliente(s));
-    }
+   
     
     public boolean existeProduto(String s){
         return this.produtos.existe(new Produto(s));
@@ -358,6 +357,10 @@ public class Hipermercado implements Serializable {
     
     public CatalogoClientes  getCatalogo() {
         return this.clientes.clone();
+    }
+
+    boolean existeCliente(String s) {
+      return this.clientes.existe(s);
     }
     
     

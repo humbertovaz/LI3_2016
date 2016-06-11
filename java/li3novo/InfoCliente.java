@@ -32,6 +32,7 @@ class InfoCliente {
        for(int i=0;i<2;i++){
            this.produtosComprados[i] = new TreeMap<>();
        }
+       this.totalGasto=0;
    }
 
     public InfoCliente(double[] dinheiroGastoMes, int[] totalCompradoMes, int totalComprado, Map<Cliente, InfoProdutoCliente> produtosComprados[],int []vendas) {
@@ -53,9 +54,13 @@ class InfoCliente {
         this.dinheiroGastoMes=ic.getDinheiroGastoMes();
         this.totalCompradoMes = ic.getTotalCompradoMes();
         this.totalComprado = ic.getTotalComprado();
+         this.dinheiroGastoMes= new double[12];
+       this.totalCompradoMes= new int [12];
+       this.vendas = new int [12];
         for(int i=0;i<12;i++){
             this.vendas[i]=ic.getVendasMes(i);
         }
+        this.produtosComprados=new TreeMap[2]; 
         this.produtosComprados[0] = ic.getProdutosComprados('N');
         this.produtosComprados[1] = ic.getProdutosComprados('P');
     }
@@ -300,7 +305,7 @@ class InfoCliente {
               this.totalGasto+=faturado*quantidade;
               this.totalCompradoMes[mes]+=quantidade;
               this.vendas[mes]++;
-              this.totalComprado+=quantidade*faturado;
+              this.totalComprado+=quantidade;
         }
     
         else {
@@ -311,7 +316,8 @@ class InfoCliente {
                 this.totalGasto+=faturado*quantidade;
                 this.totalCompradoMes[mes]+=quantidade;
                 this.vendas[mes]++;
-                this.totalComprado+=quantidade*faturado;
+                this.totalComprado+=quantidade;
+                
                 
         }
 
