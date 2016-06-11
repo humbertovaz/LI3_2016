@@ -1,11 +1,14 @@
 
+import java.io.Serializable;
+
+
 /**
  * Escreva a descrição da classe ParNVendasNCliDif aqui.
  * 
  * @author (seu nome) 
  * @version (número de versão ou data)
  */
-public class ParNVendasNCliDif
+public class ParNVendasNCliDif  implements Serializable
 {
     // variáveis de instância - substitua o exemplo abaixo pelo seu próprio
     private int vendas;

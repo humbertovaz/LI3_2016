@@ -5,13 +5,14 @@
  */
  
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  *
  *
  */
-public class InfoProduto {
+public class InfoProduto  implements Serializable {
     private int [][] quantidade; // [12][3] mes, filial
     private int quantidadeTotal;
     private double [][] faturado; // [12][3] mes, filial

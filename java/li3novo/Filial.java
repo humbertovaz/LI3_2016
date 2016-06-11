@@ -1,11 +1,12 @@
  
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 /**
  *
  *
  */
-public class Filial {
+public class Filial  implements Serializable {
     private Map<Cliente,InfoCliente> informacaoClientes; // // está correto
 
 

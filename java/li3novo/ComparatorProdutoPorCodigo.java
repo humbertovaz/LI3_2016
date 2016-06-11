@@ -5,13 +5,14 @@
  */
  
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  *
  *
  */
-public class ComparatorProdutoPorCodigo implements Comparator<Produto> {
+public class ComparatorProdutoPorCodigo implements Comparator<Produto> ,Serializable {
 
     
 

@@ -1,13 +1,16 @@
+
+import java.io.Serializable;
+
  
 
 /**
  *
  * 
  */
-public class Cliente implements Comparable<Cliente> 
+public class Cliente implements Comparable<Cliente>,Serializable
 {
     
-     
+    
     private String codigo_cliente;
 
     /*

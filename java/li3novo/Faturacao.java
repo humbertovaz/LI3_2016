@@ -1,9 +1,10 @@
  
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.*;
 
 
-public class Faturacao {
+public class Faturacao  implements Serializable {
     private int totalVendas;
     private double totalFaturado;
     private HashMap<Produto, InfoProduto> produtosVendidos;

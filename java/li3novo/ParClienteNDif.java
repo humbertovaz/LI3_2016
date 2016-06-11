@@ -1,11 +1,14 @@
 
+import java.io.Serializable;
+
+
 /**
  * Escreva a descrição da classe ParClienteQuantidade aqui.
  * 
  * @author (seu nome) 
  * @version (número de versão ou data)
  */
-public class ParClienteNDif
+public class ParClienteNDif  implements Serializable
 {
     // variáveis de instância - substitua o exemplo abaixo pelo seu próprio
     private Cliente cliente;

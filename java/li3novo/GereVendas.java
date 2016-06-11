@@ -113,25 +113,26 @@ public class GereVendas  {
 
                     for(String a :tmp) {
                         cliente = new Cliente(a);
-                    t.inserCatalogoClientes(cliente);
+                    t.inserCatalogoClientes(a);
                     t.inserClienteFilial(cliente);
-                    System.out.println(a);
+                    
                         }
                     
                     carregaFicheiros();
                     tmp1=carregaCompras();
                         
                     for(Venda a:tmp1) {
-                        cliente = new Cliente(a.getCodigoCliente());
-                        produto = new Produto(a.getCodigoProduto());
-                       
-                        t.inserVendas(a.getFilial(),cliente,produto,a.getQuantidade(),a.getPreco(),a.getMes(), a.getModoDeCompra());
+             
+                        
+                 t.inserVendas(a.getFilial(),a.getCodigoCliente().trim(),a.getCodigoProduto(),a.getQuantidade(),a.getPreco(),a.getMes(), a.getModoDeCompra());
                         
                     }
+                    
                     Crono.stop();
                     
              System.out.println("Ficheiros carregados com sucesso! ("+Crono.print()+" s)");
-             System.out.println(t.getVendasErradas());
+             
+            
         }
     
         waitMenu();
@@ -204,9 +205,9 @@ public class GereVendas  {
                     
                     tmp=carregaCatalgoProduto();
                     for(String a : tmp) {
-                    //t.insereNoCatalogoProdutos(a);
-                    //t.inicializaFaturacaoProduto(a);
-                    //t.inicializaProdutoFilial(a);
+                    produto = new Produto(a);
+                   t.inserCatalogoProdutos(produto);
+                  t.inserProdutoFaturacao(produto);
 
                     }
                    
@@ -214,14 +215,15 @@ public class GereVendas  {
                     tmp=carregaCatalgoClientes();
 
                     for(String a :tmp) {
-                    //t.inicializaClienteFilial(a);
-                    //t.insereNoCatalogoClientes(a);
+                        cliente = new Cliente(a);
+                    t.inserCatalogoClientes(a);
+                    t.inserClienteFilial(cliente);
                         }
                     carregaFicheiros();
                     tmp1=carregaCompras();
                         
                     for(Venda a:tmp1) {
-                       // t.insereCompra(a,a.getFilial());
+                    t.inserVendas(a.getFilial(),a.getCodigoCliente().trim(),a.getCodigoProduto(),a.getQuantidade(),a.getPreco(),a.getMes(), a.getModoDeCompra());
                     }
                     Crono.stop();
              System.out.println("Ficheiros carregados com sucesso! ("+Crono.print()+" s)");
@@ -744,12 +746,23 @@ public class GereVendas  {
     6 filial
     */
     private static Venda parseLinhaVenda(String linha){
-    linha=linha.trim(); // tira espaços (antes e depois)
-    String [ ] tmp=linha.split(" ");
-    String s=tmp[3];
+     StringTokenizer st;
+        String line, codProduto, codCliente;
+        int unidades, mes,filial;
+        char tipoCompra;
+        double preco;
+         st = new StringTokenizer(linha, " ");
+        
    Venda venda;
-       venda = new Venda(tmp[0],tmp[4],s.charAt(0),Integer.parseInt(tmp[5]),
-                 Integer.parseInt(tmp[6]),Double.parseDouble(tmp[1]),Integer.parseInt(tmp[2]));
+    codProduto = st.nextToken();
+            preco = Double.parseDouble(st.nextToken());
+            unidades = Integer.parseInt(st.nextToken());
+            tipoCompra = st.nextToken().charAt(0);
+            codCliente = st.nextToken();
+            mes = Integer.parseInt(st.nextToken());
+            filial = Integer.parseInt(st.nextToken());
+       venda = new Venda(codProduto,codCliente,tipoCompra,(mes),
+                 (filial),preco,unidades);
    return venda;
 }
             

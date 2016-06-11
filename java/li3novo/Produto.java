@@ -1,3 +1,6 @@
+
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +12,7 @@
  *
  *
  */
-public class Produto implements Comparable<Produto> {
+public class Produto implements Comparable<Produto>, Serializable {
     
      private String codigo_produto;
 

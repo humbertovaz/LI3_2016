@@ -5,13 +5,14 @@
  */
  
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  *
  * 
  */
-public class ComparatorClientePorCodigo implements Comparator<Cliente> {
+public class ComparatorClientePorCodigo implements Comparator<Cliente>, Serializable {
 
     
 
