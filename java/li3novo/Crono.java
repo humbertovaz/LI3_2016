@@ -12,9 +12,8 @@
  * Crono.stop();
  * Crono.print();
  */
-import java.io.Serializable;
 import static java.lang.System.nanoTime;
-public class Crono  implements Serializable {
+public class Crono {
 
   private static long inicio = 0L;
   private static long fim = 0L;

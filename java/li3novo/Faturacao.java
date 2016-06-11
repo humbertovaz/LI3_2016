@@ -1,10 +1,9 @@
  
-import java.io.Serializable;
 import java.util.*;
 import java.util.stream.*;
 
 
-public class Faturacao  implements Serializable {
+public class Faturacao {
     private int totalVendas;
     private double totalFaturado;
     private HashMap<Produto, InfoProduto> produtosVendidos;
@@ -82,9 +81,34 @@ public class Faturacao  implements Serializable {
     
     
     
+    public int getVendasMesProd(Produto p,int mes){
+        int res=0;
+        if(this.produtosVendidos.containsKey(p)){
+            res=this.produtosVendidos.get(p).getVendasMes(mes);
+        }
+        return res;
+    }
     
     
+    public double getFaturacaoMesProd(Produto p,int mes){
+        double res=0;
+        if(this.produtosVendidos.containsKey(p)){
+            res=this.produtosVendidos.get(p).getFaturadoMes(mes);
+        }
+        return res;
+    }
     
+    private int produtoQuantidadeComp(ParProdutoQuantidade p1,ParProdutoQuantidade p2){
+        if(p1.getQuantidade()<p2.getQuantidade()) return 1;
+        else if(p1.getQuantidade()>p2.getQuantidade()) return -1;
+        else return p1.getProduto().compareTo(p2.getProduto());
+    }
+    
+    public List<ParProdutoQuantidade> getTopXMaisVendido(int x){
+        List<ParProdutoQuantidade> res = new ArrayList<>();
+        this.produtosVendidos.forEach((k,v)->res.add(new ParProdutoQuantidade(k.clone(),v.getQuantidadeTotal())));
+        return res.stream().sorted((e1,e2)->produtoQuantidadeComp(e1,e2)).limit(x).collect(Collectors.toList());
+    }
     
     public void inserProduto(Produto p) {
     
@@ -96,10 +120,7 @@ public class Faturacao  implements Serializable {
    public void inser(int mes,int filial,double faturado,int quantidade,Produto p) {
         this.totalVendas++;
         this.totalFaturado=quantidade*faturado;
-        
-       
-        
-            this.produtosVendidos.get(p).inser(mes, filial, faturado, quantidade);
+        this.produtosVendidos.get(p).inser(mes, filial, faturado, quantidade);
         
         
         

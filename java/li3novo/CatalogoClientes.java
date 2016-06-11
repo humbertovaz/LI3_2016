@@ -1,6 +1,5 @@
  
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,18 +8,18 @@ import java.util.Set;
  *
  * 
  */
-public class CatalogoClientes implements Serializable {
+public class CatalogoClientes {
     
-  private Set<String> catalogoClientes;
+  private Set<Cliente> catalogoClientes;
 
     public CatalogoClientes() {
         this.catalogoClientes = new HashSet<>();
     }
 
-    public CatalogoClientes(HashSet<String> catalogoClientes) {
+    public CatalogoClientes(HashSet<Cliente> catalogoClientes) {
         this.catalogoClientes = new HashSet<>();
         
-        for (String c: catalogoClientes)
+        for (Cliente c: catalogoClientes)
             this.catalogoClientes.add(c);
     }
 
@@ -28,20 +27,20 @@ public class CatalogoClientes implements Serializable {
         this.catalogoClientes = c.getCatalogoClientes();
     }
 
-    private Set<String> getCatalogoClientes() {
-        Set<String> res = new HashSet<>();
+    private Set<Cliente> getCatalogoClientes() {
+        Set<Cliente> res = new HashSet<>();
         
         if (this.catalogoClientes != null)
-            for (String c: catalogoClientes) 
+            for (Cliente c: catalogoClientes) 
                 res.add(c);
         
         return res;
     }
 
-    private void setCatalogoClientes(Set<String> catalogoClientes) {
-        Set<String> tmp = new HashSet<>();
+    private void setCatalogoClientes(Set<Cliente> catalogoClientes) {
+        Set<Cliente> tmp = new HashSet<>();
         
-        for (String c: catalogoClientes){
+        for (Cliente c: catalogoClientes){
             tmp.add(c);
         }
         
@@ -68,7 +67,7 @@ public class CatalogoClientes implements Serializable {
         
         sb.append("Catálogo: ").append("\n");
         
-        for(String c :this.catalogoClientes) {
+        for(Cliente c :this.catalogoClientes) {
         
             
             sb.append(c).append("\n");
@@ -86,7 +85,7 @@ public class CatalogoClientes implements Serializable {
      * Insere um cliente no Catálogo de Clientes.
      * @param cliente
      */
-    public void insere(String cliente) {
+    public void insere(Cliente cliente) {
         this.catalogoClientes.add(cliente);
     }
     
@@ -95,15 +94,9 @@ public class CatalogoClientes implements Serializable {
      * @param cliente
      * @return true se o cliente existir, false caso contrário
      */
-    public boolean existe(String cliente) {
-       
-        
+    public boolean existe(Cliente cliente) {
         return this.catalogoClientes.contains(cliente);
-        
-        
     }
-    
-    
     
     /**
      * Devolve o número de clientes que estão no Catálogo de Clientes.

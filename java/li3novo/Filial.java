@@ -1,12 +1,11 @@
  
-import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 /**
  *
  *
  */
-public class Filial  implements Serializable {
+public class Filial {
     private Map<Cliente,InfoCliente> informacaoClientes; // // está correto
 
 
@@ -29,6 +28,23 @@ public class Filial  implements Serializable {
         return tmp;
     }
     
+    
+    
+    public Set<Cliente> getClientesCompraramProdutoMes(Produto p, int mes){
+        Set<Cliente> res = new HashSet<>();
+        this.informacaoClientes.entrySet().stream().filter(e -> e.getValue().produtoCompradoMes(p,mes)).map(e-> res.add(e.getKey().clone()));
+        return res;
+    }
+    
+    public Set<Cliente> getClientesCompraramProduto(Produto p){
+        Set<Cliente> res = this.getClientesCompraramProdutoMes(p,1);
+        for(int i=2;i<13;i++){
+            Set<Cliente> aux = this.getClientesCompraramProdutoMes(p,i);
+            aux.stream().map(e->res.add(e.clone()));
+        }
+        return res;
+    
+    }
     
     private void addListP(List<Cliente> l, Cliente c, InfoCliente i, Produto p){
         if(i.comprou(p)){
@@ -81,13 +97,13 @@ public class Filial  implements Serializable {
         return res;
     }
     
-    
-    
-    public Set<Cliente> getClientesCompraramProdutoMes(Produto p, int mes){
-        Set<Cliente> res = new HashSet<>();
-        this.informacaoClientes.entrySet().stream().filter(e -> e.getValue().produtoCompradoMes(p,mes)).map(e-> res.add(e.getKey().clone()));
+
+    public Map<Cliente,ParClienteQuantidade> compraramProduto(Produto p){
+        Map<Cliente,ParClienteQuantidade> res= new HashMap<>();
+        this.informacaoClientes.forEach((k,v)-> addCliQuant(res,v,k,p));
         return res;
     }
+
     
     public double faturadoProdutoMes(Produto p, int mes){
         double res=0;
@@ -97,21 +113,21 @@ public class Filial  implements Serializable {
         return res;
     }
     
-    private void addCliQuant(Map<Produto,ParClienteQuantidade> m, InfoCliente i, Cliente c, Produto p){
+    private void addCliQuant(Map<Cliente,ParClienteQuantidade> m, InfoCliente i, Cliente c, Produto p){
         if(i.comprou(p)){
             if(m.containsKey(c)){
                 ParClienteQuantidade aux = m.get(c);
                 aux.setQuantidade(aux.getQuantidade()+i.getQuantidadeProduto(p));
                 aux.setGasto(aux.getGasto()+i.getGastouProduto(p));
             }
+            else{
+                ParClienteQuantidade aux = new ParClienteQuantidade(c,i.getQuantidadeProduto(p),i.getGastouProduto(p));
+                m.put(c.clone(),aux);
+            }
         }
     }
     
-    public Map<Produto,ParClienteQuantidade> compraramProduto(Produto p){
-        Map<Produto,ParClienteQuantidade> res= new HashMap<>();
-        this.informacaoClientes.forEach((k,v)-> addCliQuant(res,v,k,p));
-        return res;
-    }
+
     
     public Set<Produto> getProdutosCompradosMes(Cliente c, int mes){
         Set<Produto> res = new HashSet<>();
@@ -151,20 +167,32 @@ public class Filial  implements Serializable {
     
     
     public void inserClienteFilial(Cliente p) {
-    
         this.informacaoClientes.put(p, new InfoCliente());
-    
-    
     }
     
     
+    public int getQuantidadeComprada(Cliente c, Produto p){
+        if(this.informacaoClientes.containsKey(c)){
+            return this.informacaoClientes.get(c).getQuantidadeProduto(p);
+        }
+        return 0;
+    }
     
+    public Map<Produto,ParProdutoQuantidade> getComprados(Cliente c){
+        Set<Produto> produtos = getProdutosCompradosMes(c,1);
+        Map<Produto,ParProdutoQuantidade> res = new HashMap<>();
+        for(int i=2;i<13;i++){
+            Set<Produto> aux = getProdutosCompradosMes(c,i);
+            aux.stream().map(e->produtos.add(e.clone()));
+            aux.clear();
+        }
+        produtos.stream().map(e->res.put(e.clone(),new ParProdutoQuantidade(e.clone(),this.getQuantidadeComprada(c,e))));
+        return res;
+    }
     
     
     public void inserFilial(Cliente c , Produto p, int quantidade,double faturado,int mes,char modo) {
-    
-        
-            this.informacaoClientes.get(c).inser(p, quantidade, faturado, mes, modo);
+        this.informacaoClientes.get(c).inser(p, quantidade, faturado, mes, modo);
        
     }
     

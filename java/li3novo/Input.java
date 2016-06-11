@@ -21,13 +21,12 @@
  * @author F. Mário Martins
  * @version 1.0 (6/2006)
  */
-import java.io.Serializable;
 import static java.lang.System.out;
 import static java.lang.System.in;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-public class Input  implements Serializable {
+public class Input {
 
  /**
   * Métodos de Classe

@@ -5,14 +5,13 @@
  */
  
 
-import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  *
  *
  */
-public class InfoProduto  implements Serializable {
+public class InfoProduto {
     private int [][] quantidade; // [12][3] mes, filial
     private int quantidadeTotal;
     private double [][] faturado; // [12][3] mes, filial
@@ -159,7 +158,6 @@ public class InfoProduto  implements Serializable {
     
     
     public void inser(int mes, int filial,double faturado,int quantidade) {
-    
         this.faturado[mes][filial]+=quantidade*faturado;
         this.quantidade[mes][filial]+=quantidade;
         this.quantidadeTotal+=quantidade;
@@ -168,6 +166,14 @@ public class InfoProduto  implements Serializable {
     }
     
     
+    
+    public double getFaturadoMes(int mes){
+        double res=0;
+        for(int i=0;i<3;i++){
+            res+=this.faturado[mes-1][i];
+        }
+        return res;
+    }
     
     
     

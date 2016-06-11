@@ -3,9 +3,8 @@
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.*;
 
 
 
@@ -18,6 +17,10 @@ public class Hipermercado implements Serializable {
     private Faturacao faturacao;
     private String ficheiroLido;
     private int vendaserradas;
+    private int totalprodutos;
+    private int totalclientes;
+    private int totalcompraram;
+    private int totalnaocompraram;
     private int comprasnulas;
     private double faturacaoglobal;
 
@@ -31,25 +34,22 @@ public class Hipermercado implements Serializable {
             this.filiais[i]= new Filial();
         }
         this.faturacao=new Faturacao();
-        this.comprasnulas=0;
-        this.faturacaoglobal=0;
-        this.vendaserradas=0;
-        this.comprasnulas=0;
-        
     }
 
-    public Hipermercado(CatalogoClientes clientes, CatalogoProdutos produtos, Filial[] filiais, Faturacao faturacao, String ficheiroLido, int vendaserradas, int comprasnulas, double faturacaoglobal) {
-        this.clientes = clientes.clone();
-        this.produtos = produtos.clone();
-        this.filiais = filiais.clone();
-        this.faturacao = faturacao.clone();
+    public Hipermercado(CatalogoClientes clientes, CatalogoProdutos produtos, Filial[] filiais, Faturacao faturacao, String ficheiroLido, int vendaserradas, int totalprodutos, int totalclientes, int totalcompraram, int totalnaocompraram, int comprasnulas, double faturacaoglobal) {
+        this.clientes = clientes;
+        this.produtos = produtos;
+        this.filiais = filiais;
+        this.faturacao = faturacao;
         this.ficheiroLido = ficheiroLido;
         this.vendaserradas = vendaserradas;
+        this.totalprodutos = totalprodutos;
+        this.totalclientes = totalclientes;
+        this.totalcompraram = totalcompraram;
+        this.totalnaocompraram = totalnaocompraram;
         this.comprasnulas = comprasnulas;
         this.faturacaoglobal = faturacaoglobal;
     }
-
-  
     
     public Hipermercado(Hipermercado f) {
     this.clientes=f.getClientes();
@@ -84,29 +84,6 @@ public class Hipermercado implements Serializable {
         return this.faturacao.getNaoVendidos();
     }
     
-    //querie3
-    public TriComprasNProdGastou[] clienteCompras(Cliente c){
-        double gastou=0;
-        int vendas=0;
-        int diferentes=0;
-        TriComprasNProdGastou[] res=null;
-
-        for(int i=0;i<12;i++){
-            for(int j=0;j<3;j++){
-                gastou+=this.filiais[i].getGastouMes(c,i+1);
-                vendas+=this.filiais[i].getVendasClienteMes(c,i+1);
-            }
-            Set<Produto> set=this.filiais[0].getProdutosCompradosMes(c,i);
-            for(int j=1;j<2;j++){
-                Set<Produto> aux=this.filiais[j].getProdutosCompradosMes(c,i);
-                aux.stream().map(e->set.add(e.clone()));
-                aux.clear();
-            }
-            diferentes=set.size();
-            res[i]=new TriComprasNProdGastou(vendas,diferentes,gastou);
-        }
-        return res;
-    }
     //querie 2
     public ParNVendasNCliDif vendasRealizadasMes(int mes){
         int vendas=0;
@@ -123,8 +100,110 @@ public class Hipermercado implements Serializable {
         }
         return new ParNVendasNCliDif(vendas,clientes);
     }
+    //querie3
+    public TriComprasNProdGastou[] clienteCompras(Cliente c){
+        double gastou=0;
+        int vendas=0;
+        int diferentes=0;
+        TriComprasNProdGastou[] res= new TriComprasNProdGastou[12];
 
+        for(int i=0;i<12;i++){
+            for(int j=0;j<3;j++){
+                gastou+=this.filiais[i].getGastouMes(c,i+1);
+                vendas+=this.filiais[i].getVendasClienteMes(c,i+1);
+            }
+            Set<Produto> set=this.filiais[0].getProdutosCompradosMes(c,i);
+            for(int j=1;j<2;j++){
+                Set<Produto> aux=this.filiais[j].getProdutosCompradosMes(c,i);
+                aux.stream().map(e->set.add(e.clone()));
+                aux.clear();
+            }
+            diferentes=set.size();
+            res[i].setVendas(vendas);
+            res[i].setDiferentes(diferentes);
+            res[i].setGastou(gastou);
+            gastou=vendas=diferentes=0;
+        }
+        return res;
+    }
     
+    // querie 4
+    
+    public TriComprasNProdGastou[] produtoComprado(Produto p){
+        int compras= 0;
+        int diferentes=0;
+        double totalFaturado=0;
+        TriComprasNProdGastou[] res = new TriComprasNProdGastou[12];
+        for(int i=0;i<12;i++){
+            compras=this.faturacao.getVendasMesProd(p,i+1);
+            totalFaturado=this.faturacao.getFaturacaoMesProd(p,i+1);
+            Set<Cliente> set = this.filiais[0].getClientesCompraramProdutoMes(p,i+1);
+            for(int j=1;j<3;j++){
+                Set<Cliente> aux=this.filiais[i].getClientesCompraramProdutoMes(p,i+1);
+                aux.stream().map(e->set.add(e.clone()));
+                aux.clear();
+            }
+            diferentes=set.size();
+            res[i].setDiferentes(diferentes);
+            res[i].setVendas(compras);
+            res[i].setGastou(totalFaturado);
+            totalFaturado=diferentes=compras=0;
+        }
+        return res;
+    }
+    
+    //querie 5
+    
+    
+    private int comparaProdQuantidade(ParProdutoQuantidade p1, ParProdutoQuantidade p2){
+        if(p1.getQuantidade()<p2.getQuantidade()) return 1;
+        if(p1.getQuantidade()>p2.getQuantidade()) return -1;
+        else return p1.getProduto().compareTo(p2.getProduto());
+    }
+    
+    
+    
+    private void concatMapAux(Map<Produto,ParProdutoQuantidade> m, Produto p, ParProdutoQuantidade q){
+        if(m.containsKey(p)){
+            m.get(p).setQuantidade(m.get(p).getQuantidade()+q.getQuantidade());
+        }
+        else{
+            m.put(p.clone(),q.clone());
+        }
+    
+    }
+    
+    private void concatMap(Map<Produto,ParProdutoQuantidade> m, Map<Produto,ParProdutoQuantidade> aux){
+        aux.forEach((k,v)->concatMapAux(m,k,v));
+    }
+    
+    
+    public List<ParProdutoQuantidade> getCompradosCliente(Cliente c){
+        Map<Produto,ParProdutoQuantidade> produtos = this.filiais[0].getComprados(c);
+        for(int i=1;i<3;i++){
+            Map<Produto,ParProdutoQuantidade> aux = this.filiais[i].getComprados(c);
+            concatMap(produtos,aux);
+        }
+        return produtos.entrySet().stream().map(e->e.getValue().clone()).sorted((e1,e2)->comparaProdQuantidade(e1,e2)).collect(Collectors.toList());
+    
+    }
+    // fim querie5
+    
+    // querie6
+    
+    public List<ParProdutoQuantidade> getTopXVendidos(int x){
+        List<ParProdutoQuantidade> res = this.faturacao.getTopXMaisVendido(x);
+        for(int i=0;i<x;i++){
+            Set<Cliente> clientes = this.filiais[0].getClientesCompraramProduto(res.get(i).getProduto());
+            for(int j=1;j<3;j++){
+                Set<Cliente> aux = this.filiais[j].getClientesCompraramProduto(res.get(i).getProduto());
+                aux.stream().map(e->clientes.add(e.clone()));
+                aux.clear();
+            }
+            res.get(i).setDiferentes(clientes.size());
+        }
+        return res;
+    }
     
     //querie7
     
@@ -141,14 +220,86 @@ public class Hipermercado implements Serializable {
     }
 
    
+    //querie8
+    
+    private void concatAux(Map<Cliente,Set<Produto>> m, Cliente c, Set<Produto>set){
+        if(m.containsKey(c)){
+            set.stream().map(e-> m.get(c).add(e.clone()));
+        }
+        else{
+            Set<Produto> res = new HashSet<>();
+            set.stream().map(e-> res.add(e.clone()));
+            m.put(c,res);
+        }
+    }
+    
+    private void concat(Map<Cliente,Set<Produto>> m, Map<Cliente,Set<Produto>> aux){
+        aux.forEach((k,v)->concatAux(m,k,v));
+    }
+    
+    private int comparaEntry(Map.Entry<Cliente,Set<Produto>> m1,Map.Entry<Cliente,Set<Produto>> m2 ){
+        int size1= m1.getValue().size();
+        int size2=m2.getValue().size();
+        if(size1<size2) return 1;
+        else if(size1>size2) return -1;
+        else{
+            return m1.getKey().compareTo(m2.getKey());
+        }
+    }
+    
+    public List<ParClienteNDif> compraramMaisDiferentes(int x){
+        Map<Cliente,Set<Produto>> map = this.filiais[0].getListProd();
+        List<ParClienteNDif> res= new ArrayList<>();
+        for(int i=1;i<3;i++){
+            Map<Cliente,Set<Produto>> aux = this.filiais[i].getListProd();
+            concat(map,aux);
+        }
+        map.entrySet().stream().sorted((e1,e2)-> comparaEntry(e1,e2)).limit(x).forEach(e-> res.add(new ParClienteNDif(e.getKey(),e.getValue().size())));
+        return res;
+    } 
+    // fim querie 8
+    
+    
+    // querie 9
+    private int comparaQuantidade(ParClienteQuantidade p1, ParClienteQuantidade p2){
+        if(p1.getQuantidade()<p2.getQuantidade()) return 1;
+        if(p1.getQuantidade()>p2.getQuantidade()) return -1;
+        else return p1.getCliente().compareTo(p2.getCliente());
+    }
+    
+    private void concatAuxBuyers(Map<Cliente,ParClienteQuantidade> m, Cliente c, ParClienteQuantidade p){
+        if(m.containsKey(c)){
+            m.get(c).setQuantidade(m.get(c).getQuantidade()+p.getQuantidade());
+            m.get(c).setGasto(m.get(c).getGasto()+p.getGasto());
+        }
+        else{
+            m.put(c.clone(),p.clone());
+        }
+    }
+    
+    private void concatBuyers(Map<Cliente,ParClienteQuantidade> m, Map<Cliente,ParClienteQuantidade> aux){
+        aux.forEach((k,v)->concatAuxBuyers(m,k,v));
+    }
+    
+    
+    public List<ParClienteQuantidade> getTopXBuyers(Produto p,int x){
+        Map<Cliente,ParClienteQuantidade> map = this.filiais[0].compraramProduto(p);
+        for(int i=1;i<3;i++){
+            Map<Cliente,ParClienteQuantidade> aux = this.filiais[i].compraramProduto(p);
+            concatBuyers(map,aux);
+        }
+        return map.entrySet().stream().sorted((e1,e2)->comparaQuantidade(e1.getValue(),e2.getValue())).limit(x).map(e->e.getValue()).collect(Collectors.toList());
+    }
+    
+    
+    // fim querie 9
+
     
     
     
     
     
-    
-    
-    public void inserCatalogoClientes(String c) {
+    public void inserCatalogoClientes(Cliente c) {
         this.clientes.insere(c);
     
     }
@@ -159,16 +310,14 @@ public class Hipermercado implements Serializable {
     
     }
     
-    public void inserVendas (int filial, String codigoCli , String codigoPro, int quantidade,double faturado,int mes,char modo) {
+    public void inserVendas (int filial, Cliente c , Produto p, int quantidade,double faturado,int mes,char modo) {
         
-        Produto p = new Produto(codigoPro);
-         
+        
         if((mes>=1 && mes<=12) && (filial >=1 && filial <=3 )&& (this.produtos.existe(p)) 
-                && this.clientes.existe(codigoCli) && (modo=='N' || modo =='P') && (faturado>=0.0 && faturado<=999.99)
+                && this.clientes.existe(c) && (modo=='N' || modo =='P') && (faturado>=0.0 && faturado<=999.99)
                 && quantidade >0) {
-                Cliente c = new Cliente (codigoCli);
-            this.filiais[filial-1].inserFilial(c, p, quantidade, faturado, mes-1, modo);
-            this.faturacao.inser(mes-1, filial-1, faturado, quantidade, p);
+            this.filiais[filial].inserFilial(c.clone(), p.clone(), quantidade, faturado, mes-1, modo);
+            this.faturacao.inser(mes-1, filial, faturado, quantidade, p);
             if(faturado==0.0) {
                 this.comprasnulas++;
             }
@@ -177,6 +326,14 @@ public class Hipermercado implements Serializable {
         else {this.vendaserradas++;}
     }
     
+    
+    public boolean existeCliente(String s){
+        return this.clientes.existe(new Cliente(s));
+    }
+    
+    public boolean existeProduto(String s){
+        return this.produtos.existe(new Produto(s));
+    }
     
     public void inserProdutoFaturacao (Produto p) {
     
@@ -187,34 +344,23 @@ public class Hipermercado implements Serializable {
     public void inserClienteFilial(Cliente c) {
         
             for(int i=0;i<3;i++) {
-            this.filiais[i].inserClienteFilial(c);
+                this.filiais[i].inserClienteFilial(c);
                     }
     }
     
     public int getVendasErradas() {
-    return this.vendaserradas;
+        return this.vendaserradas;
     }
     
     public int getTamanho() {
-    
-    return this.clientes.getTotalClientes();
+        return this.clientes.getTotalClientes();
     }
     
     public CatalogoClientes  getCatalogo() {
-    return this.clientes.clone();
+        return this.clientes.clone();
     }
     
-    public int getTamanhoFilial() {
     
-        int soma=0;
-        
-        for(int i=0;i<3;i++) {
-        
-            soma += this.filiais[i].getInformacaoClientes().size();
-        
-        }
-    return soma;
-    }
  
     
     

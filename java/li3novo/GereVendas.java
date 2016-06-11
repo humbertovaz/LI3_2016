@@ -23,12 +23,12 @@ import java.util.Set;
  * @author gil
  */
 public class GereVendas  {
-     private static final String ficheiroObej="C:\\Users\\gil\\Documents\\GitHub\\LI3-Parte-java\\data\\hipermercado.dat";
-     private static final String path ="C:\\Users\\gil\\Documents\\GitHub\\LI3-Parte-java\\data\\";
+     private static final String ficheiroObej="txt/hipermercado.dat";
+     private static final String path ="txt/";
      private static Menu menuMain, menuCarregar, menuEstatistica, menuInterativo,menuEstatistica1;
      private static String fichCompras;
-     private static final String ficheiroClientes="C:\\Users\\gil\\Documents\\GitHub\\LI3-Parte-java\\data\\Clientes.txt";
-     private static final String ficheiroProdutos="C:\\Users\\gil\\Documents\\GitHub\\LI3-Parte-java\\data\\Produtos.txt";
+     private static final String ficheiroClientes="txt/Clientes.txt";
+     private static final String ficheiroProdutos="txt/Produtos.txt";
      private static String ultimo;
      
      
@@ -37,261 +37,191 @@ public class GereVendas  {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-      Hipermercado t=null;
-       List<String> tmp;
-       List<Venda>tmp1;
-      String linha,ficheiro;
-      Produto produto ;
-      Cliente cliente;
-      
-      int flag;
-      
+        Hipermercado t=null;
+        List<String> tmp;
+        List<Venda>tmp1;
+        String linha,ficheiro;
+        String s;
+        int top;
+        Produto produto ;
+        Cliente cliente;
+        int flag;
         carregaMenu();
         clear();
         System.out.print("\nPara poder executar o programa GereVendas tem de efetuar um primeiro carregamento dos dados.\n");
         System.out.println("\nDeseja carregar o ultimo estado do programa? Caso contario, os ficheiros sao carregados (S/N)  ");
-       
-       linha=Input.lerString();
-       
+        linha=Input.lerString();
         if(linha.charAt(0)=='S' || linha.charAt(0)=='s') {
-         System.out.print("\nDeseja introduzir o nome do ficheiro a carregar? (S/N)  ");
-                linha = Input.lerString();
+            System.out.print("\nDeseja introduzir o nome do ficheiro a carregar? (S/N)  ");
+            linha = Input.lerString();
             if ((linha.charAt(0) == 'S') || (linha.charAt(0) == 's')) {
                 System.out.print("Introduza o nome do ficheiro a carregar sem a extensao .dat: ");
                 linha = Input.lerString();
                 ficheiro = GereVendas.path + linha + ".dat";
                 System.out.print("\n");
-                
                 GereVendas.ultimo=ficheiro;
             } else {
                 ficheiro = GereVendas.ficheiroObej;
                 GereVendas.ultimo=ficheiro;
                 System.out.println("\nCarregamento default do ficheiro...");
             }
-            
             System.out.print("A proceder ao carregamento do ficheiro ");
             System.out.print(ficheiro);
             System.out.println("...");
-            
-            
             try {
                 Crono.start();
                 ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ficheiro));    
                 t = (Hipermercado) ois.readObject();
-                 Crono.stop();
+                Crono.stop();
                 System.out.println("Ficheiro carregado com sucesso! ("+Crono.print()+" s)");
                 ois.close();
                 flag=3;
-                
-                 } 
+               } 
             catch (IOException | ClassCastException | ClassNotFoundException e) {
                 System.out.println(e.getMessage());
                 flag=1;
             }
-            
-         
-        } else {
+        } 
+        else {
             flag=2;
-            
         }
-       
         if(flag==2 || flag==1) {
             t=new Hipermercado();
-             System.out.println("\nCarregamento default dos ficheiros...");
+            System.out.println("\nCarregamento default dos ficheiros...");
                     Crono.start();
-                    
                     tmp=carregaCatalgoProduto();
                     for(String a : tmp) {
                         produto = new Produto(a);
-                   t.inserCatalogoProdutos(produto);
-                  t.inserProdutoFaturacao(produto);
-
+                        t.inserCatalogoProdutos(produto);
+                        t.inserProdutoFaturacao(produto);
+                        System.out.println(a);
                     }
-                   
                     tmp.clear();
                     tmp=carregaCatalgoClientes();
-
-                    for(String a :tmp) {
+                    for(String a :tmp){
                         cliente = new Cliente(a);
-                    t.inserCatalogoClientes(a);
-                    t.inserClienteFilial(cliente);
-                    
-                        }
-                    
+                        t.inserCatalogoClientes(cliente);
+                        t.inserClienteFilial(cliente);
+                        System.out.println(a + "tamanho real"+ a.length());
+                    }
                     carregaFicheiros();
                     tmp1=carregaCompras();
-                        
                     for(Venda a:tmp1) {
-             
-                        
-                 t.inserVendas(a.getFilial(),a.getCodigoCliente().trim(),a.getCodigoProduto(),a.getQuantidade(),a.getPreco(),a.getMes(), a.getModoDeCompra());
-                        
+                        cliente = new Cliente(a.getCodigoCliente());
+                        produto = new Produto(a.getCodigoProduto());
+                        t.inserVendas(a.getFilial(),cliente,produto,a.getQuantidade(),a.getPreco(),a.getMes(), a.getModoDeCompra());
                     }
-                    
                     Crono.stop();
-                    
-             System.out.println("Ficheiros carregados com sucesso! ("+Crono.print()+" s)");
-             
-            
+            System.out.println("Ficheiros carregados com sucesso! ("+Crono.print()+" s)");
+            System.out.println(t.getVendasErradas());
         }
-    
         waitMenu();
-    
-    
-    
-    
-    
-    
-    
-    
-    do{
-        clear();
-        GereVendas.menuMain.executa();
-        
-        switch(menuMain.getOpcao()) {
-            
-            case 1:
-                clear();
-                 System.out.println("\nDeseja carregar o ultimo estado do programa? "
-                         + "Caso contario, o ficheiro defualt e carregado (S/N)  ");
-       
+        do{
+            clear();
+            GereVendas.menuMain.executa();
+            switch(menuMain.getOpcao()) {
+                case 1:
+                    clear();
+                    System.out.println("\nDeseja carregar o ultimo estado do programa? "+ "Caso contario, o ficheiro defualt e carregado (S/N)  ");
                     linha=Input.lerString();
-       
                     if(linha.charAt(0)=='S' || linha.charAt(0)=='s') {
-                     System.out.print("\nDeseja introduzir o nome do ficheiro a carregar? (S/N)  ");
-                            linha = Input.lerString();
+                        System.out.print("\nDeseja introduzir o nome do ficheiro a carregar? (S/N)  ");
+                        linha = Input.lerString();
                         if ((linha.charAt(0) == 'S') || (linha.charAt(0) == 's')) {
-                            System.out.print("Introduza o nome do ficheiro a carregar sem "
-                                    + "a extensao .dat: ");
+                            System.out.print("Introduza o nome do ficheiro a carregar sem "+ "a extensao .dat: ");
                             linha = Input.lerString();
                             ficheiro = GereVendas.path + linha + ".dat";
                             GereVendas.ultimo=ficheiro;
                             System.out.print("\n");
-                        } else {
+                        } 
+                        else {
                             ficheiro = GereVendas.ficheiroObej;
                             GereVendas.ultimo=ficheiro;
                             System.out.println("\nCarregamento default do ficheiro...");
                         }
-
-                                System.out.print("A proceder ao carregamento do ficheiro ");
-                                System.out.print(ficheiro);
-                                System.out.println("...");
-            
-            
-            try {
-                Crono.start();
-                System.out.println("A carregar o ficheiro" + ficheiro);
-                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ficheiro));    
-                t = (Hipermercado) ois.readObject();
-                 Crono.stop();
-                System.out.println("Ficheiro carregado com sucesso! ("+Crono.print()+" s)");
-                ois.close();
-                flag=3;
-                 } catch (IOException | ClassCastException | ClassNotFoundException e) {
-                        System.out.println(e.getMessage());
-                        flag=1;
-            }
-            
-         
-        } else {
-            flag=2;
-            
-        }
-       
-        if(flag==2 || flag==1) {
-            t=new Hipermercado();
-             System.out.println("\nCarregamento default dos ficheiros...");
-                    Crono.start();
-                    
-                    tmp=carregaCatalgoProduto();
-                    for(String a : tmp) {
-                    produto = new Produto(a);
-                   t.inserCatalogoProdutos(produto);
-                  t.inserProdutoFaturacao(produto);
-
-                    }
-                   
-                    tmp.clear();
-                    tmp=carregaCatalgoClientes();
-
-                    for(String a :tmp) {
-                        cliente = new Cliente(a);
-                    t.inserCatalogoClientes(a);
-                    t.inserClienteFilial(cliente);
+                        System.out.print("A proceder ao carregamento do ficheiro ");
+                        System.out.print(ficheiro);
+                        System.out.println("...");
+                        try {
+                            Crono.start();
+                            System.out.println("A carregar o ficheiro" + ficheiro);
+                            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ficheiro));    
+                            t = (Hipermercado) ois.readObject();
+                            Crono.stop();
+                            System.out.println("Ficheiro carregado com sucesso! ("+Crono.print()+" s)");
+                            ois.close();
+                            flag=3;
+                        } catch (IOException | ClassCastException | ClassNotFoundException e) {
+                            System.out.println(e.getMessage());
+                            flag=1;
                         }
-                    carregaFicheiros();
-                    tmp1=carregaCompras();
-                        
-                    for(Venda a:tmp1) {
-                    t.inserVendas(a.getFilial(),a.getCodigoCliente().trim(),a.getCodigoProduto(),a.getQuantidade(),a.getPreco(),a.getMes(), a.getModoDeCompra());
+                    } 
+                    else {
+                        flag=2;
+            
                     }
-                    Crono.stop();
-             System.out.println("Ficheiros carregados com sucesso! ("+Crono.print()+" s)");
-        }
-                waitMenu();
-           
-                break;
-             
-                
-                
-                
-                
-                
-                
-                
-                
-            case 2:
-                clear();
-               
-
-        System.out.print("Deseja inserir um nome ao ficheiro que quer gravar? (S/N) ");
-        linha =Input.lerString();
-        if (((linha.charAt(0)) == 'S') || ((linha.charAt(0)) == 's')) {
-            System.out.print("Introduza o nome do ficheiro: ");
-            linha = Input.lerString();
+       
+                    if(flag==2 || flag==1) {
+                        t=new Hipermercado();
+                        System.out.println("\nCarregamento default dos ficheiros...");
+                        Crono.start();
+                        tmp=carregaCatalgoProduto();
+                        for(String a : tmp) {
+                            //t.insereNoCatalogoProdutos(a);
+                            //t.inicializaFaturacaoProduto(a);
+                            //t.inicializaProdutoFilial(a);
+                        }
+                        tmp.clear();
+                        tmp=carregaCatalgoClientes();
+                        for(String a :tmp) {
+                            //t.inicializaClienteFilial(a);
+                            //t.insereNoCatalogoClientes(a);
+                        }
+                        carregaFicheiros();
+                        tmp1=carregaCompras();
+                        for(Venda a:tmp1) {
+                            // t.insereCompra(a,a.getFilial());
+                        }
+                        Crono.stop();
+                        System.out.println("Ficheiros carregados com sucesso! ("+Crono.print()+" s)");
+                    }
+                    waitMenu();
+                    break;  
+                case 2:
+                    clear();
+                    System.out.print("Deseja inserir um nome ao ficheiro que quer gravar? (S/N) ");
+                    linha =Input.lerString();
+                    if (((linha.charAt(0)) == 'S') || ((linha.charAt(0)) == 's')) {
+                        System.out.print("Introduza o nome do ficheiro: ");
+                        linha = Input.lerString();
+                        ficheiro = GereVendas.path + linha + ".dat";
+                    } else {
+                        ficheiro  = GereVendas.ficheiroObej;
             
-            ficheiro = GereVendas.path + linha + ".dat";
-            
-        } else {
-            ficheiro  = GereVendas.ficheiroObej;
-            
-        }
-        System.out.println("\nA gravar os dados no ficheiro "+ficheiro +"...");
+                    }
+                    System.out.println("\nA gravar os dados no ficheiro "+ficheiro +"...");
         
-        try{
-           Crono.start();
-            FileOutputStream carrega=new  FileOutputStream(ficheiro);
-            ObjectOutputStream oos = new ObjectOutputStream(carrega);
-            oos.writeObject(t);
-            oos.flush();
-            oos.close();
-          Crono.stop();
-           System.out.println("Ficheiro guardado com sucesso " + Crono.print() );
-        }
-            catch(IOException ex){
-            System.out.println(ex.getMessage());
+                    try{
+                        Crono.start();
+                        FileOutputStream carrega=new  FileOutputStream(ficheiro);
+                        ObjectOutputStream oos = new ObjectOutputStream(carrega);
+                        oos.writeObject(t);
+                        oos.flush();
+                        oos.close();
+                        Crono.stop();
+                        System.out.println("Ficheiro guardado com sucesso " + Crono.print() );
+                    }
+                    catch(IOException ex){
+                        System.out.println(ex.getMessage());
             
-            }
-        waitMenu();
-               break;
-            
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-            case 3:
-                clear();
-                
-     do {
-                            clear();
-                            menuEstatistica.executa();
+                    }
+                    waitMenu();
+                    break;
+                case 3:
+                    clear();
+                    do {
+                        clear();
+                        menuEstatistica.executa();
                         switch (menuEstatistica.getOpcao()) {
                             case 1:
                                 clear();
@@ -302,67 +232,57 @@ public class GereVendas  {
                                 aux3=t.tamanhoCliente();
                                 aux4=t.clientesQueCompraram();
 
-                        System.out.println("*************************************************************");          
-                        System.out.println("Ultimo ficheiro lido : " +GereVendas.ultimo);
-                        System.out.println("Vendas erradas : "+t.nrComprasErrada());
-                        System.out.println("Total dos produtos lidos : "+aux1);
-                        System.out.println("Total dos produtos comprados : "+aux2);
-                        System.out.println("Total dos produtos nao comprados : "+(aux1-aux2));
-                        System.out.println("Total de clientes lidos : "+aux3);
-                        System.out.println("Total de clientes que compraram : "+aux4);
-                        System.out.println("Total de clientes que nada compraram : "+(aux3-aux4));
-                        System.out.println("Total de compras com o valor zero : "+t.getComprasZero());
-                        System.out.println("Faturacao total : "+t.getFacturacaoTotal());
+                                System.out.println("*************************************************************");          
+                                System.out.println("Ultimo ficheiro lido : " +GereVendas.ultimo);
+                                System.out.println("Vendas erradas : "+t.nrComprasErrada());
+                                System.out.println("Total dos produtos lidos : "+aux1);
+                                System.out.println("Total dos produtos comprados : "+aux2);
+                                System.out.println("Total dos produtos nao comprados : "+(aux1-aux2));
+                                System.out.println("Total de clientes lidos : "+aux3);
+                                System.out.println("Total de clientes que compraram : "+aux4);
+                                System.out.println("Total de clientes que nada compraram : "+(aux3-aux4));
+                                System.out.println("Total de compras com o valor zero : "+t.getComprasZero());
+                                System.out.println("Faturacao total : "+t.getFacturacaoTotal());
                                 Crono.stop();
-                        System.out.println("Tempo : "+Crono.print());    
-                        System.out.println("*************************************************************");    
+                                System.out.println("Tempo : "+Crono.print());    
+                                System.out.println("*************************************************************");    
                                 waitMenu();
                                 */
                                 break;
-
-                                
-                                
-                                
-                                
-                                
-             case 2:
-                        
-                       do{ 
-                        clear();
-                        GereVendas.menuEstatistica1.executa();
-                        
-                        switch(GereVendas.menuEstatistica1.getOpcao()){
+                            case 2:
+                                do{ 
+                                    clear();
+                                    GereVendas.menuEstatistica1.executa();
+                                    switch(GereVendas.menuEstatistica1.getOpcao()){
                             
                             
-                            case 1:/*
-                                int[] td =t.getNumCompras();
-                                 clear();
+                                        case 1:/*
+                                        int[] td =t.getNumCompras();
+                                        clear();
                                         int i;
-                                Crono.start();
-                                 System.out.println("*************************************************************");
-                                for(i=0;i<12;i++) {
+                                        Crono.start();
+                                        System.out.println("*************************************************************");
+                                        for(i=0;i<12;i++) {
+                                            System.out.println("No mes " +(i+1) +" efectuou-se " +td[i] +" compras");
 
-                                    System.out.println("No mes " +(i+1) +" efectuou-se " +td[i] 
-                                     +" compras");
-
-                                    }
-                                    Crono.stop();
-                                    System.out.println("Tempo " +Crono.print());
-                                     System.out.println("*************************************************************");
-                                    waitMenu();
-                                */
-                             break;
+                                        }
+                                        Crono.stop();
+                                        System.out.println("Tempo " +Crono.print());
+                                        System.out.println("*************************************************************");
+                                        waitMenu();
+                                        */
+                                       break;
                         
                              
-                            case 2:
-                                /*
-                                int j;
-                                double soma=0.0;
-                                clear();
-                                Crono.start();
-                                double [][] dp =t.getFacturacaoMes();
-                                 System.out.println("*************************************************************");
-                                for(i=0;i<12;i++) {
+                                       case 2:
+                                       /*
+                                        * int j;
+                                        * double soma=0.0;
+                                        * clear();
+                                        * Crono.start();
+                                        * double [][] dp =t.getFacturacaoMes();
+                                        * System.out.println("*************************************************************");
+                                        * for(i=0;i<12;i++) {
                                 
                                         for(j=0;j<3;j++) {
                                             
@@ -372,15 +292,15 @@ public class GereVendas  {
                                         }
                                         
                                 
-                                }
-                                System.out.println("Total em todas as filiais " +soma);
+                                    }
+                                    System.out.println("Total em todas as filiais " +soma);
                                 
                                 
-                                 System.out.println("Tempo " +Crono.print());
-                                  System.out.println("*************************************************************");
-                                waitMenu();
-                                */
-                            break;
+                                    System.out.println("Tempo " +Crono.print());
+                                    System.out.println("*************************************************************");
+                                    waitMenu();
+                                    */
+                                   break;
                                 
                                 
                         case 3:/*
@@ -406,7 +326,7 @@ public class GereVendas  {
                         }while(GereVendas.menuEstatistica1.getOpcao()!=0);
                         
                        
-            break;
+                        break;
                         
                         
                         
@@ -430,9 +350,10 @@ public class GereVendas  {
                 
                     case 1:
                         Crono.start();
-                        //Set<String> lista = t.getProdutosNaoComprados();
+                        List<Produto> lista = t.produtosNaoVendidos();
                         Crono.stop();
-                        //query1(lista,Crono.stop());
+                        imprimeLista(lista);
+                        
                         
                         
                     break;
@@ -440,49 +361,118 @@ public class GereVendas  {
                     case 2:
                         int mes = mesUtilizador();
                         Crono.start();
-                        //int y=t.getNrClientesMes(mes);
-                        //int o=t.getTotalVendas(mes);
+                        ParNVendasNCliDif p=t.vendasRealizadasMes(mes);
+                        int total=p.getVendas();
+                        int nclientes=p.getDiferentes();
                         Crono.stop();
-                        //query2(y,o,Crono.stop());
+                        System.out.println("Vendas: " + total+ "\n Clientes: " + nclientes);
                         
                     break;
                     
                     case 3:
+                        s = Input.lerString();
+                        if(t.existeCliente(s)){
+                            TriComprasNProdGastou[] res=t.clienteCompras(new Cliente(s));
+                            System.out.println("Mes\tCompras\tProdutos\tGastou");
+                            for(int i=0;i<12;i++){
+                                if(i<10){
+                                    System.out.println("0"+(i+1)+"\t"+ res[i].getVendas()+"\t"+res[i].getDiferentes()+"\t"+res[i].getGastou());
+                                }
+                                else{
+                                    System.out.println((i+1)+"\t"+ res[i].getVendas()+"\t"+res[i].getDiferentes()+"\t"+res[i].getGastou());
+                                }
+                            }
+                        }
+                        else{
+                            System.out.println("Cliente inexistente");
+                        }
                         
                         
                     break;
                     
-                     case 4:
-                        
+                    case 4:
+                        s= Input.lerString();
+                        if(t.existeProduto(s)){
+                            TriComprasNProdGastou[] res=t.produtoComprado(new Produto(s));
+                            System.out.println("Mes\tCompras\tClientes\tFaturado");
+                            for(int i=0;i<12;i++){
+                                if(i<10){
+                                    System.out.println("0"+(i+1)+"\t"+ res[i].getVendas()+"\t"+res[i].getDiferentes()+"\t"+res[i].getGastou());
+                                }
+                                else{
+                                    System.out.println((i+1)+"\t"+ res[i].getVendas()+"\t"+res[i].getDiferentes()+"\t"+res[i].getGastou());
+                                }
+                            }
+                        }
+                        else{
+                            System.out.println("Produto inexistente");
+                        }
                         
                     break; 
                     
                     case 5:
-                        
+                        s= Input.lerString();
+                        if(t.existeCliente(s)){
+                            List<ParProdutoQuantidade> res = t.getCompradosCliente(new Cliente(s));
+                            imprimeListaPar(res);
+                        }
+                        else{
+                            System.out.println("Cliente inexistente");
+                        }
                         
                     break;
                     
                     case 6:
+                        top = Input.lerInt();
+                        if(top>0){
+                            List<ParProdutoQuantidade> res = t.getTopXVendidos(top);
+                            imprimeListaPar(res);
+                            
+                        }
+                        else{
+                            System.out.println("Numero invalido");
+                        }
                         
                         
                     break;
                     
                     case 7:
-                        
+                        for(int i=1;i<4;i++){
+                            List<Cliente> res = t.top3Filial(i);
+                            System.out.println("Filial: "+i);
+                            for(int j=0;j<3;j++)System.out.println(res.get(j));
+                        }
                         
                     break;
                     
                     
                     
                     case 8:
-                        
+                        top = Input.lerInt();
+                        if(top>0){
+                            List<ParClienteNDif> res = t.compraramMaisDiferentes(top);
+                            imprimeListaParCliente(res);
+                            
+                        }
+                        else{
+                            System.out.println("Numero invalido");
+                        }
                         
                     break;
                     
                     
                     
                     case 9:
-                        
+                        s = Input.lerString();
+                        top = Input.lerInt();
+                        if(top>0){
+                            List<ParClienteQuantidade> res = t.getTopXBuyers(new Produto(s),top);
+                            imprimeListaParClienteQuantidade(res);
+                            
+                        }
+                        else{
+                            System.out.println("Numero invalido");
+                        }
                         
                     break;
                     
@@ -514,26 +504,26 @@ public class GereVendas  {
         
         
         
-        }
+            }
      
         
-    }
-    while(GereVendas.menuMain.getOpcao()!=0);
+        }
+        while(GereVendas.menuMain.getOpcao()!=0);
     
     }
    
     
     private static int mesUtilizador(){
-    int mes;
+        int mes;
         
         do{
-        System.out.println("Introduza um mês de 1-12");
-        mes=Input.lerInt();
+            System.out.println("Introduza um mês de 1-12");
+            mes=Input.lerInt();
     
         } while(mes<=0&& mes>12);
     
     
-    return mes;
+        return mes;
     }
     
    
@@ -746,29 +736,152 @@ public class GereVendas  {
     6 filial
     */
     private static Venda parseLinhaVenda(String linha){
-     StringTokenizer st;
-        String line, codProduto, codCliente;
-        int unidades, mes,filial;
-        char tipoCompra;
-        double preco;
-         st = new StringTokenizer(linha, " ");
-        
+    linha=linha.trim(); // tira espaços (antes e depois)
+    String [ ] tmp=linha.split(" ");
+    String s=tmp[3];
    Venda venda;
-    codProduto = st.nextToken();
-            preco = Double.parseDouble(st.nextToken());
-            unidades = Integer.parseInt(st.nextToken());
-            tipoCompra = st.nextToken().charAt(0);
-            codCliente = st.nextToken();
-            mes = Integer.parseInt(st.nextToken());
-            filial = Integer.parseInt(st.nextToken());
-       venda = new Venda(codProduto,codCliente,tipoCompra,(mes),
-                 (filial),preco,unidades);
+       venda = new Venda(tmp[0],tmp[4],s.charAt(0),Integer.parseInt(tmp[5]),
+                 Integer.parseInt(tmp[6]),Double.parseDouble(tmp[1]),Integer.parseInt(tmp[2]));
    return venda;
 }
             
          
+  static private void imprimeLista(List<Produto> l){
+      int i,j,pags,lpag,op,exitf=1;
+      Input in= new Input();
+      pags=l.size()/10;
+      lpag=l.size()%10;
+      if(lpag!=0) pags++;
+      if(l.size()==0){
+          System.out.print('\u000C');
+          System.out.println("Sem resultados");
+      }
+      for(i=0;i<pags && exitf!=0;){
+          System.out.print('\u000C');
+          System.out.println("Pagina " + (i+1) + "de " + pags);
+          for(j=i*10;j<i*10+10 && j<l.size();j++){
+              System.out.println(l.get(j).toString());
+          }
+          System.out.println("1 - Proxima pagina. \t 2 - Pagina anterior. \t 0 - Sair");
+          op=in.lerInt();
+          switch(op){
+              case 0: exitf=0;
+                      break;
+              case 1: if(i<pags){
+                        i++;
+                      }
+                      break;
+              case 2: if(i>0){
+                        i--;
+                      }
+                      break;
+            }
+        }  
+  }
   
+  static private void imprimeListaPar(List<ParProdutoQuantidade> l){
+      int i,j,pags,lpag,op,exitf=1;
+      Input in= new Input();
+      pags=l.size()/10;
+      lpag=l.size()%10;
+      if(lpag!=0) pags++;
+      if(l.size()==0){
+          System.out.print('\u000C');
+          System.out.println("Sem resultados");
+      }
+      for(i=0;i<pags && exitf!=0;){
+          System.out.print('\u000C');
+          System.out.println("Pagina " + (i+1) + "de " + pags);
+          for(j=i*10;j<i*10+10 && j<l.size();j++){
+              System.out.println("Codigos\tQuantidade");
+              System.out.println(l.get(j).getProduto().toString()+"\t"+l.get(j).getQuantidade());
+          }
+          System.out.println("1 - Proxima pagina. \t 2 - Pagina anterior. \t 0 - Sair");
+          op=in.lerInt();
+          switch(op){
+              case 0: exitf=0;
+                      break;
+              case 1: if(i<pags){
+                        i++;
+                      }
+                      break;
+              case 2: if(i>0){
+                        i--;
+                      }
+                      break;
+            }
+        }  
+  }
    
+  
+  static private void imprimeListaParCliente(List<ParClienteNDif> l){
+      int i,j,pags,lpag,op,exitf=1;
+      Input in= new Input();
+      pags=l.size()/10;
+      lpag=l.size()%10;
+      if(lpag!=0) pags++;
+      if(l.size()==0){
+          System.out.print('\u000C');
+          System.out.println("Sem resultados");
+      }
+      for(i=0;i<pags && exitf!=0;){
+          System.out.print('\u000C');
+          System.out.println("Pagina " + (i+1) + "de " + pags);
+          for(j=i*10;j<i*10+10 && j<l.size();j++){
+              System.out.println("Codigos\tQuantidade");
+              System.out.println(l.get(j).getCliente().toString()+"\t"+l.get(j).getDiferentes());
+          }
+          System.out.println("1 - Proxima pagina. \t 2 - Pagina anterior. \t 0 - Sair");
+          op=in.lerInt();
+          switch(op){
+              case 0: exitf=0;
+                      break;
+              case 1: if(i<pags){
+                        i++;
+                      }
+                      break;
+              case 2: if(i>0){
+                        i--;
+                      }
+                      break;
+            }
+        }  
+  }
+  
+  
+  static private void imprimeListaParClienteQuantidade(List<ParClienteQuantidade> l){
+      int i,j,pags,lpag,op,exitf=1;
+      Input in= new Input();
+      pags=l.size()/10;
+      lpag=l.size()%10;
+      if(lpag!=0) pags++;
+      if(l.size()==0){
+          System.out.print('\u000C');
+          System.out.println("Sem resultados");
+      }
+      for(i=0;i<pags && exitf!=0;){
+          System.out.print('\u000C');
+          System.out.println("Pagina " + (i+1) + "de " + pags);
+          for(j=i*10;j<i*10+10 && j<l.size();j++){
+              System.out.println("Codigos\tQuantidade\tGasto");
+              System.out.println(l.get(j).getCliente().toString()+"\t"+l.get(j).getQuantidade()+"\t"+l.get(j).getGasto());
+          }
+          System.out.println("1 - Proxima pagina. \t 2 - Pagina anterior. \t 0 - Sair");
+          op=in.lerInt();
+          switch(op){
+              case 0: exitf=0;
+                      break;
+              case 1: if(i<pags){
+                        i++;
+                      }
+                      break;
+              case 2: if(i>0){
+                        i--;
+                      }
+                      break;
+            }
+        }  
+  }
    /*
         carregar os produtos e os clientes
    */
@@ -791,22 +904,16 @@ public class GereVendas  {
    }
    
    private static List<String>carregaCatalgoClientes() throws FileNotFoundException, IOException {
-   
-   BufferedReader br;
-        String line;
-        ArrayList<String> tmp= new ArrayList<>();
-
-        System.out.println("A proceder a leitura do ficheiro..."+GereVendas.ficheiroClientes);
-        br = new BufferedReader(new FileReader(GereVendas.ficheiroClientes));
-        while ((line = br.readLine()) != null) {
+       BufferedReader br;
+       String line;
+       ArrayList<String> tmp= new ArrayList<>();
+       System.out.println("A proceder a leitura do ficheiro..."+GereVendas.ficheiroClientes);
+       br = new BufferedReader(new FileReader(GereVendas.ficheiroClientes));
+       while ((line = br.readLine()) != null) {
            tmp.add(line);
-        }
-
-        br.close();
-
-
-  
-    return tmp;
+       }
+       br.close();
+       return tmp;
    } 
 
    

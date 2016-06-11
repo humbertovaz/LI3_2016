@@ -1,14 +1,11 @@
 
-import java.io.Serializable;
-
-
 /**
  * Escreva a descrição da classe TriComprasNProdGastou aqui.
  * 
  * @author (seu nome) 
  * @version (número de versão ou data)
  */
-public class TriComprasNProdGastou  implements Serializable
+public class TriComprasNProdGastou
 {
     // variáveis de instância - substitua o exemplo abaixo pelo seu próprio
    private int vendas;

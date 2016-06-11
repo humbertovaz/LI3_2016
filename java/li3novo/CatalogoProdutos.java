@@ -1,7 +1,6 @@
 
  
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +11,7 @@ import java.util.Set;
  *
  * 
  */
-public class CatalogoProdutos implements Serializable{
+public class CatalogoProdutos {
     
     private Set<Produto> catalogoProdutos;
 
