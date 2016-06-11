@@ -83,7 +83,7 @@ public class CatalogoClientes {
     
     /**
      * Insere um cliente no Catálogo de Clientes.
-     * @param codCliente código de cliente
+     * @param cliente
      */
     public void insere(Cliente cliente) {
         this.catalogoClientes.add(cliente);
@@ -91,7 +91,7 @@ public class CatalogoClientes {
     
     /**
      * Verifica se um dado cliente existe no Catálogo de Clientes.
-     * @param codCliente código de cliente
+     * @param cliente
      * @return true se o cliente existir, false caso contrário
      */
     public boolean existe(Cliente cliente) {

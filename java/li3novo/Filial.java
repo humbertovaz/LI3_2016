@@ -88,16 +88,6 @@ public class Filial {
         return res;
     }
     
-    public Set<Cliente> getClientesCompraramProduto(Produto p){
-        Set<Cliente> res = this.getClientesCompraramProdutoMes(p,1);
-        for(int i=2;i<13;i++){
-            Set<Cliente> aux = this.getClientesCompraramProdutoMes(p,i);
-            aux.stream().map(e->res.add(e.clone()));
-        }
-        return res;
-    
-    }
-    
     public double faturadoProdutoMes(Produto p, int mes){
         double res=0;
         for(InfoCliente i: this.informacaoClientes.values()){
@@ -106,22 +96,18 @@ public class Filial {
         return res;
     }
     
-    private void addCliQuant(Map<Cliente,ParClienteQuantidade> m, InfoCliente i, Cliente c, Produto p){
+    private void addCliQuant(Map<Produto,ParClienteQuantidade> m, InfoCliente i, Cliente c, Produto p){
         if(i.comprou(p)){
             if(m.containsKey(c)){
                 ParClienteQuantidade aux = m.get(c);
                 aux.setQuantidade(aux.getQuantidade()+i.getQuantidadeProduto(p));
                 aux.setGasto(aux.getGasto()+i.getGastouProduto(p));
             }
-            else{
-                ParClienteQuantidade aux = new ParClienteQuantidade(c,i.getQuantidadeProduto(p),i.getGastouProduto(p));
-                m.put(c.clone(),aux);
-            }
         }
     }
     
-    public Map<Cliente,ParClienteQuantidade> compraramProduto(Produto p){
-        Map<Cliente,ParClienteQuantidade> res= new HashMap<>();
+    public Map<Produto,ParClienteQuantidade> compraramProduto(Produto p){
+        Map<Produto,ParClienteQuantidade> res= new HashMap<>();
         this.informacaoClientes.forEach((k,v)-> addCliQuant(res,v,k,p));
         return res;
     }
@@ -131,26 +117,6 @@ public class Filial {
         if(this.informacaoClientes.containsKey(c)){
             res=this.informacaoClientes.get(c).produtosCompradosMes(mes);
         }
-        return res;
-    }
-    
-    
-    public int getQuantidadeComprada(Cliente c, Produto p){
-        if(this.informacaoClientes.containsKey(c)){
-            return this.informacaoClientes.get(c).getQuantidadeProduto(p);
-        }
-        return 0;
-    }
-    
-    public Map<Produto,ParProdutoQuantidade> getComprados(Cliente c){
-        Set<Produto> produtos = getProdutosCompradosMes(c,1);
-        Map<Produto,ParProdutoQuantidade> res = new HashMap<>();
-        for(int i=2;i<13;i++){
-            Set<Produto> aux = getProdutosCompradosMes(c,i);
-            aux.stream().map(e->produtos.add(e.clone()));
-            aux.clear();
-        }
-        produtos.stream().map(e->res.put(e.clone(),new ParProdutoQuantidade(e.clone(),this.getQuantidadeComprada(c,e))));
         return res;
     }
     
@@ -180,5 +146,71 @@ public class Filial {
     public Filial clone(){
         return new Filial(this);
     }
+
+    
+    
+    public void inserClienteFilial(Cliente p) {
+    
+        this.informacaoClientes.put(p, new InfoCliente());
+    
+    
+    }
+    
+    
+    
+    
+    
+    public void inserFilial(Cliente c , Produto p, int quantidade,double faturado,int mes,char modo) {
+    
+        
+            this.informacaoClientes.get(c).inser(p, quantidade, faturado, mes, modo);
+       
+    }
+    
+    
+    
+    
+    
+    
+    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Filial other = (Filial) obj;
+        if (!Objects.equals(this.informacaoClientes, other.getInformacaoClientes())) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

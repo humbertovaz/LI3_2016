@@ -17,26 +17,26 @@ public class ParClienteQuantidade
      */
     public ParClienteQuantidade()
     {
-        cliente = new Cliente();
-        quantidade=0;
-        gasto=0;
+        this.cliente = new Cliente();
+        this.quantidade=0;
+        this.gasto=0;
     }
 
     
     public ParClienteQuantidade(Cliente c, int quantidade, double g)
     {
-        cliente = c.clone();
-        quantidade=quantidade;
-        gasto=g;
+        this.cliente = c.clone();
+        this.quantidade=quantidade;
+        this.gasto=g;
     }
     
     
     
     public ParClienteQuantidade(ParClienteQuantidade p)
     {
-        cliente = p.getCliente();
-        quantidade=p.getQuantidade();
-        gasto=p.getGasto();
+        this.cliente = p.getCliente();
+        this.quantidade=p.getQuantidade();
+        this.gasto=p.getGasto();
     }
     
     

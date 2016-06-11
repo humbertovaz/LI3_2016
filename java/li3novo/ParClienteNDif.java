@@ -16,23 +16,23 @@ public class ParClienteNDif
      */
     public ParClienteNDif()
     {
-        cliente = new Cliente();
-        diferentes=0;
+        this.cliente = new Cliente();
+        this.diferentes=0;
     }
 
     
     public ParClienteNDif(Cliente c, int diferentes)
     {
-        cliente = c.clone();
-        diferentes=diferentes;
+        this.cliente = c.clone();
+        this.diferentes=diferentes;
     }
     
     
     
     public ParClienteNDif(ParClienteNDif p)
     {
-        cliente = p.getCliente();
-        diferentes=p.getDiferentes();
+        this.cliente = p.getCliente();
+        this.diferentes=p.getDiferentes();
     }
     
     

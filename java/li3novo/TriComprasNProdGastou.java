@@ -15,9 +15,9 @@ public class TriComprasNProdGastou
 
     public TriComprasNProdGastou()
     {
-        vendas = 0;
-        diferentes=0;
-        gastou=0;
+        this.vendas = 0;
+        this.diferentes=0;
+        this.gastou=0;
     }
 
     
@@ -32,9 +32,9 @@ public class TriComprasNProdGastou
     
     public TriComprasNProdGastou(TriComprasNProdGastou p)
     {
-        vendas = p.getVendas();
-        diferentes=p.getDiferentes();
-        gastou=p.getGastou();
+        this.vendas = p.getVendas();
+        this.diferentes=p.getDiferentes();
+        this.gastou=p.getGastou();
     }
     
     

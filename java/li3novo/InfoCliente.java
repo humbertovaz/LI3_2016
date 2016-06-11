@@ -14,7 +14,7 @@ import java.util.Map.Entry;
  */
 class InfoCliente {
    private double[] dinheiroGastoMes;
-   private double[] totalCompradoMes;
+   private int[] totalCompradoMes;
    private int [] vendas;
    private int totalComprado;
    private double totalGasto;
@@ -22,7 +22,9 @@ class InfoCliente {
     
    public InfoCliente(){
        this.dinheiroGastoMes= new double[12];
-       this.totalCompradoMes= new double [12];
+       this.totalCompradoMes= new int [12];
+       this.vendas = new int [12];
+       this.produtosComprados=new TreeMap[2];
        this.totalComprado=0;
        for(int i=0;i<12;i++){
            this.vendas[i]=0;
@@ -32,7 +34,7 @@ class InfoCliente {
        }
    }
 
-    public InfoCliente(double[] dinheiroGastoMes, double[] totalCompradoMes, int totalComprado, Map<Cliente, InfoProdutoCliente> produtosComprados[],int []vendas) {
+    public InfoCliente(double[] dinheiroGastoMes, int[] totalCompradoMes, int totalComprado, Map<Cliente, InfoProdutoCliente> produtosComprados[],int []vendas) {
         this.dinheiroGastoMes = dinheiroGastoMes;
         this.totalCompradoMes = totalCompradoMes;
         this.totalComprado = totalComprado;
@@ -78,7 +80,7 @@ class InfoCliente {
         return dinheiroGastoMes;
    }
 
-   public double[] getTotalCompradoMes() {
+   public int [] getTotalCompradoMes() {
         return totalCompradoMes;
    }
 
@@ -139,7 +141,7 @@ class InfoCliente {
        this.dinheiroGastoMes = dinheiroGastoMes;
    }
 
-   public void setTotalComoradoMes(double[] totalComoradoMes) {
+   public void setTotalComoradoMes(int[] totalComoradoMes) {
        this.totalCompradoMes = totalComoradoMes;
    }
 
@@ -215,5 +217,119 @@ class InfoCliente {
    }
    public InfoCliente clone(){
        return new InfoCliente(this);
+   
+    }
+
+   
+   
+   
+   
+   
+   
+   
+   
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final InfoCliente other = (InfoCliente) obj;
+        if (this.totalComprado != other.getTotalComprado()) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.totalGasto) != Double.doubleToLongBits(other.getTotalGasto())) {
+            return false;
+        }
+        if (!Arrays.equals(this.dinheiroGastoMes, other.getDinheiroGastoMes())) {
+            return false;
+        }
+        if (!Arrays.equals(this.totalCompradoMes, other.getTotalCompradoMes())) {
+            return false;
+        }
+        if (!Arrays.equals(this.vendas, other.getVendas())) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.produtosComprados, other.getProdutosComprado())) {
+            return false;
+        }
+        return true;
+    }
+   
+    
+    public Map<Produto,InfoProdutoCliente> [] getProdutosComprado() {
+        Map<Produto,InfoProdutoCliente> [] tmp = new HashMap[2];
+        int i;
+        
+        for(i=0;i<2;i++) {
+        tmp[i]=new HashMap<>();
+        }
+        for(i=0;i<2;i++) {
+        for (Map.Entry<Produto, InfoProdutoCliente> e: this.produtosComprados[i].entrySet()){
+            tmp[i].put(e.getKey(),e.getValue().clone());
+       }
+        }
+        return tmp;
+    }
+ 
+   public int [] getVendas() {
+       int [] a = new int[12];
+       
+       for(int i =0 ;i<12;i++) {
+           
+       a[i]=this.vendas[i];
+       }
+   return a;
    }
+   
+    public void inser(Produto p , int quantidade, double faturado,int mes, char modo) {
+        int m;
+        if(modo=='N') m=0;
+        else m=1;
+        
+        if(this.produtosComprados[m].containsKey(p)) {
+        
+              this.produtosComprados[m].get(p).inser(mes, quantidade, faturado);
+              this.dinheiroGastoMes[mes]+=faturado*quantidade;
+              this.totalGasto+=faturado*quantidade;
+              this.totalCompradoMes[mes]+=quantidade;
+              this.vendas[mes]++;
+              this.totalComprado+=quantidade*faturado;
+        }
+    
+        else {
+                InfoProdutoCliente info = new InfoProdutoCliente();
+                info.inser(mes, quantidade, faturado);
+                this.produtosComprados[m].put(p, info);
+                this.dinheiroGastoMes[mes]+=faturado*quantidade;
+                this.totalGasto+=faturado*quantidade;
+                this.totalCompradoMes[mes]+=quantidade;
+                this.vendas[mes]++;
+                this.totalComprado+=quantidade*faturado;
+                
+        }
+
+    }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 }

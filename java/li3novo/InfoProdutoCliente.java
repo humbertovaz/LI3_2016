@@ -18,6 +18,8 @@ public class InfoProdutoCliente {
     private double totalFaturado;
     private int[] compras;
 
+   
+
     
     public InfoProdutoCliente(){
         this.quantidadeTotal=0;
@@ -121,5 +123,80 @@ public class InfoProdutoCliente {
     public String toString() {
         return "InfoProdutoCliente{" +  ", quantidadeMesPorFilial=" + Arrays.toString(quantidade) + ", totalGasto=" + Arrays.toString(faturado) + '}';
     }
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    public void inser(int mes,int quantidade,double faturado) {
+    
+        this.compras[mes]++;
+        this.quantidade[mes]+=quantidade;
+        this.quantidadeTotal+=quantidade;
+        this.totalFaturado+=faturado;
+        this.faturado[mes]+=faturado;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final InfoProdutoCliente other = (InfoProdutoCliente) obj;
+        if (this.quantidadeTotal != other.getQuantidadeTotal()) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.totalFaturado) != Double.doubleToLongBits(other.getTotalFaturado())) {
+            return false;
+        }
+        if (!Arrays.equals(this.quantidade, other.getQuantidade())) {
+            return false;
+        }
+        if (!Arrays.equals(this.faturado, other.getFaturado())) {
+            return false;
+        }
+        if (!Arrays.equals(this.compras, other.getCompras())) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
+    
+    public int [] getCompras() {
+    int [] a = new int [12];
+    
+        System.arraycopy(this.compras, 0, a, 0, 12);
+    
+    return a;
+  }
+    
+     public void setQuantidadeTotal(int quantidadeTotal) {
+        this.quantidadeTotal = quantidadeTotal;
+    }
+
+    public void setTotalFaturado(double totalFaturado) {
+        this.totalFaturado = totalFaturado;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

@@ -14,8 +14,8 @@ public class ParNVendasNCliDif
 
     public ParNVendasNCliDif()
     {
-        vendas = 0;
-        diferentes=0;
+        this.vendas = 0;
+        this.diferentes=0;
     }
 
     

@@ -1,3 +1,4 @@
+
  
 
 import java.util.HashSet;
@@ -74,7 +75,7 @@ public class CatalogoProdutos {
     
     /**
      * Insere um produto no Catálogo de Produtos
-     * @param codProduto código de produto 
+     * @param p 
      */
     public void insere(Produto p) {
         this.catalogoProdutos.add(p);
@@ -82,7 +83,7 @@ public class CatalogoProdutos {
     
     /**
      * Verifica se um produto existe no Catálogo de Produtos.
-     * @param codProduto código de produto
+     * @param p
      * @return true se o cliente existir, false caso contrário
      */
     public boolean existe(Produto p) {
