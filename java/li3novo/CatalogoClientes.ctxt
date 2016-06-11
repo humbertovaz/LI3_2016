@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.params=
+comment0.target=CatalogoClientes()
+comment1.params=catalogoClientes
+comment1.target=CatalogoClientes(java.util.HashSet)
+comment10.params=
+comment10.target=int\ getTotalClientes()
+comment10.text=\n\ Devolve\ o\ n\u00FAmero\ de\ clientes\ que\ est\u00E3o\ no\ Cat\u00E1logo\ de\ Clientes.\n\ @return\ n\u00FAmero\ de\ clientes\n
+comment2.params=c
+comment2.target=CatalogoClientes(CatalogoClientes)
+comment3.params=
+comment3.target=java.util.Set\ getCatalogoClientes()
+comment4.params=catalogoClientes
+comment4.target=void\ setCatalogoClientes(java.util.Set)
+comment5.params=obj
+comment5.target=boolean\ equals(java.lang.Object)
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment7.params=
+comment7.target=CatalogoClientes\ clone()
+comment8.params=cliente
+comment8.target=void\ insere(Cliente)
+comment8.text=\n\ Insere\ um\ cliente\ no\ Cat\u00E1logo\ de\ Clientes.\n\ @param\ codCliente\ c\u00F3digo\ de\ cliente\n
+comment9.params=cliente
+comment9.target=boolean\ existe(Cliente)
+comment9.text=\n\ Verifica\ se\ um\ dado\ cliente\ existe\ no\ Cat\u00E1logo\ de\ Clientes.\n\ @param\ codCliente\ c\u00F3digo\ de\ cliente\n\ @return\ true\ se\ o\ cliente\ existir,\ false\ caso\ contr\u00E1rio\n
+numComments=11

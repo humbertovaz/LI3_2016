@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.params=
+comment0.target=TriComprasNProdGastou()
+comment1.params=vendas\ diferentes\ g
+comment1.target=TriComprasNProdGastou(int,\ int,\ double)
+comment10.params=o
+comment10.target=boolean\ equals(java.lang.Object)
+comment2.params=p
+comment2.target=TriComprasNProdGastou(TriComprasNProdGastou)
+comment3.params=
+comment3.target=double\ getGastou()
+comment4.params=
+comment4.target=int\ getVendas()
+comment5.params=
+comment5.target=int\ getDiferentes()
+comment6.params=g
+comment6.target=void\ setGastou(double)
+comment7.params=d
+comment7.target=void\ setDiferentes(int)
+comment8.params=vendas
+comment8.target=void\ setVendas(int)
+comment9.params=
+comment9.target=TriComprasNProdGastou\ clone()
+numComments=11

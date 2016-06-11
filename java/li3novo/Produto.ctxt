@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Produto()
+comment0.text=\n\ \ \ \ \ CONSTRUCTORES\n
+comment1.params=cod_produto
+comment1.target=Produto(java.lang.String)
+comment2.params=produto
+comment2.target=Produto(Produto)
+comment3.params=
+comment3.target=java.lang.String\ getCodigoProduto()
+comment3.text=\n\ \ \ \ \ SETTERS\ E\ GETTERS\n
+comment4.params=codigo_produto
+comment4.target=void\ setCodigoProduto(java.lang.String)
+comment5.params=obj
+comment5.target=boolean\ equals(java.lang.Object)
+comment5.text=\n\ \ \ \ \ METODOS\ PRODUTO\n
+comment6.params=
+comment6.target=Produto\ clone()
+comment7.params=
+comment7.target=java.lang.String\ toString()
+comment8.params=
+comment8.target=int\ hashCode()
+comment9.params=c
+comment9.target=int\ compareTo(Produto)
+numComments=10

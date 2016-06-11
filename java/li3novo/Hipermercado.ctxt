@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Hipermercado()
+comment1.params=
+comment1.target=CatalogoClientes\ getClientes()
+comment2.params=
+comment2.target=CatalogoProdutos\ getProdutos()
+comment3.params=
+comment3.target=java.util.List\ getFiliais()
+comment4.params=
+comment4.target=java.util.List\ produtosNaoVendidos()
+comment5.params=c
+comment5.target=TriComprasNProdGastou[]\ clienteCompras(Cliente)
+comment6.params=mes
+comment6.target=ParNVendasNCliDif\ vendasRealizadasMes(int)
+comment7.params=filial
+comment7.target=java.util.List\ top3Filial(int)
+comment8.params=clientes
+comment8.target=void\ setClientes(CatalogoClientes)
+comment9.params=produtos
+comment9.target=void\ setProdutos(CatalogoProdutos)
+numComments=10
