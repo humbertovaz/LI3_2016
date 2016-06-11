@@ -69,7 +69,7 @@ public class Hipermercado implements Serializable {
         double gastou=0;
         int vendas=0;
         int diferentes=0;
-        TriComprasNProdGastou[] res=null;
+        TriComprasNProdGastou[] res= new TriComprasNProdGastou[12];
 
         for(int i=0;i<12;i++){
             for(int j=0;j<3;j++){
@@ -83,7 +83,10 @@ public class Hipermercado implements Serializable {
                 aux.clear();
             }
             diferentes=set.size();
-            res[i]=new TriComprasNProdGastou(vendas,diferentes,gastou);
+            res[i].setVendas(vendas);
+            res[i].setDiferentes(diferentes);
+            res[i].setGastou(gastou);
+            gastou=vendas=diferentes=0;
         }
         return res;
     }
@@ -104,14 +107,164 @@ public class Hipermercado implements Serializable {
         return new ParNVendasNCliDif(vendas,clientes);
     }
 
+    // querie 4
+    
+    public TriComprasNProdGastou[] produtoComprado(Produto p){
+        int compras= 0;
+        int diferentes=0;
+        double totalFaturado=0;
+        TriComprasNProdGastou[] res = new TriComprasNProdGastou[12];
+        for(int i=0;i<12;i++){
+            compras=this.faturacao.getVendasMesProd(p,i+1);
+            totalFaturado=this.faturacao.getFaturacaoMesProd(p,i+1);
+            Set<Cliente> set = this.filiais[0].getClientesCompraramProdutoMes(p,i+1);
+            for(int j=1;j<3;j++){
+                Set<Cliente> aux=this.filiais[i].getClientesCompraramProdutoMes(p,i+1);
+                aux.stream().map(e->set.add(e.clone()));
+                aux.clear();
+            }
+            diferentes=set.size();
+            res[i].setDiferentes(diferentes);
+            res[i].setVendas(compras);
+            res[i].setGastou(totalFaturado);
+            totalFaturado=diferentes=compras=0;
+        }
+        return res;
+    }
+    
+    //querie 5
     
     
-    //querie7
+    private int comparaProdQuantidade(ParProdutoQuantidade p1, ParProdutoQuantidade p2){
+        if(p1.getQuantidade()<p2.getQuantidade()) return 1;
+        if(p1.getQuantidade()>p2.getQuantidade()) return -1;
+        else return p1.getProduto().compareTo(p2.getProduto());
+    }
+    
+    
+    
+    private void concatMapAux(Map<Produto,ParProdutoQuantidade> m, Produto p, ParProdutoQuantidade q){
+        if(m.containsKey(p)){
+            m.get(p).setQuantidade(m.get(p).getQuantidade()+q.getQuantidade());
+        }
+        else{
+            m.put(p.clone(),q.clone());
+        }
+    
+    }
+    
+    private void concatMap(Map<Produto,ParProdutoQuantidade> m, Map<Produto,ParProdutoQuantidade> aux){
+        aux.forEach((k,v)->concatMapAux(m,k,v));
+    }
+    
+    
+    public List<ParProdutoQuantidade> getCompradosCliente(Cliente c){
+        Map<Produto,ParProdutoQuantidade> produtos = this.filiais[0].getComprados(c);
+        for(int i=1;i<3;i++){
+            Map<Produto,ParProdutoQuantidade> aux = this.filiais[i].getComprados(c);
+            concatMap(produtos,aux);
+        }
+        return produtos.entrySet().stream().map(e->e.getValue().clone()).sorted((e1,e2)->comparaProdQuantidade(e1,e2)).collect(Collectors.toList());
+    
+    }
+    // fim querie5
+    
+    // querie6
+    
+    public List<ParProdutoQuantidade> getTopXVendidos(int x){
+        List<ParProdutoQuantidade> res = this.faturacao.getTopXMaisVendido(x);
+        for(int i=0;i<x;i++){
+            Set<Cliente> clientes = this.filiais[0].getClientesCompraramProduto(res.get(i).getProduto());
+            for(int j=1;j<3;j++){
+                Set<Cliente> aux = this.filiais[j].getClientesCompraramProduto(res.get(i).getProduto());
+                aux.stream().map(e->clientes.add(e.clone()));
+                aux.clear();
+            }
+            res.get(i).setDiferentes(clientes.size());
+        }
+        return res;
+    }
+    
+    // +/- a querie7
     
     public List<Cliente> top3Filial(int filial){
         return this.filiais[filial-1].getTop3Buyers();
     }
     
+    
+    //querie8
+    
+    private void concatAux(Map<Cliente,Set<Produto>> m, Cliente c, Set<Produto>set){
+        if(m.containsKey(c)){
+            set.stream().map(e-> m.get(c).add(e.clone()));
+        }
+        else{
+            Set<Produto> res = new HashSet<>();
+            set.stream().map(e-> res.add(e.clone()));
+            m.put(c,res);
+        }
+    }
+    
+    private void concat(Map<Cliente,Set<Produto>> m, Map<Cliente,Set<Produto>> aux){
+        aux.forEach((k,v)->concatAux(m,k,v));
+    }
+    
+    private int comparaEntry(Map.Entry<Cliente,Set<Produto>> m1,Map.Entry<Cliente,Set<Produto>> m2 ){
+        int size1= m1.getValue().size();
+        int size2=m2.getValue().size();
+        if(size1<size2) return 1;
+        else if(size1>size2) return -1;
+        else{
+            return m1.getKey().compareTo(m2.getKey());
+        }
+    }
+    
+    public List<ParClienteNDif> compraramMaisDiferentes(int x){
+        Map<Cliente,Set<Produto>> map = this.filiais[0].getListProd();
+        List<ParClienteNDif> res= new ArrayList<>();
+        for(int i=1;i<3;i++){
+            Map<Cliente,Set<Produto>> aux = this.filiais[i].getListProd();
+            concat(map,aux);
+        }
+        map.entrySet().stream().sorted((e1,e2)-> comparaEntry(e1,e2)).limit(x).forEach(e-> res.add(new ParClienteNDif(e.getKey(),e.getValue().size())));
+        return res;
+    } 
+    // fim querie 8
+    
+    
+    // querie 9
+    private int comparaQuantidade(ParClienteQuantidade p1, ParClienteQuantidade p2){
+        if(p1.getQuantidade()<p2.getQuantidade()) return 1;
+        if(p1.getQuantidade()>p2.getQuantidade()) return -1;
+        else return p1.getCliente().compareTo(p2.getCliente());
+    }
+    
+    private void concatAuxBuyers(Map<Cliente,ParClienteQuantidade> m, Cliente c, ParClienteQuantidade p){
+        if(m.containsKey(c)){
+            m.get(c).setQuantidade(m.get(c).getQuantidade()+p.getQuantidade());
+            m.get(c).setGasto(m.get(c).getGasto()+p.getGasto());
+        }
+        else{
+            m.put(c.clone(),p.clone());
+        }
+    }
+    
+    private void concatBuyers(Map<Cliente,ParClienteQuantidade> m, Map<Cliente,ParClienteQuantidade> aux){
+        aux.forEach((k,v)->concatAuxBuyers(m,k,v));
+    }
+    
+    
+    public List<ParClienteQuantidade> getTopXBuyers(Produto p,int x){
+        Map<Cliente,ParClienteQuantidade> map = this.filiais[0].compraramProduto(p);
+        for(int i=1;i<3;i++){
+            Map<Cliente,ParClienteQuantidade> aux = this.filiais[i].compraramProduto(p);
+            concatBuyers(map,aux);
+        }
+        return map.entrySet().stream().sorted((e1,e2)->comparaQuantidade(e1.getValue(),e2.getValue())).limit(x).map(e->e.getValue()).collect(Collectors.toList());
+    }
+    
+    
+    // fim querie 9
     public void setClientes(CatalogoClientes clientes) {
         this.clientes = clientes;
     }

@@ -42,6 +42,25 @@ public class Faturacao {
         return t;
     }
     
+    
+    public int getVendasMesProd(Produto p,int mes){
+        int res=0;
+        if(this.produtosVendidos.containsKey(p)){
+            res=this.produtosVendidos.get(p).getVendasMes(mes);
+        }
+        return res;
+    }
+    
+    
+    public double getFaturacaoMesProd(Produto p,int mes){
+        double res=0;
+        if(this.produtosVendidos.containsKey(p)){
+            res=this.produtosVendidos.get(p).getFaturadoMes(mes);
+        }
+        return res;
+    }
+    
+    
     public int getTotalVendasMes(int mes){
         return this.produtosVendidos.values().stream().mapToInt(i-> i.getVendasMes(mes)).sum();
     }
@@ -70,6 +89,18 @@ public class Faturacao {
         if (!(i.comprado())){
             l.add(p.clone());
         }
+    }
+    
+    private int produtoQuantidadeComp(ParProdutoQuantidade p1,ParProdutoQuantidade p2){
+        if(p1.getQuantidade()<p2.getQuantidade()) return 1;
+        else if(p1.getQuantidade()>p2.getQuantidade()) return -1;
+        else return p1.getProduto().compareTo(p2.getProduto());
+    }
+    
+    public List<ParProdutoQuantidade> getTopXMaisVendido(int x){
+        List<ParProdutoQuantidade> res = new ArrayList<>();
+        this.produtosVendidos.forEach((k,v)->res.add(new ParProdutoQuantidade(k.clone(),v.getQuantidadeTotal())));
+        return res.stream().sorted((e1,e2)->produtoQuantidadeComp(e1,e2)).limit(x).collect(Collectors.toList());
     }
     
     public List<Produto> getNaoVendidos(){

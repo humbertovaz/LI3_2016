@@ -78,6 +78,14 @@ public class InfoProduto {
     }
     
     
+    public double getFaturadoMes(int mes){
+        double res=0;
+        for(int i=0;i<3;i++){
+            res+=this.faturado[mes-1][i];
+        }
+        return res;
+    }
+    
     public int getVendasMes(int mes){
         int total=0;
         for(int i=0;i<3;i++){
