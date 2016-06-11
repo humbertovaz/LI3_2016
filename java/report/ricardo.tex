@@ -1,0 +1,25 @@
+\begin{itemize}
+
+\item	Faturacao inicializa\_faturacao();
+\item	void cont\_regista\_produto(Faturacao fat, char *prod);
+\item	void cont\_insere\_venda(Faturacao fat, char *produto, int q, float preco, char M,int mes, int filial);
+\item	void cont\_remove\_produto(Faturacao fat, char *produto);
+\item	void free\_faturacao(Faturacao fat);
+\item	int getNumeroTotalVendasNTodasFiliais (char* prod,int mes,Faturacao fat);
+\item	int getNumeroTotalVendasNFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	int getNumeroTotalVendasPTodasFiliais (char* prod,int mes,Faturacao fat);
+\item	int getNumeroTotalVendasPFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	float getTotalFatPFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	float getTotalFatNFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	int getVendasNFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	int getVendasPFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	int getQuantidadeNFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	int getQuantidadePFilialX (char* prod,int mes,Faturacao fat, int filial);
+\item	ARRAY naoCompradosFilial(Faturacao fat, int filial);
+\item	ARRAY naoComprados(Faturacao fat);
+\item	int totalVendasMeses(Faturacao fat, int a, int b);
+\item	float totalFatMeses(Faturacao fat, int a, int b);
+\item	ARRAY nMaisVendidos(Faturacao fat, int n);
+\item	int getQuantidadeFilial(Faturacao fat, char*prod, int filial);
+	
+\end{itemize}
