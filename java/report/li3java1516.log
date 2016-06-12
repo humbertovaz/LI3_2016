@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  12 JUN 2016 16:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  12 JUN 2016 16:51
 entering extended mode
 **li3java1516.tex
 (li3java1516.tex
@@ -1348,14 +1348,14 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
  [4 <./arquiteturaproj.png>]
 Cap\'{\i }tulo 3.
-<diagramaclasses.png, id=32, 898.85812pt x 414.04688pt>
+<diagramaclasses.png, id=32, 903.375pt x 408.77719pt>
 File: diagramaclasses.png Graphic file (type png)
 
 <use diagramaclasses.png>
 Package pdftex.def Info: diagramaclasses.png used on input line 54.
-(pdftex.def)             Requested size: 494.37349pt x 227.72647pt.
+(pdftex.def)             Requested size: 496.85779pt x 224.82814pt.
 
-Overfull \hbox (39.12938pt too wide) in paragraph at lines 54--55
+Overfull \hbox (41.61368pt too wide) in paragraph at lines 54--55
 [][] 
  []
 
@@ -1393,7 +1393,7 @@ nc}<C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program
 Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/
 times/utmr8a.pfb>
-Output written on li3java1516.pdf (12 pages, 574702 bytes).
+Output written on li3java1516.pdf (12 pages, 574067 bytes).
 PDF statistics:
  70 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
