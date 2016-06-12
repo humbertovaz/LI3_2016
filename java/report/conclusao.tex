@@ -2,9 +2,8 @@
 
 Uma vez que se tratou de um trabalho de uma dimensão já considerável comparando com o que estávamos habituados envolveu utilização de técnicas particulares e tivemos sempre como objetivo que este trabalho fosse concebido de modo a que seja facilmente modificável, e seja, apesar da complexidade, o mais optimizado possível a todos os níveis.
 
-Inicialmente, tivemos dificuldades nas AVLs pois estávamos a fazer uma AVL para cada módulo. Depois de alguns problemas com o seu balanceamento, acabamos por apostar na utilização da biblioteca standard AVL da GNU, que nos facilitou não só o carregamento dos ficheiros em memória, mas também na realização de algumas queries, devido ao vasto conjunto de úteis funções que a biblioteca contém, evitando assim a repetição de código. 
 
-Tivemos dificuldades em conseguir resultados quando usámos o módulo das filiais e era necessário cruzar os dados com as 3 filiais existentes,  pois o módulo filial era apenas para uma filial. 
-
-Em suma, podemos concluir que embora todas as queries estejam a funcionar corretamente há aspectos na interface com o utilizador que poderiam ser melhorados. 
-
+A modularidade foi garantida através da criação de classes com API completa, com constructores apropriados e métodos que permitem um bom número de operações com as classes e módulos do programa. Nesse espírito, foram ainda incluidos não só nas classes dos módulos como em todas as que tal se justificava, métodos essenciais a qualquer classe “bem comportada” nomeadamente hashCode(), toString(), equals() e clone().
+O encapsulamento dos módulos foi garantido através do uso de clone’s ao inserir nas estruturas e ao serem procurados elementos nas mesmas.
+Além da modularidade e encapsulamento, uma boa estruturação do programa e legibilidade do mesmo também foram aspectos tidos em conta, o que levou à criação de tipos enumerados e métodos e variáveis com nomes sugestivos, ainda que isso tenha levado a que esses nomes fossem por vezes longos.
+Os tempos de resposta às queries e de leitura dos ficheiros são também bastante satisfatórios na nossa opinião. O tempo de leitura dos ficheiros é melhor que linear no tamanho dos ficheiros de compras e nenhuma querie demora mais que um minuto a ser executada, sendo que a maioria demora menos de 1 milisegundo. Estes resultados reflectem um bom planeamento da arquitectura do programa e boa escolha das estruturas usadas.
