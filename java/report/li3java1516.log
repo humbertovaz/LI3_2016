@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  12 JUN 2016 01:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  12 JUN 2016 16:25
 entering extended mode
 **li3java1516.tex
 (li3java1516.tex
@@ -1348,27 +1348,44 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
  [4 <./arquiteturaproj.png>]
 Cap\'{\i }tulo 3.
+<diagramaclasses.png, id=32, 898.85812pt x 414.04688pt>
+File: diagramaclasses.png Graphic file (type png)
+
+<use diagramaclasses.png>
+Package pdftex.def Info: diagramaclasses.png used on input line 54.
+(pdftex.def)             Requested size: 494.37349pt x 227.72647pt.
+
+Overfull \hbox (39.12938pt too wide) in paragraph at lines 54--55
+[][] 
+ []
+
 [5
 
-]
+ <./diagramaclasses.png>]
 Cap\'{\i }tulo 4.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
 [6
 
-]
+] [7] [8]
 Cap\'{\i }tulo 5.
-) (conclusao.tex [7
+[9
 
 ]
 Cap\'{\i }tulo 6.
-) [8
+) (conclusao.tex [10
+
+]
+Cap\'{\i }tulo 7.
+) [11
 
 ] (li3java1516.aux) ) 
 Here is how much of TeX's memory you used:
- 31384 strings out of 493698
- 736531 string characters out of 3144375
- 863200 words of memory out of 3000000
- 34203 multiletter control sequences out of 15000+200000
- 25813 words of font info for 51 fonts, out of 3000000 for 9000
+ 31398 strings out of 493698
+ 736784 string characters out of 3144375
+ 864201 words of memory out of 3000000
+ 34215 multiletter control sequences out of 15000+200000
+ 27439 words of font info for 53 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  62i,8n,83p,10417b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.e
@@ -1376,9 +1393,9 @@ nc}<C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program
 Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/
 times/utmr8a.pfb>
-Output written on li3java1516.pdf (9 pages, 496052 bytes).
+Output written on li3java1516.pdf (12 pages, 574702 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
+ 70 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 43 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 48 words of extra memory for PDF output out of 10000 (max. 10000000)
 

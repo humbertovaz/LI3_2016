@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  27 MAY 2016 14:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  12 JUN 2016 14:06
 entering extended mode
 **capa.tex
 (capa.tex
@@ -116,7 +116,7 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 23--23
 
 ! Undefined control sequence.
 l.26 \LARGE
-            Gestão de Vendas de uma cadeia de Distribuição com 3 filiais
+            Gestão de Vendas de uma cadeia de Distribuição com 3 filiais\...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -178,7 +178,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
 ! Undefined control sequence.
 l.28 \Large
-            \textbf{GEREVENDAS}\\[1.5cm]
+            \textbf{GEREVENDAS}\\[1cm]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -191,8 +191,27 @@ Overfull \hbox (81.61066pt too wide) in paragraph at lines 28--28
  []
 
 ! Undefined control sequence.
+l.30 \Large
+            \textbf{Parte JAVA}\\[1cm]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (27.61096pt too wide) in paragraph at lines 30--30
+ []\OT1/cmr/bx/n/10 Parte 
+ []
+
+
+Overfull \hbox (29.47206pt too wide) in paragraph at lines 30--30
+ \OT1/cmr/bx/n/10 JAVA 
+ []
+
+! Undefined control sequence.
 l.31 {\Large
-             \bfseries Grupo 84\\[2cm] }
+             \bfseries Grupo 84\\[1.5cm]}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct

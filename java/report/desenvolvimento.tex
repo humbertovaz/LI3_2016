@@ -47,32 +47,119 @@ A aplicação possuiu uma arquitectura tal como apresentado na figura seguinte, 
 \end{figure}
 
 
+\chapter{Diagrama de classes}
+De seguida é apresentado o Diagrama de classes gerado no BlueJ com os ficheiros .java usados. 
+
+\begin{figure}[h!]
+	\includegraphics[scale=0.55]{diagramaclasses.png}  
+	\caption{Diagrama de classe do Blue J }  
+\end{figure}
+
 \chapter{Módulos de dados}
 
 \section{Catálogo de Clientes}
-É o módulo de dados onde são guardados os códigos de todos os clientes do ficheiro \textbf{Clientes.txt}, organizados por índice alfabético; 
+É o módulo de dados onde são guardados os códigos de todos os clientes do ficheiro \textbf{Clientes.txt}, organizados por índice alfabético;
 
+\subsection{Classe CatalogoClientes} 
 
-
+Para guardar os clientes presentes no ficheiro de clientes, criámos a classe \color{blue} \textbf{CatalogoClientes} \color{black} que
+irá guardar clientes e manter a lista dos que não realizaram nenhuma compra.
+Para além disso cria a lista com todos os códigos de cliente a partir de uma letra inicial do código. Visto que o catálogo apenas deveria guardar os códigos de clientes decidimos criar a classe \color{blue} \textbf{CatalogoClientes}
+\color{black} que guarda todos os códigos de cliente do tipo \color{blue} \textbf{String} \color{black} num HashSet, proporcionando assim uma pesquisa rápida.
 
 \begin{Verbatim}
-    private Set<Cliente> catalogoClientes;
+private Set<Cliente> catalogoClientes;
 \end{Verbatim}
+
+
+\subsection{Classe Cliente}
+A classe \color{blue} \textbf{Cliente} \color{black} foi implementada para validar os clientes. Foi utilizada a classe especial em Java que é responsável por fazer comparações de objetos, que é a classe \color{blue} Comparable \color{black}. Usada como padrão de comparação, serve para comparar o tipo de objectos para os quais o objeto  Cliente pode ser comparado. 
+
+ 
+
+\begin{Verbatim}
+public class Cliente implements Comparable<Cliente> {
+
+	private String codigo_cliente;
+\end{Verbatim}
+
+
+
+\subsection{Classe InfoCliente}
+
+Fica aqui o código que define as variáveis de instância da classe InfoCliente:
+
+\begin{Verbatim}
+class InfoCliente {
+private double[] dinheiroGastoMes;
+private int[] totalCompradoMes;
+private int [] vendas;
+private int totalComprado;
+private double totalGasto;
+private Map <Produto,InfoProdutoCliente> produtosComprados[]; // modos N P
+
+\end{Verbatim}
+
+\begin{verbatim}
+TreeMap <>();
+\end{verbatim}
+
+
+
+Com estas é possivel descrever o comportamento que um cliente tem, por exemplo o dinheiro gasto por mês. 
+ e indica se a compra efetuada foi em modo de Promoção(P), ou em modo Normal (N). 
+
+
+Esta classe contém os construtores, clone e os respetivos set e get definidos que servirão de auxilio noutras classes. 
 
 
 
 \section{Catálogo de Produtos}
 
  Módulo de dados onde são guardados os códigos de todos os produtos do ficheiro \textbf{Produtos.txt}, organizados por índice alfabético, o que irá permitir, de forma eficaz, saber quais são os produtos cujos códigos começam por uma dada letra do alfabeto e saber quantos produtos são contabilizados. 
+ 
+ \subsection{Classe CatalogoProdutos}
 
 \begin{verbatim}
 private Set<Produto> catalogoProdutos;
 \end{verbatim}
 
+\subsection{Classe InfoProduto}
+
+\begin{verbatim}
+public class InfoProduto {
+private int [][] quantidade; // [12][3] mes, filial
+private int quantidadeTotal;
+private double [][] faturado; // [12][3] mes, filial
+private double totalFaturado;
+private int[][] vendas;
+\end{verbatim}
+
+
+
+\subsection{Classe Produto}
+
+
+\begin{verbatim}
+public class Produto implements Comparable<Produto> {
+
+private String codigo_produto;
+\end{verbatim}
+
+
+
 
 \section{Faturação Global}
 
 Módulo de dados que contém as estruturas de dados responsáveis pela resposta a questões quantitativas que relacionam os produtos às suas vendas mensais, em modo Normal (N) ou em Promoção (P), para cada um dos casos guardando o número de vendas e o valor total de faturação de cada um destes tipos. Este módulo refecencia todos os produtos, mesmo os que nunca foram vendidos, não contém qualquer referência a clientes, mas é capaz de distinguir os valores obtidos em cada filial. 
+
+\begin{verbatim}
+public class Faturacao {
+private int totalVendas;
+private double totalFaturado;
+private HashMap<Produto, InfoProduto> produtosVendidos;
+\end{verbatim}
+
 
 
 \section{Gestão da Filial}
@@ -82,7 +169,30 @@ Módulo de dados que, a partir dos ficheiros lidos, contém as estruturas de dad
  Para a estruturação optimizada dos dados deste módulo de dados tivemos em atenção que pretendemos ter o histórico de vendas organizado por filial para uma melhor análise, nunca esquecendo que existem 3 filiais nesta cadeia. 
 
 
+\begin{verbatim}
+public class Filial {
+private Map<Cliente,InfoCliente> informacaoClientes; 
+\end{verbatim}
 
+\section{Classe Hipermercado }
+
+\begin{verbatim}
+
+public class Hipermercado implements Serializable {
+
+private CatalogoClientes clientes;
+private CatalogoProdutos produtos;
+private Filial filiais[];
+private Faturacao faturacao;
+private String ficheiroLido;
+private int vendaserradas;
+private int totalprodutos;
+private int totalclientes;
+private int totalcompraram;
+private int totalnaocompraram;
+private int comprasnulas;
+private double faturacaoglobal;
+\end{verbatim}
 
 
 \chapter{Interface com utilizador}
