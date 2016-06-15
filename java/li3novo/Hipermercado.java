@@ -15,12 +15,7 @@ public class Hipermercado implements Serializable {
     private CatalogoProdutos produtos;
     private Filial filiais[];
     private Faturacao faturacao;
-    private String ficheiroLido;
     private int vendaserradas;
-    private int totalprodutos;
-    private int totalclientes;
-    private int totalcompraram;
-    private int totalnaocompraram;
     private int comprasnulas;
     private double faturacaoglobal;
 
@@ -34,47 +29,110 @@ public class Hipermercado implements Serializable {
             this.filiais[i]= new Filial();
         }
         this.faturacao=new Faturacao();
+        this.vendaserradas=0;
+        this.comprasnulas=0;
+        this.faturacaoglobal=0;
     }
 
-    public Hipermercado(CatalogoClientes clientes, CatalogoProdutos produtos, Filial[] filiais, Faturacao faturacao, String ficheiroLido, int vendaserradas, int totalprodutos, int totalclientes, int totalcompraram, int totalnaocompraram, int comprasnulas, double faturacaoglobal) {
-        this.clientes = clientes;
-        this.produtos = produtos;
-        this.filiais = filiais;
-        this.faturacao = faturacao;
-        this.ficheiroLido = ficheiroLido;
+    public Hipermercado(CatalogoClientes clientes, CatalogoProdutos produtos, Filial[] filiais, Faturacao faturacao, int vendaserradas, int comprasnulas, double faturacaoglobal) {
+        this.clientes = clientes.clone();
+        this.produtos = produtos.clone();
+        this.filiais = filiais.clone();
+        this.faturacao = faturacao.clone();
         this.vendaserradas = vendaserradas;
-        this.totalprodutos = totalprodutos;
-        this.totalclientes = totalclientes;
-        this.totalcompraram = totalcompraram;
-        this.totalnaocompraram = totalnaocompraram;
         this.comprasnulas = comprasnulas;
         this.faturacaoglobal = faturacaoglobal;
     }
+
+    
     
     public Hipermercado(Hipermercado f) {
     this.clientes=f.getClientes();
-    
+    this.faturacao=f.getFaturacao();
+    this.produtos=f.getProdutos();
+    this.filiais=f.getFiliais();
+    this.vendaserradas=f.getVendasErradas();
+    this.comprasnulas=f.getComprasNulas();
+    this.faturacaoglobal=f.faturacaoglobal;
     
     
     }
     
+    public Hipermercado clone() {
+        return new Hipermercado(this);
+        
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Hipermercado other = (Hipermercado) obj;
+        if (this.vendaserradas != other.vendaserradas) {
+            return false;
+        }
+        if (this.comprasnulas != other.comprasnulas) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.faturacaoglobal) != Double.doubleToLongBits(other.faturacaoglobal)) {
+            return false;
+        }
+        if (!Objects.equals(this.clientes, other.clientes)) {
+            return false;
+        }
+        if (!Objects.equals(this.produtos, other.produtos)) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.filiais, other.filiais)) {
+            return false;
+        }
+        if (!Objects.equals(this.faturacao, other.faturacao)) {
+            return false;
+        }
+        return true;
+    }
+    
+    public int getComprasNulas() {
+    return this.comprasnulas;
+    
+    }
+  public double getFaturacaoGlobal() {
+  
+      return this.faturacaoglobal;
+  }
+    
+    
 
     
+    public Faturacao getFaturacao() {
+        return this.faturacao.clone();
+    
+    }
     
     public CatalogoClientes getClientes() {
-        return clientes;
+        return clientes.clone();
     }
 
     public CatalogoProdutos getProdutos() {
-        return this.produtos;
+        return this.produtos.clone();
     }
 
 
 
-    public List<Filial> getFiliais() {
-      ArrayList<Filial> tmp = new ArrayList<>();
-      for (Filial f : this.filiais){
-          tmp.add(f.clone());
+    public Filial [] getFiliais() {
+      Filial [] tmp = new Filial[3];
+      int i;
+      for( i=0;i<3;i++) {tmp[i]=new Filial();}
+      
+      for(i=0;i<3;i++) {
+            tmp[i]=this.filiais[i].clone();
       }
       return tmp;
     }
@@ -323,6 +381,7 @@ public class Hipermercado implements Serializable {
             if(faturado==0.0) {
                 this.comprasnulas++;
             }
+            this.faturacaoglobal+=quantidade*faturado;
             
         }
         else {this.vendaserradas++;}
@@ -363,8 +422,32 @@ public class Hipermercado implements Serializable {
       return this.clientes.existe(s);
     }
     
+    public int produtosDiferentes() {
     
- 
+       return this.faturacao.getProdutosVendidos().size();
+    }
+    
+    
+    public int clientesDiferens() {
+       
+    Set<Cliente> tmp = new HashSet<>();
+    Set<Cliente> tmp1;
+        for(int i=0;i<3;i++) {
+            tmp1=this.filiais[i].getClienteCompraram();
+            for(Cliente a : tmp1) {
+                tmp.add(a);
+            
+            }
+        }
+        return tmp.size();
+    }
+    
+    
+   
+        
+    
+        
+    
     
     
     

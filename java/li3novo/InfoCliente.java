@@ -1,4 +1,5 @@
  
+import java.io.Serializable;
 import java.util.*;
 import java.util.Map.Entry;
 /*
@@ -12,7 +13,7 @@ import java.util.Map.Entry;
  *
  * 
  */
-class InfoCliente {
+class InfoCliente implements Serializable {
    private double[] dinheiroGastoMes;
    private int[] totalCompradoMes;
    private int [] vendas;
@@ -24,13 +25,13 @@ class InfoCliente {
        this.dinheiroGastoMes= new double[12];
        this.totalCompradoMes= new int [12];
        this.vendas = new int [12];
-       this.produtosComprados=new TreeMap[2];
+       this.produtosComprados=new HashMap[2];
        this.totalComprado=0;
        for(int i=0;i<12;i++){
            this.vendas[i]=0;
        }
        for(int i=0;i<2;i++){
-           this.produtosComprados[i] = new TreeMap<>();
+           this.produtosComprados[i] = new HashMap<>();
        }
        this.totalGasto=0;
    }

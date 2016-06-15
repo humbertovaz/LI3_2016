@@ -1,11 +1,12 @@
  
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 /**
  *
  *
  */
-public class Filial {
+public class Filial implements Serializable{
     private Map<Cliente,InfoCliente> informacaoClientes; // // está correto
 
 
@@ -158,6 +159,18 @@ public class Filial {
         return res;
     }
 
+    public Set<Cliente> getClienteCompraram() {
+    Set<Cliente> tmp = new HashSet<>();
+    
+            for(Cliente a : this.informacaoClientes.keySet()) {
+                tmp.add(a);
+            
+            }
+    
+    
+    
+    return tmp;
+    }
 
 
     public Filial clone(){
@@ -181,7 +194,7 @@ public class Filial {
     public Map<Produto,ParProdutoQuantidade> getComprados(Cliente c){
         Set<Produto> produtos = getProdutosCompradosMes(c,1);
         Map<Produto,ParProdutoQuantidade> res = new HashMap<>();
-        for(int i=2;i<13;i++){
+        for(int i=1;i<12;i++){
             Set<Produto> aux = getProdutosCompradosMes(c,i);
             aux.stream().map(e->produtos.add(e.clone()));
             aux.clear();
@@ -195,9 +208,6 @@ public class Filial {
         this.informacaoClientes.get(c).inser(p, quantidade, faturado, mes, modo);
        
     }
-    
-    
-    
     
     
     
@@ -221,9 +231,70 @@ public class Filial {
         return true;
     }
     
+     public int [] nrTotalComprasMes(){
+    int i=0;
+    int [] aux= nrTotalComprasMesNormal();
+    int [] aux2=nrTotalComprasMesPromo();
+    for (i=0;i<12;i++);
+        aux[i]+=aux2[i];
+    return aux;    
+    }
+   
+    public int [] nrTotalComprasMesPromo(){
+    int [] total = new int[12];
+    int i;
+    for (i=0;i<12;i++)
+    for (InfoCliente ic : informacaoClientes.values()){
+        for(InfoProdutoCliente ipc: ic.getProdutosComprados('P').values())
+                total[i]+=ipc.getComprasMes(i);
+        }  
+    return total;
+    }
+   
+   
+    public int [] nrTotalComprasMesNormal(){
+    int [] total = new int[12];
+    int i;
+    for (i=0;i<12;i++)
+    for (InfoCliente ic : informacaoClientes.values()){
+        for(InfoProdutoCliente ipc: ic.getProdutosComprados('N').values())
+                total[i]+=ipc.getComprasMes(i);
+        }  
+    return total;
+    }
+    
+     public double [] faturacaoFilial(){
+        double [] total= new double [12];
+        for(int i=0;i<12;i++){
+            total[i]=faturacaoFilialMes(i);
+        }
+        return total;
+    }
+   
+    private double faturacaoFilialMes(int mes){
+        double fat=0;
+        for(InfoCliente ic: informacaoClientes.values()){
+            fat+=ic.getGastouMes(mes);
+        }
+        return fat;  
+        }
     
     
-    
+    public int [] nrClientesQCompraram(){
+    int [] nrClientes = new int [12];
+        for(int i=0;i<12;i++)
+            nrClientes[i]=nrClientesQCompraramMes(i);
+    return nrClientes;
+    }
+   
+    private int  nrClientesQCompraramMes(int mes){
+        Set<InfoCliente> clientes = new HashSet<>();
+            for(InfoCliente ic : informacaoClientes.values()){
+                if(ic.getVendasMes(mes)>0)
+                    clientes.add(ic.clone());
+            }
+    return clientes.size();
+    }
     
     
     

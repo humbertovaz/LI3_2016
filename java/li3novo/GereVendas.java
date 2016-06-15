@@ -230,28 +230,28 @@ public class GereVendas  {
                             case 1:
                                 clear();
                                 int aux1,aux2,aux3,aux4;
-                               /* Crono.start();
-                                aux1=t.tamanhoCatalogoProdutos();
-                                aux2=t.getProDiferente();
-                                aux3=t.tamanhoCliente();
-                                aux4=t.clientesQueCompraram();
+                               Crono.start();
+                                aux1=t.getProdutos().getTotalProdutos();
+                                aux2=t.produtosDiferentes();
+                                aux3=t.getCatalogo().getTotalClientes();
+                                aux4=t.clientesDiferens();
 
                                 System.out.println("*************************************************************");          
                                 System.out.println("Ultimo ficheiro lido : " +GereVendas.ultimo);
-                                System.out.println("Vendas erradas : "+t.nrComprasErrada());
+                                System.out.println("Vendas erradas : "+t.getVendasErradas());
                                 System.out.println("Total dos produtos lidos : "+aux1);
                                 System.out.println("Total dos produtos comprados : "+aux2);
                                 System.out.println("Total dos produtos nao comprados : "+(aux1-aux2));
                                 System.out.println("Total de clientes lidos : "+aux3);
                                 System.out.println("Total de clientes que compraram : "+aux4);
                                 System.out.println("Total de clientes que nada compraram : "+(aux3-aux4));
-                                System.out.println("Total de compras com o valor zero : "+t.getComprasZero());
-                                System.out.println("Faturacao total : "+t.getFacturacaoTotal());
+                                System.out.println("Total de compras com o valor zero : "+t.getComprasNulas());
+                                System.out.println("Faturacao total : "+t.getFaturacaoGlobal());
                                 Crono.stop();
                                 System.out.println("Tempo : "+Crono.print());    
                                 System.out.println("*************************************************************");    
                                 waitMenu();
-                                */
+                               
                                 break;
                             case 2:
                                 do{ 
