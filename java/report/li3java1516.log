@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  16 JUN 2016 12:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  16 JUN 2016 14:12
 entering extended mode
 **li3java1516.tex
 (li3java1516.tex
@@ -1367,95 +1367,95 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
 [6
 
-] [7] [8]
+] [7] [8] [9]
 Cap\'{\i }tulo 5.
-<IntroduzirUmFicheiroStream.jpg, id=46, 644.4075pt x 91.84312pt>
+<IntroduzirUmFicheiroStream.jpg, id=49, 644.4075pt x 91.84312pt>
 File: IntroduzirUmFicheiroStream.jpg Graphic file (type jpg)
 
 <use IntroduzirUmFicheiroStream.jpg>
-Package pdftex.def Info: IntroduzirUmFicheiroStream.jpg used on input line 210.
+Package pdftex.def Info: IntroduzirUmFicheiroStream.jpg used on input line 235.
 
 (pdftex.def)             Requested size: 644.40593pt x 91.84288pt.
 
-Overfull \hbox (189.16182pt too wide) in paragraph at lines 210--211
+Overfull \hbox (189.16182pt too wide) in paragraph at lines 235--236
 [][] 
  []
 
-<menunao.jpg, id=47, 783.92876pt x 222.8325pt>
+<menunao.jpg, id=50, 783.92876pt x 222.8325pt>
 File: menunao.jpg Graphic file (type jpg)
  <use menunao.jpg>
-Package pdftex.def Info: menunao.jpg used on input line 217.
+Package pdftex.def Info: menunao.jpg used on input line 242.
 (pdftex.def)             Requested size: 509.54765pt x 144.8394pt.
 
-Overfull \hbox (54.30354pt too wide) in paragraph at lines 217--218
+Overfull \hbox (54.30354pt too wide) in paragraph at lines 242--243
 [][] 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 224.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 249.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 224.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 249.
 
-<MenuInicial.jpg, id=48, 185.19188pt x 88.07906pt>
+<MenuInicial.jpg, id=51, 185.19188pt x 88.07906pt>
 File: MenuInicial.jpg Graphic file (type jpg)
  <use MenuInicial.jpg>
-Package pdftex.def Info: MenuInicial.jpg used on input line 233.
+Package pdftex.def Info: MenuInicial.jpg used on input line 258.
 (pdftex.def)             Requested size: 277.78711pt x 132.11824pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9
+[10
 
- <./IntroduzirUmFicheiroStream.jpg> <./menunao.jpg>] [10 <./MenuInicial.jpg>]
+ <./IntroduzirUmFicheiroStream.jpg> <./menunao.jpg>] [11 <./MenuInicial.jpg>]
 Cap\'{\i }tulo 6.
 
-Overfull \hbox (2.99133pt too wide) in paragraph at lines 241--242
+Overfull \hbox (2.99133pt too wide) in paragraph at lines 266--267
 []\OT1/ptm/m/n/12 O pro-grama foi cor-rido num com-pu-ta-dor ASUS k55v com um p
 ro-ces-sa-dor in-tel(R) core(TM)
  []
 
-<graficosemparsing.png, id=56, 362.10281pt x 217.5628pt>
+<graficosemparsing.png, id=59, 362.10281pt x 217.5628pt>
 File: graficosemparsing.png Graphic file (type png)
 
 <use graficosemparsing.png>
-Package pdftex.def Info: graficosemparsing.png used on input line 254.
+Package pdftex.def Info: graficosemparsing.png used on input line 279.
 (pdftex.def)             Requested size: 362.10191pt x 217.56227pt.
 
-<graficocomparsing.png, id=57, 361.35pt x 216.05719pt>
+<graficocomparsing.png, id=60, 361.35pt x 216.05719pt>
 File: graficocomparsing.png Graphic file (type png)
 
 <use graficocomparsing.png>
-Package pdftex.def Info: graficocomparsing.png used on input line 259.
+Package pdftex.def Info: graficocomparsing.png used on input line 284.
 (pdftex.def)             Requested size: 361.34912pt x 216.05664pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (5.36806pt too wide) in paragraph at lines 263--266
+Overfull \hbox (5.36806pt too wide) in paragraph at lines 288--291
 []\OT1/ptm/m/n/12 Assim pode-se con-cluir que ape-sar de []\OT1/ptm/b/n/12 Buf-
 fe-re-dRe-a-der []\OT1/ptm/m/n/12 ser mais r[]apido em to-das as situa[][]oes,
  []
 
-[11
+[12
 
  <./graficosemparsing.png>]
-<graficoqueries.png, id=61, 554.07pt x 222.8325pt>
+<graficoqueries.png, id=65, 554.07pt x 222.8325pt>
 File: graficoqueries.png Graphic file (type png)
  <use graficoqueries.png>
-Package pdftex.def Info: graficoqueries.png used on input line 310.
+Package pdftex.def Info: graficoqueries.png used on input line 335.
 (pdftex.def)             Requested size: 443.2566pt x 178.26624pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) (conclusao.tex [12 <./graficocomparsing.png>] [13 <./graficoqueries.png>]
+) (conclusao.tex [13 <./graficocomparsing.png>] [14 <./graficoqueries.png>]
 Cap\'{\i }tulo 7.
-) [14
+) [15
 
 ] (li3java1516.aux) ) 
 Here is how much of TeX's memory you used:
@@ -1472,9 +1472,9 @@ rogram Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/ut
 mr8a.pfb>
-Output written on li3java1516.pdf (15 pages, 675394 bytes).
+Output written on li3java1516.pdf (16 pages, 677698 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
+ 93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  78 words of extra memory for PDF output out of 10000 (max. 10000000)
 

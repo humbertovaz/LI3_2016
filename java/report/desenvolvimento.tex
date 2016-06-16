@@ -62,10 +62,10 @@ De seguida é apresentado o Diagrama de classes gerado no BlueJ com os ficheiros
 
 \subsection{Classe CatalogoClientes} 
 
-Para guardar os clientes presentes no ficheiro de clientes, criámos a classe \color{blue} \textbf{CatalogoClientes} \color{black} que
-irá guardar clientes e manter a lista dos que não realizaram nenhuma compra.
-Para além disso cria a lista com todos os códigos de cliente a partir de uma letra inicial do código. Visto que o catálogo apenas deveria guardar os códigos de clientes decidimos criar a classe \color{blue} \textbf{CatalogoClientes}
-\color{black} que guarda todos os códigos de cliente do tipo \color{blue} \textbf{String} \color{black} num HashSet, proporcionando assim uma pesquisa rápida.
+Para guardar os clientes presentes no ficheiro de clientes.txt, criámos a classe \color{blue} \textbf{CatalogoClientes} \color{black} que
+irá guardar a lista de todos os clientes presentes no ficheiro. Utilizando \color{blue} HashSet \color{black} que guarda todos os códigos de cliente do tipo \color{blue} \textbf{String} \color{black} e retira os repetidos, proporcionando assim uma pesquisa rápida.
+
+A classe \color{blue} \textbf{CatalogoClientes} \color{black} servirá também para validar os clientes.
 
 \begin{Verbatim}
 private Set<Cliente> catalogoClientes;
@@ -73,7 +73,7 @@ private Set<Cliente> catalogoClientes;
 
 
 \subsection{Classe Cliente}
-A classe \color{blue} \textbf{Cliente} \color{black} foi implementada para validar os clientes. Foi utilizada a classe especial em Java que é responsável por fazer comparações de objetos, que é a classe \color{blue} Comparable \color{black}. Usada como padrão de comparação, serve para comparar o tipo de objectos para os quais o objeto  Cliente pode ser comparado. 
+A classe \color{blue} \textbf{Cliente} \color{black} foi implementada para guardar o código de cada cliente. Foi utilizada a classe especial em Java que é responsável por fazer comparações de objetos, que é a classe \color{blue} Comparable \color{black}. Usada como padrão de comparação, serve para comparar o tipo de objectos para os quais o objeto  Cliente pode ser comparado. 
 
  
 
@@ -86,6 +86,9 @@ public class Cliente implements Comparable<Cliente> {
 
 
 \subsection{Classe InfoCliente}
+
+Esta classe foi criada para guardar informações relativas ao cliente, tais como o dinheiro que um cliente gastou num mês, a quantidade de produtos comprados num mês, as compras efetuadas, a quantidade de compras efetuadas, total de dinheiro gasto, assim como a lista de todos os produtos comprados em modo de Promoção(P), ou em modo Normal (N).  
+
 
 Fica aqui o código que define as variáveis de instância da classe InfoCliente:
 
@@ -100,15 +103,6 @@ private Map <Produto,InfoProdutoCliente> produtosComprados[]; // modos N P
 
 \end{Verbatim}
 
-\begin{verbatim}
-TreeMap <>();
-\end{verbatim}
-
-
-
-Com estas é possivel descrever o comportamento que um cliente tem, por exemplo o dinheiro gasto por mês. 
- e indica se a compra efetuada foi em modo de Promoção(P), ou em modo Normal (N). 
-
 
 Esta classe contém os construtores, clone e os respetivos set e get definidos que servirão de auxilio noutras classes. 
 
@@ -119,12 +113,30 @@ Esta classe contém os construtores, clone e os respetivos set e get definidos q
  Módulo de dados onde são guardados os códigos de todos os produtos do ficheiro \textbf{Produtos.txt}, organizados por índice alfabético, o que irá permitir, de forma eficaz, saber quais são os produtos cujos códigos começam por uma dada letra do alfabeto e saber quantos produtos são contabilizados. 
  
  \subsection{Classe CatalogoProdutos}
+ 
+ Para guardar os produtos presentes no ficheiro de produtos.txt, criámos a classe \color{blue} \textbf{CatalogoProdutos} \color{black} que
+ irá guardar a lista de todos os produtos presentes no ficheiro. Utilizando \color{blue} HashSet \color{black} que guarda todos os códigos de produto do tipo \color{blue} \textbf{String} \color{black} e retira os repetidos, proporcionando assim uma pesquisa rápida.
+ 
+ A classe \color{blue} \textbf{CatalogoProdutos} \color{black} servirá também para validar os produtos.
 
 \begin{verbatim}
 private Set<Produto> catalogoProdutos;
 \end{verbatim}
 
+\subsection{Classe Produto}
+
+A classe \color{blue} \textbf{Produto} \color{black} foi implementada para guardar o código de cada produto. Esta classe é semelhante à classe Cliente. 
+
+
+\begin{verbatim}
+public class Produto implements Comparable<Produto> {
+
+private String codigo_produto;
+\end{verbatim}
+
+
 \subsection{Classe InfoProduto}
+A classe InfoProduto serve para guardar as informações relativas ao produto, tais como a quantidade de um produto em determinado mes numa filial, a quantidade total, o total faturado, o faturado num mes em determinada filial, e o total de vendas efetuadas.  
 
 \begin{verbatim}
 public class InfoProduto {
@@ -137,14 +149,6 @@ private int[][] vendas;
 
 
 
-\subsection{Classe Produto}
-
-
-\begin{verbatim}
-public class Produto implements Comparable<Produto> {
-
-private String codigo_produto;
-\end{verbatim}
 
 
 
@@ -152,6 +156,10 @@ private String codigo_produto;
 \section{Faturação Global}
 
 Módulo de dados que contém as estruturas de dados responsáveis pela resposta a questões quantitativas que relacionam os produtos às suas vendas mensais, em modo Normal (N) ou em Promoção (P), para cada um dos casos guardando o número de vendas e o valor total de faturação de cada um destes tipos. Este módulo refecencia todos os produtos, mesmo os que nunca foram vendidos, não contém qualquer referência a clientes, mas é capaz de distinguir os valores obtidos em cada filial. 
+
+\subsection{Classe Faturacao}
+
+A classe  \color{blue} \textbf{Faturacao} \color{black} serve para guardar o número de vendas, total faturado, e os produtos vendidos, assim como os não vendidos 
 
 \begin{verbatim}
 public class Faturacao {
@@ -168,6 +176,8 @@ Módulo de dados que, a partir dos ficheiros lidos, contém as estruturas de dad
 
  Para a estruturação optimizada dos dados deste módulo de dados tivemos em atenção que pretendemos ter o histórico de vendas organizado por filial para uma melhor análise, nunca esquecendo que existem 3 filiais nesta cadeia. 
 
+\subsection{Classe Filial}
+Guarda a informação de todos os cliente quer tenham comprado ou não. 
 
 \begin{verbatim}
 public class Filial {
@@ -175,6 +185,8 @@ private Map<Cliente,InfoCliente> informacaoClientes;
 \end{verbatim}
 
 \section{Classe Hipermercado }
+
+Esta é a classe principal onde se guardam todas as informações relativas ao funcionamento do hipermercado. 
 
 \begin{verbatim}
 
@@ -184,20 +196,33 @@ private CatalogoClientes clientes;
 private CatalogoProdutos produtos;
 private Filial filiais[];
 private Faturacao faturacao;
-private String ficheiroLido;
 private int vendaserradas;
-private int totalprodutos;
-private int totalclientes;
-private int totalcompraram;
-private int totalnaocompraram;
 private int comprasnulas;
 private double faturacaoglobal;
 \end{verbatim}
 
-\section{Classes Auxiliares}
+\section{GereVendas}
 
-\subsection{ParClienteNDif}
+Todo o programa é inicializado nesta função, o hipermercado é inicializado nesta classe que posteriormente iniciará as restantes classes, o menu principal do programa começa  a executar permitindo assim ao utilizador navegar pelo programa e executar as queries e obter os resultados que quiser consultar.
+Esta classe contém quais os ficheiros para leitura, assim como o caminho para eles assim como o último estado guradado. 
 
+\section{Venda}
+
+A classe Venda simplifica os dados introduzidos, sendo que assim os dados deixam de ser apenas uma string e passam a ser uma venda concreta para o programa poder consultar livremente e fazer as devidas inserções nas estruturas de forma mais simples.
+Esta classe é tambem responsável pela validação de todas as vendas introduzidas.
+
+
+\begin{verbatim}
+public class Venda implements Serializable{
+
+private String codigoProduto;
+private String codigoCliente;
+private char modoDeCompra;
+private int mes;
+private int filial;
+private double preco;
+private int quantidade;
+\end{verbatim}
 
 
 
