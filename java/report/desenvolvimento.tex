@@ -201,12 +201,12 @@ private int comprasnulas;
 private double faturacaoglobal;
 \end{verbatim}
 
-\section{GereVendas}
+\section{Classe GereVendas}
 
 Todo o programa é inicializado nesta função, o hipermercado é inicializado nesta classe que posteriormente iniciará as restantes classes, o menu principal do programa começa  a executar permitindo assim ao utilizador navegar pelo programa e executar as queries e obter os resultados que quiser consultar.
 Esta classe contém quais os ficheiros para leitura, assim como o caminho para eles assim como o último estado guardado. 
 
-\section{Venda}
+\section{Classe Venda}
 
 A classe Venda simplifica os dados introduzidos, sendo que assim os dados deixam de ser apenas uma string e passam a ser uma venda concreta para o programa poder consultar livremente e fazer as devidas inserções nas estruturas de forma mais simples.
 
@@ -281,16 +281,16 @@ A partir daqui a escolha de um número de 0 a 9 vai implicar a execução de det
 
 \chapter{Resultados e comentários sobre os testes de performance}
 
-Depois de desenvolver e codificar todo o projeto foi-nos proposto realizar alguns testes de performance que consistem em comparar os tempos de carregamneto de ficheiros e de execução das queries 5, 6, 7, 8 e 9.
+Depois de desenvolver e codificar todo o projeto foi-nos proposto realizar alguns testes de performance que consistem em comparar os tempos de carregamento de ficheiros e de execução das queries 5, 6, 7, 8 e 9.
 
-O programa foi corrido num computador ASUS k55v com um processador intel(R) core(TM) i5-3210M CPU@2.50GHz, memória RAM 6 GB onde 5.89 são utilizáveis, sistema operativos de 64 bits, processador baseado em x64.A máquima possui uma placa gráfica GEFORCE* GT 630M* 2GB e um disco rigido de HDD 500GB, o windows utilizado pela máquina é o windows 10. 
+O programa foi corrido num computador ASUS k55v com um processador intel(R) core(TM) i5-3210M CPU@2.50GHz, memória RAM 6 GB onde 5.89 são utilizáveis, sistema operativos de 64 bits, processador baseado em x64. A máquima possui uma placa gráfica GEFORCE* GT 630M* 2GB e um disco rigido de HDD 500GB, o windows utilizado pela máquina é o windows 10. 
 
  
 \section{Performance Leitura dos Ficheiros}
 
 \par Para verificar qual a melhor classe a usar para fazer a leitura dos ficheiros corremos testes para as classes
 \color{blue} \textbf{BufferedReader} \color{black} e para a classe \color{blue} \textbf{Scanner} \color{black} realizando testes
-fazendo parsing da string e criando instância da class \color{blue} \textbf{Venda} \color{black} e testes sem parsing.
+fazendo parsing da string e criando instância da classe \color{blue} \textbf{Venda} \color{black} e testes sem parsing.
 \par De seguida ficam tabelas com os resultados obtidos e também dois gráfico para comparação de resultados.
 
 Para cada uma das situações corremos 5 vezes, para os ficheiros Vendas\_1M, Vendas\_3M, Vendas\_5M , no final calculamos a média destas 5 execuções e foi o tempo que se registou.

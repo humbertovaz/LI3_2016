@@ -20,8 +20,8 @@
 \contentsline {section}{\numberline {4.4}Gest\IeC {\~a}o da Filial}{8}
 \contentsline {subsection}{\numberline {4.4.1}Classe Filial}{8}
 \contentsline {section}{\numberline {4.5}Classe Hipermercado }{8}
-\contentsline {section}{\numberline {4.6}GereVendas}{9}
-\contentsline {section}{\numberline {4.7}Venda}{9}
+\contentsline {section}{\numberline {4.6}Classe GereVendas}{9}
+\contentsline {section}{\numberline {4.7}Classe Venda}{9}
 \contentsline {chapter}{\numberline {5}Interface com utilizador}{10}
 \contentsline {chapter}{\numberline {6}Resultados e coment\IeC {\'a}rios sobre os testes de performance}{12}
 \contentsline {section}{\numberline {6.1}Performance Leitura dos Ficheiros}{12}
