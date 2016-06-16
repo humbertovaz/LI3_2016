@@ -204,28 +204,86 @@ private double faturacaoglobal;
 \chapter{Interface com utilizador}
 
 Nesta secção apresenta-se a interface com o utilizador, fazendo algumas considerações sobre as decisões tomadas.
-Ao iniciar o programa, o utilizador tem um menu que lhe permite escolher 4 opções para ler os ficheiros:
+Ao iniciar o programa GereVendas, o utilizador tem um menu que lhe permite carregar ou não o último estado do programa, isto é o ficheiro hipermercado.dat. 
 
+\begin{figure}[h!]
+	\includegraphics[scale=1]{IntroduzirUmFicheiroStream.jpg}  
+	\caption{Inicio da execução do programa }  
+\end{figure}
 
+Se não quiser carregar o último estado do programa carrega os ficheiros Clientes.txt Produtos.txt automáticamente e pede para escolher qual o ficheiro de Vendas que pretende escolher, se escolher a opção N (não) carrega o ficheiro de Vendas\_1M: 
 
+\begin{figure}[h!]
+	\includegraphics[scale=0.65]{menunao.jpg}  
+	\caption{Escolha da opção N (não) }  
+\end{figure}
+
+Depois do carregamento dos ficheiros de dados é apresentado o seguinte menu com as 5 opções: 
+
+\begin{itemize}
+	\item Carregar Programa - 
+	\item Gravar estado do programa - 
+	\item Consultas Estatisticas - 
+	\item Consultas Interativas  - 
+\end{itemize}
+	
+	
+	
+\begin{figure}[h!]
+	\includegraphics[scale=1.5]{MenuInicial.jpg}  
+	\caption{Diagrama de classe do Blue J }  
+\end{figure}
 
 \chapter{Resultados e comentários sobre os testes de performance}
 
-O programa foi corrido num computador blablabla bla com xxxpto. 
+Depois de desenvolver e codificar todo o projeto foi-nos proposto realizar alguns testes de performance que consistem em comparar os tempos de carregamneto de ficheiros e de execução das queries 5, 6, 7, 8 e 9.
 
-Depois de desenvolver e codificar todo o projeto foi-nos proposto realizar alguns testes de performance que consistem em comparar os tempos de execução das queries 8, 9, 10, 11 e 12 usando os ficheiros Vendas\_1M.txt (1 000 000 vendas), Vendas\_3M.txt (3 milhões de vendas) e Vendas\_5M.txt (5 milhões de vendas).
+O programa foi corrido num computador ASUS k55v com um processador intel(R) core(TM) i5-3210M CPU@2.50GHz, memória RAM 6 GB onde 5.89 são utilizáveis, sistema operativos de 64 bits, processador baseado em x64.A máquima possui uma placa gráfica GEFORCE* GT 630M* 2GB e um disco rigido de HDD 500GB, o windows utilizado pela máquina é o windows 10. 
 
-
+ 
 \section{Performance Leitura dos Ficheiros}
 
+\par Para verificar qual a melhor classe a usar para fazer a leitura dos ficheiros corremos testes para as classes
+\color{blue} \textbf{BufferedReader} \color{black} e para a classe \color{blue} \textbf{Scanner} \color{black} realizando testes
+fazendo parsing da string e criando instância da class \color{blue} \textbf{Venda} \color{black} e testes sem parsing.
+\par De seguida ficam tabelas com os resultados obtidos e também dois gráfico para comparação de resultados.
+
+Para cada uma das situações corremos 5 vezes, para os ficheiros Vendas\_1M, Vendas\_3M, Vendas\_5M , no final calculamos a média destas 5 execuções e foi o tempo que se registou.
+
+\begin{figure}[h!]
+	\includegraphics[scale=1]{graficosemparsing}  
+	\caption{Inicio da execução do programa }  
+\end{figure}
+
+\begin{figure}[h!]
+	\includegraphics[scale=1]{graficocomparsing}  
+	\caption{Inicio da execução do programa }  
+\end{figure}
+
+\par Assim pode-se concluir que apesar de  \color{blue} \textbf{BufferedReader} \color{black} ser mais rápido em todas as
+situações, ao contrário do que era esperado por nos a class  \color{blue} \textbf{Scanner} \color{black} tem um comportamento
+mais eficiente durante parsing, pois é esta a sua principal utilização.
 
 
 
 \section{Performance Queries }
+Para testar a performance das queries foi proposto que fossem substituidas as estruturas inciais por outras. 
 
 
-Foram consideradas 4 situações diferentes, a primeira situação é onde a estrutura do módulo de
-compras, a class \color{blue} \textbf{ola} \color{black} tem a sua estrutura definida da seguinte forma:
+No inicio a estrutura utilizada no catalogo de clientes e de produtos foi um HashSet e mudou-se para um TreeSet, registando-se 5 vezes o valor da execução e fazendo a média.
+
+\begin{verbatim}
+
+\end{verbatim}
+
+Nas classes Faturação, Filial e InfoCliente inicialmente utilizou-se uma HashMap depois mudou-se para uma TreeMap. 
+
+\begin{verbatim}
+
+\end{verbatim}
+
+ 
+Foram consideradas várias situações diferentes, a primeira situação é onde a estrutura do módulo de catálogos de clientes , a class \color{blue} \textbf{catalogo Clientes} \color{black} tem a sua estrutura definida da seguinte forma:
 
 \begin{verbatim}
 
@@ -234,29 +292,22 @@ compras, a class \color{blue} \textbf{ola} \color{black} tem a sua estrutura def
 \par Na segunda situação a estrutura foi modifica para em vez de utilizar \color{blue} \textbf{TreeMap} \color{black} utilizar um
 \color{blue} \textbf{HashMap} \color{black}. Ficando então a estrutura definida da seguinte forma:
 
-\begin{verbatim}
 
-\end{verbatim}
-
-\par Na terceira situação a estrutura foi modifica para em vez de utilizar \color{blue} \textbf{ArrayList} \color{black} utilizar a
-classe  \color{blue} \textbf{Vector} \color{black} . Ficando então a estrutura definida da seguinte forma:
 
 \begin{verbatim}
 
 \end{verbatim}
 
-\par A útima situação, situação 4 é a mistura da situação 2 e 3, ficando a estrutura definida da seguinte forma:
+\par Para medir os tempos executamos as queries 6,7,8 e 9 num total de 5 medições fazendo de seguida a média.
 
-\begin{verbatim}
+Na query 8 utilizamos o códiGo de cliente Z5000 . 
 
-\end{verbatim}
+Na querie 9 utilizamos o códiGo AF1184. 
 
-\par Para medir os tempos executamos as queries 5,6,7,8 e 9. Na query 8 utilizamos 1000 produtos como o número base
-para os testes e na query 9 utilizamos 1000 clientes. Para a query 10, para cada uma das situações corremos 5 vezes,
-para os produtos: "HO2915", "GF7879", "EN3727", "TM3887", "KN1847" e 1000 clientes, no final calculamos a média destas 5
-execuções e foi o tempo que registamos.
-\par De seguida apresentamos a tabela dos tempos registados seguido de um gráfico que irá ajudar na conclusão destes
-testes de performance das diferentes estruturas.
+\par De seguida apresentamos a tabela dos tempos registados seguido de um gráfico que irá ajudar na conclusão destes testes de performance das diferentes estruturas.
 
-
+\begin{figure}[h!]
+	\includegraphics[scale=0.8]{graficoqueries}  
+	\caption{Tabela e gráfico com a execução dos tempos das diferentes estruturas utilizadas }  
+\end{figure}
   	
