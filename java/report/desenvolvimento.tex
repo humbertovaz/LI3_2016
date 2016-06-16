@@ -63,7 +63,7 @@ De seguida é apresentado o Diagrama de classes gerado no BlueJ com os ficheiros
 \subsection{Classe CatalogoClientes} 
 
 Para guardar os clientes presentes no ficheiro de clientes.txt, criámos a classe \color{blue} \textbf{CatalogoClientes} \color{black} que
-irá guardar a lista de todos os clientes presentes no ficheiro. Utilizando \color{blue} HashSet \color{black} que guarda todos os códigos de cliente do tipo \color{blue} \textbf{String} \color{black} e retira os repetidos, proporcionando assim uma pesquisa rápida.
+irá guardar a lista de todos os clientes presentes no ficheiro. Utilizando \color{blue} HashSet \color{black} que guarda todos os códigos de cliente do tipo \color{blue} \textbf{String} \color{black} e não insere repetidos, proporcionando assim uma pesquisa rápida.
 
 A classe \color{blue} \textbf{CatalogoClientes} \color{black} servirá também para validar os clientes.
 
@@ -115,7 +115,7 @@ Esta classe contém os construtores, clone e os respetivos set e get definidos q
  \subsection{Classe CatalogoProdutos}
  
  Para guardar os produtos presentes no ficheiro de produtos.txt, criámos a classe \color{blue} \textbf{CatalogoProdutos} \color{black} que
- irá guardar a lista de todos os produtos presentes no ficheiro. Utilizando \color{blue} HashSet \color{black} que guarda todos os códigos de produto do tipo \color{blue} \textbf{String} \color{black} e retira os repetidos, proporcionando assim uma pesquisa rápida.
+ irá guardar a lista de todos os produtos presentes no ficheiro. Utilizando \color{blue} HashSet \color{black} que guarda todos os códigos de produto do tipo \color{blue} \textbf{String} \color{black} e não insere os repetidos, proporcionando assim uma pesquisa rápida.
  
  A classe \color{blue} \textbf{CatalogoProdutos} \color{black} servirá também para validar os produtos.
 
@@ -172,12 +172,12 @@ private HashMap<Produto, InfoProduto> produtosVendidos;
 
 \section{Gestão da Filial}
 
-Módulo de dados que, a partir dos ficheiros lidos, contém as estruturas de dados adequadas à representação dos relacionamentos, fundamentais para a aplicação, entre produtos e clientes, ou seja, para cada produto, saber quais os clientes que o compraram, quantas unidades cada um comprou, o mês e a filial.
+Módulo de dados que, a partir dos ficheiros lidos, contém as estruturas de dados adequadas à representação dos relacionamentos, fundamentais para a aplicação, entre produtos e clientes, ou seja, para cada cliente, saber quais os produtos que o cliente comprou, quantas unidades comprou, o mês e a filial.
 
  Para a estruturação optimizada dos dados deste módulo de dados tivemos em atenção que pretendemos ter o histórico de vendas organizado por filial para uma melhor análise, nunca esquecendo que existem 3 filiais nesta cadeia. 
 
 \subsection{Classe Filial}
-Guarda a informação de todos os cliente quer tenham comprado ou não. 
+Guarda a informação de todos os clientes quer tenham comprado ou não. 
 
 \begin{verbatim}
 public class Filial {
@@ -186,7 +186,7 @@ private Map<Cliente,InfoCliente> informacaoClientes;
 
 \section{Classe Hipermercado }
 
-Esta é a classe principal onde se guardam todas as informações relativas ao funcionamento do hipermercado. 
+Esta é a classe principal onde se guardam todas as informações relativas ao funcionamento do hipermercado. Nesta classe são implementados os métodos a serem usados na classe GereVendas. 
 
 \begin{verbatim}
 
@@ -204,12 +204,11 @@ private double faturacaoglobal;
 \section{GereVendas}
 
 Todo o programa é inicializado nesta função, o hipermercado é inicializado nesta classe que posteriormente iniciará as restantes classes, o menu principal do programa começa  a executar permitindo assim ao utilizador navegar pelo programa e executar as queries e obter os resultados que quiser consultar.
-Esta classe contém quais os ficheiros para leitura, assim como o caminho para eles assim como o último estado guradado. 
+Esta classe contém quais os ficheiros para leitura, assim como o caminho para eles assim como o último estado guardado. 
 
 \section{Venda}
 
 A classe Venda simplifica os dados introduzidos, sendo que assim os dados deixam de ser apenas uma string e passam a ser uma venda concreta para o programa poder consultar livremente e fazer as devidas inserções nas estruturas de forma mais simples.
-Esta classe é tambem responsável pela validação de todas as vendas introduzidas.
 
 
 \begin{verbatim}
@@ -313,17 +312,20 @@ Para cada uma das situações corremos 5 vezes, para os ficheiros Vendas\_1M, Ve
 Para testar a performance das queries foi proposto que fossem substituidas as estruturas inciais por outras. 
 
 
-No inicio a estrutura utilizada no catalogo de clientes e de produtos foi um HashSet e mudou-se para um TreeSet. 
+No inicio a estrutura utilizada no catalogo de clientes e de produtos foi um \color{blue} \textbf{HashSet} \color{black} e mudou-se para um \color{blue} \textbf{TreeSet} \color{black}.
 
 
-Nas classes Faturação, Filial e InfoCliente inicialmente utilizou-se uma HashMap depois mudou-se para uma TreeMap. 
+
+Nas classes Faturação, Filial e InfoCliente inicialmente utilizou-se uma  \color{blue} \textbf{HashMap} \color{black}  depois mudou-se para uma \color{blue} \textbf{TreeMap} \color{black}. 
 
 Para medir os tempos executamos as queries 6,7,8 e 9 num total de 5 medições fazendo de seguida a média.
 
 
-Na query 8 utilizamos o códiGo de cliente Z5000 . 
+Na query 8 utilizamos o código de cliente Z5000 . 
 
-Na querie 9 utilizamos o códiGo AF1184. 
+Na querie 9 utilizamos o código AF1184. 
+
+\newpage
 
 \par De seguida apresentamos a tabela dos tempos registados seguido de um gráfico que irá ajudar na conclusão destes testes de performance das diferentes estruturas.
 
@@ -331,4 +333,8 @@ Na querie 9 utilizamos o códiGo AF1184.
 	\includegraphics[scale=0.8]{graficoqueries}  
 	\caption{Tabela e gráfico com a execução dos tempos das diferentes estruturas utilizadas }  
 \end{figure}
+
+Podemos concluir que para a querie 6 e 7 seria melhor modificar as estruturas para  TreeMap e TreeSet nos diferentes módulos. 
+
+Na querie 8 e 9 obtivemos melhores resultados quando mantivemos a estruturas de HashSet e HashMap.  
   	
