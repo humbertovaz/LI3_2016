@@ -18,6 +18,8 @@
 \contentsline {section}{\numberline {4.3}Fatura\IeC {\c c}\IeC {\~a}o Global}{7}
 \contentsline {section}{\numberline {4.4}Gest\IeC {\~a}o da Filial}{8}
 \contentsline {section}{\numberline {4.5}Classe Hipermercado }{8}
+\contentsline {section}{\numberline {4.6}Classes Auxiliares}{8}
+\contentsline {subsection}{\numberline {4.6.1}ParClienteNDif}{8}
 \contentsline {chapter}{\numberline {5}Interface com utilizador}{9}
 \contentsline {chapter}{\numberline {6}Resultados e coment\IeC {\'a}rios sobre os testes de performance}{10}
 \contentsline {section}{\numberline {6.1}Performance Leitura dos Ficheiros}{10}

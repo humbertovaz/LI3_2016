@@ -194,6 +194,12 @@ private int comprasnulas;
 private double faturacaoglobal;
 \end{verbatim}
 
+\section{Classes Auxiliares}
+
+\subsection{ParClienteNDif}
+
+
+
 
 \chapter{Interface com utilizador}
 
@@ -205,12 +211,52 @@ Ao iniciar o programa, o utilizador tem um menu que lhe permite escolher 4 opç�
 
 \chapter{Resultados e comentários sobre os testes de performance}
 
+O programa foi corrido num computador blablabla bla com xxxpto. 
+
 Depois de desenvolver e codificar todo o projeto foi-nos proposto realizar alguns testes de performance que consistem em comparar os tempos de execução das queries 8, 9, 10, 11 e 12 usando os ficheiros Vendas\_1M.txt (1 000 000 vendas), Vendas\_3M.txt (3 milhões de vendas) e Vendas\_5M.txt (5 milhões de vendas).
 
 
 \section{Performance Leitura dos Ficheiros}
 
+
+
+
 \section{Performance Queries }
+
+
+Foram consideradas 4 situações diferentes, a primeira situação é onde a estrutura do módulo de
+compras, a class \color{blue} \textbf{ola} \color{black} tem a sua estrutura definida da seguinte forma:
+
+\begin{verbatim}
+
+\end{verbatim}
+
+\par Na segunda situação a estrutura foi modifica para em vez de utilizar \color{blue} \textbf{TreeMap} \color{black} utilizar um
+\color{blue} \textbf{HashMap} \color{black}. Ficando então a estrutura definida da seguinte forma:
+
+\begin{verbatim}
+
+\end{verbatim}
+
+\par Na terceira situação a estrutura foi modifica para em vez de utilizar \color{blue} \textbf{ArrayList} \color{black} utilizar a
+classe  \color{blue} \textbf{Vector} \color{black} . Ficando então a estrutura definida da seguinte forma:
+
+\begin{verbatim}
+
+\end{verbatim}
+
+\par A útima situação, situação 4 é a mistura da situação 2 e 3, ficando a estrutura definida da seguinte forma:
+
+\begin{verbatim}
+
+\end{verbatim}
+
+\par Para medir os tempos executamos as queries 5,6,7,8 e 9. Na query 8 utilizamos 1000 produtos como o número base
+para os testes e na query 9 utilizamos 1000 clientes. Para a query 10, para cada uma das situações corremos 5 vezes,
+para os produtos: "HO2915", "GF7879", "EN3727", "TM3887", "KN1847" e 1000 clientes, no final calculamos a média destas 5
+execuções e foi o tempo que registamos.
+\par De seguida apresentamos a tabela dos tempos registados seguido de um gráfico que irá ajudar na conclusão destes
+testes de performance das diferentes estruturas.
 
 
   	
