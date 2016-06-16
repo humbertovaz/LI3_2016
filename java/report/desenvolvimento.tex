@@ -247,17 +247,23 @@ Depois do carregamento dos ficheiros de dados é apresentado o seguinte menu com
 
 
 \begin{itemize}
-	\item Carregar Programa - 
-	\item Gravar estado do programa - 
-	\item Consultas Estatisticas - 
-	\item Consultas Interativas  - 
+	\item Carregar Programa - esta opção permite carregar o ficheiro hipermercado.dat
+	\item Gravar estado do programa - esta opção permite gravar o os ficheiros no hipermercado.dat 
+	\item Consultas Estatisticas - Apresenta ao utilizador os dados referentes ao último ficheiro de vendas lido,
+	designadamente, nome do ficheiro, número total de registos de venda errados,
+	número total de produtos, total de diferentes produtos comprados, total de não
+	comprados, número total de clientes e total dos que realizaram compras, total de
+	clientes que nada compraram, total de compras de valor total igual a 0.0 e
+	facturação total. Apresenta também os números gerais respeitantes aos dados
+	atuais já registados nas estruturas, designadamente, número total de compras por mês (não é a facturação); Facturação total por mês (valor total das compras/vendas) para cada filial e o valor total global; Número de distintos clientes que compraram em cada mês (não interessa quantas vezes o cliente comprou mas apenas quem de facto comprou); 
+
+	\item Consultas Interativas  - Abrirá um menu com as queries numeradas de 1 a 9, basta escolher o numero da querie que o utilizador pretende executar e seguir os passos. 
 \end{itemize}
 
-
-\newpage	
+	
 \begin{figure}[h!]
 	\includegraphics[scale=1.5]{MenuInicial.jpg}  
-	\caption{Diagrama de classe do Blue J }  
+	\caption{Menu Inicial }  
 \end{figure}
 
 Quando se escolhe a opção 3 aparece o seguinte menu: 
@@ -292,18 +298,15 @@ Para cada uma das situações corremos 5 vezes, para os ficheiros Vendas\_1M, Ve
 
 \begin{figure}[h!]
 	\includegraphics[scale=1]{graficosemparsing}  
-	\caption{Inicio da execução do programa }  
+	\caption{Gráfico de tempos de leitura sem parsing }  
 \end{figure}
 
 \begin{figure}[h!]
 	\includegraphics[scale=1]{graficocomparsing}  
-	\caption{Inicio da execução do programa }  
+	\caption{Gráfico com os tempos de leitura com parsing }  
 \end{figure}
 
-\par Assim pode-se concluir que apesar de  \color{blue} \textbf{BufferedReader} \color{black} ser mais rápido em todas as
-situações, ao contrário do que era esperado por nos a class  \color{blue} \textbf{Scanner} \color{black} tem um comportamento
-mais eficiente durante parsing, pois é esta a sua principal utilização.
-
+\par Assim pode-se concluir que apesar de \color{blue} \textbf{Scanner} \color{black} ser mais rápido do que  \color{blue} \textbf{BufferedReader} \color{black} na execução do programa sem parsing, o mais vantajoso para este caso é a utilização do \color{blue} \textbf{BufferedReader} \color{black}. Pois como se pode verificar no gráfico de tempos de leitura com parsing o  \color{blue} \textbf{BufferedReader} \color{black} apresenta menlhores resultados do que na classe \color{blue} \textbf{Scanner} \color{black}. 
 
 
 \section{Performance Queries }

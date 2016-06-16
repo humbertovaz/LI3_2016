@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  16 JUN 2016 14:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.4)  16 JUN 2016 15:33
 entering extended mode
 **li3java1516.tex
 (li3java1516.tex
@@ -1404,24 +1404,24 @@ LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
 <MenuInicial.jpg, id=55, 185.19188pt x 88.07906pt>
 File: MenuInicial.jpg Graphic file (type jpg)
  <use MenuInicial.jpg>
-Package pdftex.def Info: MenuInicial.jpg used on input line 259.
+Package pdftex.def Info: MenuInicial.jpg used on input line 265.
 (pdftex.def)             Requested size: 277.78711pt x 132.11824pt.
 
 <ConsultasEstatisticas.jpg, id=56, 298.11375pt x 70.01157pt>
 File: ConsultasEstatisticas.jpg Graphic file (type jpg)
 
 <use ConsultasEstatisticas.jpg>
-Package pdftex.def Info: ConsultasEstatisticas.jpg used on input line 265.
+Package pdftex.def Info: ConsultasEstatisticas.jpg used on input line 271.
 (pdftex.def)             Requested size: 298.11302pt x 70.01138pt.
 
 <ConsultasIterativas.jpg, id=57, 675.27281pt x 152.82094pt>
 File: ConsultasIterativas.jpg Graphic file (type jpg)
 
 <use ConsultasIterativas.jpg>
-Package pdftex.def Info: ConsultasIterativas.jpg used on input line 271.
+Package pdftex.def Info: ConsultasIterativas.jpg used on input line 277.
 (pdftex.def)             Requested size: 607.73991pt x 137.53755pt.
 
-Overfull \hbox (152.4958pt too wide) in paragraph at lines 271--272
+Overfull \hbox (152.4958pt too wide) in paragraph at lines 277--278
 [][] 
  []
 
@@ -1429,7 +1429,7 @@ Overfull \hbox (152.4958pt too wide) in paragraph at lines 271--272
 g>]
 Cap\'{\i }tulo 6.
 
-Overfull \hbox (2.99133pt too wide) in paragraph at lines 281--282
+Overfull \hbox (2.99133pt too wide) in paragraph at lines 287--288
 []\OT1/ptm/m/n/12 O pro-grama foi cor-rido num com-pu-ta-dor ASUS k55v com um p
 ro-ces-sa-dor in-tel(R) core(TM)
  []
@@ -1438,24 +1438,18 @@ ro-ces-sa-dor in-tel(R) core(TM)
 File: graficosemparsing.png Graphic file (type png)
 
 <use graficosemparsing.png>
-Package pdftex.def Info: graficosemparsing.png used on input line 294.
+Package pdftex.def Info: graficosemparsing.png used on input line 300.
 (pdftex.def)             Requested size: 362.10191pt x 217.56227pt.
 
 <graficocomparsing.png, id=62, 361.35pt x 216.05719pt>
 File: graficocomparsing.png Graphic file (type png)
 
 <use graficocomparsing.png>
-Package pdftex.def Info: graficocomparsing.png used on input line 299.
+Package pdftex.def Info: graficocomparsing.png used on input line 305.
 (pdftex.def)             Requested size: 361.34912pt x 216.05664pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (5.36806pt too wide) in paragraph at lines 303--306
-[]\OT1/ptm/m/n/12 Assim pode-se con-cluir que ape-sar de []\OT1/ptm/b/n/12 Buf-
-fe-re-dRe-a-der []\OT1/ptm/m/n/12 ser mais r[]apido em to-das as situa[][]oes,
- []
 
 [12
 
@@ -1463,7 +1457,7 @@ fe-re-dRe-a-der []\OT1/ptm/m/n/12 ser mais r[]apido em to-das as situa[][]oes,
 <graficoqueries.png, id=67, 554.07pt x 222.8325pt>
 File: graficoqueries.png Graphic file (type png)
  <use graficoqueries.png>
-Package pdftex.def Info: graficoqueries.png used on input line 328.
+Package pdftex.def Info: graficoqueries.png used on input line 331.
 (pdftex.def)             Requested size: 443.2566pt x 178.26624pt.
 
 
@@ -1488,7 +1482,7 @@ rogram Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/ut
 mr8a.pfb>
-Output written on li3java1516.pdf (16 pages, 762475 bytes).
+Output written on li3java1516.pdf (16 pages, 763855 bytes).
 PDF statistics:
  95 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
