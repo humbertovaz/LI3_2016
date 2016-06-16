@@ -245,19 +245,34 @@ Se não quiser carregar o último estado do programa carrega os ficheiros Client
 
 Depois do carregamento dos ficheiros de dados é apresentado o seguinte menu com as 5 opções: 
 
+
 \begin{itemize}
 	\item Carregar Programa - 
 	\item Gravar estado do programa - 
 	\item Consultas Estatisticas - 
 	\item Consultas Interativas  - 
 \end{itemize}
-	
-	
-	
+
+
+\newpage	
 \begin{figure}[h!]
 	\includegraphics[scale=1.5]{MenuInicial.jpg}  
 	\caption{Diagrama de classe do Blue J }  
 \end{figure}
+
+Quando se escolhe a opção 3 aparece o seguinte menu: 
+\begin{figure}[h!]
+	\includegraphics[scale=1]{ConsultasEstatisticas.jpg}  
+	\caption{Opção 3 - Consulta das Estatisticas }  
+\end{figure}
+
+Quandos se escolhe o menu das queries (4) 
+\begin{figure}[h!]
+	\includegraphics[scale=0.9]{ConsultasIterativas}  
+	\caption{Opção 4 - Consulta das queries }  
+\end{figure}
+
+A partir daqui a escolha de um número de 0 a 9 vai implicar a execução de determinada querie, conforme o pretendido pelo utilizador. 
 
 \chapter{Resultados e comentários sobre os testes de performance}
 
@@ -295,35 +310,13 @@ mais eficiente durante parsing, pois é esta a sua principal utilização.
 Para testar a performance das queries foi proposto que fossem substituidas as estruturas inciais por outras. 
 
 
-No inicio a estrutura utilizada no catalogo de clientes e de produtos foi um HashSet e mudou-se para um TreeSet, registando-se 5 vezes o valor da execução e fazendo a média.
+No inicio a estrutura utilizada no catalogo de clientes e de produtos foi um HashSet e mudou-se para um TreeSet. 
 
-\begin{verbatim}
-
-\end{verbatim}
 
 Nas classes Faturação, Filial e InfoCliente inicialmente utilizou-se uma HashMap depois mudou-se para uma TreeMap. 
 
-\begin{verbatim}
+Para medir os tempos executamos as queries 6,7,8 e 9 num total de 5 medições fazendo de seguida a média.
 
-\end{verbatim}
-
- 
-Foram consideradas várias situações diferentes, a primeira situação é onde a estrutura do módulo de catálogos de clientes , a class \color{blue} \textbf{catalogo Clientes} \color{black} tem a sua estrutura definida da seguinte forma:
-
-\begin{verbatim}
-
-\end{verbatim}
-
-\par Na segunda situação a estrutura foi modifica para em vez de utilizar \color{blue} \textbf{TreeMap} \color{black} utilizar um
-\color{blue} \textbf{HashMap} \color{black}. Ficando então a estrutura definida da seguinte forma:
-
-
-
-\begin{verbatim}
-
-\end{verbatim}
-
-\par Para medir os tempos executamos as queries 6,7,8 e 9 num total de 5 medições fazendo de seguida a média.
 
 Na query 8 utilizamos o códiGo de cliente Z5000 . 
 

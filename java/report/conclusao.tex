@@ -1,15 +1,11 @@
 \chapter{Conclusão}
 
-Uma vez que se tratou de um trabalho de uma dimensão já considerável comparando com o que estávamos habituados envolveu utilização de técnicas particulares e tivemos sempre como objetivo que este trabalho fosse concebido de modo a que seja facilmente modificável, e seja, apesar da complexidade, o mais optimizado possível a todos os níveis.
-
-
-A modularidade foi garantida através da criação de classes com API completa, com constructores apropriados e métodos que permitem um bom número de operações com as classes e módulos do programa. Nesse espírito, foram ainda incluidos não só nas classes dos módulos como em todas as que tal se justificava, métodos essenciais a qualquer classe “bem comportada” nomeadamente hashCode(), toString(), equals() e clone().
-O encapsulamento dos módulos foi garantido através do uso de clone’s ao inserir nas estruturas e ao serem procurados elementos nas mesmas.
-Além da modularidade e encapsulamento, uma boa estruturação do programa e legibilidade do mesmo também foram aspectos tidos em conta, o que levou à criação de tipos enumerados e métodos e variáveis com nomes sugestivos, ainda que isso tenha levado a que esses nomes fossem por vezes longos.
-Os tempos de resposta às queries e de leitura dos ficheiros são também bastante satisfatórios na nossa opinião. O tempo de leitura dos ficheiros é melhor que linear no tamanho dos ficheiros de compras e nenhuma querie demora mais que um minuto a ser executada, sendo que a maioria demora menos de 1 milisegundo. Estes resultados reflectem um bom planeamento da arquitectura do programa e boa escolha das estruturas usadas.
-
-
-
 A implementação de um programa de gestão de hipermercados em Java provou ser mais fácil
 quando comparado com a implementação em C. Tal deve-se, em grande maioria, à necessidade de definir de raiz um grande número de funções como por exemplo estruturas. Esta vantagem de implementaçãoo permite desenvolver soluções adicionais que teriam um custo considerável em C.
 Assim sendo foi possível concretizar as várias queries com maior facilidade, sem prejudicar a sua velocidade, graças à facilidade em trocar e testar diferentes estruturas, desde que estas partilhem da mesma API.
+
+A modularidade foi garantida através da criação de classes com API completa, com construtores apropriados e métodos que permitem um bom número de operações com as classes e módulos do programa. Nesse espírito, foram ainda incluidos não só nas classes dos módulos como em todas as que tal se justificava, métodos essenciais a qualquer classe “bem comportada” nomeadamente toString(), equals() e clone().
+O encapsulamento dos módulos foi garantido através do uso de clone’s ao inserir nas estruturas e ao serem procurados elementos nas mesmas.
+Além da modularidade e encapsulamento, uma boa estruturação do programa e legibilidade do mesmo também foram aspectos tidos em conta, o que levou à criação de tipos enumerados e métodos e variáveis com nomes sugestivos, ainda que isso tenha levado a que esses nomes fossem por vezes longos.
+Os tempos de resposta às queries e de leitura dos ficheiros são também bastante satisfatórios tendo em conta a quantidade de dados a analisar.
+
