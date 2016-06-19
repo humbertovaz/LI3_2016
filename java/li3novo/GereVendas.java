@@ -100,7 +100,7 @@ public class GereVendas  {
                     tmp=carregaCatalgoClientes();
                     for(String a :tmp){
                         cliente = new Cliente(a);
-                        t.inserCatalogoClientes(a);
+                        t.inserCatalogoClientes(cliente);
                         t.inserClienteFilial(cliente);
                        
                     }
@@ -109,7 +109,8 @@ public class GereVendas  {
                     for(Venda a:tmp1) {
                       
                         produto = new Produto(a.getCodigoProduto());
-                        t.inserVendas(a.getFilial(),a.getCodigoCliente(),produto,a.getQuantidade(),a.getPreco(),a.getMes(), a.getModoDeCompra());
+                        cliente = new Cliente(a.getCodigoCliente());
+                        t.inserVendas(a.getFilial(),cliente,produto,a.getQuantidade(),a.getPreco(),a.getMes(), a.getModoDeCompra());
                     }
                     Crono.stop();
             System.out.println("Ficheiros carregados com sucesso! ("+Crono.print()+" s)");
@@ -177,14 +178,15 @@ public class GereVendas  {
                         tmp=carregaCatalgoClientes();
                         for(String a :tmp) {
                             cliente = new Cliente(a);
-                        t.inserCatalogoClientes(a);
+                        t.inserCatalogoClientes(cliente);
                         t.inserClienteFilial(cliente);
                         }
                         carregaFicheiros();
                         tmp1=carregaCompras();
                         for(Venda a:tmp1) {
                         produto = new Produto(a.getCodigoProduto());
-                        t.inserVendas(a.getFilial(),a.getCodigoCliente(),produto,a.getQuantidade(),a.getPreco(),a.getMes(), a.getModoDeCompra());
+                        cliente = new Cliente(a.getCodigoCliente());
+                        t.inserVendas(a.getFilial(),cliente,produto,a.getQuantidade(),a.getPreco(),a.getMes(), a.getModoDeCompra());
                         }
                         Crono.stop();
                         System.out.println("Ficheiros carregados com sucesso! ("+Crono.print()+" s)");
@@ -379,8 +381,9 @@ public class GereVendas  {
                     case 3:
                         clear();
                         s = codigo();
+                        cliente=new Cliente(s);
                        Crono.start();
-                        if(t.existeCliente(s)){
+                        if(t.existeCliente(cliente)){
                              
                             TriComprasNProdGastou[] res=t.clienteCompras(new Cliente(s));
                             Crono.stop();
@@ -431,7 +434,8 @@ public class GereVendas  {
                     case 5:
                         clear();
                         s= codigo();
-                        if(t.existeCliente(s)){
+                        cliente=new Cliente(s);
+                        if(t.existeCliente(cliente)){
                             Crono.start();
                             List<ParProdutoQuantidade> res = t.getCompradosCliente(new Cliente(s));
                             Crono.stop();
@@ -772,15 +776,17 @@ public class GereVendas  {
     private static List<Venda> carregaCompras() throws FileNotFoundException, IOException{
     String linha;
         Venda a;
-        BufferedReader inStream;
+        Scanner scanFile = null ;
         ArrayList vendas = new ArrayList<>();
-        inStream= new BufferedReader(new FileReader(GereVendas.fichCompras));
-        while((linha= inStream.readLine())!=null) {
+       scanFile = new Scanner (new FileReader(GereVendas.fichCompras));
+       scanFile.useDelimiter(System.getProperty("line.separator"));
+        while(scanFile.hasNext()) {
             
-            a=parseLinhaVenda(linha);
+            a=parseLinhaVenda(scanFile.nextLine());
             vendas.add(a.clone());
         }
-        inStream.close();
+        if (scanFile!=null) scanFile.close();
+        
             return vendas;
     }
     
@@ -944,40 +950,43 @@ public class GereVendas  {
             }
         }  
   }
-   /*
+  
+  
+  
+    /*
         carregar os produtos e os clientes
    */
    private static List<String> carregaCatalgoProduto() throws FileNotFoundException, IOException {
-     BufferedReader br;
+    Scanner scanFile = null ;
         String line;
         ArrayList<String> tmp= new ArrayList<>();
-
-        br = new BufferedReader(new FileReader(GereVendas.ficheiroProdutos));
+        scanFile = new Scanner (new FileReader(GereVendas.ficheiroProdutos));
+        scanFile.useDelimiter(System.getProperty("line.separator"));
+        
         System.out.printf("A proceder a leitura do ficheiro %s...\n", GereVendas.ficheiroProdutos);
         
-        while ((line = br.readLine()) != null) {
-           tmp.add(line);
+        while (scanFile.hasNext()) {
+           tmp.add(scanFile.nextLine());
         }
-
-        br.close();
-
-  
+         if (scanFile!=null) scanFile.close();
+         
     return tmp;
    }
    
    private static List<String>carregaCatalgoClientes() throws FileNotFoundException, IOException {
-       BufferedReader br;
+       Scanner scanFile = null ;
        String line;
        ArrayList<String> tmp= new ArrayList<>();
        System.out.println("A proceder a leitura do ficheiro..."+GereVendas.ficheiroClientes);
-       br = new BufferedReader(new FileReader(GereVendas.ficheiroClientes));
-       while ((line = br.readLine()) != null) {
-           tmp.add(line);
-       }
-       br.close();
+       scanFile = new Scanner (new FileReader((GereVendas.ficheiroClientes)));
+       scanFile.useDelimiter(System.getProperty("line.separator"));
+        while (scanFile.hasNext()) {
+           tmp.add(scanFile.nextLine());
+        }
+         if (scanFile!=null) scanFile.close();
+         
        return tmp;
    } 
-
    
    
    

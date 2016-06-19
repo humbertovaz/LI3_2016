@@ -358,7 +358,7 @@ public class Hipermercado implements Serializable {
     
     
     
-    public void inserCatalogoClientes(String c) {
+    public void inserCatalogoClientes(Cliente c) {
         this.clientes.insere(c);
     
     }
@@ -369,14 +369,14 @@ public class Hipermercado implements Serializable {
     
     }
     
-    public void inserVendas (int filial, String codCliente , Produto p, int quantidade,double faturado,int mes,char modo) {
+    public void inserVendas (int filial, Cliente codCliente , Produto p, int quantidade,double faturado,int mes,char modo) {
         
         
         if((mes>=1 && mes<=12) && (filial >=1 && filial <=3 )&& (this.produtos.existe(p)) 
                 && this.clientes.existe(codCliente) && (modo=='N' || modo =='P') && (faturado>=0.0 && faturado<=999.99)
                 && quantidade >0) {
-            Cliente c = new Cliente(codCliente);
-            this.filiais[filial-1].inserFilial(c.clone(), p.clone(), quantidade, faturado, mes-1, modo);
+            
+            this.filiais[filial-1].inserFilial(codCliente.clone(), p.clone(), quantidade, faturado, mes-1, modo);
             this.faturacao.inser(mes-1, filial-1, faturado, quantidade, p);
             if(faturado==0.0) {
                 this.comprasnulas++;
@@ -418,7 +418,7 @@ public class Hipermercado implements Serializable {
         return this.clientes.clone();
     }
 
-    boolean existeCliente(String s) {
+    boolean existeCliente(Cliente s) {
       return this.clientes.existe(s);
     }
     

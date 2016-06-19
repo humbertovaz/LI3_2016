@@ -1,5 +1,6 @@
 
 import java.io.Serializable;
+import java.util.Objects;
 
  
 
@@ -26,6 +27,13 @@ public class Cliente implements Comparable<Cliente> , Serializable
 
     public Cliente(Cliente cliente) {
         codigo_cliente = cliente.getCodigoCliente();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.codigo_cliente);
+        return hash;
     }
 
     /*
